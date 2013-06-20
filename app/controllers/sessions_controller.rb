@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    redirect_to appointments_path
   end
 
   def destroy
