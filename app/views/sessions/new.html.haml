@@ -1,0 +1,27 @@
+.container
+  != flash_handler
+  .login-dialog
+    .row
+      .span4.offset4
+        .form-signin
+          = form_for :session, :url => appointments_path, :html => {:class => 'form-sigin' } do |f|
+            .fieldset
+              %legend Welcome back
+              .control-group
+                .controls
+                  .input-prepend
+                    %span.add-on#login
+                      %i.icon-envelope
+                    = f.text_field :email, :class => 'span2', :id => 'inputIcon', :placeholder => 'Email'
+              .control-group
+                .controls
+                  .input-prepend
+                    %span.add-on#login
+                      %i.icon-key
+                    = f.password_field :password, :class => 'span2', :id => 'inputIcon', :placeholder => 'Senha'
+              .control-group
+                %label.control-label
+                .controls
+                  = button_tag "Login", :class => 'btn btn-primary', 'data-disable-with' => "Processando ..."
+-#= render 'pages/footer'
+
