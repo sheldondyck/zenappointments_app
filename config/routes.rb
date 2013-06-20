@@ -1,11 +1,11 @@
 ZenAppointmentsApp::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
-  #post is a hack because of appointments_path in sessions/new.html.haml
+  # TODO: post is a hack because of appointments_path in sessions/new.html.haml
   post 'appointments',   :to => 'appointments#index'
   get 'login',          :to => 'sessions#new'
   get 'logout',         :to => 'sessions#destroy'
-  root 'pages#index'
+  root 'appointments#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -47,7 +47,7 @@ ZenAppointmentsApp::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
