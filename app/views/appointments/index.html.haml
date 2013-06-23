@@ -1,16 +1,15 @@
 %h1 appointments
 
+-# TODO: too many items?
+.btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
+  =link_to 'Day', appointments_path(view: 'day'), {class: 'btn', data: {remote: 'true'}}
+  =link_to 'Week', appointments_path(view: 'week'), {class: 'btn', data: {remote: 'true'}}
+  =link_to '2 Weeks', appointments_path(view: '2weeks'), {class: 'btn', data: {remote: 'true'}}
+.btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
+  =link_to 'Month', appointments_path(view: 'month'), {class: 'btn', data: {remote: 'true'}}
+  =link_to '2 Months', appointments_path(view: '2months'), {class: 'btn', data: {remote: 'true'}}
+.btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
+  =link_to 'Year', appointments_path(view: 'year'), {class: 'btn', data: {remote: 'true'}}
+  =link_to '2 Year', appointments_path(view: '2years'), {class: 'btn', data: {remote: 'true'}}
 #appointments
-  -# TODO: too many items?
-  .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-    =link_to 'Day', appointments_path(view: 'day'), {class: 'btn', data: {remote: 'true'}}
-    =link_to 'Week', appointments_path(view: 'week'), {class: 'btn', data: {remote: 'true'}}
-    =link_to '2 Weeks', appointments_path(view: '2weeks'), {class: 'btn', data: {remote: 'true'}}
-  .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-    =link_to 'Month', appointments_path(view: 'month'), {class: 'btn', data: {remote: 'true'}}
-    =link_to '2 Months', appointments_path(view: '2months'), {class: 'btn', data: {remote: 'true'}}
-  .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-    =link_to 'Year', appointments_path(view: 'year'), {class: 'btn', data: {remote: 'true'}}
-    =link_to '2 Year', appointments_path(view: '2years'), {class: 'btn', data: {remote: 'true'}}
-  #appointments_panel
-    =render 'month'
+  =render 'month'

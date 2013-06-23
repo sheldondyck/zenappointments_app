@@ -1,6 +1,7 @@
-%h2#month
-  = link_to '<', date: @date.prev_month
-  = @date.strftime("%B %Y")
-  = link_to '>', date: @date.next_month
-= calendar @date do |date|
-  = date.day
+#appointments_panel
+  %h2#month
+    = link_to '<', appointments_change_path(date: @date.prev_month), remote: true
+    = @date.strftime("%B %Y")
+    = link_to '>', appointments_change_path(date: @date.next_month), remote: true
+  = calendar @date do |date|
+    = date.day
