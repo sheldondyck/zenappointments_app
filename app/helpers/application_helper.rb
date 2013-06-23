@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title
+    'ZenApplication App'
+  end
+
   def flash_handler
     div = ""
     flash.each do |key, value|
