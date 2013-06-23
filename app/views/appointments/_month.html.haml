@@ -1,6 +1,6 @@
 #appointments_panel
   %h2#month
-    = link_to '<', appointments_change_path(date: @date.prev_month), remote: true
+    = link_to '<', appointments_change_path(date: @date.prev_month, view: 'month'), remote: true
     = @date.strftime("%B %Y")
     = link_to '>', appointments_change_path(date: @date.next_month), remote: true
   = calendar @date do |date|
