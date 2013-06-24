@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     if params[:session][:email] == 'foo' and
       params[:session][:password] == 'bar' then
-      cookies[:super_secure_login_credentials] = 'abc123'
+      cookies[:super_secure_login_credentials] = SUPER_SESSION_SECRET
       redirect_to appointments_path
     else
       if params[:session][:email] != '' or
