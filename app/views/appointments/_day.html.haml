@@ -1,3 +1,5 @@
 #appointments_panel
   %h2
     = render('nav_panel')
+  = agenda @date, @employees do |employee, hour|
+    =''

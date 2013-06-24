@@ -12,4 +12,4 @@
   =link_to 'Year', appointments_change_path(view: 'year'), {class: 'btn', data: {remote: 'true'}}
   =link_to '2 Year', appointments_change_path(view: 'years2'), {class: 'btn', data: {remote: 'true'}}
 #appointments
-  =render 'month'
+  =render @view
