@@ -5,3 +5,9 @@
     = @nav_title
   = agenda @date, @employees do |employee, hour|
     =''
+:coffee
+  jQuery ->
+    $('.edit_hour').click ->
+      #alert('foo')
+      $(this).css('background-color', '#0d0')
+      $(this).append('<div>hello world</div>')
