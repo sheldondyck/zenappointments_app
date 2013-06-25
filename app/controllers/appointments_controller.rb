@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   before_action :authorize_user
 
-  NAV_TITLE = {day: '%A, %B %e %Y', week: 'week %Y', weeks2: 'week2 %Y', month: '%B %Y', months2: 'Months 2 %B %Y', year: '%Y', years2: '%Y - %Y 2'}
+  NAV_TITLE = {day: '%A, %B %e %Y', week: 'week %V - %Y', weeks2: 'week2 %Y', month: '%B %Y', months2: 'Months 2 %B %Y', year: '%Y', years2: '%Y - %Y 2'}
 
   def index
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
