@@ -1,5 +1,7 @@
 #appointments_panel
-  %h2
-    = render('nav_panel')
+  %h3
+    = link_to '<', appointments_change_path(date: @date.prev_day, view: @view), remote: true
+    = link_to '>', appointments_change_path(date: @date.next_day, view: @view), remote: true
+    = @nav_title
   = agenda @date, @employees do |employee, hour|
     =''

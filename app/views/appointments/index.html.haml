@@ -4,12 +4,10 @@
 .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
   =link_to 'Day', appointments_change_path(view: 'day'), {class: 'btn', data: {remote: 'true'}}
   =link_to 'Week', appointments_change_path(view: 'week'), {class: 'btn', data: {remote: 'true'}}
-  =link_to '2 Weeks', appointments_change_path(view: 'weeks2'), {class: 'btn', data: {remote: 'true'}}
-.btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
+  -#=link_to '2 Weeks', appointments_change_path(view: 'weeks2'), {class: 'btn', data: {remote: 'true'}}
   =link_to 'Month', appointments_change_path(view: 'month'), {class: 'btn', data: {remote: 'true'}}
-  =link_to '2 Months', appointments_change_path(view: 'months2'), {class: 'btn', data: {remote: 'true'}}
-.btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
+  -#=link_to '2 Months', appointments_change_path(view: 'months2'), {class: 'btn', data: {remote: 'true'}}
   =link_to 'Year', appointments_change_path(view: 'year'), {class: 'btn', data: {remote: 'true'}}
-  =link_to '2 Year', appointments_change_path(view: 'years2'), {class: 'btn', data: {remote: 'true'}}
+  -#=link_to '2 Year', appointments_change_path(view: 'years2'), {class: 'btn', data: {remote: 'true'}}
 #appointments
   =render @view
