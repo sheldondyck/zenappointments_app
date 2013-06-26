@@ -1,5 +1,2 @@
 #appointments_panel
-  %h2#week
-    = link_to '<', appointments_change_path(date: @date.prev_week, view: @view), remote: true
-    = link_to '>', appointments_change_path(date: @date.next_week, view: @view), remote: true
-    = @nav_title
+  =render('nav_panel')

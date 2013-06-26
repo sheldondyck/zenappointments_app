@@ -1,3 +1,5 @@
-= link_to '<', appointments_change_path(date: @date.prev_month, view: @view), remote: true
-= link_to '>', appointments_change_path(date: @date.next_month, view: @view), remote: true
-= @nav_title
+-# TODO: calling function on @date (through send) that came from the net. Things that make you go hmmm.
+%h3
+  =link_to '<', appointments_change_path(date: @date.send('prev_' + @view), view: @view), {class: 'btn', data: {remote: 'true'}}
+  =link_to '>', appointments_change_path(date: @date.send('next_' + @view), view: @view), {class: 'btn', data: {remote: 'true'}}
+  =@nav_title

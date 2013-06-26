@@ -1,5 +1,2 @@
 #appointments_panel
-  %h2#year
-    = link_to '<', appointments_change_path(date: @date.prev_year, view: @view), remote: true
-    = link_to '>', appointments_change_path(date: @date.next_year, view: @view), remote: true
-    = @nav_title
+  =render('nav_panel')

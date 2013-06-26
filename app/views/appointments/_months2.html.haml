@@ -1,5 +1,4 @@
 #appointments_panel
-  %h2#month
-    = render('nav_panel')
-  = calendar @date do |date|
-    = date.day
+  =render('nav_panel')
+  =calendar @date do |date|
+    =date.day
