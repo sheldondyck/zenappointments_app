@@ -50,6 +50,11 @@
   border-collapse:collapse;
   width:100%;
 
+  .new_appointment {
+    width:100%;
+    font-size:14px;
+  }
+
   td, th {
     font-family:"Lucida Grande", arial, helvetica, sans-serif;
     font-size:10px;
@@ -74,6 +79,10 @@
     background:#ddd;
     text-align:right;
     width:100px;
+  }
+
+  .edit_hour {
+    width:30%; // TODO: hack because there are 3 employyes + 1 hour column
   }
 
   td {
