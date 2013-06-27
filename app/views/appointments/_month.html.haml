@@ -2,3 +2,6 @@
   =render('nav_panel')
   =calendar @date do |date|
     =date.day
+  :coffee
+    jQuery ->
+      $('.calendar').registerNewCalendarDialog('#{j render('new')}')

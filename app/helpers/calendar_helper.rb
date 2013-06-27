@@ -37,6 +37,7 @@ module CalendarHelper
       classes = []
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
+      classes << 'edit_day'
       classes.empty? ? nil : classes.join(" ")
     end
 
