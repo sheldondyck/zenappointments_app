@@ -5,14 +5,14 @@ class AppointmentsController < ApplicationController
 
   def index
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @view = params[:view] ||= 'month'
+    @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [2, 4, 102]
   end
 
   def change
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @view = params[:view] ||= 'month'
+    @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [2, 4, 102]
   end

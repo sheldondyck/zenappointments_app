@@ -1,2 +1,16 @@
-%div.new_appointment
-  hello world from new.html.haml!
+%div#new_appointment
+  %h3 New Appointment
+
+  =form_for :appointment, :url => appointments_path, :html => {:class => 'form-new-appointment' } do |f|
+    .control-group
+      .controls
+        %span.add-on#name
+          = f.text_field :name, :class => 'span2', :id => 'inputIcon', :placeholder => 'First Name'
+    .control-group
+      .controls
+        %span.add-on#name
+          = f.text_field :name, :class => 'span2', :id => 'inputIcon', :placeholder => 'Last Name'
+    .control-group
+      %label.control-label
+      .controls
+        = button_tag 'Create', :class => 'btn btn-primary', 'data-disable-with' => 'Processando ...'
