@@ -10,22 +10,22 @@
   }
 
   th {
-    background:#DDD;
+    background:#ddd;
     color:#666;
     text-align:center;
     width:14.2857142857143%;
   }
 
   td {
-    background:#FFF;
+    background:#fff;
     color:#777;
     height:80px;
     vertical-align:top;
     font-size:16px;
   }
 
-  .notmonth, .notmonth a { color:#CCC; }
-  .today { background-color:#D7F2FF; }
+  .notmonth, .notmonth a { color:#ccc; }
+  .today { background-color:#d7f2ff; }
 }
 
 #appointments #calendar-selector {
@@ -63,7 +63,7 @@
   }
 
   th {
-    background:#DDD;
+    background:#ddd;
     color:#666;
     text-align:center;
     //width:14.2857142857143%;
@@ -86,15 +86,25 @@
   }
 
   td {
-    background:#FFF;
+    background:#fff;
     color:#777;
     height:20px;
     vertical-align:top;
     font-size:16px;
   }
+
+  .new_appointment {
+    position:absolute;
+    background:#fff;
+    //position:relative;
+    left:200px;
+    width:200px;
+    border-style:solid;
+  }
 }
 
-#appointments ul {
-  font-size:11px;
-  padding-left:20px;
+#view_selector {
+  position:absolute;
+  right:10px;
+  top:65px;
 }
