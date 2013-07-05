@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    'ZenApplication App'
+    'zenapplication'
   end
 
   def flash_handler
