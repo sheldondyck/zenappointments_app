@@ -1,3 +1,6 @@
+r generate model Account owner_first_name:string owner_last_name:string company_name:string email:string configuration:hstore active:boolean
+r generate model User accounts:foreign_key first_name:string last_name:string email:string password:string password_digest:string account_administrator:boolean active:boolean
+
 == README
 
 This README would normally document whatever steps are necessary to get the
