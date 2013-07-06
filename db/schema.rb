@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130706122205) do
+ActiveRecord::Schema.define(version: 20130706134534) do
 
   create_table "accounts", force: true do |t|
     t.string   "owner_first_name"
@@ -25,6 +25,24 @@ ActiveRecord::Schema.define(version: 20130706122205) do
   end
 
   add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", using: :btree
+
+  create_table "appointments", force: true do |t|
+    t.integer  "account_id",  null: false
+    t.integer  "user_id",     null: false
+    t.integer  "employee_id", null: false
+    t.integer  "client_id",   null: false
+    t.datetime "time"
+    t.integer  "duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["account_id", "employee_id", "time"], name: "index_appointments_on_account_id_and_employee_id_and_time", using: :btree
+  add_index "appointments", ["account_id", "time"], name: "index_appointments_on_account_id_and_time", using: :btree
+  add_index "appointments", ["account_id"], name: "index_appointments_on_account_id", using: :btree
+  add_index "appointments", ["client_id"], name: "index_appointments_on_client_id", using: :btree
+  add_index "appointments", ["employee_id"], name: "index_appointments_on_employee_id", using: :btree
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
 
   create_table "clients", force: true do |t|
     t.integer  "account_id"
@@ -67,6 +85,11 @@ ActiveRecord::Schema.define(version: 20130706122205) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+
+  add_foreign_key "appointments", "accounts", :name => "appointments_account_id_fk"
+  add_foreign_key "appointments", "clients", :name => "appointments_client_id_fk"
+  add_foreign_key "appointments", "employees", :name => "appointments_employee_id_fk"
+  add_foreign_key "appointments", "users", :name => "appointments_user_id_fk"
 
   add_foreign_key "clients", "accounts", :name => "clients_account_id_fk"
 

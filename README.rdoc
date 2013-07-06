@@ -4,7 +4,9 @@ r generate model User account_id:integer accounts:foreign_key first_name:string 
 
 r generate model Employee account_id:integer accounts:foreign_key first_name:string last_name:string active:boolean
 
-r generate model Client first_name:string last_name:string birthday:date email:string telefone_celular:string telefone_home:string telefone_office:string custom_fields:hstore
+r generate model Client account_id:integer accounts:foreign_key first_name:string last_name:string birthday:date email:string telefone_celular:string telefone_home:string telefone_office:string custom_fields:hstore
+
+r generate model Appointment account_id:integer accounts:foreign_key user_id:integer users:foreign_key employee_id:integer employees:foreign_key client_id:integer clients:foreign_key time:datetime duration:integer
 
 == README
 
