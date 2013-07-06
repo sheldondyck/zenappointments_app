@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130706031027) do
+ActiveRecord::Schema.define(version: 20130706122205) do
 
   create_table "accounts", force: true do |t|
     t.string   "owner_first_name"
@@ -25,6 +25,33 @@ ActiveRecord::Schema.define(version: 20130706031027) do
   end
 
   add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", using: :btree
+
+  create_table "clients", force: true do |t|
+    t.integer  "account_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birthday"
+    t.string   "email"
+    t.string   "telefone_celular"
+    t.string   "telefone_home"
+    t.string   "telefone_office"
+    t.hstore   "custom_fields"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clients", ["first_name", "last_name"], name: "index_clients_on_first_name_and_last_name", using: :btree
+  add_index "clients", ["first_name"], name: "index_clients_on_first_name", using: :btree
+  add_index "clients", ["last_name"], name: "index_clients_on_last_name", using: :btree
+
+  create_table "employees", force: true do |t|
+    t.integer  "account_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.integer  "account_id"
@@ -40,6 +67,10 @@ ActiveRecord::Schema.define(version: 20130706031027) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+
+  add_foreign_key "clients", "accounts", :name => "clients_account_id_fk"
+
+  add_foreign_key "employees", "accounts", :name => "employees_account_id_fk"
 
   add_foreign_key "users", "accounts", :name => "users_account_id_fk"
 
