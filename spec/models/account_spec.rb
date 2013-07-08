@@ -16,5 +16,17 @@
 require 'spec_helper'
 
 describe Account do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @account = Account.new(owner_first_name: 'Owner First Name',
+                             owner_last_name: 'Owner Last Name',
+                             company_name: 'Company Name',
+                             email: 'acount_1@company.com',
+                             active: 1)}
+  subject { @account }
+
+  it { should respond_to(:owner_first_name) }
+  it { should respond_to(:owner_last_name) }
+  it { should respond_to(:owner_name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:configuration) }
+  it { should respond_to(:active) }
 end

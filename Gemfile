@@ -21,8 +21,9 @@ group :development do
   gem 'therubyracer', platforms: :ruby
   gem 'rspec-rails'
   gem 'guard'
-  gem 'guard-zeus'
+  gem 'guard-bundler'
   gem 'guard-rspec'
+  gem 'guard-zeus'
   gem 'libnotify'
   gem 'capybara'
   gem 'launchy'

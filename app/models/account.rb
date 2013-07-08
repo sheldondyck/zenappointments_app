@@ -18,4 +18,8 @@ class Account < ActiveRecord::Base
   has_many :employees, dependent: :delete_all
   has_many :clients, dependent: :delete_all
   has_many :appointments, dependent: :delete_all
+
+  def owner_name
+    owner_first_name + ' ' + owner_last_name
+  end
 end
