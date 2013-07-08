@@ -64,3 +64,14 @@ ZenAppointmentsApp::Application.routes.draw do
   #     resources :products
   #   end
 end
+#== Route Map
+# Generated on 07 Jul 2013 11:41
+#
+#            sessions POST   /sessions(.:format)            sessions#create
+#         new_session GET    /sessions/new(.:format)        sessions#new
+#             session DELETE /sessions/:id(.:format)        sessions#destroy
+#        appointments GET    /appointments(.:format)        appointments#index
+# appointments_change GET    /appointments/change(.:format) appointments#change
+#               login GET    /login(.:format)               sessions#new
+#              logout GET    /logout(.:format)              sessions#destroy
+#                root GET    /                              sessions#new

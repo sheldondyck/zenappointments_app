@@ -11,6 +11,8 @@
 #  updated_at :datetime
 #
 
-class Employee < ActiveRecord::Base
-  belongs_to :account
+require 'spec_helper'
+
+describe Employee do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

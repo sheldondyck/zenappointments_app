@@ -24,12 +24,12 @@ group :development do
   gem 'guard-zeus'
   gem 'guard-rspec'
   gem 'libnotify'
-  gem 'annotate' #, :git => 'git://github.com/ctran/annotate_models.git'
   gem 'capybara'
   gem 'launchy'
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "meta_request"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'annotate' #, :git => 'git://github.com/ctran/annotate_models.git'
   # To use debugger
   #gem 'ruby-debug'
   gem 'debugger'
