@@ -19,6 +19,11 @@ class Account < ActiveRecord::Base
   has_many :clients, dependent: :delete_all
   has_many :appointments, dependent: :delete_all
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :owner_first_name, presence: true, length: { maximum: 50 }
+  validates :owner_last_name, presence: true, length: { maximum: 50 }
+
   def owner_name
     owner_first_name + ' ' + owner_last_name
   end

@@ -29,4 +29,48 @@ describe Account do
   it { should respond_to(:email) }
   it { should respond_to(:configuration) }
   it { should respond_to(:active) }
+
+  it { should be_valid }
+
+  describe 'when owner_first_name is valid' do
+    before { @account.owner_first_name = "A" }
+    it { should be_valid }
+  end
+
+  describe 'when owner_first_name is not valid' do
+    before { @account.owner_first_name = " " }
+    it { should_not be_valid }
+  end
+
+  describe 'when owner_first_name is too long' do
+    before { @account.owner_first_name = "a" * 51 }
+    it { should_not be_valid }
+  end
+
+  describe 'when owner_last_name is valid' do
+    before { @account.owner_last_name = "A" }
+    it { should be_valid }
+  end
+
+  describe 'when owner_last_name is not valid' do
+    before { @account.owner_last_name = " " }
+    it { should_not be_valid }
+  end
+
+  describe 'when owner_last_name is too long' do
+    before { @account.owner_last_name = "a" * 51 }
+    it { should_not be_valid }
+  end
+
+  describe 'when owner_name' do
+    subject { @account.owner_name }
+
+    describe 'is correct' do
+      it { should == 'Owner First Name Owner Last Name' }
+    end
+
+    describe 'is incorrect' do
+      it { should_not == 'Owner Name Owner Last Name' }
+    end
+  end
 end
