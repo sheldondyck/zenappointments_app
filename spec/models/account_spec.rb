@@ -23,6 +23,7 @@ describe Account do
                              active: 1)}
   subject { @account }
 
+  it { should be_valid }
   it { should respond_to(:owner_first_name) }
   it { should respond_to(:owner_last_name) }
   it { should respond_to(:owner_name) }
@@ -30,39 +31,61 @@ describe Account do
   it { should respond_to(:configuration) }
   it { should respond_to(:active) }
 
-  it { should be_valid }
+  describe 'owner_first_name' do
+    describe 'is valid' do
+      before { @account.owner_first_name = "A" }
+      it { should be_valid }
+    end
 
-  describe 'when owner_first_name is valid' do
-    before { @account.owner_first_name = "A" }
-    it { should be_valid }
+    describe 'is empty' do
+      before { @account.owner_first_name = "" }
+      it { should_not be_valid }
+    end
+
+    describe 'has no valid characters' do
+      before { @account.owner_first_name = "     " }
+      it { should_not be_valid }
+    end
+
+    describe 'is too long' do
+      before { @account.owner_first_name = "a" * 49 }
+      it { should be_valid }
+    end
+
+    describe 'is too long' do
+      before { @account.owner_first_name = "a" * 51 }
+      it { should_not be_valid }
+    end
   end
 
-  describe 'when owner_first_name is not valid' do
-    before { @account.owner_first_name = " " }
-    it { should_not be_valid }
+  describe 'owner_last_name' do
+    describe 'is valid' do
+      before { @account.owner_last_name = "A" }
+      it { should be_valid }
+    end
+
+    describe 'is empty' do
+      before { @account.owner_last_name = "" }
+      it { should_not be_valid }
+    end
+
+    describe 'has no valid characters' do
+      before { @account.owner_last_name = " \t  " }
+      it { should_not be_valid }
+    end
+
+    describe 'is very long' do
+      before { @account.owner_last_name = "a" * 49 }
+      it { should be_valid }
+    end
+
+    describe 'is too long' do
+      before { @account.owner_last_name = "a" * 51 }
+      it { should_not be_valid }
+    end
   end
 
-  describe 'when owner_first_name is too long' do
-    before { @account.owner_first_name = "a" * 51 }
-    it { should_not be_valid }
-  end
-
-  describe 'when owner_last_name is valid' do
-    before { @account.owner_last_name = "A" }
-    it { should be_valid }
-  end
-
-  describe 'when owner_last_name is not valid' do
-    before { @account.owner_last_name = " " }
-    it { should_not be_valid }
-  end
-
-  describe 'when owner_last_name is too long' do
-    before { @account.owner_last_name = "a" * 51 }
-    it { should_not be_valid }
-  end
-
-  describe 'when owner_name' do
+  describe 'owner_name' do
     subject { @account.owner_name }
 
     describe 'is correct' do
@@ -71,6 +94,107 @@ describe Account do
 
     describe 'is incorrect' do
       it { should_not == 'Owner Name Owner Last Name' }
+    end
+  end
+
+  describe 'company_name' do
+    describe 'is valid' do
+      before { @account.company_name = "A" }
+      it { should be_valid }
+    end
+
+    describe 'is empty' do
+      before { @account.company_name = "" }
+      it { should_not be_valid }
+    end
+
+    describe 'has no valid characters' do
+      before { @account.company_name = "  \n   " }
+      it { should_not be_valid }
+    end
+
+    describe 'is very long' do
+      before { @account.company_name = "a" * 99 }
+      it { should be_valid }
+    end
+
+    describe 'is too long' do
+      before { @account.company_name = "a" * 101 }
+      it { should_not be_valid }
+    end
+
+    describe 'is unique' do
+      # TODO:
+      # Q: should company_names be unique?
+      # Q: what happens when a user registers, the account becomes inactive and
+      # the user wants to reregister
+      # Q: if the company_name is not unique how will the backoffice search to find the account when doing support
+      #pending 'added uniqueness of company_name'
+    end
+  end
+
+  describe 'email' do
+    describe 'is empty' do
+      before { @account.email = "" }
+      it { should_not be_valid }
+    end
+
+    describe 'is very long' do
+      before { @account.email = "a" * 80 + "@example.com" }
+      it { should be_valid }
+    end
+
+    describe 'is too long' do
+      before { @account.email = "a" * 101 + "@example.com" }
+      it { should_not be_valid }
+    end
+
+    describe 'valid format' do
+      it 'should be valid' do
+        valid_addresses = %w[user@example.com s@a.br user.name@foo.com.br user-name@foo.com user_name@foo.bar.com.br moo-foo@boo.com user+name@foo.br]
+        valid_addresses.each do |valid_address|
+          @account.email = valid_address
+          @account.should be_valid
+        end
+      end
+    end
+
+    describe 'invalid format' do
+      it 'should be invalid' do
+        invalid_addresses = %w[user@example,com @a.br user%name@foo.com.br user_name@foo user@]
+        invalid_addresses.each do |invalid_address|
+          @account.email = invalid_address
+          @account.should_not be_valid
+        end
+      end
+    end
+
+    describe 'is normalized to lower case' do
+      subject { @account.email }
+      before do
+        @account.email = @account.email.upcase
+        @account.save
+        @account.email = @account.email.downcase
+        @normalized_account = Account.find_by email: @account.email
+      end
+      it { should == @normalized_account.email }
+    end
+
+    describe 'duplicated is not valid' do
+      before do
+        account_with_same_email = @account.dup
+        account_with_same_email.save
+      end
+      it { should_not be_valid }
+    end
+
+    describe 'duplicated with different case is not valid' do
+      before do
+        account_with_same_email = @account.dup
+        account_with_same_email.email = @account.email.upcase
+        account_with_same_email.save
+      end
+      it { should_not be_valid }
     end
   end
 end
