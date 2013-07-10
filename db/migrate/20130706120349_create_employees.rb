@@ -10,6 +10,6 @@ class CreateEmployees < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index(:employees, :account_id)
+    add_index :employees, :account_id
   end
 end
