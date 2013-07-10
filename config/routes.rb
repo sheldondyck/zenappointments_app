@@ -7,6 +7,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get 'appointments/change',   :to => 'appointments#change'
   get 'login',          :to => 'sessions#new'
   get 'logout',         :to => 'sessions#destroy'
+  get 'signup',                 :to => 'accounts#create'
   root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -28,7 +28,8 @@ class Account < ActiveRecord::Base
   validates :owner_last_name,   presence: true,
                                 length: { maximum: 50 }
   validates :company_name,      presence: true,
-                                length: { maximum: 100 }
+                                length: { maximum: 100 },
+                                uniqueness: { case_sensitive: false }
   validates :email,             presence: true,
                                 length: { maximum: 100 },
                                 format: { with: VALID_EMAIL_REGEX },

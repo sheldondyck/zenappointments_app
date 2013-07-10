@@ -123,13 +123,23 @@ describe Account do
       it { should_not be_valid }
     end
 
-    describe 'is unique' do
-      # TODO:
-      # Q: should company_names be unique?
-      # Q: what happens when a user registers, the account becomes inactive and
-      # the user wants to reregister
-      # Q: if the company_name is not unique how will the backoffice search to find the account when doing support
-      #pending 'added uniqueness of company_name'
+    describe 'duplicated is not valid' do
+      before do
+        account_with_same_company_name = @account.dup
+        account_with_same_company_name.email = 'account_2@company.com'
+        account_with_same_company_name.save
+      end
+      it { should_not be_valid }
+    end
+
+    describe 'duplicated with different case is not valid' do
+      before do
+        account_with_same_company_name = @account.dup
+        account_with_same_company_name.email = 'account_2@company.com'
+        account_with_same_company_name.company_name = @account.company_name.upcase
+        account_with_same_company_name.save
+      end
+      it { should_not be_valid }
     end
   end
 
@@ -183,6 +193,7 @@ describe Account do
     describe 'duplicated is not valid' do
       before do
         account_with_same_email = @account.dup
+        account_with_same_email.company_name = 'Company Name 2'
         account_with_same_email.save
       end
       it { should_not be_valid }
@@ -191,6 +202,7 @@ describe Account do
     describe 'duplicated with different case is not valid' do
       before do
         account_with_same_email = @account.dup
+        account_with_same_email.company_name = 'Company Name 2'
         account_with_same_email.email = @account.email.upcase
         account_with_same_email.save
       end
