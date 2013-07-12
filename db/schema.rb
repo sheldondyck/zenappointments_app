@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130709144938) do
+ActiveRecord::Schema.define(version: 20130706134534) do
 
   create_table "accounts", force: true do |t|
     t.string   "owner_first_name", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130709144938) do
     t.datetime "updated_at"
   end
 
-  add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", using: :btree
+  add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", unique: true, using: :btree
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
 
   create_table "appointments", force: true do |t|
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20130709144938) do
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "appointments", "accounts", :name => "appointments_account_id_fk"
   add_foreign_key "appointments", "clients", :name => "appointments_client_id_fk"

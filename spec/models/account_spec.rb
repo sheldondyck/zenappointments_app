@@ -20,7 +20,7 @@ describe Account do
                              owner_last_name: 'Owner Last Name',
                              company_name: 'Company Name',
                              email: 'acount_1@company.com',
-                             active: 1)}
+                             active: 1) }
   subject { @account }
 
   it { should be_valid }

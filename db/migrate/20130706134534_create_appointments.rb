@@ -1,16 +1,16 @@
 class CreateAppointments < ActiveRecord::Migration
   def change
     create_table :appointments do |t|
-      t.integer :account_id, :null => false
+      t.integer :account_id,    :null => false
       t.foreign_key :accounts
-      t.integer :user_id, :null => false
+      t.integer :user_id,       :null => false
       t.foreign_key :users
-      t.integer :employee_id, :null => false
+      t.integer :employee_id,   :null => false
       t.foreign_key :employees
-      t.integer :client_id, :null => false
+      t.integer :client_id,     :null => false
       t.foreign_key :clients
-      t.datetime :time, :null => false
-      t.integer :duration, :null => false
+      t.datetime :time,         :null => false
+      t.integer :duration,      :null => false
 
       t.timestamps
     end
