@@ -2,9 +2,9 @@ class CreateClients < ActiveRecord::Migration
   def change
     execute "CREATE EXTENSION IF NOT EXISTS hstore"
     create_table :clients do |t|
-      t.integer :account_id, :null => false
+      t.integer :account_id,  :null => false
       t.foreign_key :accounts
-      t.string :first_name, :null => false
+      t.string :first_name,   :null => false
       t.string :last_name
       t.date :birthday
       t.string :email

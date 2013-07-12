@@ -3,8 +3,8 @@ development:
   encoding: utf8
   host: localhost
   database: zenappointments_dev
-  user: rails_dev
-  password: 'rails_dev'
+  user: svd
+  password: 'sheldon'
   pool: 5
   timeout: 5000
 
@@ -13,8 +13,8 @@ test:
   encoding: utf8
   host: localhost
   database: zenappointments_test
-  user: rails_dev
-  password: 'rails_dev'
+  user: svd
+  password: 'sheldon'
   pool: 5
   timeout: 5000
 
@@ -22,9 +22,9 @@ production_asset_builder:
   adapter: postgresql
   encoding: utf8
   host: localhost
-  database: zenappointments_dev
-  user: rails_dev
-  password: 'rails_dev'
+  database: zenappointments_prod
+  user: svd
+  password: 'sheldon'
   pool: 5
   timeout: 5000
 
@@ -37,4 +37,3 @@ production:
   password: 'ybDu_v31kVQDcBYhf86PkJA_0P'
   pool: 5
   timeout: 5000
-
