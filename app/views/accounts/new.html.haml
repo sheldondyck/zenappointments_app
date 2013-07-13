@@ -3,39 +3,39 @@
   .signup-dialog
     .row
       .span4.offset4
-        =form_for :account, url: new_account_path, html: {class: 'form-signup'} do |f|
+        =form_for @account do |f|
           .fieldset
             %legend Sign Up
             .control-group
               .controls
                 .input-prepend
                   %span.add-on
-                    %i.icon-envelope
-                  =f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
+                    %i.icon-user
+                  =f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
             .control-group
               .controls
                 .input-prepend
                   %span.add-on
-                    %i.icon-envelope
-                  =f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
+                    %i.icon-user
+                  =f.text_field :last_name, class: 'span4', id: 'inputIcon', placeholder: 'Last Name'
             .control-group
               .controls
                 .input-prepend
                   %span.add-on
-                    %i.icon-envelope
-                  =f.text_field :company, class: 'span2', id: 'inputIcon', placeholder: 'Company Name'
+                    %i.icon-building
+                  =f.text_field :company_name, class: 'span4', id: 'inputIcon', placeholder: 'Company Name'
             .control-group
               .controls
                 .input-prepend
                   %span.add-on
-                    %i.icon-envelope
-                  =f.text_field :email, class: 'span2', id: 'inputIcon', placeholder: 'Email'
+                    %i.icon-envelope-alt
+                  =f.text_field :email, class: 'span4', id: 'inputIcon', placeholder: 'Email'
             .control-group
               .controls
                 .input-prepend
                   %span.add-on
                     %i.icon-key
-                  =f.password_field :password, class: 'span2', id: 'inputIcon', placeholder: 'Password'
+                  =f.password_field :password, class: 'span3', id: 'inputIcon', placeholder: 'Password'
             .control-group
               %label.control-label
               .controls

@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many :appointments
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :first_name,  presence: true,

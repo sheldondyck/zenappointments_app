@@ -1,6 +1,6 @@
 ZenAppointmentsApp::Application.routes.draw do
   resources :sessions,          :only => [:new, :create, :destroy]
-  resources :account
+  resources :accounts
 
   get 'appointments',           :to => 'appointments#index'
   # TODO: change is not a good name for this since we are not changing the

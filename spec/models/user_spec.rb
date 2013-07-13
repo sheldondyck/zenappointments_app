@@ -35,44 +35,45 @@ describe User do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password) }
   it { should respond_to(:account_administrator) }
   it { should respond_to(:active) }
 
   describe 'first_name' do
     describe 'is valid' do
-      before { @user.first_name = "A" }
+      before { @user.first_name = 'A' }
       it { should be_valid }
     end
 
     describe 'is empty' do
-      before { @user.first_name = "" }
+      before { @user.first_name = '' }
       it { should_not be_valid }
     end
 
     describe 'has no valid characters' do
-      before { @user.first_name = "     " }
+      before { @user.first_name = '     ' }
       it { should_not be_valid }
     end
 
     describe 'is too long' do
-      before { @user.first_name = "a" * 49 }
+      before { @user.first_name = 'a' * 49 }
       it { should be_valid }
     end
 
     describe 'is too long' do
-      before { @user.first_name = "a" * 51 }
+      before { @user.first_name = 'a' * 51 }
       it { should_not be_valid }
     end
   end
 
   describe 'last_name' do
     describe 'is valid' do
-      before { @user.last_name = "A" }
+      before { @user.last_name = 'A' }
       it { should be_valid }
     end
 
     describe 'is empty' do
-      before { @user.last_name = "" }
+      before { @user.last_name = '' }
       it { should_not be_valid }
     end
 
@@ -81,13 +82,13 @@ describe User do
       it { should_not be_valid }
     end
 
-    describe 'is very long' do
-      before { @user.last_name = "a" * 49 }
+    describe 'even if is very long' do
+      before { @user.last_name = 'a' * 49 }
       it { should be_valid }
     end
 
     describe 'is too long' do
-      before { @user.last_name = "a" * 51 }
+      before { @user.last_name = 'a' * 51 }
       it { should_not be_valid }
     end
   end
@@ -106,17 +107,17 @@ describe User do
 
   describe 'email' do
     describe 'is empty' do
-      before { @user.email = "" }
+      before { @user.email = '' }
       it { should_not be_valid }
     end
 
-    describe 'is very long' do
-      before { @user.email = "a" * 80 + "@example.com" }
+    describe 'even if is very long' do
+      before { @user.email = 'a' * 80 + '@example.com' }
       it { should be_valid }
     end
 
     describe 'is too long' do
-      before { @user.email = "a" * 101 + "@example.com" }
+      before { @user.email = 'a' * 101 + '@example.com' }
       it { should_not be_valid }
     end
 
@@ -171,6 +172,23 @@ describe User do
         user_with_same_email.account_id = @account.id
         user_with_same_email.save
       end
+      it { should_not be_valid }
+    end
+  end
+
+  describe 'password' do
+    describe 'is empty' do
+      before { @user.password = '' }
+      it { should_not be_valid }
+    end
+
+    describe 'even if is very long' do
+      before { @user.password = 'a' * 80 }
+      it { should be_valid }
+    end
+
+    describe 'is too long' do
+      before { @user.password = 'a' * 101 }
       it { should_not be_valid }
     end
   end
