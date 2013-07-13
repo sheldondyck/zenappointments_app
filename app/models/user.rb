@@ -3,19 +3,21 @@
 # Table name: users
 #
 #  id                    :integer          not null, primary key
-#  account_id            :integer
-#  first_name            :string(255)
-#  last_name             :string(255)
-#  email                 :string(255)
-#  password              :string(255)
-#  password_digest       :string(255)
-#  account_administrator :boolean
-#  active                :boolean
+#  account_id            :integer          not null
+#  first_name            :string(255)      not null
+#  last_name             :string(255)      not null
+#  email                 :string(255)      not null
+#  password              :string(255)      not null
+#  password_digest       :string(255)      not null
+#  account_administrator :boolean          not null
+#  active                :boolean          not null
 #  created_at            :datetime
 #  updated_at            :datetime
 #
 
 class User < ActiveRecord::Base
+  before_save { |user| user.email = email.downcase }
+
   belongs_to :account
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -7,8 +7,8 @@
 #  user_id     :integer          not null
 #  employee_id :integer          not null
 #  client_id   :integer          not null
-#  time        :datetime
-#  duration    :integer
+#  time        :datetime         not null
+#  duration    :integer          not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

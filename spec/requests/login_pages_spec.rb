@@ -11,6 +11,6 @@ describe "Login Pages" do
 
     it { should have_selector('legend', text: 'Welcome back') }
     it { should have_selector('input#inputIcon') } #session[email]') }
-    #it { should have_selector('input', name: 'session[email]') }
+    it { should have_link('You don\'t have an account? Sign up now!', href: signup_path) }
   end
 end

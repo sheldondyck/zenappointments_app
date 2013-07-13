@@ -1,12 +1,12 @@
 ZenAppointmentsApp::Application.routes.draw do
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions,          :only => [:new, :create, :destroy]
 
-  get 'appointments',   :to => 'appointments#index'
+  get 'appointments',           :to => 'appointments#index'
   # TODO: change is not a good name for this since we are not changing the
   # appointment only the date viewed
-  get 'appointments/change',   :to => 'appointments#change'
-  get 'login',          :to => 'sessions#new'
-  get 'logout',         :to => 'sessions#destroy'
+  get 'appointments/change',    :to => 'appointments#change'
+  get 'login',                  :to => 'sessions#new'
+  get 'logout',                 :to => 'sessions#destroy'
   get 'signup',                 :to => 'accounts#create'
   root 'sessions#new'
 

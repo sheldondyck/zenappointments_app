@@ -14,18 +14,14 @@
 ActiveRecord::Schema.define(version: 20130706134534) do
 
   create_table "accounts", force: true do |t|
-    t.string   "owner_first_name", null: false
-    t.string   "owner_last_name",  null: false
-    t.string   "company_name",     null: false
-    t.string   "email",            null: false
+    t.string   "company_name",  null: false
     t.hstore   "configuration"
-    t.boolean  "active",           null: false
+    t.boolean  "active",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", unique: true, using: :btree
-  add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
 
   create_table "appointments", force: true do |t|
     t.integer  "account_id",  null: false
