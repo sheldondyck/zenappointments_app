@@ -49,4 +49,15 @@ describe 'Login Page' do
       should have_selector('.alert.alert-notice', text: 'Invalid email or password')
     end
   end
+
+  describe 'sign up link' do
+    before {
+      visit login_path
+      click_link 'You don\'t have an account? Sign up now!'
+    }
+
+    it 'should be correct' do
+      current_path.should == signup_path
+    end
+  end
 end
