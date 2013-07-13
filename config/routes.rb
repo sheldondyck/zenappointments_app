@@ -1,5 +1,6 @@
 ZenAppointmentsApp::Application.routes.draw do
   resources :sessions,          :only => [:new, :create, :destroy]
+  resources :account
 
   get 'appointments',           :to => 'appointments#index'
   # TODO: change is not a good name for this since we are not changing the
@@ -7,7 +8,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get 'appointments/change',    :to => 'appointments#change'
   get 'login',                  :to => 'sessions#new'
   get 'logout',                 :to => 'sessions#destroy'
-  get 'signup',                 :to => 'accounts#create'
+  get 'signup',                 :to => 'accounts#new'
   root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.

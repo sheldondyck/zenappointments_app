@@ -2,7 +2,7 @@
 #  watch('Gemfile')
 #end
 
-guard :rspec, zeus: true, bundler: false do
+guard :rspec, zeus: true, bundler: false, all_after_pass: true, all_on_start: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -17,6 +17,7 @@ guard :rspec, zeus: true, bundler: false do
 
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
