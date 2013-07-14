@@ -4,12 +4,22 @@ class AccountsController < ApplicationController
   end
 
   def create
-    active_params = account_params
-    active_params[:active] = 1
-    @account = Account.new(active_params)
+    @account = Account.new(account_params.merge(active: 1))
     if @account.save
-      redirect_to @account
+      @user = User.new(user_params.merge(account_id: @account.id,
+                                         password_digest: '',
+                                         account_administrator: 1,
+                                         active: 1))
+      # TODO should be in a transaction with account so rollback undoes everything
+      if @user.save
+        # TODO redirect to new user help page that explians all the buttons and gives walk through
+        redirect_to @account
+      else
+        flash.now[:error] = "Please fix the problems with the form"
+        render 'new'
+      end
     else
+      flash.now[:error] = "Please fix the problems with the form"
       render 'new'
     end
   end
@@ -25,9 +35,12 @@ class AccountsController < ApplicationController
 
   private
     def account_params
+      params.require(:account).permit(:company_name)
+    end
+
+    def user_params
       params.require(:account).permit(:first_name,
                                       :last_name,
-                                      :company_name,
                                       :email,
                                       :password)
     end

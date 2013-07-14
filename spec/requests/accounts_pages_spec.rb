@@ -21,15 +21,21 @@ describe 'account pages' do
       it { should have_field('account[email]') }
       it { should have_field('account[password]') }
       it { should have_button('Sign Up') }
-      it { should have_link('I already have an account. Sign in now!', href: signup_path) }
+      it { should have_link('I already have an account. Sign in now!', href: login_path) }
     end
 
     let(:submit) { 'Sign Up' }
 
-    describe 'with invalid information' do
-      #before { save_and_open_page }
+    describe 'with incomplete information' do
       it 'should not create an account' do
+        #before { save_and_open_page }
         expect { click_button submit }.not_to change(Account, :count)
+      end
+
+      it 'should show a error message' do
+        click_button submit
+        #save_and_open_page
+        should have_selector('.alert.alert-error')
       end
     end
 
@@ -47,8 +53,7 @@ describe 'account pages' do
       end
 
       it 'should create an user' do
-        pending 'add user code to account'
-        #expect { click_button submit }.to change(User, :count).by(1)
+        expect { click_button submit }.to change(User, :count).by(1)
       end
     end
   end

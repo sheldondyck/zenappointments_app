@@ -6,12 +6,14 @@
         =form_for @account do |f|
           .fieldset
             %legend Sign Up
-            .control-group
+            .control-group{class: a_error_class(@account, :first_name)}
               .controls
                 .input-prepend
                   %span.add-on
                     %i.icon-user
                   =f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
+                  #span.help-inline
+                    =error_message(@account, :first_name)
             .control-group
               .controls
                 .input-prepend
@@ -42,4 +44,4 @@
                 =button_tag 'Sign Up', class: 'btn btn-primary', 'data-disable-with' => 'Processando ...'
     .row
       .span6.offset4
-        =link_to 'I already have an account. Sign in now!', signup_path
+        =link_to 'I already have an account. Sign in now!', login_path

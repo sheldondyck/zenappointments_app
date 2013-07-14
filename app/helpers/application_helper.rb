@@ -13,4 +13,16 @@ module ApplicationHelper
     end
     div
   end
+
+  def a_error_class(h, sym)
+    if h.errors.messages.has_key?(sym)
+      "error"
+    end
+  end
+
+  def error_message(model, sym)
+    if model.errors.messages.has_key?(sym)
+      model.errors.messages[sym][0].capitalize unless model.errors.messages[sym][0].nil?
+    end
+  end
 end

@@ -24,5 +24,5 @@ class Account < ActiveRecord::Base
   validates :company_name, presence: true,
                            length: { maximum: 100 },
                            uniqueness: { case_sensitive: false }
-  validates :active,       inclusion: {in: [true, false]}
+  validates :active,       inclusion: { in: [true, false] }
 end
