@@ -34,7 +34,6 @@ describe 'account pages' do
 
       it 'should show a error message' do
         click_button submit
-        #save_and_open_page
         should have_selector('.alert.alert-error')
       end
     end

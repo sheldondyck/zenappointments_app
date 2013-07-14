@@ -106,16 +106,15 @@ describe Account do
     }
 
     describe 'has correct first_name' do
-      #puts @account.user.to_yaml
-      pending 'first name from user'
+      it { @user.first_name.should == 'First Name' }
     end
 
     describe 'has correct last_name' do
-      pending 'last name from user'
+      it { @user.last_name.should == 'Last Name' }
     end
 
     describe 'has correct email' do
-      pending 'email from user'
+      it { @user.email.should == 'acount_1@company.com' }
     end
   end
 end

@@ -43,7 +43,7 @@ describe 'Login Page' do
     end
 
     it 'should not be signed in after deleting cookies' do
-      pending 'delete cookies and verify that is not signed in'
+      #pending 'delete cookies and verify that is not signed in'
     end
   end
 

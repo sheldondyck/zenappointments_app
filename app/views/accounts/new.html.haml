@@ -6,12 +6,13 @@
         =form_for @account do |f|
           .fieldset
             %legend Sign Up
-            .control-group{class: a_error_class(@account, :first_name)}
+            .control-group{class: error_class(@account, :first_name)}
               .controls
                 .input-prepend
                   %span.add-on
                     %i.icon-user
-                  =f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
+                  %input.input{:type => 'text', :name => 'account[first_name]', :value => @account[:first_name], placeholder: 'First Name'}
+                  -#=f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
                   #span.help-inline
                     =error_message(@account, :first_name)
             .control-group

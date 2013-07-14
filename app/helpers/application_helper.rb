@@ -14,7 +14,7 @@ module ApplicationHelper
     div
   end
 
-  def a_error_class(h, sym)
+  def error_class(h, sym)
     if h.errors.messages.has_key?(sym)
       "error"
     end
