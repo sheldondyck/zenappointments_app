@@ -39,6 +39,7 @@ class AccountsController < ApplicationController
 
     def create_new_account(account_params, user_params)
       # TODO should be in a transaction with account so rollback undoes everything
+      # TODO create test with valid account but invalid user data and test that account is rolled back
       @account = Account.new(get_account_params.merge(active: 1))
       if @account.save
         @user = User.new(user_params.merge(account_id: @account.id))
