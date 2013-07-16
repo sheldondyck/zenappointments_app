@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   def new
     @account = Account.new
+    @user = User.new
   end
 
   def create
@@ -46,6 +47,10 @@ class AccountsController < ApplicationController
         if @user.save
           return true
         end
+      else
+        # TODO saving here to generate error messages. pretty ugly
+        @user = User.new
+        @user.save
       end
       return false
     end

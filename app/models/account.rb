@@ -10,6 +10,8 @@
 #  updated_at    :datetime
 #
 
+# TODO: change company_name to organization_name or office_name?
+#
 class Account < ActiveRecord::Base
   attr_accessor :first_name
   attr_accessor :last_name
