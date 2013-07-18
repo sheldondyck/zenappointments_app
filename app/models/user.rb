@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
                           format: { with: VALID_EMAIL_REGEX },
                           uniqueness: { case_sensitive: false }
   validates :password,    presence: true,
-                          length: { maximum: 100 }
+                          length: { minimum: 6, maximum: 100 }
   validates :active,      inclusion: { in: [true, false] }
 
   def name

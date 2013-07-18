@@ -24,7 +24,7 @@ describe User do
     @user = User.new(first_name: 'First Name',
                      last_name: 'Last Name',
                      email: 'acount_1@company.com',
-                     password: 'abc',
+                     password: 'abcdef',
                      password_digest: 'abc',
                      account_administrator: 1,
                      active: 1) }
@@ -185,6 +185,11 @@ describe User do
     describe 'even if is very long' do
       before { @user.password = 'a' * 80 }
       it { should be_valid }
+    end
+
+    describe 'too short' do
+      before { @user.password = 'abcde' }
+      it { should_not be_valid }
     end
 
     describe 'is too long' do

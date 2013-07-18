@@ -26,6 +26,24 @@ describe 'account pages' do
 
     let(:submit) { 'Sign Up' }
 
+    describe 'with valid information' do
+      before do
+        fill_in 'First Name', with: 'My First'
+        fill_in 'Last Name', with: 'My Last'
+        fill_in 'Company Name', with: 'My Company'
+        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Password', with: 'foobar'
+      end
+
+      it 'should create an account' do
+        expect { click_button submit }.to change(Account, :count).by(1)
+      end
+
+      it 'should create an user' do
+        expect { click_button submit }.to change(User, :count).by(1)
+      end
+    end
+
     describe 'with incomplete information' do
       it 'should not create an account' do
         #before { save_and_open_page }
@@ -63,24 +81,6 @@ describe 'account pages' do
       end
     end
 
-    describe 'with valid information' do
-      before do
-        fill_in 'First Name', with: 'My First'
-        fill_in 'Last Name', with: 'My Last'
-        fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
-        fill_in 'Password', with: 'foobar'
-      end
-
-      it 'should create an account' do
-        expect { click_button submit }.to change(Account, :count).by(1)
-      end
-
-      it 'should create an user' do
-        expect { click_button submit }.to change(User, :count).by(1)
-      end
-    end
-
     describe 'with missing company account information' do
       before do
         fill_in 'First Name', with: 'My First'
@@ -97,29 +97,31 @@ describe 'account pages' do
       it 'should not create an user' do
         expect { click_button submit }.not_to change(User, :count)
       end
+    end
 
-      # TODO BETTER PLACE
+    describe 'with incomplete information' do
       it 'should return previous value in first_name field' do
+        fill_in 'First Name', with: 'My First'
         click_button submit
-        should have_field('account[first_name]', text: 'My First')
+        should have_field('account[first_name]', with: 'My First')
       end
 
-      # TODO BETTER PLACE
       it 'should return previous value in last_name field' do
+        fill_in 'Last Name', with: 'My Last'
         click_button submit
-        should have_field('account[last_name]', text: 'My Last')
+        should have_field('account[last_name]', with: 'My Last')
       end
 
-      # TODO BETTER PLACE
+      it 'should return previous value in company field' do
+        fill_in 'Company Name', with: 'My Company'
+        click_button submit
+        should have_field('account[company_name]', with: 'My Company')
+      end
+
       it 'should return previous value in email field' do
+        fill_in 'Email', with: 'foo@bar.com'
         click_button submit
-        should have_field('account[email]', text: 'foo@bar.com')
-      end
-
-      # TODO BETTER PLACE
-      it 'should return previous value in password field' do
-        click_button submit
-        should have_field('account[password]', text: 'foobar')
+        should have_field('account[email]', with: 'foo@bar.com')
       end
     end
 
@@ -138,12 +140,6 @@ describe 'account pages' do
 
       it 'should not create an user' do
         expect { click_button submit }.not_to change(User, :count)
-      end
-
-      # TODO BETTER PLACE
-      it 'should return previous value in company_name field' do
-        click_button submit
-        should have_field('account[company_name]', text: 'My Company')
       end
     end
 
@@ -183,6 +179,24 @@ describe 'account pages' do
       end
     end
 
+    describe 'with invalid email user information' do
+      before do
+        fill_in 'First Name', with: 'My First'
+        fill_in 'Last Name', with: 'My Last'
+        fill_in 'Company Name', with: 'My Company'
+        fill_in 'Email', with: 'foo@.com'
+        fill_in 'Password', with: 'foobar'
+      end
+
+      it 'should not create an account' do
+        expect { click_button submit }.not_to change(Account, :count)
+      end
+
+      it 'should not create an user' do
+        expect { click_button submit }.not_to change(User, :count)
+      end
+    end
+
     describe 'with missing password user information' do
       before do
         fill_in 'First Name', with: 'My First'
@@ -200,8 +214,32 @@ describe 'account pages' do
         expect { click_button submit }.not_to change(User, :count)
       end
 
-      # TODO: create tests that create two accounts with same info
     end
+
+    describe 'with the same account information duplicated' do
+      before do
+        fill_in 'First Name', with: 'My First'
+        fill_in 'Last Name', with: 'My Last'
+        fill_in 'Company Name', with: 'My Company'
+        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Password', with: 'foobar'
+
+        expect { click_button submit }.to change(Account, :count).by(1)
+        visit signup_path
+
+        fill_in 'First Name', with: 'My First'
+        fill_in 'Last Name', with: 'My Last'
+        fill_in 'Company Name', with: 'My Company'
+        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Password', with: 'foobar'
+      end
+
+      it 'should not create account' do
+        expect { click_button submit }.to_not change(Account, :count)
+      end
+    end
+
+    # TODO create account/user should have user as adminstrator
   end
 
   ########## show ##########

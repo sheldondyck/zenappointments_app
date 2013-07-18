@@ -11,7 +11,8 @@
                 .input-prepend
                   %span.add-on
                     %i.icon-user
-                  =f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
+                  -#=f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
+                  %input.input{name: 'account[first_name]', value: @user[:first_name], placeholder: 'First Name', type: 'text', class: 'span4', id: 'inputIcon'}
                 %span.help-inline#first-name
                   =error_message(@user, :first_name)
             .control-group{class: error_class(@user, :last_name)}
@@ -19,7 +20,8 @@
                 .input-prepend
                   %span.add-on
                     %i.icon-user
-                  =f.text_field :last_name, class: 'span4', id: 'inputIcon', placeholder: 'Last Name'
+                  -#=f.text_field :last_name, class: 'span4', id: 'inputIcon', placeholder: 'Last Name'
+                  %input.input{name: 'account[last_name]', value: @user[:last_name], placeholder: 'Last Name', type: 'text', class: 'span4', id: 'inputIcon'}
                 %span.help-inline#last-name
                   =error_message(@user, :last_name)
             .control-group{class: error_class(@account, :company_name)}
@@ -37,7 +39,8 @@
                 .input-prepend
                   %span.add-on
                     %i.icon-envelope-alt
-                  =f.text_field :email, class: 'span4', id: 'inputIcon', placeholder: 'Email'
+                  -#=f.text_field :email, class: 'span4', id: 'inputIcon', placeholder: 'Email'
+                  %input.input{class: 'span4', id: 'inputIcon', placeholder: 'Email', type: 'text', name: 'account[email]', value: @user[:email]}
                 %span.help-inline#email
                   =error_message(@user, :email)
             .control-group{class: error_class(@user, :password)}
