@@ -2,13 +2,17 @@ ZenAppointmentsApp::Application.routes.draw do
   resources :sessions,          :only => [:new, :create, :destroy]
   resources :accounts
 
+  get 'signin',                 :to => 'sessions#new'
+  get 'signout',                :to => 'sessions#destroy'
+
+  get 'signup',                 :to => 'accounts#new'
+
   get 'appointments',           :to => 'appointments#index'
+
   # TODO: change is not a good name for this since we are not changing the
   # appointment only the date viewed
   get 'appointments/change',    :to => 'appointments#change'
-  get 'login',                  :to => 'sessions#new'
-  get 'logout',                 :to => 'sessions#destroy'
-  get 'signup',                 :to => 'accounts#new'
+
   root 'sessions#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -66,14 +70,3 @@ ZenAppointmentsApp::Application.routes.draw do
   #     resources :products
   #   end
 end
-#== Route Map
-# Generated on 07 Jul 2013 11:41
-#
-#            sessions POST   /sessions(.:format)            sessions#create
-#         new_session GET    /sessions/new(.:format)        sessions#new
-#             session DELETE /sessions/:id(.:format)        sessions#destroy
-#        appointments GET    /appointments(.:format)        appointments#index
-# appointments_change GET    /appointments/change(.:format) appointments#change
-#               login GET    /login(.:format)               sessions#new
-#              logout GET    /logout(.:format)              sessions#destroy
-#                root GET    /                              sessions#new

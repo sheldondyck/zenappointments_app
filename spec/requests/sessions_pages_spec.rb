@@ -1,36 +1,36 @@
 require 'spec_helper'
 
-describe 'Login Page' do
+describe 'Signin Page' do
   subject { page }
 
-  describe "GET /login" do
+  describe "GET /signin" do
     it "should exist" do
-      get login_path
+      get signin_path
       response.status.should be(200)
     end
   end
 
   describe 'html' do
     before {
-      visit login_path
+      visit signin_path
       #save_and_open_page
     }
 
     it { should have_selector('legend', text: 'Welcome back') }
     it { should have_field('session[email]') }
     it { should have_field('session[password]') }
-    it { should have_button('Login') }
+    it { should have_button('Sign In') }
     it { should have_link('You don\'t have an account? Sign up now!', href: signup_path) }
   end
 
-  describe 'correct login' do
+  describe 'correct signin' do
     before {
-      visit login_path
+      visit signin_path
       within '.form-signin' do
         fill_in 'session[email]', with: 'foo'
         fill_in 'session[password]', with: 'bar'
       end
-      click_button 'Login'
+      click_button 'Sign In'
     }
 
     it 'signs in' do
@@ -47,18 +47,18 @@ describe 'Login Page' do
     end
   end
 
-  describe 'incorrect login' do
+  describe 'incorrect signin' do
     before {
-      visit login_path
+      visit signin_path
       within '.form-signin' do
         fill_in 'session[email]', with: 'foo'
         fill_in 'session[password]', with: 'bar1'
       end
-      click_button 'Login'
+      click_button 'Sign In'
     }
 
     it 'does not sign in' do
-      current_path.should == login_path
+      current_path.should == signin_path
     end
 
     it 'has correct message' do
@@ -67,13 +67,13 @@ describe 'Login Page' do
 
     it 'protected pages are still protected' do
       visit appointments_path
-      current_path.should == login_path
+      current_path.should == signin_path
     end
   end
 
   describe 'sign up link' do
     before {
-      visit login_path
+      visit signin_path
       click_link 'You don\'t have an account? Sign up now!'
     }
 

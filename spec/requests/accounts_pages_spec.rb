@@ -21,7 +21,7 @@ describe 'account pages' do
       it { should have_field('account[email]') }
       it { should have_field('account[password]') }
       it { should have_button('Sign Up') }
-      it { should have_link('I already have an account. Sign in now!', href: login_path) }
+      it { should have_link('I already have an account. Sign in now!', href: signin_path) }
     end
 
     let(:submit) { 'Sign Up' }
