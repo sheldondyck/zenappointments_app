@@ -19,6 +19,6 @@ class AppointmentsController < ApplicationController
 
   private
     def authorize_user
-      redirect_to signin_path, notice: 'Access restricted, please login' unless signed_in?
+      redirect_to signin_path, notice: 'Access restricted, please sign in' unless signed_in?
     end
 end
