@@ -237,6 +237,16 @@ describe 'account pages' do
       it 'should not create account' do
         expect { click_button submit }.to_not change(Account, :count)
       end
+
+      it 'should show a email error message' do
+        click_button submit
+        should have_selector('.help-inline#email', text: 'Has already been taken')
+      end
+
+      it 'should show a company_name error message' do
+        click_button submit
+        should have_selector('.help-inline#company-name', text: 'Has already been taken')
+      end
     end
 
     # TODO create account/user should have user as adminstrator
