@@ -238,6 +238,10 @@ describe 'account pages' do
         expect { click_button submit }.to_not change(Account, :count)
       end
 
+      it 'should not create user' do
+        expect { click_button submit }.to_not change(User, :count)
+      end
+
       it 'should show a email error message' do
         click_button submit
         should have_selector('.help-inline#email', text: 'Has already been taken')
