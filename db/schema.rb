@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(version: 20130706134534) do
     t.string   "first_name",            null: false
     t.string   "last_name",             null: false
     t.string   "email",                 null: false
-    t.string   "password",              null: false
     t.string   "password_digest",       null: false
+    t.string   "signin_token",          null: false
     t.boolean  "account_administrator", null: false
     t.boolean  "active",                null: false
     t.datetime "created_at"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20130706134534) do
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["signin_token"], name: "index_users_on_signin_token", using: :btree
 
   add_foreign_key "appointments", "accounts", :name => "appointments_account_id_fk"
   add_foreign_key "appointments", "clients", :name => "appointments_client_id_fk"

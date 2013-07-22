@@ -14,6 +14,7 @@ describe 'account pages' do
     before { visit signup_path }
 
     describe 'html' do
+      it { should have_title('Sign Up') }
       it { should have_selector('legend', text: 'Sign Up') }
       it { should have_field('account[first_name]') }
       it { should have_field('account[last_name]') }
@@ -31,7 +32,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 
@@ -86,7 +87,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         #fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 
@@ -130,7 +131,7 @@ describe 'account pages' do
         #fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 
@@ -148,7 +149,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         #fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 
@@ -166,7 +167,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        #fill_in 'Email', with: 'foo@bar.com'
+        #fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 
@@ -202,7 +203,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         #fill_in 'Password', with: 'foobar'
       end
 
@@ -221,7 +222,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
 
         expect { click_button submit }.to change(Account, :count).by(1)
@@ -230,7 +231,7 @@ describe 'account pages' do
         fill_in 'First Name', with: 'My First'
         fill_in 'Last Name', with: 'My Last'
         fill_in 'Company Name', with: 'My Company'
-        fill_in 'Email', with: 'foo@bar.com'
+        fill_in 'Email', with: 'my_email@my_company.com'
         fill_in 'Password', with: 'foobar'
       end
 

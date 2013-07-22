@@ -1,22 +1,24 @@
 class SessionsController < ApplicationController
   def new
+    @title = 'Sign In'
   end
 
   def create
-    if params[:session][:email] == 'foo' and
-      params[:session][:password] == 'bar' then
-      cookies[:super_secure_signin_credentials] = SUPER_SESSION_SECRET
+    user = User.find_by(email: get_session_params[:email].downcase)
+    if user && user.authenticate(get_session_params[:password])
+      sign_in user
       redirect_to appointments_path
     else
-      if params[:session][:email] != '' or
-        params[:session][:password] != '' then
-        redirect_to signin_path, notice: 'Invalid email or password'
-      else
-        redirect_to signin_path
-      end
+      flash.now[:error] = 'Invalid email or password'
+      render 'new'
     end
   end
 
   def destroy
   end
+
+  private
+    def get_session_params
+      params.require(:session).permit(:email, :password)
+    end
 end

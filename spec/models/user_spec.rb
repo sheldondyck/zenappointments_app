@@ -7,8 +7,8 @@
 #  first_name            :string(255)      not null
 #  last_name             :string(255)      not null
 #  email                 :string(255)      not null
-#  password              :string(255)      not null
 #  password_digest       :string(255)      not null
+#  signin_token          :string(255)      not null
 #  account_administrator :boolean          not null
 #  active                :boolean          not null
 #  created_at            :datetime
@@ -20,24 +20,32 @@ require 'spec_helper'
 describe User do
   before { @account = Account.new( company_name: 'Company Name',
                              active: 1)
-
-    @user = User.new(first_name: 'First Name',
+    #@account.save
+    @user = User.new(account_id: @account.id,
+                     first_name: 'First Name',
                      last_name: 'Last Name',
                      email: 'acount_1@company.com',
                      password: 'abcdef',
-                     password_digest: 'abc',
                      account_administrator: 1,
-                     active: 1) }
+                     active: 1)
+    #@user.save
+  }
 
   subject { @user }
 
   it { should be_valid }
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
+  it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
+  it { should respond_to(:password_digest) }
+  it { should respond_to(:signin_token) }
   it { should respond_to(:account_administrator) }
   it { should respond_to(:active) }
+  it { should respond_to(:authenticate) }
+  it { expect(User).to respond_to(:new_signin_token) }
+  it { expect(User).to respond_to(:encrypt) }
 
   describe 'first_name' do
     describe 'is valid' do
@@ -123,7 +131,7 @@ describe User do
 
     describe 'valid format' do
       it 'should be valid' do
-        valid_addresses = %w[user@example.com s@a.br user.name@foo.com.br user-name@foo.com user_name@foo.bar.com.br moo-foo@boo.com user+name@foo.br]
+        valid_addresses = %w[user@example.com s@a.br user.name@foo.com.br user-name@foo.com user_name@foo.bar.com.br moo-foo@boo.com user+name@foo.br my_email@my_company.com]
         valid_addresses.each do |valid_address|
           @user.email = valid_address
           @user.should be_valid
@@ -195,6 +203,45 @@ describe User do
     describe 'is too long' do
       before { @user.password = 'a' * 101 }
       it { should_not be_valid }
+    end
+
+  end
+
+  describe 'password_digest' do
+    before {
+      @account.save
+      @user.account_id = @account.id
+      @user.save
+    }
+    its(:password_digest) { should_not be_blank }
+  end
+
+  describe 'signin_token' do
+    before {
+      @account.save
+      @user.account_id = @account.id
+      @user.save
+    }
+    its(:signin_token) { should_not be_blank }
+  end
+
+  describe 'authenticate' do
+    before {
+      @account.save
+      @user.account_id = @account.id
+      @user.save
+    }
+    describe 'with valid password' do
+      it { @user.authenticate('abcdef').should eq @user }
+    end
+
+    describe 'with invalid password' do
+    before {
+      @account.save
+      @user.account_id = @account.id
+      @user.save
+    }
+      it { @user.authenticate('1abcdef').should_not eq @user }
     end
   end
 end

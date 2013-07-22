@@ -1,6 +1,10 @@
 module ApplicationHelper
   def title
-    'zenapplication'
+    if @title.nil?
+      'ZenAppointments'
+    else
+      'ZenAppointments | ' + @title
+    end
   end
 
   def flash_handler

@@ -1,7 +1,21 @@
 module SessionsHelper
-  SUPER_SESSION_SECRET = 'ABCD1234'
-
   def signed_in?
-    cookies[:super_secure_signin_credentials] == SUPER_SESSION_SECRET
+    !current_user.nil?
+  end
+
+  def sign_in(user)
+    signin_token = User.new_signin_token
+    cookies.permanent[:signin_token] = signin_token
+    user.update_attribute(:signin_token, User.encrypt(signin_token))
+    self.current_user = user
+  end
+
+  def current_user=(user)
+    @current_user = user
+  end
+
+  def current_user
+    signin_token = User.encrypt(cookies[:signin_token])
+    @current_user ||= User.find_by(signin_token: signin_token)
   end
 end

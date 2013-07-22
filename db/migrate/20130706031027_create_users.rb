@@ -6,8 +6,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first_name,             :null => false
       t.string :last_name,              :null => false
       t.string :email,                  :null => false
-      t.string :password,               :null => false
       t.string :password_digest,        :null => false
+      t.string :signin_token,           :null => false
       t.boolean :account_administrator, :null => false
       t.boolean :active,                :null => false
 
@@ -16,5 +16,6 @@ class CreateUsers < ActiveRecord::Migration
 
     add_index :users, :account_id
     add_index :users, :email, unique: true
+    add_index :users, :signin_token
   end
 end
