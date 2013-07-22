@@ -43,6 +43,43 @@ describe 'account pages' do
       it 'should create an user' do
         expect { click_button submit }.to change(User, :count).by(1)
       end
+
+      describe 'should signin user' do
+        before { click_button submit }
+        it { current_path.should == accounts_welcome_path }
+        it { should have_title("Welcome")}
+        it { should have_selector('h1', "Welcome")}
+        it { should have_link("Start Tutorial")}
+        it { should have_link("Skip Tutorial")}
+
+        describe 'should skip tutorial user' do
+          before { click_link 'Skip Tutorial' }
+          it { current_path.should == appointments_path }
+          it { should have_link('Sign Out', href: signout_path) }
+
+          describe 'should signout user' do
+            before { click_link 'Sign Out' }
+
+            it { should have_button('Sign In') }
+
+            describe 'should signin user again without tutorial' do
+              before do
+                within '.form-signin' do
+                  fill_in 'Email', with: 'my_email@my_company.com'
+                  fill_in 'Password', with: 'foobar'
+                end
+                click_button 'Sign In'
+              end
+              it { current_path.should == appointments_path }
+            end
+          end
+        end
+
+        describe 'should play tutorial' do
+          before { click_link 'Start Tutorial' }
+          it { current_path.should == accounts_tutorial_path }
+        end
+      end
     end
 
     describe 'with incomplete information' do
@@ -214,7 +251,6 @@ describe 'account pages' do
       it 'should not create an user' do
         expect { click_button submit }.not_to change(User, :count)
       end
-
     end
 
     describe 'with the same account information duplicated' do
@@ -253,8 +289,6 @@ describe 'account pages' do
         should have_selector('.help-inline#company-name', text: 'Has already been taken')
       end
     end
-
-    # TODO create account/user should have user as adminstrator
   end
 
   ########## show ##########

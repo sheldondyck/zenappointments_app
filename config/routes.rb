@@ -1,12 +1,14 @@
 ZenAppointmentsApp::Application.routes.draw do
   #resources :sessions,            :only => [:new, :create, :destroy]
+
+  get   'accounts/welcome',       :to => 'accounts#welcome'
+  get   'accounts/tutorial' ,     :to => 'accounts#tutorial'
   resources :accounts
+  get   'signup',                 :to => 'accounts#new'
 
   get   'signin',                 :to => 'sessions#new'
   post  'signin',                 :to => 'sessions#create'
   get   'signout',                :to => 'sessions#destroy'
-
-  get   'signup',                 :to => 'accounts#new'
 
   get   'appointments',           :to => 'appointments#index'
 

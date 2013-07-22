@@ -6,12 +6,10 @@ class AccountsController < ApplicationController
   end
 
   def create
-    if create_new_account(get_account_params.merge(active: 1),
-                          get_user_params.merge(password_digest: '',
-                                           account_administrator: 1,
-                                           active: 1))
-      # TODO redirect to new user help page that explians all the buttons and gives walk through
-      redirect_to @account
+    if create_new_account(get_account_params.merge(active: true),
+                          get_user_params.merge(account_administrator: true, active: true))
+      sign_in @user
+      redirect_to accounts_welcome_path
     else
       flash.now[:error] = 'Please fix the problems with the form'
       render 'new'
@@ -25,6 +23,13 @@ class AccountsController < ApplicationController
   end
 
   def delete
+  end
+
+  def welcome
+    @title = 'Welcome ' + current_user.name
+  end
+
+  def tutorial
   end
 
   private

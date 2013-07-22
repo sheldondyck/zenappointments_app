@@ -1,14 +1,18 @@
 %h1.logo zenappointments
 
+#signout
+  =link_to 'Sign Out', signout_path, {class: 'btn'}
+  =link_to raw('<i class="icon-signout"></i>'), signout_path, {alt: 'Sign Out', class: 'btn'}
+
 -# TODO: too many items?
 #view_selector
   .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-    =link_to 'Day', appointments_change_path(view: 'day'), {class: 'btn', data: {remote: 'true'}}
-    =link_to 'Week', appointments_change_path(view: 'week'), {class: 'btn', data: {remote: 'true'}}
+    =link_to 'Day', appointments_change_path(view: 'day'), {alt: 'Day', class: 'btn', data: {remote: 'true'}}
+    =link_to 'Week', appointments_change_path(view: 'week'), {alt: 'Week', class: 'btn', data: {remote: 'true'}}
     -#=link_to '2 Weeks', appointments_change_path(view: 'weeks2'), {class: 'btn', data: {remote: 'true'}}
-    =link_to 'Month', appointments_change_path(view: 'month'), {class: 'btn', data: {remote: 'true'}}
+    =link_to 'Month', appointments_change_path(view: 'month'), {alt: 'Month', class: 'btn', data: {remote: 'true'}}
     -#=link_to '2 Months', appointments_change_path(view: 'months2'), {class: 'btn', data: {remote: 'true'}}
-    =link_to 'Year', appointments_change_path(view: 'year'), {class: 'btn', data: {remote: 'true'}}
+    =link_to 'Year', appointments_change_path(view: 'year'), {alt: 'Year', class: 'btn', data: {remote: 'true'}}
     -#=link_to '2 Year', appointments_change_path(view: 'years2'), {class: 'btn', data: {remote: 'true'}}
 #appointments
   =render @view

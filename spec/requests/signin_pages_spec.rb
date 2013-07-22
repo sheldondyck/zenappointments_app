@@ -25,30 +25,25 @@ describe 'Signin Page' do
   end
 
   describe 'correct signin' do
-    before {
-      @account = Account.new( company_name: 'Company Name',
-                             active: 1)
-      @user = User.new(first_name: 'First Name',
-                     last_name: 'Last Name',
-                     email: 'account_1@company.com',
-                     password: 'abcdef',
-                     account_administrator: 1,
-                     active: 1)
-      @account.save
-      @user.account_id = @account.id
-      @user.save
+    before do
+      @user = create(:user)
       visit signin_path
-      #within '.form-signin' do
-        fill_in 'Email', with: 'account_1@company.com'
+      within '.form-signin' do
+        fill_in 'Email', with: 'account@company.com'
         fill_in 'Password', with: 'abcdef'
-      #end
+      end
       #save_and_open_page
       click_button 'Sign In'
       #save_and_open_page
-    }
+    end
 
     it 'signs in' do
       current_path.should == appointments_path
+    end
+
+    describe 'has correct html' do
+      #it { should have_link('.icon-signout', href: signout_path) }
+      it { should have_link('Sign Out', href: signout_path) }
     end
 
     it 'stays signed in' do
@@ -58,6 +53,12 @@ describe 'Signin Page' do
 
     it 'should not be signed in after deleting cookies' do
       #pending 'delete cookies and verify that is not signed in'
+    end
+
+    describe 'it should signout' do
+      before { click_link 'Sign Out' }
+      it { should have_button 'Sign In' }
+      it { current_path.should == signin_path }
     end
   end
 

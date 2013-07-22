@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    sign_out
+    # TODO: redirect to www
+    redirect_to signin_path
   end
 
   private
