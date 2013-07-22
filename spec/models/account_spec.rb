@@ -13,15 +13,10 @@
 require 'spec_helper'
 
 describe Account do
-  before { @account = Account.new(company_name: 'Company Name',
-                             active: 1)
-    @user = User.new(first_name: 'First Name',
-                     last_name: 'Last Name',
-                     email: 'acount_1@company.com',
-                     password: 'abc',
-                     password_digest: 'abc',
-                     account_administrator: 1,
-                     active: 1) }
+  before do
+    @account = build(:account)
+  end
+
   subject { @account }
 
   it { should be_valid }
@@ -61,19 +56,21 @@ describe Account do
 
     describe 'duplicated is not valid' do
       before do
-        account_with_same_company_name = @account.dup
-        account_with_same_company_name.save
+        @account.save
+        @account_with_same_company_name = @account.dup
+        @account_with_same_company_name.save
       end
-      it { should_not be_valid }
+      it { expect(@account_with_same_company_name).not_to be_valid }
     end
 
     describe 'duplicated with different case is not valid' do
       before do
-        account_with_same_company_name = @account.dup
-        account_with_same_company_name.company_name = @account.company_name.upcase
-        account_with_same_company_name.save
+        @account.save
+        @account_with_same_company_name = @account.dup
+        @account_with_same_company_name.company_name = @account.company_name.upcase
+        @account_with_same_company_name.save
       end
-      it { should_not be_valid }
+      it { expect(@account_with_same_company_name).not_to be_valid }
     end
   end
 
@@ -100,10 +97,7 @@ describe Account do
   end
 
   describe 'user associated with account' do
-    before { @account.save
-      @user.account_id = @account.id
-      @user.save
-    }
+    before { @user = create(:user) }
 
     describe 'has correct first_name' do
       it { @user.first_name.should == 'First Name' }
@@ -114,7 +108,11 @@ describe Account do
     end
 
     describe 'has correct email' do
-      it { @user.email.should == 'acount_1@company.com' }
+      it { @user.email.should == 'account@company.com' }
+    end
+
+    describe 'has admin privs' do
+      it { @user.account_administrator.should be_true }
     end
   end
 end

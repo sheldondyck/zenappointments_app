@@ -18,18 +18,9 @@
 require 'spec_helper'
 
 describe User do
-  before { @account = Account.new( company_name: 'Company Name',
-                             active: 1)
-    #@account.save
-    @user = User.new(account_id: @account.id,
-                     first_name: 'First Name',
-                     last_name: 'Last Name',
-                     email: 'acount_1@company.com',
-                     password: 'abcdef',
-                     account_administrator: 1,
-                     active: 1)
-    #@user.save
-  }
+  before do
+    @user = build(:user)
+  end
 
   subject { @user }
 
@@ -152,9 +143,7 @@ describe User do
     describe 'is normalized to lower case' do
       subject { @user.email }
       before do
-        @account.save
         @user.email = @user.email.upcase
-        @user.account_id = @account.id
         @user.save
         @user.email = @user.email.downcase
         @normalized_account = User.find_by email: @user.email
@@ -164,9 +153,7 @@ describe User do
 
     describe 'duplicated is not valid' do
       before do
-        @account.save
         user_with_same_email = @user.dup
-        user_with_same_email.account_id = @account.id
         user_with_same_email.save
       end
       it { should_not be_valid }
@@ -174,10 +161,8 @@ describe User do
 
     describe 'duplicated with different case is not valid' do
       before do
-        @account.save
         user_with_same_email = @user.dup
         user_with_same_email.email = @user.email.upcase
-        user_with_same_email.account_id = @account.id
         user_with_same_email.save
       end
       it { should_not be_valid }
@@ -208,39 +193,23 @@ describe User do
   end
 
   describe 'password_digest' do
-    before {
-      @account.save
-      @user.account_id = @account.id
-      @user.save
-    }
+    before { @user.save }
     its(:password_digest) { should_not be_blank }
   end
 
   describe 'signin_token' do
-    before {
-      @account.save
-      @user.account_id = @account.id
-      @user.save
-    }
+    before { @user.save }
     its(:signin_token) { should_not be_blank }
   end
 
   describe 'authenticate' do
-    before {
-      @account.save
-      @user.account_id = @account.id
-      @user.save
-    }
+    before { @user.save }
     describe 'with valid password' do
       it { @user.authenticate('abcdef').should eq @user }
     end
 
     describe 'with invalid password' do
-    before {
-      @account.save
-      @user.account_id = @account.id
-      @user.save
-    }
+    before { @user.save }
       it { @user.authenticate('1abcdef').should_not eq @user }
     end
   end
