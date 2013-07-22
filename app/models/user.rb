@@ -19,12 +19,10 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  #attr_reader :password
 
   before_save { |user| user.email = email.downcase }
   before_create :create_signin_token
   before_create :create_password_digest
-  #before_create { raise "Password digest missing on new record" if password_digest.blank? }
 
   belongs_to :account
   has_many :appointments
@@ -40,24 +38,11 @@ class User < ActiveRecord::Base
                           uniqueness: { case_sensitive: false }
   validates :password,    presence: true,
                           length: { minimum: 6, maximum: 100 }
-  #validates :password_digest, presence: true
   validates :active,      inclusion: { in: [true, false] }
 
   def name
     first_name + ' ' + last_name
   end
-
-  #def password=(password_plaintext)
-  #  unless password_plaintext.blank?
-  #    @password = password_plaintext
-  #    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine::DEFAULT_COST
-  #    self.password_digest = BCrypt::Password.create(password_plaintext, cost: cost)
-  #  end
-  #end
-
-  #def password
-  #  @password
-  #end
 
   def authenticate(password_plaintext)
     BCrypt::Password.new(password_digest) == password_plaintext && self

@@ -244,4 +244,8 @@ describe User do
       it { @user.authenticate('1abcdef').should_not eq @user }
     end
   end
+
+  describe 'signin_token' do
+    it { expect(User.new_signin_token).not_to be_equal User.new_signin_token }
+  end
 end
