@@ -18,6 +18,22 @@ module ApplicationHelper
     div
   end
 
+  def link_icon_to icon_name, href, alt = ''
+    unless alt.blank?
+      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {alt: alt, class: 'btn', id: "link-#{icon_name}"}
+    else
+      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {class: 'btn', id: "link-#{icon_name}"}
+    end
+  end
+
+  def remote_link_icon_to icon_name, href, alt = ''
+    unless alt.blank?
+      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {alt: alt, class: 'btn', id: "link-#{icon_name}", data: {remote: 'true'}}
+    else
+      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {class: 'btn', id: "link-#{icon_name}", data: {remote: 'true'}}
+    end
+  end
+
   def error_class(h, sym)
     if h.errors.messages.has_key?(sym)
       "error"

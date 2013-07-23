@@ -1,8 +1,9 @@
 %h1.logo zenappointments
 
 #signout
-  =link_to 'Sign Out', signout_path, {class: 'btn'}
-  =link_to raw('<i class="icon-signout"></i>'), signout_path, {alt: 'Sign Out', class: 'btn'}
+  =current_user.name
+  =link_icon_to 'cog', '#'
+  =link_icon_to 'signout', signout_path, 'Sign Out'
 
 -# TODO: too many items?
 #view_selector

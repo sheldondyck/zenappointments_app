@@ -55,10 +55,12 @@ describe 'account pages' do
         describe 'should skip tutorial user' do
           before { click_link 'Skip Tutorial' }
           it { current_path.should == appointments_path }
-          it { should have_link('Sign Out', href: signout_path) }
+          # TODO is their a better way to test with icons?
+          it { should have_selector('i.icon-signout') }
 
           describe 'should signout user' do
-            before { click_link 'Sign Out' }
+            # TODO is their a better way to test with icons?
+            before { find_by_id('link-signout').click }
 
             it { should have_button('Sign In') }
 

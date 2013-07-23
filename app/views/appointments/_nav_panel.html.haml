@@ -1,6 +1,6 @@
 -# TODO: calling function on @date (through send) that came from the net. Things that make you go hmmm.
 %h3
-  =link_to raw('<i class="icon-calendar"></i>'), '#', {class: 'btn', data: {remote: 'true'}}
-  =link_to raw('<i class="icon-angle-left"></i>'), appointments_change_path(date: @date.send('prev_' + @view), view: @view), {class: 'btn', data: {remote: 'true'}}
-  =link_to raw('<i class="icon-angle-right"></i>'), appointments_change_path(date: @date.send('next_' + @view), view: @view), {class: 'btn', data: {remote: 'true'}}
+  =remote_link_icon_to 'calendar', '#'
+  =remote_link_icon_to 'angle-left', appointments_change_path(date: @date.send('prev_' + @view), view: @view)
+  =remote_link_icon_to 'angle-right', appointments_change_path(date: @date.send('next_' + @view), view: @view)
   =@nav_title

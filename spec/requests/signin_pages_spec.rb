@@ -43,7 +43,8 @@ describe 'Signin Page' do
 
     describe 'has correct html' do
       #it { should have_link('.icon-signout', href: signout_path) }
-      it { should have_link('Sign Out', href: signout_path) }
+      it { should have_selector('i.icon-signout') }
+      it { should have_text(@user.name) }
     end
 
     it 'stays signed in' do
@@ -56,7 +57,7 @@ describe 'Signin Page' do
     end
 
     describe 'it should signout' do
-      before { click_link 'Sign Out' }
+      before { find_by_id('link-signout').click }
       it { should have_button 'Sign In' }
       it { current_path.should == signin_path }
     end
