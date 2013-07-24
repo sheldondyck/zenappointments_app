@@ -113,21 +113,26 @@ h1.logo {
   }
 }
 
+#zen-logo {
+  position:relative;
+  top:-2px;
+}
+
 #view_selector {
   // TODO: should use absolute position
   position:absolute;
   right:0px;
   // TODO: ugly hack to make it work
-  top:110.0px;
+  top:65.0px;
 }
 
-#signout {
+/*#signout {
   // TODO: should use absolute position
   position:absolute;
   right:0px;
   // TODO: ugly hack to make it work
   top:16.5px;
-}
+}*/
 
 .nav-bar {
   background:#ddd;

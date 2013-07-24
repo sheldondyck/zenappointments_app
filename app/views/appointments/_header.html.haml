@@ -1,12 +1,35 @@
-%h1.logo zenappointments
+.navbar
+  .navbar-inner
+    =link_to image_tag('zen_logo.png', id: 'zen-logo') + ' ZenAppointments', '#', {class: 'brand'}
+    %ul.nav
+      %li.active
+        =link_to 'Home', '#'
+      %li
+        =link_to 'Appointments', '#'
+      %li
+        =link_to 'Clients', '#'
+      %li
+        =link_to 'Employees', '#'
+      %li
+        =link_to 'Reports', '#'
+    %ul.nav.pull-right
+      %li
+        =link_to current_user.name, '#'
+      %li
+        =link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id: "link-cog"}
+      %li
+        -#=link_icon_to 'signout', signout_path, 'Sign Out'
+        =link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id: "link-signout"}
 
-#signout
+-#%h1.logo zenappointments
+
+-##signout
   =current_user.name
   =link_icon_to 'cog', '#'
   =link_icon_to 'signout', signout_path, 'Sign Out'
 
 -#.btn-group{id: '', data: {toggle: 'buttons-radio'}}
-.nav-bar
+-#.nav-bar
   =link_to 'Home', '#'
   =link_to 'Appointments', '#'
   =link_to 'Clients', '#'
