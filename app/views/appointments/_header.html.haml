@@ -1,0 +1,14 @@
+%h1.logo zenappointments
+
+#signout
+  =current_user.name
+  =link_icon_to 'cog', '#'
+  =link_icon_to 'signout', signout_path, 'Sign Out'
+
+-#.btn-group{id: '', data: {toggle: 'buttons-radio'}}
+.nav-bar
+  =link_to 'Home', '#'
+  =link_to 'Appointments', '#'
+  =link_to 'Clients', '#'
+  =link_to 'Employees', '#'
+  =link_to 'Reports', '#'

@@ -118,7 +118,7 @@ h1.logo {
   position:absolute;
   right:0px;
   // TODO: ugly hack to make it work
-  top:66.5px;
+  top:110.0px;
 }
 
 #signout {
@@ -127,4 +127,19 @@ h1.logo {
   right:0px;
   // TODO: ugly hack to make it work
   top:16.5px;
+}
+
+.nav-bar {
+  background:#ddd;
+  color:#333;
+  width:100%;
+  font-family:"Lucida Grande", arial, helvetica, sans-serif;
+  font-size:14px;
+  padding:6px;
+  border:1px solid #999;
+  a {
+    text-decoration:none;
+    padding:0 10px;
+    color:#333;
+  }
 }

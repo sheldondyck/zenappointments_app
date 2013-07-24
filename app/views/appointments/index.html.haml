@@ -1,10 +1,4 @@
-%h1.logo zenappointments
-
-#signout
-  =current_user.name
-  =link_icon_to 'cog', '#'
-  =link_icon_to 'signout', signout_path, 'Sign Out'
-
+=render 'header'
 -# TODO: too many items?
 #view_selector
   .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
