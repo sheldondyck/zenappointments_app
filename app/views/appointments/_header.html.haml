@@ -1,6 +1,6 @@
 .navbar
   .navbar-inner
-    =link_to image_tag('zen_logo.png', id: 'zen-logo') + ' ZenAppointments', '#', {class: 'brand'}
+    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ZenAppointments', '#', {class:'brand'}
     %ul.nav
       %li.active
         =link_to 'Home', '#'
@@ -16,10 +16,10 @@
       %li
         =link_to current_user.name, '#'
       %li
-        =link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id: "link-cog"}
+        =link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id:'link-cog'}
       %li
         -#=link_icon_to 'signout', signout_path, 'Sign Out'
-        =link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id: "link-signout"}
+        =link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id:'link-signout'}
 
 -#%h1.logo zenappointments
 
