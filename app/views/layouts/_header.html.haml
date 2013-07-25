@@ -2,14 +2,16 @@
   .navbar-inner
     =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ZenAppointments', '#', {class:'brand'}
     %ul.nav
-      %li.active
+      -# TODO need to define home
+      %li{:class => active('foo#bar')}
         =link_to 'Home', '#'
-      %li
-        =link_to 'Appointments', '#'
-      %li
-        =link_to 'Clients', '#'
-      %li
-        =link_to 'Employees', '#'
+      %li{:class => active('appointments#index')}
+        -# TODO inconsistent link names, others and index this is not
+        =link_to 'Appointments', appointments_path
+      %li{:class => active('clients#index')}
+        =link_to 'Clients', clients_index_path
+      %li{:class => active('employees#index')}
+        =link_to 'Employees', employees_index_path
       %li
         =link_to 'Reports', '#'
     %ul.nav.pull-right
@@ -20,16 +22,3 @@
       %li
         -#=link_icon_to 'signout', signout_path, 'Sign Out'
         =link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id:'link-signout'}
-
--#%h1.logo zenappointments
--##signout
-  =current_user.name
-  =link_icon_to 'cog', '#'
-  =link_icon_to 'signout', signout_path, 'Sign Out'
--#.btn-group{id: '', data: {toggle: 'buttons-radio'}}
--#.nav-bar
-  =link_to 'Home', '#'
-  =link_to 'Appointments', '#'
-  =link_to 'Clients', '#'
-  =link_to 'Employees', '#'
-  =link_to 'Reports', '#'

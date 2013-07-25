@@ -17,8 +17,4 @@ class AppointmentsController < ApplicationController
     @employees = [2, 4, 102]
   end
 
-  private
-    def authorize_user
-      redirect_to signin_path, notice: 'Access restricted, please sign in' unless signed_in?
-    end
 end
