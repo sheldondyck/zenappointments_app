@@ -36,4 +36,15 @@ FactoryGirl.define do
       account_administrator false
     end
   end
+
+  factory :client do
+    account
+    first_name "First Name"
+    last_name "Last Name"
+    birthday "1975-03-12"
+    email "client_1@somesite.com"
+    telefone_celular "(11) 96122-4013"
+    telefone_home    "(11) 3025-5252"
+    telefone_office  "(11) 3295-2905"
+  end
 end
