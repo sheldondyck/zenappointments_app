@@ -24,5 +24,7 @@
                 =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Processando ...'
     .row
       .span6.offset4
-        =link_to 'You don\'t have an account? Sign up now!', signup_path
+        %p
+          You don't have an account?
+          =link_to 'Sign up now!', signup_path
 -#= render 'pages/footer'

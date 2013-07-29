@@ -44,14 +44,6 @@ class AccountsController < ApplicationController
                                       :password)
     end
 
-    def get_account_and_user_params
-      params.require(:account).permit(:company_name,
-                                      :first_name,
-                                      :last_name,
-                                      :email,
-                                      :password)
-    end
-
     def create_new_account(account_params, user_params)
       # TODO general problem here.  find out how two tables can be modeled in one controller
 
@@ -60,7 +52,6 @@ class AccountsController < ApplicationController
           @account = Account.new(get_account_params.merge(active: 1))
           @account.save!
           @user = User.new(user_params.merge(account_id: @account.id))
-          #@user.signin_token = User.new_signin_token
           @user.save!
 
           return true
