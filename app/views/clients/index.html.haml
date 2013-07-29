@@ -1,2 +1,9 @@
 =render 'layouts/header'
 %h1 Clients
+-#=form_tag('/post')
+  =text_field_tag 'foo'
+-#.test(ng-controller='TestCtrl')
+.test
+  %form
+    %input(ng-model='newEntry.name'){type:'text'}
+  {{newEntry.name}}

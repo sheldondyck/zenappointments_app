@@ -16,6 +16,7 @@ gem 'pg'
 gem 'foreigner'
 gem 'bootstrap-sass' #, '~> 2.3.2.0'
 gem 'font-awesome-rails'
+gem 'angularjs-rails'
 
 group :development do
   gem 'therubyracer', platforms: :ruby

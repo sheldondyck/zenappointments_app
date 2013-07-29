@@ -26,6 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    angularjs-rails (1.0.7)
     annotate (2.5.0)
       rake
     ansi (1.4.3)
@@ -226,6 +227,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   annotate
   bcrypt-ruby
   better_errors
