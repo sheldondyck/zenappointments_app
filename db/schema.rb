@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20130706134534) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "hstore"
-
   create_table "accounts", force: true do |t|
     t.string   "company_name",  null: false
     t.hstore   "configuration"
@@ -30,7 +26,7 @@ ActiveRecord::Schema.define(version: 20130706134534) do
   create_table "appointments", force: true do |t|
     t.integer  "account_id",  null: false
     t.integer  "user_id",     null: false
-    t.integer  "employee_id", null: false
+    t.integer  "employee_id"
     t.integer  "client_id",   null: false
     t.datetime "time",        null: false
     t.integer  "duration",    null: false
