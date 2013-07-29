@@ -22,7 +22,8 @@ describe 'account pages' do
       it { should have_field('account[email]') }
       it { should have_field('account[password]') }
       it { should have_button('Sign Up') }
-      it { should have_link('I already have an account. Sign in now!', href: signin_path) }
+      it { should have_selector('p', text: 'I already have an account.') }
+      it { should have_link('Sign in now!', href: signin_path) }
     end
 
     let(:submit) { 'Sign Up' }
@@ -47,10 +48,10 @@ describe 'account pages' do
       describe 'should signin user' do
         before { click_button submit }
         it { current_path.should == accounts_welcome_path }
-        it { should have_title("Welcome")}
-        it { should have_selector('h1', "Welcome")}
-        it { should have_link("Start Tutorial")}
-        it { should have_link("Skip Tutorial")}
+        it { should have_title('Welcome')}
+        it { should have_selector('h1', 'Welcome')}
+        it { should have_link('Start Tutorial')}
+        it { should have_link('Skip Tutorial')}
 
         describe 'should skip tutorial user' do
           before { click_link 'Skip Tutorial' }
