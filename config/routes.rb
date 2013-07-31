@@ -4,7 +4,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get 'clients/index',            :to => 'clients#index'
 
   get   'accounts/welcome',       :to => 'accounts#welcome'
-  get   'accounts/tutorial' ,     :to => 'accounts#tutorial'
+  get   'accounts/tutorial',      :to => 'accounts#tutorial'
   resources :accounts
   get   'signup',                 :to => 'accounts#new'
 
