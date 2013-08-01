@@ -46,6 +46,7 @@ describe 'Signin Page' do
       #it { should have_link('.icon-signout', href: signout_path) }
       it { should have_selector('i.icon-signout') }
       it { should have_text(@user.name) }
+      it { should have_link(@user.name, href: user_path(@user)) }
     end
 
     it 'stays signed in' do

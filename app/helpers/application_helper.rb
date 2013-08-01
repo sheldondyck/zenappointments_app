@@ -1,9 +1,13 @@
 module ApplicationHelper
+  def app_name
+    'ZenAppointments'
+  end
+
   def title
     if @title.nil?
-      'ZenAppointments'
+      app_name
     else
-      'ZenAppointments | ' + @title
+      app_name + ' | ' + @title
     end
   end
 

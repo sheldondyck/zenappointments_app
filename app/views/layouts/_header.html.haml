@@ -1,10 +1,11 @@
 .navbar
   .navbar-inner
-    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ZenAppointments', '#', {class:'brand'}
+    -# TODO need to define app_name url
+    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, '#', {class:'brand'}
     %ul.nav
-      -# TODO need to define home
+      -# TODO need to define home final url
       %li{:class => active('foo#bar')}
-        =link_to 'Home', '#'
+        =link_to 'Home', accounts_home_path
       %li{:class => active('appointments#index')}
         -# TODO inconsistent link names, others and index this is not
         =link_to 'Appointments', appointments_path
@@ -13,10 +14,11 @@
       %li{:class => active('employees#index')}
         =link_to 'Employees', employees_index_path
       %li
-        =link_to 'Reports', '#'
+        -# TODO need to define reports final url
+        =link_to 'Reports' , accounts_reports_path
     %ul.nav.pull-right
       %li
-        =link_to current_user.name, '#'
+        =link_to current_user.name, user_path(@current_user)
       %li
         =link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id:'link-cog'}
       %li

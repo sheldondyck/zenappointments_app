@@ -18,6 +18,8 @@ guard :rspec, zeus: true, bundler: false, all_after_pass: true, all_on_start: tr
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_pages_spec.rb" }
+  # running all requests spec on any view change
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})

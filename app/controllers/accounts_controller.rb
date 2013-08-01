@@ -25,6 +25,14 @@ class AccountsController < ApplicationController
   def delete
   end
 
+  def home
+   # TODO: should home screen be in accounts?
+  end
+
+  def reports
+   # TODO: should reports be in accounts?
+  end
+
   def welcome
     @title = 'Welcome ' + current_user.name
   end
