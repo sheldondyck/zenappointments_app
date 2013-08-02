@@ -12,3 +12,4 @@ r generate model Appointment account_id:integer accounts:foreign_key user_id:int
 
 * Q: Change company_name to office name?
 * Q: start using angularjs?
+  A: yes
