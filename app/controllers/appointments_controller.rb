@@ -18,4 +18,20 @@ class AppointmentsController < ApplicationController
     @employees = [2, 4, 102]
   end
 
+  def create
+    @client = Client.new(client_params.merge(account_id: @current_user.account_id))
+    @client.save
+    @appointment = Appointment.new(appointment_params)
+  end
+
+  private
+    def client_params
+      params.require(:appointment).permit(:first_name,
+                                           :last_name,
+                                           :telefone_celular)
+    end
+
+    def appointment_params
+      params.require(:appointment).permit(:time, :duration)
+    end
 end

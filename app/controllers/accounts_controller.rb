@@ -6,8 +6,8 @@ class AccountsController < ApplicationController
   end
 
   def create
-    if create_new_account(get_account_params.merge(active: true),
-                          get_user_params.merge(account_administrator: true, active: true))
+    if create_new_account(account_params.merge(active: true),
+                          user_params.merge(account_administrator: true, active: true))
       sign_in @user
       redirect_to accounts_welcome_path
     else
@@ -41,11 +41,11 @@ class AccountsController < ApplicationController
   end
 
   private
-    def get_account_params
+    def account_params
       params.require(:account).permit(:company_name)
     end
 
-    def get_user_params
+    def user_params
       params.require(:account).permit(:first_name,
                                       :last_name,
                                       :email,
@@ -57,7 +57,7 @@ class AccountsController < ApplicationController
 
       begin
         ActiveRecord::Base.transaction do
-          @account = Account.new(get_account_params.merge(active: 1))
+          @account = Account.new(account_params.merge(active: 1))
           @account.save!
           @user = User.new(user_params.merge(account_id: @account.id))
           @user.save!

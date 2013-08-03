@@ -42,20 +42,21 @@ ActiveRecord::Schema.define(version: 20130706134534) do
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
 
   create_table "clients", force: true do |t|
-    t.integer  "account_id",       null: false
-    t.string   "first_name",       null: false
+    t.integer  "account_id",         null: false
+    t.string   "first_name",         null: false
     t.string   "last_name"
     t.date     "birthday"
     t.string   "email"
-    t.string   "telefone_celular"
-    t.string   "telefone_home"
-    t.string   "telefone_office"
+    t.string   "telephone_cellular"
+    t.string   "telephone_home"
+    t.string   "telephone_office"
     t.hstore   "custom_fields"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "clients", ["account_id"], name: "index_clients_on_account_id", using: :btree
+  add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
   add_index "clients", ["first_name", "last_name"], name: "index_clients_on_first_name_and_last_name", using: :btree
   add_index "clients", ["first_name"], name: "index_clients_on_first_name", using: :btree
   add_index "clients", ["last_name"], name: "index_clients_on_last_name", using: :btree

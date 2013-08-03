@@ -2,16 +2,17 @@ class CreateClients < ActiveRecord::Migration
   def change
     execute "CREATE EXTENSION IF NOT EXISTS hstore"
     create_table :clients do |t|
-      t.integer :account_id,  :null => false
+      t.integer     :account_id,    :null => false
+      t.string      :first_name,    :null => false
+      t.string      :last_name
+      t.date        :birthday
+      t.string      :email
+      t.string      :telephone_cellular
+      t.string      :telephone_home
+      t.string      :telephone_office
+      t.hstore      :custom_fields
+
       t.foreign_key :accounts
-      t.string :first_name,   :null => false
-      t.string :last_name
-      t.date :birthday
-      t.string :email
-      t.string :telefone_celular
-      t.string :telefone_home
-      t.string :telefone_office
-      t.hstore :custom_fields
 
       t.timestamps
     end
@@ -23,5 +24,6 @@ class CreateClients < ActiveRecord::Migration
     add_index(:clients, :first_name)
     add_index(:clients, :last_name)
     add_index(:clients, [:first_name, :last_name])
+    add_index(:clients, :email, unique: true)
   end
 end

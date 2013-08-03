@@ -1,16 +1,20 @@
 %div#new_appointment
   %h3 New Appointment
 
-  =form_for :appointment, :url => appointments_path, :html => {:class => 'form-new-appointment' } do |f|
+  =form_for :appointment, url: appointments_create_path, html: {class: 'form-new-appointment', data: {remote: 'true'}} do |f|
     .control-group
       .controls
-        %span.add-on#name
-          = f.text_field :name, :class => 'span2', :id => 'inputIcon', :placeholder => 'First Name'
+        %span.add-on#first_name
+          = f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
     .control-group
       .controls
-        %span.add-on#name
-          = f.text_field :name, :class => 'span2', :id => 'inputIcon', :placeholder => 'Last Name'
+        %span.add-on#last_name
+          = f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
+    .control-group
+      .controls
+        %span.add-on#telefone_celular
+          = f.text_field :telefone_celular, class: 'span2', id: 'inputIcon', placeholder: 'Celular'
     .control-group
       %label.control-label
       .controls
-        = button_tag 'Create', :class => 'btn btn-primary', 'data-disable-with' => 'Processando ...'
+        = button_tag 'Save', class: 'btn btn-primary', 'data-disable-with' => 'Processando ...'
