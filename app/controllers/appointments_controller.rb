@@ -19,9 +19,14 @@ class AppointmentsController < ApplicationController
   end
 
   def create
+    puts 'CREATE!!!'
     @client = Client.new(client_params.merge(account_id: @current_user.account_id))
     @client.save
-    @appointment = Appointment.new(appointment_params)
+    puts @client.id
+    @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
+                                                            user_id: @current_user.id,
+                                                            client_id: @client.id))
+    @appointment.save
   end
 
   private
