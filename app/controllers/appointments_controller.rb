@@ -20,8 +20,10 @@ class AppointmentsController < ApplicationController
 
   def create
     puts 'CREATE!!!'
-    @client = Client.new(client_params.merge(account_id: @current_user.account_id))
-    @client.save
+    @client = Client.find_or_create_by(email: 'foo@boo.com')
+   # , client_params.merge(account_id: @current_user.account_id))
+    #@client.save
+    puts 'CREATE 2!!!'
     puts @client.id
     @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                             user_id: @current_user.id,
