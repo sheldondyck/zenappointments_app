@@ -51,28 +51,30 @@ h1.logo {
   }
 }
 
-#appointments {
-  #new_appointment {
-    //position:absolute;
-    //float:right;
-    background:#fff;
-    position:relative;
-    border-style:solid;
-    border-width:1px;
-    height: 300px;
-    width: 400px;
-    //display:none;
-  }
+#appointments #active_hour {
+  border:1px solid #0a0;
+  background:#0a0;
+}
+
+.new_appointment {
+  //position:absolute;
+  //float:right;
+  background:#fff;
+  position:relative;
+  border-style:solid;
+  border-width:1px;
+  height: 300px;
+  width: 400px;
+  //display:none;
+}
+
+.new_appointment#error {
+  border:1px solid #a00;
 }
 
 #appointments .agenda {
   border-collapse:collapse;
   width:100%;
-
-  .new_appointment {
-    width:100%;
-    font-size:14px;
-  }
 
   td, th {
     font-family:"Lucida Grande", arial, helvetica, sans-serif;

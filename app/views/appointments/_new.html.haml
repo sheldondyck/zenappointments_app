@@ -1,20 +1,26 @@
-%div#new_appointment
+%div.new_appointment
   %h3 New Appointment
 
   =form_for :appointment, url: appointments_create_path, html: {class: 'form-new-appointment', data: {remote: 'true'}} do |f|
+    =f.hidden_field :time, value: Time.zone.now
+    =f.hidden_field :duration, value: 1
     .control-group
       .controls
         %span.add-on#first_name
-          = f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
+          =f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
     .control-group
       .controls
         %span.add-on#last_name
-          = f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
+          =f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
     .control-group
       .controls
         %span.add-on#telefone_celular
-          = f.text_field :telephone_cellular, class: 'span2', id: 'inputIcon', placeholder: 'Cellular'
+          =f.text_field :telephone_cellular, class: 'span2', id: 'inputIcon', placeholder: 'Cellular'
+    .control-group
+      .controls
+        %span.add-on#email
+          =f.text_field :email, class: 'span2', id: 'inputIcon', placeholder: 'Email'
     .control-group
       %label.control-label
       .controls
-        = button_tag 'Save', class: 'btn btn-primary', 'data-disable-with' => 'Processando ...'
+        =button_tag 'Save', class: 'btn btn-primary', 'data-disable-with' => 'Processando ...'

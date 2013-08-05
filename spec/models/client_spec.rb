@@ -70,12 +70,12 @@ describe Client do
 
     describe 'is empty' do
       before { @client.last_name = '' }
-      it { should_not be_valid }
+      it { should be_valid }
     end
 
     describe 'has no valid characters' do
       before { @client.last_name = " \t  " }
-      it { should_not be_valid }
+      it { should be_valid }
     end
 
     describe 'even if is very long' do

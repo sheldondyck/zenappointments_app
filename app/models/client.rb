@@ -24,10 +24,8 @@ class Client < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-_.]+@[a-z\d\-_.]+\.[a-z]+\z/i
   validates :first_name,  presence: true,
                           length: { maximum: 50 }
-  validates :last_name,   presence: true,
-                          length: { maximum: 50 }
-  validates :email,       presence: true,
-                          length: { minimum: 4, maximum: 100 },
+  validates :last_name,   length: { maximum: 50 }
+  validates :email,       length: { minimum: 4, maximum: 100 },
                           format: { with: VALID_EMAIL_REGEX },
                           uniqueness: { case_sensitive: false }
 

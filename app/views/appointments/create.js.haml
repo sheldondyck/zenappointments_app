@@ -1,2 +1,5 @@
-$('#new_appointment').remove();
-$('#active_hour').css('background', '#a00')
+- if @appointment.nil?
+  $('.new_appointment').attr('id', 'error')
+- else
+  $('.new_appointment').remove();
+  $('#active_hour').removeAttr('id')
