@@ -8,6 +8,8 @@ r generate model Client account_id:integer accounts:foreign_key first_name:strin
 
 r generate model Appointment account_id:integer accounts:foreign_key user_id:integer users:foreign_key employee_id:integer employees:foreign_key client_id:integer clients:foreign_key time:datetime duration:integer
 
+heroku pg:reset DATABASE_URL --confirm zenappointmentsapp
+
 == TODO
 
 * Q: Change company_name to office name?

@@ -29,6 +29,9 @@ class AppointmentsController < ApplicationController
       puts 'CREATE 1a!!!'
       puts @client.to_yaml
       @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
+      puts 'CREATE 1b!!!'
+      puts @client.to_yaml
+      @client = Client.find_by(params.require(:appointment).permit(:email))
 
       #@client = Client.find_or_create_by(params.require(:appointment).permit(:email)) do |client|
         #client.account_id = @current_user.account_id

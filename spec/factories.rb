@@ -16,7 +16,7 @@ FactoryGirl.define do
     email                 'account@company.com'
     password              'abcdef'
     account_administrator true
-    active true
+    active                true
 
     factory :user_normal do
       account_administrator false
@@ -30,7 +30,7 @@ FactoryGirl.define do
     sequence(:email)      { |n| "account_#{n}@company.com" }
     password              'abcdef'
     account_administrator true
-    active true
+    active                true
 
     factory :user_unique_normal do
       account_administrator false
@@ -39,12 +39,12 @@ FactoryGirl.define do
 
   factory :client do
     account
-    first_name        'First Name'
-    last_name         'Last Name'
-    birthday          '1975-03-12'
-    email             'client_1@somesite.com'
+    first_name          'First Name'
+    last_name           'Last Name'
+    birthday            '1975-03-12'
+    email               'client_1@somesite.com'
     telephone_cellular  '(11) 96122-4013'
-    telephone_home     '(11) 3025-5252'
-    telephone_office   '(11) 3295-2905'
+    telephone_home      '(11) 3025-5252'
+    telephone_office    '(11) 3295-2905'
   end
 end
