@@ -38,6 +38,11 @@ class AppointmentsController < ApplicationController
 
       puts 'CREATE 2!!!'
       puts @client.to_yaml
+      puts 'CREATE 2a!!!'
+      puts appointment_params.merge(account_id: @current_user.account_id,
+                               user_id: @current_user.id,
+                               client_id: @client.id).to_yaml
+
       @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id))
