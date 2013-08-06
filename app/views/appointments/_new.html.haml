@@ -3,7 +3,7 @@
 
   =form_for :appointment, url: appointments_create_path, html: {class: 'form-new-appointment', data: {remote: 'true'}} do |f|
     =f.hidden_field :time, value: Time.zone.now
-    =f.hidden_field :duration, value: 1
+    =f.hidden_field :duration, value: 60
     .control-group
       .controls
         %span.add-on#first_name

@@ -2,6 +2,11 @@
   =render('nav_panel')
   =calendar @date do |date|
     =date.day
+    -if @appointments_by_date[date]
+      %ul
+        -@appointments_by_date[date].each do |appointment|
+          %li
+            =link_to appointment.name
   :coffee
     jQuery ->
       $('.calendar').registerNewCalendarDialog('#{j render('new')}')

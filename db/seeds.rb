@@ -7,10 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 @account = Account.create(company_name: 'FooBar Inc.', active: true)
-@user = User.create(account:               Account.first,
+@user = User.create(account:               @account,
                     first_name:            'First Name',
                     last_name:             'Last Name',
-                    email:                 'foo_bar@company.com',
+                    email:                 'foo@bar.com',
                     password:              'foobar',
                     account_administrator: true,
                     active:                true)

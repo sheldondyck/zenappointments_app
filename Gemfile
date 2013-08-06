@@ -36,6 +36,7 @@ group :development do
   #gem 'ruby-debug'
   gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'awesome_print'
 end
 
 group :test do

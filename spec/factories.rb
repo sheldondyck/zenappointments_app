@@ -47,4 +47,13 @@ FactoryGirl.define do
     telephone_home      '(11) 3025-5252'
     telephone_office    '(11) 3295-2905'
   end
+
+  factory :appointment do
+    #association :account,   factory: :account,  strategy: :build
+    account
+    user      { build(:user, account: account) }
+    client    { build(:client, account: account) }
+    time      '2013-04-01 08:00:01'
+    duration  60
+  end
 end

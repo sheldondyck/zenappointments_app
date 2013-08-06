@@ -17,6 +17,7 @@ class AppointmentsController < ApplicationController
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [2, 4, 102]
+    @appointments_by_date = Appointment.where(time: @date.beginning_of_month..@date.end_of_month).order(:time).group_by(&:time)
   end
 
   def create
@@ -30,6 +31,8 @@ class AppointmentsController < ApplicationController
       puts @client.to_yaml
       @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
       puts 'CREATE 1b!!!'
+      # TODO: create was not returning id in postgres in prod.  need to reload.
+      # is this normal?
       puts @client.to_yaml
       @client = Client.find_by(params.require(:appointment).permit(:email))
 

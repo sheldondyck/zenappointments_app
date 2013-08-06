@@ -18,4 +18,8 @@ class Appointment < ActiveRecord::Base
   belongs_to :user
   belongs_to :employee
   belongs_to :client
+
+  validates :time,      presence:   true
+  validates :duration,  presence:   true,
+                        inclusion:  15..(24*60)
 end
