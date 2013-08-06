@@ -2,7 +2,6 @@ require 'spec_helper'
 include ApplicationHelper
 
 describe 'account pages' do
-  ########## signup ##########
   describe 'signup page' do
     describe 'GET /signup' do
       it 'should exist' do
@@ -297,21 +296,51 @@ describe 'account pages' do
     end
   end
 
-  ########## show ##########
-  # TODO: use X_path and not hardcoded strings
+  describe 'welcome page' do
+    describe 'GET /accounts/welcome' do
+      it 'should deny' do
+        get '/accounts/welecome'
+        response.status.should be(302)
+      end
+    end
+
+    subject { page }
+    before { visit '/accounts/welcome' }
+
+    #describe 'html' do
+    #  it { should have_selector('h1', text: 'Accounts') }
+    #end
+  end
+
+  describe 'tutorial page' do
+    describe 'GET /accounts/tutorial' do
+      it 'should deny' do
+        get '/accounts/tutorial'
+        response.status.should be(302)
+      end
+    end
+
+    subject { page }
+    before { visit '/accounts/tutorial' }
+
+    #describe 'html' do
+    #  it { should have_selector('h1', text: 'Accounts') }
+    #end
+  end
+
   describe 'show page' do
     describe 'GET /accounts/1' do
-      it 'should exist' do
+      it 'should deny' do
         get '/accounts/1'
-        response.status.should be(200)
+        response.status.should be(302)
       end
     end
 
     subject { page }
     before { visit '/accounts/1' }
 
-    describe 'html' do
-      it { should have_selector('h1', text: 'Accounts') }
-    end
+    #describe 'html' do
+    #  it { should have_selector('h1', text: 'Accounts') }
+    #end
   end
 end

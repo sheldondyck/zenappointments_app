@@ -7,4 +7,12 @@ describe "UsersPages" do
       response.status.should be(302)
     end
   end
+
+  #describe "GET /users/1" do
+    #it 'should redirect' do
+      #get "/users/1"
+      #response.status.should be(200)
+    #end
+  #end
 end
+

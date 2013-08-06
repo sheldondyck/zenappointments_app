@@ -1,10 +1,10 @@
 .navbar
   .navbar-inner
     -# TODO need to define app_name url
-    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, '#', {class:'brand'}
+    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'brand'}
     %ul.nav
       -# TODO need to define home final url
-      %li{:class => active('foo#bar')}
+      %li{:class => active('accounts#home')}
         =link_to 'Home', accounts_home_path
       %li{:class => active('appointments#index')}
         -# TODO inconsistent link names, others and index this is not
@@ -13,14 +13,16 @@
         =link_to 'Clients', clients_index_path
       %li{:class => active('employees#index')}
         =link_to 'Employees', employees_index_path
-      %li
+      %li{:class => active('accounts#reports')}
         -# TODO need to define reports final url
         =link_to 'Reports' , accounts_reports_path
     %ul.nav.pull-right
       %li
         =link_to current_user.name, user_path(@current_user)
       %li
-        =link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id:'link-cog'}
+        -#=link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id:'link-cog'}
+        =menu_link_icon_to 'cog', '#'
       %li
         -#=link_icon_to 'signout', signout_path, 'Sign Out'
-        =link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id:'link-signout'}
+        -#=link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id:'link-signout'}
+        =menu_link_icon_to 'signout', signout_path

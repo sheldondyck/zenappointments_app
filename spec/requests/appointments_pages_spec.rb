@@ -28,24 +28,13 @@ describe 'AppointmentsPages' do
 
     describe 'html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
-
-      describe 'menu' do
-        # TODO verify app_name url
-        it { should have_link('Home', href: accounts_home_path) }
+      it_behaves_like 'a signedin menu'
+      describe 'appointments menu' do
         it { should_not have_selector('li.active', text: 'Home') }
-        it { should have_link('Appointments', href: appointments_path) }
         it { should have_selector('li.active', text: 'Appointments') }
-        it { should have_link('Clients', href: clients_index_path) }
         it { should_not have_selector('li.active', text: 'Clients') }
-        it { should have_link('Employees', href: employees_index_path) }
         it { should_not have_selector('li.active', text: 'Employees') }
-        it { should have_link('Reports', href: accounts_reports_path) }
         it { should_not have_selector('li.active', text: 'Reports') }
-        # TODO verify cog link url 
-        it { should have_selector('i.icon-cog') }
-        # TODO verify signout link url
-        it { should have_selector('i.icon-signout') }
-        it { should have_link(@user.name, href: user_path(@user)) }
       end
     end
   end

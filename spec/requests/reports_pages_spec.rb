@@ -1,9 +1,10 @@
 require 'spec_helper'
+include ApplicationHelper
 
-describe "Clients Page" do
-  describe "GET /clients/index" do
-    it 'should redirect' do
-      get clients_index_path
+describe 'reports pages' do
+  describe 'GET /accounts/reports' do
+    it 'should deny' do
+      get '/accounts/reports'
       response.status.should be(302)
     end
   end
@@ -19,24 +20,24 @@ describe "Clients Page" do
         fill_in 'Password', with: 'abcdef'
       end
       click_button 'Sign In'
-      click_link 'Clients'
+      click_link 'Reports'
       #save_and_open_page
     end
 
     it 'should have correct path' do
-      current_path.should == clients_index_path
+      current_path.should == accounts_reports_path
     end
 
     describe 'html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
-      it { should have_selector('h1', text: 'Clients') }
+      it { should have_selector('h1', text: 'Reports') }
       it_behaves_like 'a signedin menu'
-      describe 'client menu' do
+      describe 'reports menu' do
         it { should_not have_selector('li.active', text: 'Home') }
         it { should_not have_selector('li.active', text: 'Appointments') }
-        it { should have_selector('li.active', text: 'Clients') }
+        it { should_not have_selector('li.active', text: 'Clients') }
         it { should_not have_selector('li.active', text: 'Employees') }
-        it { should_not have_selector('li.active', text: 'Reports') }
+        it { should have_selector('li.active', text: 'Reports') }
       end
     end
   end

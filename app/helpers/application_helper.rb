@@ -22,6 +22,14 @@ module ApplicationHelper
     div
   end
 
+  def menu_link_icon_to icon_name, href, alt = ''
+    unless alt.blank?
+      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {alt: alt, id: "link-#{icon_name}"}
+    else
+      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {id: "link-#{icon_name}"}
+    end
+  end
+
   def link_icon_to icon_name, href, alt = ''
     unless alt.blank?
       link_to raw("<i class='icon-#{icon_name}'></i>"), href, {alt: alt, class: 'btn', id: "link-#{icon_name}"}
