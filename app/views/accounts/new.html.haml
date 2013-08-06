@@ -1,8 +1,11 @@
 .container
   !=flash_handler
+  .app-title
+    %h1
+      =link_to app_name, www_url
   .signup-dialog
     .row
-      .span8.offset2
+      .span7.offset3
         =form_for @account do |f|
           .fieldset
             %legend Sign Up

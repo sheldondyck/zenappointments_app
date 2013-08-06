@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ApplicationHelper
 
 describe 'Signin Page' do
   subject { page }
@@ -17,6 +18,8 @@ describe 'Signin Page' do
     }
 
     it { should have_title('Sign In') }
+    it { should have_selector('h1', text: 'ZenAppointments') }
+    it { should have_link('ZenAppointments', href: www_url) }
     it { should have_selector('legend', text: 'Welcome back') }
     it { should have_field('session[email]') }
     it { should have_field('session[password]') }

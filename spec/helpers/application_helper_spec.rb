@@ -10,5 +10,6 @@ describe ApplicationHelper do
   it { should respond_to(:remote_link_icon_to) }
   it { should respond_to(:error_class) }
   it { should respond_to(:error_message) }
+  it { should respond_to(:www_url) }
 end
 

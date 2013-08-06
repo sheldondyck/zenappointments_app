@@ -55,4 +55,12 @@ module ApplicationHelper
       model.errors.messages[sym][0].capitalize unless model.errors.messages[sym][0].nil?
     end
   end
+
+  def www_url
+    if Rails.env == 'development'
+      'http://127.0.0.1:4000'
+    else
+      'http://www.zenappointments.com'
+    end
+  end
 end
