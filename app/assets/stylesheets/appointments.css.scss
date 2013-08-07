@@ -71,6 +71,13 @@ h1.logo {
 .new_appointment#error {
   border:1px solid #a00;
 }
+.client-appointment {
+  background:#4a4;
+  color:#222;
+  padding:1px;
+  margin:2px;
+  border:1px solid #262;
+}
 
 #appointments .agenda {
   border-collapse:collapse;
@@ -103,7 +110,7 @@ h1.logo {
   }
 
   .edit_hour {
-    width:30%; // TODO: hack because there are 3 employyes + 1 hour column
+    width:90%; // TODO: hack because there are 1 employyes + 1 hour column
   }
 
   td {

@@ -2,4 +2,5 @@
   $('.new_appointment').attr('id', 'error')
 - else
   $('.new_appointment').remove();
-  $('#active_hour').removeAttr('id')
+  $('#active_hour').removeAttr('id');
+  $('.edit_hour.#{@hour}').append("<div class='client-appointment'>#{@name}</div>");

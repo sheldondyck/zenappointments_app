@@ -2,7 +2,8 @@
   %h3 New Appointment
 
   =form_for :appointment, url: appointments_create_path, html: {class: 'form-new-appointment', data: {remote: 'true'}} do |f|
-    =f.hidden_field :time, value: Time.zone.now
+    =f.hidden_field :time, value: @date
+    =f.hidden_field :hour, value: 'HOUR'
     =f.hidden_field :duration, value: 60
     .control-group
       .controls
