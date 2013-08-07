@@ -55,18 +55,24 @@ class AppointmentsController < ApplicationController
         #client.first_name = params[:first_name]
       #end
 
+      puts 'Oi1'
       @name = @client.name
+      puts 'Oi2'
       @hour = appointment_params[:hour]
+      puts 'Oi3'
       time = appointment_params[:time].to_time.change(hour: @hour)
-      pp appointment_params.merge(account_id: @current_user.account_id,
+      puts 'Oi4'
+      puts appointment_params.merge(account_id: @current_user.account_id,
                                user_id: @current_user.id,
                                client_id: @client.id,
-                               time: time)
+                               time: time).to_yaml
 
+      puts 'Oi5'
       @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
                                                               time: time))
+      puts 'Oi6'
       @appointment.save
     rescue
     end
