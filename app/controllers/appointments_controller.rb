@@ -75,6 +75,7 @@ class AppointmentsController < ApplicationController
       puts 'Oi6'
       @appointment.save
     rescue
+      puts 'appointments#create exception'
     end
   end
 
