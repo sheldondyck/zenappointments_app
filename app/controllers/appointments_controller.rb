@@ -58,7 +58,7 @@ class AppointmentsController < ApplicationController
       puts 'Oi1'
       @name = @client.name
       puts 'Oi2'
-      @hour = appointment_params[:hour]
+      @hour = params.require(:appointment).permit(:hour)[:hour]
       puts 'Oi3'
       time = appointment_params[:time].to_time.change(hour: @hour)
       puts 'Oi4'
@@ -68,14 +68,17 @@ class AppointmentsController < ApplicationController
                                time: time).to_yaml
 
       puts 'Oi5'
+      #@appointment.valid?
+      #puts @appointment.errors.to_yaml
       @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
                                                               time: time))
       puts 'Oi6'
       @appointment.save
-    rescue
+    rescue Exception => e
       puts 'appointments#create exception'
+      puts e.message
     end
   end
 
@@ -88,6 +91,6 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-      params.require(:appointment).permit(:time, :hour, :duration)
+      params.require(:appointment).permit(:time, :duration)
     end
 end
