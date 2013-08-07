@@ -13,6 +13,7 @@ class AppointmentsController < ApplicationController
 
     # TODO: needs to be cleaned up obviously
     @appointments_by_date = Hash.new
+    # TODO: ops! not multi-tenent!
     r = Appointment.where(time: @date.beginning_of_month..@date.end_of_month).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d")
@@ -24,6 +25,7 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_hour = Hash.new
+    # TODO: ops! not multi-tenent!
     r = Appointment.where(time: @date.beginning_of_day..@date.end_of_day).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.hour

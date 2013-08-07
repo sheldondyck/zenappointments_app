@@ -3,7 +3,7 @@ jQuery.fn.registerNewAgendaDialog = (raw_dialog) ->
     # TODO very fragil code.  only works if class is "some_class hour". better way? angular?
     hour = $(this).attr('class').split(' ')[1]
     # TODO this is terrible!!!!! YUCK!!!!
-    # is the problem me or jquery?
+    # is the problem me or jquery? maybe jquery or maybe me
     raw_dialog_hour = raw_dialog.replace('HOUR', hour)
     $('#active_hour').removeAttr('id')
     $(this).attr('id', 'active_hour')
