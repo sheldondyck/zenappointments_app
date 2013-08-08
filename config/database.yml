@@ -23,7 +23,7 @@ production_asset_builder:
   pool: 5
   timeout: 5000
 
-productionprod:
+production:
   adapter: postgres
   encoding: utf8
   host: ec2-107-20-224-218.compute-1.amazonaws.com
