@@ -14,7 +14,7 @@
                 .input-prepend
                   %span.add-on
                     %i.icon-envelope-alt
-                  =f.text_field :email, class: 'span2', id: 'inputIcon', placeholder: 'Email'
+                  %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'span2', id: 'inputIcon'}
             .control-group
               .controls
                 .input-prepend
@@ -24,7 +24,7 @@
             .control-group
               %label.control-label
               .controls
-                =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Saving ...'
+                =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
     .row
       .span6.offset4
         %p

@@ -10,6 +10,8 @@ class AppointmentsController < ApplicationController
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [1]
+    #@appointment = Appointment.new
+    #@client = Client.new
 
     # TODO: needs to be cleaned up obviously
     @appointments_by_date = Hash.new
