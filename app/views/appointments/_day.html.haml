@@ -1,7 +1,10 @@
 #appointments_panel
   =render('nav_panel')
   =agenda @date, @employees do |employee, hour|
-    =''
+    -if @appointments_by_hour[hour]
+      -@appointments_by_hour[hour].each do |appointment|
+        .client-appointment
+          =appointment.client.name
   :coffee
     jQuery ->
       $('.agenda').registerNewAgendaDialog('#{j render('new')}')

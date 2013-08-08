@@ -17,11 +17,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'signout',                :to => 'sessions#destroy'
 
   get   'appointments',           :to => 'appointments#index'
-
-  # TODO: change is not a good name for this since we are not changing the
-  # appointment only the date viewed
-  get   'appointments/change',    :to => 'appointments#change'
-  post   'appointments/create',   :to => 'appointments#create'
+  post  'appointments/create',    :to => 'appointments#create'
 
   root  'sessions#new'
 end
