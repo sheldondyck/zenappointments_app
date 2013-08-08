@@ -72,7 +72,7 @@ class AppointmentsController < ApplicationController
       #@appointment = nil
       #raise 'lazy!'
       @appointment.save
-    rescue Exception => e
+    rescue => e
       puts 'appointments#create exception'
       puts e.message
     end
