@@ -57,9 +57,9 @@ class AppointmentsController < ApplicationController
 
       @name = @client.name
       @hour = params.require(:appointment).permit(:hour)[:hour]
-      pp appointment_params[:time]
+      puts appointment_params[:time]
       time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
-      pp time
+      puts time
       puts appointment_params.merge(account_id: @current_user.account_id,
                                user_id: @current_user.id,
                                client_id: @client.id,
