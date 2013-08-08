@@ -55,26 +55,22 @@ class AppointmentsController < ApplicationController
         #client.first_name = params[:first_name]
       #end
 
-      puts 'Oi1'
       @name = @client.name
-      puts 'Oi2'
       @hour = params.require(:appointment).permit(:hour)[:hour]
-      puts 'Oi3'
-      time = appointment_params[:time].to_time.change(hour: @hour)
-      puts 'Oi4'
+      pp appointment_params[:time]
+      time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
+      pp time
       puts appointment_params.merge(account_id: @current_user.account_id,
                                user_id: @current_user.id,
                                client_id: @client.id,
                                time: time).to_yaml
 
-      puts 'Oi5'
-      #@appointment.valid?
-      #puts @appointment.errors.to_yaml
       @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
                                                               time: time))
-      puts 'Oi6'
+      #@appointment = nil
+      #raise 'lazy!'
       @appointment.save
     rescue Exception => e
       puts 'appointments#create exception'
