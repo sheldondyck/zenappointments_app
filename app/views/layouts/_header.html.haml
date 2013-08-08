@@ -18,11 +18,10 @@
         =link_to 'Reports' , accounts_reports_path
     %ul.nav.pull-right
       %li
+        -# TODO: where should this link to. should be the same as cog?
         =link_to current_user.name, user_path(@current_user)
       %li
-        -#=link_to raw("<i class='icon-cog icon-large'></i>"), '#', {id:'link-cog'}
-        =menu_link_icon_to 'cog', '#'
+        -# TODO: where should this link to. should be the same as user_name?
+        =menu_link_icon_to 'cog', user_path(@current_user)
       %li
-        -#=link_icon_to 'signout', signout_path, 'Sign Out'
-        -#=link_to raw("<i class='icon-signout icon-large'></i>"), signout_path, {id:'link-signout'}
         =menu_link_icon_to 'signout', signout_path
