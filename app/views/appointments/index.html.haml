@@ -1,14 +1,10 @@
 =render 'layouts/header'
 .main
-  -# TODO: too many items?
   #view_selector
     .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-      =link_to 'Day', appointments_path(view: 'day'), {alt: 'Day', class: 'btn', data: {remote: 'true'}}
-      =link_to 'Week', appointments_path(view: 'week'), {alt: 'Week', class: 'btn', data: {remote: 'true'}}
-      -#=link_to '2 Weeks', appointments_path(view: 'weeks2'), {class: 'btn', data: {remote: 'true'}}
-      =link_to 'Month', appointments_path(view: 'month'), {alt: 'Month', class: 'btn', data: {remote: 'true'}}
-      -#=link_to '2 Months', appointments_path(view: 'months2'), {class: 'btn', data: {remote: 'true'}}
-      =link_to 'Year', appointments_path(view: 'year'), {alt: 'Year', class: 'btn', data: {remote: 'true'}}
-      -#=link_to '2 Year', appointments_path(view: 'years2'), {class: 'btn', data: {remote: 'true'}}
+      =link_to 'Day', appointments_path(view: 'day'), {alt: 'Day', id: 'link-day', class: 'btn', data: {remote: 'true'}}
+      =link_to 'Week', appointments_path(view: 'week'), {alt: 'Week', id: 'link-week', class: 'btn', data: {remote: 'true'}}
+      =link_to 'Month', appointments_path(view: 'month'), {alt: 'Month', id: 'link-month', class: 'btn', data: {remote: 'true'}}
+      =link_to 'Year', appointments_path(view: 'year'), {alt: 'Year', id: 'link-year', class: 'btn', data: {remote: 'true'}}
   #appointments
     =render @view
