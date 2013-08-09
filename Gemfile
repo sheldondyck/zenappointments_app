@@ -21,13 +21,6 @@ gem 'angularjs-rails'
 group :development do
   gem 'therubyracer', platforms: :ruby
   gem 'rspec-rails'
-  gem 'guard'
-  gem 'guard-bundler'
-  gem 'guard-rspec'
-  gem 'guard-zeus'
-  gem 'libnotify'
-  gem 'capybara'
-  gem 'launchy'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
@@ -43,7 +36,15 @@ group :test do
   gem 'turn', '>= 0.8.3', :require => false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-zeus'
+  gem 'libnotify'
   gem 'capybara'
+  gem 'launchy'
+  gem 'poltergeist'
+  gem 'awesome_print'
   gem 'debugger'
 end
 

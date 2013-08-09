@@ -11,7 +11,7 @@ describe 'Signin Page' do
     end
   end
 
-  describe 'html' do
+  describe 'correct html' do
     before {
       visit signin_path
       #save_and_open_page

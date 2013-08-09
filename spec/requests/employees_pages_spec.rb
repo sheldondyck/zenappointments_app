@@ -27,7 +27,7 @@ describe "Employees Page" do
       current_path.should == employees_index_path
     end
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Employees') }
       describe 'employees menu' do

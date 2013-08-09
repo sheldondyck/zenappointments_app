@@ -26,7 +26,7 @@ describe 'AppointmentsPages' do
       current_path.should == appointments_path
     end
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       describe 'appointments menu' do
         it_behaves_like 'a signedin menu'
@@ -44,6 +44,41 @@ describe 'AppointmentsPages' do
       it { should have_link('Week', href: appointments_path(view: 'week')) }
       it { should have_link('Month', href: appointments_path(view: 'month')) }
       it { should have_link('Year', href: appointments_path(view: 'year')) }
+    end
+
+    describe 'new appointment dialog' do
+      # TODO: get the config for the account for start/end hour and verify that all are shown
+      it { should have_selector('td.edit_hour.hour_12') }
+      it { should have_selector('td.edit_hour.hour_13') }
+      describe 'should show dialog', js: true do
+        before do
+          find('td.edit_hour.hour_13').click
+          #  save_and_open_page
+        end
+
+        describe 'correct html' do
+          it { should have_selector('.new_appointment') }
+          it { should have_selector('h4', 'New Appointment') }
+          it { should have_field('appointment[first_name]') }
+          it { should have_field('appointment[last_name]') }
+          it { should have_field('appointment[telephone_cellular]') }
+          it { should have_field('appointment[email]') }
+          it { should have_button('Save') }
+          it { should_not have_selector('.client-appointment') }
+        end
+
+        describe 'save appointment' do
+          before do
+            fill_in 'First Name', with: 'Client First Name 1'
+            fill_in 'Email', with: 'client_1@client_domain.com'
+            click_button 'Save'
+            #save_and_open_page
+          end
+
+          #it { should_not have_selector('.new_appointment') }
+          it { should have_selector('.client-appointment', text: 'Client First Name') }
+        end
+      end
     end
   end
 end

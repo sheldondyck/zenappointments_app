@@ -27,7 +27,7 @@ describe "Clients Page" do
       current_path.should == clients_index_path
     end
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Clients') }
       describe 'client menu' do

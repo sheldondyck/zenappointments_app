@@ -28,7 +28,7 @@ describe 'home pages' do
       current_path.should == accounts_home_path
     end
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Home') }
       describe 'home menu' do

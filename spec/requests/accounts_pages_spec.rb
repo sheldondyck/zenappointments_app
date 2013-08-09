@@ -13,7 +13,7 @@ describe 'account pages' do
     subject { page }
     before { visit signup_path }
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('Sign Up') }
       it { should have_selector('h1', text: 'ZenAppointments') }
       it { should have_link('ZenAppointments', href: www_url) }
@@ -307,7 +307,7 @@ describe 'account pages' do
     subject { page }
     before { visit '/accounts/welcome' }
 
-    #describe 'html' do
+    #describe 'correct html' do
     #  it { should have_selector('h1', text: 'Accounts') }
     #end
   end
@@ -323,7 +323,7 @@ describe 'account pages' do
     subject { page }
     before { visit '/accounts/tutorial' }
 
-    #describe 'html' do
+    #describe 'correct html' do
     #  it { should have_selector('h1', text: 'Accounts') }
     #end
   end
@@ -339,7 +339,7 @@ describe 'account pages' do
     subject { page }
     before { visit '/accounts/1' }
 
-    #describe 'html' do
+    #describe 'correct html' do
     #  it { should have_selector('h1', text: 'Accounts') }
     #end
   end

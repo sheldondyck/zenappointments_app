@@ -63,13 +63,13 @@ class AppointmentsController < ApplicationController
       unless @client.nil?
         @name = @client.name
         @hour = params.require(:appointment).permit(:hour)[:hour]
-        puts appointment_params[:time]
+        #puts appointment_params[:time]
         time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
-        puts time
-        puts appointment_params.merge(account_id: @current_user.account_id,
-                                 user_id: @current_user.id,
-                                 client_id: @client.id,
-                                 time: time).to_yaml
+        #puts time
+        #puts appointment_params.merge(account_id: @current_user.account_id,
+        #                         user_id: @current_user.id,
+        #                         client_id: @client.id,
+        #                         time: time).to_yaml
 
         @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
                                                                 user_id: @current_user.id,

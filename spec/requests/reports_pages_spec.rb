@@ -28,7 +28,7 @@ describe 'reports pages' do
       current_path.should == accounts_reports_path
     end
 
-    describe 'html' do
+    describe 'correct html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Reports') }
       describe 'reports menu' do
