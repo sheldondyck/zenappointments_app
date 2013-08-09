@@ -129,7 +129,7 @@ describe 'AppointmentsPages' do
             fill_in 'Email', with: 'client_1@client_domain.com'
             click_button 'Save'
             # TODO: find a better way then sleeping
-            #sleep 1
+            sleep 0.1
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
@@ -138,7 +138,7 @@ describe 'AppointmentsPages' do
             #save_and_open_page
           end
 
-          #it { should_not have_selector('.new_appointment') }
+          it { should_not have_selector('.new_appointment') }
           it { should have_selector('td.edit_hour.hour_14 .client-appointment', text: 'Client Test_Name 1') }
           it { should_not have_selector('td.edit_hour.hour_15 .client-appointment', text: 'Client Test_Name 1') }
           it { should_not have_selector('.client-appointment', text: 'Client Test_Name 2') }
