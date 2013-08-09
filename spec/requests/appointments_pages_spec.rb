@@ -129,7 +129,7 @@ describe 'AppointmentsPages' do
             fill_in 'Email', with: 'client_1@client_domain.com'
             click_button 'Save'
             # TODO: find a better way then sleeping
-            sleep 0.1
+            sleep 0.5
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
