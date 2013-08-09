@@ -64,6 +64,7 @@ class AppointmentsController < ApplicationController
         @name = @client.name
         @hour = params.require(:appointment).permit(:hour)[:hour]
         #puts appointment_params[:time]
+        # TODO: removing in_time_zone did generate a F with specs. huh?
         time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
         #puts time
         #puts appointment_params.merge(account_id: @current_user.account_id,
@@ -80,6 +81,8 @@ class AppointmentsController < ApplicationController
         @appointment.save
       end
     rescue => e
+      puts 'appointments#create exception'
+      puts e.message
       if @client.nil?
         puts 'Client was nil!'
         @client = Client.new(client_params.merge(account_id: @current_user.account_id))
@@ -90,8 +93,6 @@ class AppointmentsController < ApplicationController
       end
       #@appointment = Appointment.new
       #@client = Client.new
-      puts 'appointments#create exception'
-      puts e.message
     end
   end
 
