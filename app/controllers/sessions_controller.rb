@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    # TODO: redirect to www
-    redirect_to signin_path
+    redirect_to www_url
   end
 
   private

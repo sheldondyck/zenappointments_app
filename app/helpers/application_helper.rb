@@ -54,7 +54,7 @@ module ApplicationHelper
 
   def error_class(h, sym)
     if h.errors.messages.has_key?(sym)
-      "error"
+      'error'
     end
   end
 
@@ -65,7 +65,7 @@ module ApplicationHelper
   end
 
   def www_url
-    if Rails.env == 'development'
+    if Rails.env == 'development' or Rails.env == 'test'
       'http://127.0.0.1:4000'
     else
       'http://www.zenappointments.com'

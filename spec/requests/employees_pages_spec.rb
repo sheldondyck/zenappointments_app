@@ -30,8 +30,8 @@ describe "Employees Page" do
     describe 'html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Employees') }
-      it_behaves_like 'a signedin menu'
       describe 'employees menu' do
+        it_behaves_like 'a signedin menu'
         it { should_not have_selector('li.active', text: 'Home') }
         it { should_not have_selector('li.active', text: 'Appointments') }
         it { should_not have_selector('li.active', text: 'Clients') }

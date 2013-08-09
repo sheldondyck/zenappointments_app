@@ -28,14 +28,22 @@ describe 'AppointmentsPages' do
 
     describe 'html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
-      it_behaves_like 'a signedin menu'
       describe 'appointments menu' do
+        it_behaves_like 'a signedin menu'
         it { should_not have_selector('li.active', text: 'Home') }
         it { should have_selector('li.active', text: 'Appointments') }
         it { should_not have_selector('li.active', text: 'Clients') }
         it { should_not have_selector('li.active', text: 'Employees') }
         it { should_not have_selector('li.active', text: 'Reports') }
       end
+      # TODO: test link of angle-left
+      it { should have_selector('i.icon-angle-left') }
+      # TODO: test link of angle-right
+      it { should have_selector('i.icon-angle-right') }
+      it { should have_link('Day', href: appointments_path(view: 'day')) }
+      it { should have_link('Week', href: appointments_path(view: 'week')) }
+      it { should have_link('Month', href: appointments_path(view: 'month')) }
+      it { should have_link('Year', href: appointments_path(view: 'year')) }
     end
   end
 end

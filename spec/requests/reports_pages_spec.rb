@@ -31,8 +31,8 @@ describe 'reports pages' do
     describe 'html' do
       it { should have_title('ZenAppointments | ' + @user.name) }
       it { should have_selector('h1', text: 'Reports') }
-      it_behaves_like 'a signedin menu'
       describe 'reports menu' do
+        it_behaves_like 'a signedin menu'
         it { should_not have_selector('li.active', text: 'Home') }
         it { should_not have_selector('li.active', text: 'Appointments') }
         it { should_not have_selector('li.active', text: 'Clients') }

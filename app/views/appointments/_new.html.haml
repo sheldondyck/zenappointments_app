@@ -8,8 +8,7 @@
     =f.hidden_field :time, value: @date
     =f.hidden_field :hour, value: 'HOUR'
     =f.hidden_field :duration, value: 60
-    .control-group
-      -#.control-group{class: error_class(@client, :first_name)}
+    .control-group{class: error_class(@client, :first_name)}
       .controls
         %span.add-on#first_name
           =f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'

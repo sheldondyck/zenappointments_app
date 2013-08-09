@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authorize_user
 
   def index
+    @title = @current_user.name
   end
 
   def new
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @title = @current_user.name
   end
 
   def update

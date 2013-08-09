@@ -46,6 +46,7 @@ describe 'Signin Page' do
     end
 
     describe 'has correct html' do
+      # TODO:
       #it { should have_link('.icon-signout', href: signout_path) }
       it { should have_selector('i.icon-signout') }
       it { should have_text(@user.name) }
@@ -64,19 +65,19 @@ describe 'Signin Page' do
     describe 'it should signout' do
       before { find_by_id('link-signout').click }
       it { should have_button 'Sign In' }
-      it { current_path.should == signin_path }
+      it { current_path.should == '/' }
     end
   end
 
   describe 'incorrect signin' do
-    before {
+    before do
       visit signin_path
       within '.form-signin' do
-        fill_in 'session[email]', with: 'foo'
+        fill_in 'session[email]', with: 'foo@bar.com'
         fill_in 'session[password]', with: 'bar1'
       end
       click_button 'Sign In'
-    }
+    end
 
     it 'does not sign in' do
       current_path.should == signin_path
@@ -84,6 +85,10 @@ describe 'Signin Page' do
 
     it 'has correct message' do
       should have_selector('div.alert.alert-error', text: 'Invalid email or password')
+    end
+
+    it 'fills out email' do
+      should have_field('session[email]', with: 'foo@bar.com')
     end
 
     it 'protected pages are still protected' do
@@ -98,10 +103,10 @@ describe 'Signin Page' do
   end
 
   describe 'sign up link' do
-    before {
+    before do
       visit signin_path
       click_link 'Sign up now!'
-    }
+    end
 
     it 'should be correct' do
       current_path.should == signup_path
