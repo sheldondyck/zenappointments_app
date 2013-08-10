@@ -129,7 +129,7 @@ describe 'AppointmentsPages' do
             fill_in 'Email', with: 'client_1@client_domain.com'
             click_button 'Save'
             # TODO: find a better way then sleeping
-            sleep 0.5
+            sleep 0.2
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
@@ -142,8 +142,32 @@ describe 'AppointmentsPages' do
           it { should have_selector('td.edit_hour.hour_14 .client-appointment', text: 'Client Test_Name 1') }
           it { should_not have_selector('td.edit_hour.hour_15 .client-appointment', text: 'Client Test_Name 1') }
           it { should_not have_selector('.client-appointment', text: 'Client Test_Name 2') }
+
+#          describe 'verify appointment', js: true do
+#            before do
+#              #save_and_open_page
+#              click_link 'Day'
+#              sleep 0.2
+#              #save_and_open_page
+#            end
+
+#            it { should have_selector('td.edit_hour.hour_14 .client-appointment', text: 'Client Test_Name 1') }
+#          end
         end
       end
     end
+
+#    describe 'with valid appointment data', js: true do
+#      before do
+#        find('td.edit_hour.hour_14').click
+#        sleep 0.5
+#        fill_in 'First Name', with: 'Client Test_Name 1'
+#        fill_in 'Email', with: 'client_1@client_domain.com'
+#        save_and_open_page
+#      end
+#      it 'should create an appointment' do
+#        expect { click_button 'Save' }.to change(Appointment, :count).by(1)
+#      end
+#    end
   end
 end
