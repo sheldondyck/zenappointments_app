@@ -1,9 +1,10 @@
 ZenAppointmentsApp::Application.routes.draw do
   get 'users/index',              :to => 'users#index'
   get 'employees/index',          :to => 'employees#index'
-  get 'clients/index',            :to => 'clients#index'
+  #get 'clients/index',            :to => 'clients#index'
 
   resources :users
+  resources :clients
 
   get   'accounts/welcome',       :to => 'accounts#welcome'
   get   'accounts/tutorial',      :to => 'accounts#tutorial'

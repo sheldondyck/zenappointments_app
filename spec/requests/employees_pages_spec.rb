@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Employees Page" do
   describe "GET /employees/index" do
     it 'should redirect' do
-      get clients_index_path
+      get clients_path
       response.status.should be(302)
     end
   end

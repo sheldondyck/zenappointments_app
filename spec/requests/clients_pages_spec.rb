@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Clients Page" do
   describe "GET /clients/index" do
     it 'should redirect' do
-      get clients_index_path
+      get clients_path
       response.status.should be(302)
     end
   end
@@ -24,7 +24,7 @@ describe "Clients Page" do
     end
 
     it 'should have correct path' do
-      current_path.should == clients_index_path
+      current_path.should == clients_path
     end
 
     describe 'correct html' do

@@ -1,3 +1,9 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+app = angular.module("ZenAppointmentsApp", ["ngResource"])
+
+app.factory "Client", ["$resource", ($resource) ->
+  $resource("/clients/:id", {id: "@id"}, {update: {method: "PUT"}})
+]
+
+@ClientCtrl = ["$scope", "Client", ($scope, Client) ->
+  $scope.clients = Client.query()
+]

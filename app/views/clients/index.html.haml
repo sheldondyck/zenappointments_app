@@ -1,9 +1,11 @@
 =render 'layouts/header'
 %h1 Clients
--#=form_tag('/post')
-  =text_field_tag 'foo'
--#.test(ng-controller='TestCtrl')
 .test
-  %form
-    %input(ng-model='newEntry.name'){type:'text'}
-  {{newEntry.name}}
+  %div(ng-controller='ClientCtrl')
+    %form
+      %input(ng-model='clientSearch.first_name'){type:'text'}
+    %ul
+      %li(ng-repeat="client in clients")
+        {{client.first_name}}
+        {{client.last_name}}
+        {{client.email}}
