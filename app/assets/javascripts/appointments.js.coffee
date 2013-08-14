@@ -8,7 +8,7 @@ jQuery.fn.registerNewAgendaDialog = (raw_dialog) ->
     $('#active-hour').removeAttr('id')
     $(this).attr('id', 'active-hour')
     $('.new-appointment').remove()
-    $('#appointments_panel').append(raw_dialog_hour)
+    $('#appointments-panel').append(raw_dialog_hour)
     $('.new-appointment').offset({left:$(this).offset().left, top: $(this).offset().top - $(this).height()})
   this
 

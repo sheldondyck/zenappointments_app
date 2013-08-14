@@ -1,3 +1,8 @@
-#appointments_panel
+#appointments-panel
   =render('header')
-%h1 Week
+  =week @date do |date|
+    =date.day
+    -if @appointments_by_date[date.strftime("%Y-%m-%d")]
+      -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
+        .client-appointment
+          =appointment.client.name
