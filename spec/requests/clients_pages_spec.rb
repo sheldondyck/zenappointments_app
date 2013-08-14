@@ -32,11 +32,13 @@ describe "Clients Page" do
       it { should have_selector('h1', text: 'Clients') }
       describe 'client menu' do
         it_behaves_like 'a signedin menu'
-        it { should_not have_selector('li.active', text: 'Home') }
-        it { should_not have_selector('li.active', text: 'Appointments') }
-        it { should have_selector('li.active', text: 'Clients') }
-        it { should_not have_selector('li.active', text: 'Employees') }
-        it { should_not have_selector('li.active', text: 'Reports') }
+        it do
+          should_not have_selector('li.active', text: 'Home')
+          should_not have_selector('li.active', text: 'Appointments')
+          should have_selector('li.active', text: 'Clients')
+          should_not have_selector('li.active', text: 'Employees')
+          should_not have_selector('li.active', text: 'Reports')
+        end
       end
     end
   end

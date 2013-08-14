@@ -4,8 +4,8 @@ module AgendaHelper
   end
 
   class Agenda < Struct.new(:view, :date, :employees, :callback)
-    FIRST_HOUR = 0
-    LAST_HOUR = 24
+    FIRST_HOUR = 7
+    LAST_HOUR = 19
 
     delegate :content_tag, to: :view
 

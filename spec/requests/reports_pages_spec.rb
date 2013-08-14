@@ -33,11 +33,13 @@ describe 'reports pages' do
       it { should have_selector('h1', text: 'Reports') }
       describe 'reports menu' do
         it_behaves_like 'a signedin menu'
-        it { should_not have_selector('li.active', text: 'Home') }
-        it { should_not have_selector('li.active', text: 'Appointments') }
-        it { should_not have_selector('li.active', text: 'Clients') }
-        it { should_not have_selector('li.active', text: 'Employees') }
-        it { should have_selector('li.active', text: 'Reports') }
+        it do
+          should_not have_selector('li.active', text: 'Home')
+          should_not have_selector('li.active', text: 'Appointments')
+          should_not have_selector('li.active', text: 'Clients')
+          should_not have_selector('li.active', text: 'Employees')
+          should have_selector('li.active', text: 'Reports')
+        end
       end
     end
   end
