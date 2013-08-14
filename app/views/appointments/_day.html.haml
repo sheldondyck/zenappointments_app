@@ -1,5 +1,5 @@
 #appointments_panel
-  =render('nav_panel')
+  =render('header')
   =agenda @date, @employees do |employee, hour|
     -if @appointments_by_hour[hour]
       -@appointments_by_hour[hour].each do |appointment|
