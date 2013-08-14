@@ -47,8 +47,8 @@ module AgendaHelper
 
     def employee_classes(hour)
       classes = []
-      classes << 'edit_hour'
-      classes << 'hour_' + hour.to_s
+      classes << 'edit-hour'
+      classes << 'hour-' + hour.to_s
       classes.empty? ? nil : classes.join(' ')
     end
 

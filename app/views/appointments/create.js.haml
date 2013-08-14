@@ -1,6 +1,6 @@
 - if @appointment.nil?
-  $('.new_appointment').attr('id', 'error')
+  $('.new-appointment').attr('id', 'error')
 - else
-  $('.new_appointment').remove();
-  $('#active_hour').removeAttr('id');
-  $('.edit_hour.hour_#{@hour}').append("<div class='client-appointment'>#{@name}</div>");
+  $('.new-appointment').remove();
+  $('#active-hour').removeAttr('id');
+  $('.edit-hour.hour-#{@hour}').append("<div class='client-appointment'>#{@name}</div>");

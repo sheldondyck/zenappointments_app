@@ -51,12 +51,12 @@ h1.logo {
   }
 }
 
-#appointments #active_hour {
+#appointments #active-hour {
   border:1px solid #0a0;
   background:#0a0;
 }
 
-.new_appointment {
+.new-appointment {
   //position:absolute;
   //float:right;
   background:#fff;
@@ -68,7 +68,7 @@ h1.logo {
   //display:none;
 }
 
-.new_appointment#error {
+.new-appointment#error {
   border:1px solid #a00;
 }
 .client-appointment {
@@ -109,7 +109,7 @@ h1.logo {
     width:100px;
   }
 
-  .edit_hour {
+  .edit-hour {
     width:90%; // TODO: hack because there are 1 employyes + 1 hour column
   }
 

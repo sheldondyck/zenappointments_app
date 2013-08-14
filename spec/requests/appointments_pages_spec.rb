@@ -59,19 +59,19 @@ describe 'AppointmentsPages' do
 
       # TODO: get the config for the account for start/end hour and verify that all are shown
       it do
-        should have_selector('td.edit_hour.hour_7')
-        should have_selector('td.edit_hour.hour_8')
-        should have_selector('td.edit_hour.hour_9')
-        should have_selector('td.edit_hour.hour_10')
-        should have_selector('td.edit_hour.hour_11')
-        should have_selector('td.edit_hour.hour_12')
-        should have_selector('td.edit_hour.hour_13')
-        should have_selector('td.edit_hour.hour_14')
-        should have_selector('td.edit_hour.hour_15')
-        should have_selector('td.edit_hour.hour_16')
-        should have_selector('td.edit_hour.hour_17')
-        should have_selector('td.edit_hour.hour_18')
-        should have_selector('td.edit_hour.hour_19')
+        should have_selector('td.edit-hour.hour-7')
+        should have_selector('td.edit-hour.hour-8')
+        should have_selector('td.edit-hour.hour-9')
+        should have_selector('td.edit-hour.hour-10')
+        should have_selector('td.edit-hour.hour-11')
+        should have_selector('td.edit-hour.hour-12')
+        should have_selector('td.edit-hour.hour-13')
+        should have_selector('td.edit-hour.hour-14')
+        should have_selector('td.edit-hour.hour-15')
+        should have_selector('td.edit-hour.hour-16')
+        should have_selector('td.edit-hour.hour-17')
+        should have_selector('td.edit-hour.hour-18')
+        should have_selector('td.edit-hour.hour-19')
         should have_selector('h3', Time.zone.now.strftime('%A, %B %e %Y'))
       end
     end
@@ -84,7 +84,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit_hour.hour_12')
+        should_not have_selector('td.edit-hour.hour-12')
         should have_selector('h3', Time.zone.now.strftime('week %V - %Y'))
         should have_selector('h1', 'Week')
       end
@@ -99,7 +99,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit_hour.hour_12')
+        should_not have_selector('td.edit-hour.hour-12')
         should have_selector('h3', Time.zone.now.strftime('%B %Y'))
       end
     end
@@ -112,7 +112,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit_hour.hour_12')
+        should_not have_selector('td.edit-hour.hour-12')
         should have_selector('h1', 'Year')
         should have_selector('h3', Time.zone.now.strftime('%Y'))
       end
@@ -121,13 +121,13 @@ describe 'AppointmentsPages' do
     describe 'new appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find('td.edit_hour.hour_14').click
+          find('td.edit-hour.hour-14').click
           #  save_and_open_page
         end
 
         describe 'correct html' do
           it do
-            should have_selector('.new_appointment')
+            should have_selector('.new-appointment')
             should have_selector('h4', 'New Appointment')
             should have_field('appointment[first_name]')
             should have_field('appointment[last_name]')
@@ -154,9 +154,9 @@ describe 'AppointmentsPages' do
           end
 
           it do
-            should_not have_selector('.new_appointment')
-            should have_selector('td.edit_hour.hour_14 .client-appointment', text: 'Client Test_Name 1')
-            should_not have_selector('td.edit_hour.hour_15 .client-appointment', text: 'Client Test_Name 1')
+            should_not have_selector('.new-appointment')
+            should have_selector('td.edit-hour.hour-14 .client-appointment', text: 'Client Test_Name 1')
+            should_not have_selector('td.edit-hour.hour-15 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
 #          describe 'verify appointment', js: true do
@@ -167,7 +167,7 @@ describe 'AppointmentsPages' do
 #              #save_and_open_page
 #            end
 
-#            it { should have_selector('td.edit_hour.hour_14 .client-appointment', text: 'Client Test_Name 1') }
+#            it { should have_selector('td.edit-hour.hour-14 .client-appointment', text: 'Client Test_Name 1') }
 #          end
         end
       end
@@ -175,7 +175,7 @@ describe 'AppointmentsPages' do
 
 #    describe 'with valid appointment data', js: true do
 #      before do
-#        find('td.edit_hour.hour_14').click
+#        find('td.edit-hour.hour-14').click
 #        sleep 0.5
 #        fill_in 'First Name', with: 'Client Test_Name 1'
 #        fill_in 'Email', with: 'client_1@client_domain.com'
