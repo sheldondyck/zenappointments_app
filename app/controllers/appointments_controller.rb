@@ -2,6 +2,8 @@ class AppointmentsController < ApplicationController
   before_action :authorize_user
   respond_to :json, :html
 
+  # TODO the definition of START_DAY is duplicated
+  START_DAY = :sunday
   NAV_TITLE = {day: '%A, %B %e %Y', week: 'week %V - %Y', weeks2: 'week2 %Y', month: '%B %Y', months2: 'Months 2 %B %Y', year: '%Y', years2: '%Y - %Y 2'}
 
   def index
@@ -24,6 +26,19 @@ class AppointmentsController < ApplicationController
         @appointments_by_date[k].push(appointment)
       else
         @appointments_by_date[k] = [appointment]
+      end
+    end
+
+    @appointments_by_week = Hash.new
+    # TODO: ops! not multi-tenent!
+    # TODO: Is account_id get correct id?
+    r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY), account_id: @current_user).order(:time).includes(:client)
+    r.each do |appointment| #.order(:time).group_by(&:time)
+      k = appointment.time.strftime("%Y-%m-%d %H")
+      if @appointments_by_week.has_key?(k)
+        @appointments_by_week[k].push(appointment)
+      else
+        @appointments_by_week[k] = [appointment]
       end
     end
 

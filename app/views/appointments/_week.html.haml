@@ -1,8 +1,8 @@
 #appointments-panel
   =render('header')
-  =week @date do |date|
-    =date.day
-    -if @appointments_by_date[date.strftime("%Y-%m-%d")]
-      -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
+  =week @date do |date, hour|
+    =hour.to_s + ':00'
+    -if @appointments_by_week[date.strftime("%Y-%m-%d ") + hour.to_s]
+      -@appointments_by_week[date.strftime("%Y-%m-%d ") + hour.to_s].each do |appointment|
         .client-appointment
           =appointment.client.name

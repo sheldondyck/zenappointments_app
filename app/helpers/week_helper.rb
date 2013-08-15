@@ -6,6 +6,8 @@ module WeekHelper
   class Week < Struct.new(:view, :date, :callback)
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
     START_DAY = :sunday
+    FIRST_HOUR = 7
+    LAST_HOUR = 19
 
     delegate :content_tag, to: :view
 
@@ -22,18 +24,22 @@ module WeekHelper
     end
 
     def week_rows
-      weeks.map do |week|
+      hours.map do |hour|
         content_tag :tr do
-          week.map { |day| day_cell(day) }.join.html_safe
+          weeks.map do |week|
+            week.map do |day|
+              hour_cell(day, hour)
+            end.join.html_safe
+          end.join.html_safe
         end
       end.join.html_safe
     end
 
-    def day_cell(day)
-      content_tag :td, view.capture(day, &callback), class: day_classes(day)
+    def hour_cell(day, hour)
+      content_tag :td, view.capture(day, hour, &callback), class: hour_classes(day)
     end
 
-    def day_classes(day)
+    def hour_classes(day)
       classes = []
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
@@ -45,6 +51,12 @@ module WeekHelper
       first = date.beginning_of_week(START_DAY)
       last = date.end_of_week(START_DAY)
       (first..last).to_a.in_groups_of(7)
+    end
+
+    def hours
+      first = FIRST_HOUR
+      last = LAST_HOUR
+      (first..last).to_a
     end
   end
 end
