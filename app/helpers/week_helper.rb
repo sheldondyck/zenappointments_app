@@ -12,13 +12,14 @@ module WeekHelper
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: "calendar" do
+      content_tag :table, class: "agenda" do
         header + week_rows
       end
     end
 
     def header
       content_tag :tr do
+        content_tag(:th, '', class: 'corner').html_safe +
         HEADER.map { |day| content_tag :th, day }.join.html_safe
       end
     end
@@ -26,24 +27,39 @@ module WeekHelper
     def week_rows
       hours.map do |hour|
         content_tag :tr do
+          hour_cell(hour).html_safe +
           weeks.map do |week|
             week.map do |day|
-              hour_cell(day, hour)
+              appointment_cell(day, hour)
             end.join.html_safe
           end.join.html_safe
         end
       end.join.html_safe
     end
 
-    def hour_cell(day, hour)
-      content_tag :td, view.capture(day, hour, &callback), class: hour_classes(day)
+    def hour_cell(hour)
+      content_tag :td, '%02d:00' % hour, class: hour_classes(hour)
     end
 
-    def hour_classes(day)
+    def appointment_cell(day, hour)
+      content_tag :td, view.capture(day, hour, &callback), class: appointment_classes(hour)
+    end
+
+    def hour_classes(hour)
       classes = []
-      classes << "today" if day == Date.today
-      classes << "notmonth" if day.month != date.month
-      classes << 'edit-day'
+      classes << 'hour'
+      #classes << "today" if day == Date.today
+      #classes << "notmonth" if day.month != date.month
+      #classes << 'edit-day'
+      classes.empty? ? nil : classes.join(" ")
+    end
+
+    def appointment_classes(hour)
+      classes = []
+      classes << 'hour-' + hour.to_s
+      #classes << "today" if day == Date.today
+      #classes << "notmonth" if day.month != date.month
+      #classes << 'edit-day'
       classes.empty? ? nil : classes.join(" ")
     end
 
