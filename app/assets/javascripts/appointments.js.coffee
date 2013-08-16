@@ -9,10 +9,14 @@ jQuery.fn.registerNewAgendaDialog = (raw_dialog) ->
     $(this).attr('id', 'active-hour')
     $('.new-appointment').remove()
     $('#appointments-panel').append(raw_dialog_hour)
-    $('.new-appointment').offset({left:$(this).offset().left, top: $(this).offset().top - $(this).height()})
+    #$('.new-appointment').offset({left:$(this).offset().left, top: $(this).offset().top - $(this).height()*2})
+    $('.new-appointment').offset({left:$(this).offset().left, top:$(this).offset().top + $(this).height()*2})
   this
 
 jQuery.fn.registerNewCalendarDialog = (dialog) ->
   @find('.edit-day').click ->
     $(this).append(dialog)
   this
+
+jQuery ->
+  $('.client-appointment').draggable({containment: "#display_container"})

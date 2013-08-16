@@ -24,7 +24,7 @@ production_asset_builder:
   timeout: 5000
 
 production:
-  adapter: postgres
+  adapter: postgresql
   encoding: utf8
   host: ec2-107-20-224-218.compute-1.amazonaws.com
   database: d6udff0armjpo

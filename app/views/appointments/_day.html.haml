@@ -2,9 +2,11 @@
   =render('header')
   =agenda @date, @employees do |employee, hour|
     -if @appointments_by_hour[hour]
+      -n = 0
       -@appointments_by_hour[hour].each do |appointment|
-        .client-appointment
+        .client-appointment{style: "left:#{n}px;"}
           =appointment.client.name
+        -n = n + 50
   :coffee
     jQuery ->
       $('.agenda').registerNewAgendaDialog('#{j render('new')}')

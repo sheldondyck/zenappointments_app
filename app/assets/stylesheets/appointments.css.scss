@@ -59,24 +59,31 @@ h1.logo {
 .new-appointment {
   //position:absolute;
   //float:right;
-  background:#fff;
-  position:relative;
-  border-style:solid;
-  border-width:1px;
-  height: 300px;
-  width: 400px;
+  //background:#fff;
+  //position:relative;
+  //border-style:solid;
+  //border-width:1px;
+  //height:300px;
+  //width:400px;
+  z-index:2;
+  //cursor:all-scroll;
+  //cursor:move;
   //display:none;
 }
 
 .new-appointment#error {
   border:1px solid #a00;
 }
+
 .client-appointment {
+  position:absolute;
   background:#4a4;
   color:#222;
-  padding:1px;
-  margin:2px;
+  padding:0px;
+  margin:0px;
+  cursor:all-scroll;
   border:1px solid #262;
+  z-index:1;
 }
 
 #appointments .agenda {
@@ -114,6 +121,7 @@ h1.logo {
   }
 
   td {
+    position:relative;
     background:#fff;
     color:#777;
     height:20px;

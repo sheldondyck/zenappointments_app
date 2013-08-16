@@ -133,7 +133,7 @@ describe 'AppointmentsPages' do
             should have_field('appointment[last_name]')
             should have_field('appointment[telephone_cellular]')
             should have_field('appointment[email]')
-            should have_button('Save')
+            should have_button('Create')
             should_not have_selector('.client-appointment')
           end
         end
@@ -142,7 +142,7 @@ describe 'AppointmentsPages' do
           before do
             fill_in 'First Name', with: 'Client Test_Name 1'
             fill_in 'Email', with: 'client_1@client_domain.com'
-            click_button 'Save'
+            click_button 'Create'
             # TODO: find a better way then sleeping
             sleep 0.2
             #puts Capybara.default_wait_time
@@ -159,6 +159,7 @@ describe 'AppointmentsPages' do
             should_not have_selector('td.edit-hour.hour-15 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
+
 #          describe 'verify appointment', js: true do
 #            before do
 #              #save_and_open_page
@@ -166,8 +167,8 @@ describe 'AppointmentsPages' do
 #              sleep 0.2
 #              #save_and_open_page
 #            end
-
-#            it { should have_selector('td.edit-hour.hour-14 .client-appointment', text: 'Client Test_Name 1') }
+#
+#            it { should have_selector('td.edit-hour.hour-14.client-appointment', text: 'Client Test_Name 1') }
 #          end
         end
       end
@@ -182,7 +183,7 @@ describe 'AppointmentsPages' do
 #        save_and_open_page
 #      end
 #      it 'should create an appointment' do
-#        expect { click_button 'Save' }.to change(Appointment, :count).by(1)
+#        expect { click_button 'Create' }.to change(Appointment, :count).by(1)
 #      end
 #    end
   end
