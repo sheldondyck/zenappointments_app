@@ -111,6 +111,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def move
+    pp 'Appointments#move!!!!!!'
+  end
+
   private
     def client_params
       params.require(:appointment).permit(:first_name,

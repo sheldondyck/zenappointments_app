@@ -4,9 +4,14 @@
     -if @appointments_by_hour[hour]
       -n = 0
       -@appointments_by_hour[hour].each do |appointment|
-        .client-appointment{style: "left:#{n}px;"}
+        .client-appointment{style: "left:#{n}px;", date: {appointment: appointment.id}}
           =appointment.client.name
         -n = n + 50
   :coffee
     jQuery ->
       $('.agenda').registerNewAgendaDialog('#{j render('new')}')
+      $('.client-appointment').draggable()
+      #$('.edit-hour').droppable({accept:'.client-appointment'})
+      $('.edit-hour').droppable drop: (event, ui) ->
+        alert $(ui.draggable).data('appointment')
+        $.ajax '#{appointments_move_path}', type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}

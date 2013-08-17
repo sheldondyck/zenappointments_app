@@ -2,9 +2,10 @@
   =render('header')
   =calendar @date do |date|
     =date.day
+    %ul
     -if @appointments_by_date[date.strftime("%Y-%m-%d")]
       -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
-        .client-appointment
+        %li
           =appointment.client.name
   -#:coffee
     jQuery ->

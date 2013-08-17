@@ -19,6 +19,7 @@ ZenAppointmentsApp::Application.routes.draw do
 
   get   'appointments',           :to => 'appointments#index'
   post  'appointments/create',    :to => 'appointments#create'
+  post  'appointments/move',      :to => 'appointments#move'
 
   root  'sessions#new'
 end

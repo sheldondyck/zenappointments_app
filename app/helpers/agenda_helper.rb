@@ -36,7 +36,7 @@ module AgendaHelper
     end
 
     def employee_cell(employee, hour)
-      content_tag :td, view.capture(employee, hour, &callback), class: employee_classes(hour)
+      content_tag :td, view.capture(employee, hour, &callback), class: employee_classes(hour), data:{date: date, hour:hour}
     end
 
     def hour_classes(hour)
