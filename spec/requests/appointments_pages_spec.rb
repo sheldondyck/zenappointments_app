@@ -84,7 +84,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit-hour.hour-12')
+        should have_selector('td.edit-hour.hour-12')
         should have_selector('h3', Time.zone.now.strftime('week %V - %Y'))
         #should have_selector('h1', 'Week')
       end
@@ -94,7 +94,7 @@ describe 'AppointmentsPages' do
       before do
         click_link 'Month'
         # TODO: find a better way then sleeping
-        sleep 0.1
+        sleep 0.2
         #save_and_open_page
       end
 
@@ -121,7 +121,7 @@ describe 'AppointmentsPages' do
     describe 'new appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find('td.edit-hour.hour-14').click
+          find('td.edit-hour.hour-10').click
           #  save_and_open_page
         end
 
@@ -145,7 +145,7 @@ describe 'AppointmentsPages' do
             #save_and_open_page
             click_button 'Create'
             # TODO: find a better way then sleeping
-            sleep 0.1
+            sleep 0.2
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
@@ -156,11 +156,25 @@ describe 'AppointmentsPages' do
 
           it do
             should_not have_selector('.new-appointment')
-            should have_selector('td.edit-hour.hour-14 .client-appointment', text: 'Client Test_Name 1')
-            should_not have_selector('td.edit-hour.hour-15 .client-appointment', text: 'Client Test_Name 1')
+            should have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
+            should_not have_selector('td.edit-hour.hour-11 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
 
+          describe 'drag and drop' do
+            before do
+              appointment = find('.client-appointment')
+              destination = find('td.edit-hour.hour-15')
+              pp destination
+              appointment.drag_to(destination)
+              #save_and_open_page
+            end
+
+            it do
+              should_not have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
+              should have_selector('td.edit-hour.hour-15 .client-appointment', text: 'Client Test_Name 1')
+            end
+          end
 #          describe 'verify appointment', js: true do
 #            before do
 #              #save_and_open_page
@@ -189,26 +203,28 @@ describe 'AppointmentsPages' do
 #    end
   end
 
-  describe 'drag and drop existing appointment' do
-    subject { page }
+#  describe 'drag and drop existing appointment' do
+#    subject { page }
+#
+#    before do
+#      # TODO don't sign in through webpage. create signin session to save execution time
+#      @appointment = create(:appointment)
+#      visit signin_path
+#      within '.form-signin' do
+#        fill_in 'Email', with: 'account@company.com'
+#        fill_in 'Password', with: 'abcdef'
+#      end
+#      click_button 'Sign In'
+#      #visit appointments_path(date: @appointment.time)
+#      #save_and_open_page
+#    end
 
-    before do
-      # TODO don't sign in through webpage. create signin session to save execution time
-      @appointment = create(:appointment)
-      visit signin_path
-      within '.form-signin' do
-        fill_in 'Email', with: 'account@company.com'
-        fill_in 'Password', with: 'abcdef'
-      end
-      click_button 'Sign In'
-      visit appointments_path(date: @appointment.time)
-      #save_and_open_page
-    end
-
-    it 'should update the appointment' do
-      appointment = find('.client-appointment')
-      destination = find('td.edit-hour.hour-15')
-      appointment.drag_to(destination)
-    end
-  end
+#    it 'should update the appointment' do
+#        expect { click_button 'Create' }.to change(Appointment, :count).by(1)
+#      should have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
+#      appointment = find('.client-appointment')
+#      destination = find('td.edit-hour.hour-15')
+#      appointment.drag_to(destination)
+#    end
+#  end
 end

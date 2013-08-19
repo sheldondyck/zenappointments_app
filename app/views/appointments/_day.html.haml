@@ -10,7 +10,7 @@
   :coffee
     jQuery ->
       $('.agenda').registerNewAgendaDialog('#{j render('new')}')
-      $('.client-appointment').draggable()
+      $('.client-appointment').draggable({snap: '.edit-hour'})
       $('.edit-hour').droppable
         accept: '.client-appointment',
         drop: (event, ui) ->
