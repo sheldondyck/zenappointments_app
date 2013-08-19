@@ -142,9 +142,10 @@ describe 'AppointmentsPages' do
           before do
             fill_in 'First Name', with: 'Client Test_Name 1'
             fill_in 'Email', with: 'client_1@client_domain.com'
+            #save_and_open_page
             click_button 'Create'
             # TODO: find a better way then sleeping
-            sleep 0.2
+            sleep 0.1
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
@@ -186,5 +187,28 @@ describe 'AppointmentsPages' do
 #        expect { click_button 'Create' }.to change(Appointment, :count).by(1)
 #      end
 #    end
+  end
+
+  describe 'drag and drop existing appointment' do
+    subject { page }
+
+    before do
+      # TODO don't sign in through webpage. create signin session to save execution time
+      @appointment = create(:appointment)
+      visit signin_path
+      within '.form-signin' do
+        fill_in 'Email', with: 'account@company.com'
+        fill_in 'Password', with: 'abcdef'
+      end
+      click_button 'Sign In'
+      visit appointments_path(date: @appointment.time)
+      #save_and_open_page
+    end
+
+    it 'should update the appointment' do
+      appointment = find('.client-appointment')
+      destination = find('td.edit-hour.hour-15')
+      appointment.drag_to(destination)
+    end
   end
 end

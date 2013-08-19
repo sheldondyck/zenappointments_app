@@ -53,7 +53,7 @@ FactoryGirl.define do
     account
     user      { build(:user, account: account) }
     client    { build(:client, account: account) }
-    time      '2013-04-01 08:00:01'
+    time      '2013-04-01 12:00:00'
     duration  60
   end
 end

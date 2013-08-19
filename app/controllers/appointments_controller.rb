@@ -113,6 +113,9 @@ class AppointmentsController < ApplicationController
 
   def move
     pp 'Appointments#move!!!!!!'
+    @appointment = Appointment.find_by(id: params[:appointment_id])
+    @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour]))
+    pp @appointment
   end
 
   private
