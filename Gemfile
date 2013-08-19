@@ -18,6 +18,7 @@ gem 'foreigner'
 gem 'bootstrap-sass' #, '~> 2.3.2.0'
 gem 'font-awesome-rails'
 gem 'angularjs-rails'
+gem 'awesome_print'
 
 group :development do
   gem 'therubyracer', platforms: :ruby
@@ -30,7 +31,6 @@ group :development do
   #gem 'ruby-debug'
   gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'awesome_print'
 end
 
 group :test do
