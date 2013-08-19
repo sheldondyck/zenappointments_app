@@ -35,7 +35,7 @@ class AppointmentsController < ApplicationController
     r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY), account_id: @current_user).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H")
-      pp k
+      #pp k
       if @appointments_by_week.has_key?(k)
         @appointments_by_week[k].push(appointment)
       else
@@ -113,10 +113,10 @@ class AppointmentsController < ApplicationController
   end
 
   def move
-    pp 'Appointments#move!!!!!!'
+    #pp 'Appointments#move!!!!!!'
     @appointment = Appointment.find_by(id: params[:appointment_id])
     @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour]))
-    pp @appointment
+    #pp @appointment
   end
 
   private
