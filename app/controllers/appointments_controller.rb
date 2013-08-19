@@ -35,6 +35,7 @@ class AppointmentsController < ApplicationController
     r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY), account_id: @current_user).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H")
+      pp k
       if @appointments_by_week.has_key?(k)
         @appointments_by_week[k].push(appointment)
       else

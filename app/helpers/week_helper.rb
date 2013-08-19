@@ -6,8 +6,8 @@ module WeekHelper
   class Week < Struct.new(:view, :date, :callback)
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
     START_DAY = :sunday
-    FIRST_HOUR = 7
-    LAST_HOUR = 19
+    FIRST_HOUR = 0
+    LAST_HOUR = 24
 
     delegate :content_tag, to: :view
 
@@ -42,7 +42,7 @@ module WeekHelper
     end
 
     def appointment_cell(day, hour)
-      content_tag :td, view.capture(day, hour, &callback), class: appointment_classes(hour)
+      content_tag :td, view.capture(day, hour, &callback), class: appointment_classes(hour), data:{date: day.to_s, hour: hour}
     end
 
     def hour_classes(hour)
@@ -56,6 +56,7 @@ module WeekHelper
 
     def appointment_classes(hour)
       classes = []
+      classes << 'edit-hour'
       classes << 'hour-' + hour.to_s
       #classes << "today" if day == Date.today
       #classes << "notmonth" if day.month != date.month
