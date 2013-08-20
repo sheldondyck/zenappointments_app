@@ -1,3 +1,5 @@
+$hour-height:50px;
+
 h1.logo {
   font-family: helvetica;
   color: #444;
@@ -84,7 +86,7 @@ h1.logo {
   cursor:all-scroll;
   border:1px solid #262;
   z-index:1;
-  height:50px;
+  height:$hour-height;
   width:150px;
 }
 
@@ -126,7 +128,7 @@ h1.logo {
     position:relative;
     background:#fff;
     color:#777;
-    height:50px;
+    height:$hour-height;
     vertical-align:top;
     font-size:16px;
   }

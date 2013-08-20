@@ -121,7 +121,7 @@ describe 'AppointmentsPages' do
     describe 'new appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find('td.edit-hour.hour-10').click
+          find('td.edit-hour.hour-0').click
           #  save_and_open_page
         end
 
@@ -156,35 +156,53 @@ describe 'AppointmentsPages' do
 
           it do
             should_not have_selector('.new-appointment')
-            should have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
-            should_not have_selector('td.edit-hour.hour-11 .client-appointment', text: 'Client Test_Name 1')
+            should have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
+            should_not have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
+          end
+
+          describe 'verify appointment', js: true do
+            before do
+              #save_and_open_page
+              click_link 'Day'
+              sleep 0.2
+              #save_and_open_page
+            end
+
+            it 'shoud stay the same' do
+              expect { click_link 'Day' }.to change(Appointment, :count).by(0)
+            end
+            it { should have_selector('td.edit-hour.hour-0.client-appointment', text: 'Client Test_Name 1') }
           end
 
           describe 'drag and drop' do
             before do
               appointment = find('.client-appointment')
-              destination = find('td.edit-hour.hour-15')
-              pp destination
+              destination = find('td.edit-hour.hour-1')
               appointment.drag_to(destination)
+              sleep 0.5
               #save_and_open_page
             end
 
-            it do
-              should_not have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
-              should have_selector('td.edit-hour.hour-15 .client-appointment', text: 'Client Test_Name 1')
+            describe 'update appoinment on screen' do
+              # TODO: need to update DOM in move.js.haml
+              it do
+                should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
+                should have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
+              end
+            end
+
+            describe 'update appoinment in database' do
+              before do
+                click_link 'Day'
+              end
+
+              it do
+                should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
+                should have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
+              end
             end
           end
-#          describe 'verify appointment', js: true do
-#            before do
-#              #save_and_open_page
-#              click_link 'Day'
-#              sleep 0.2
-#              #save_and_open_page
-#            end
-#
-#            it { should have_selector('td.edit-hour.hour-14.client-appointment', text: 'Client Test_Name 1') }
-#          end
         end
       end
     end

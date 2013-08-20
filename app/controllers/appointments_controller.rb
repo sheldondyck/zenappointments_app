@@ -16,6 +16,7 @@ class AppointmentsController < ApplicationController
     @client = Client.new
 
     # TODO: needs to be cleaned up obviously
+    # TODO: calling 3 selects when only one is used
     @appointments_by_date = Hash.new
     # TODO: ops! not multi-tenent!
     # TODO: Is account_id get correct id?
@@ -97,8 +98,7 @@ class AppointmentsController < ApplicationController
         @appointment.save
       end
     rescue => e
-      puts 'appointments#create exception'
-      puts e.message
+      puts 'appointments#create exception: ' + e.message
       if @client.nil?
         puts 'Client was nil!'
         @client = Client.new(client_params.merge(account_id: @current_user.account_id))
@@ -113,10 +113,16 @@ class AppointmentsController < ApplicationController
   end
 
   def move
-    #pp 'Appointments#move!!!!!!'
-    @appointment = Appointment.find_by(id: params[:appointment_id])
-    @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour]))
-    #pp @appointment
+    begin
+      puts 'Appointments#move'
+      #puts 'move id: ' + params[:appointment_id].to_s
+      #puts 'move: ' + params.to_yaml
+      @appointment = Appointment.find_by(id: params[:appointment_id])
+      @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour]))
+      #pp @appointment
+    rescue => e
+      puts 'Appointments#move exception: ' + e.message
+    end
   end
 
   private

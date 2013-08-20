@@ -6,28 +6,28 @@
   .signin-dialog
     .row
       .span4.offset4
-        =form_for :session, url: signin_path, html: {class: 'form-signin'} do |f|
-          .fieldset
-            %legend Welcome back
-            .control-group
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-envelope-alt
-                  %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'span2', id: 'inputIcon'}
-            .control-group
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-key
-                  =f.password_field :password, class: 'span2', id: 'inputIcon', placeholder: 'Password'
-            .control-group
-              %label.control-label
-              .controls
-                =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
-    .row
-      .span6.offset4
-        %p
-          You don't have an account?
-          =link_to 'Sign up now!', signup_path
+        .well
+          =form_for :session, url: signin_path, html: {class: 'form-signin'} do |f|
+            .fieldset
+              %legend Welcome back
+              .control-group
+                .controls
+                  .input-prepend
+                    %span.add-on
+                      %i.icon-envelope-alt
+                    %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'span2', id: 'inputIcon'}
+              .control-group
+                .controls
+                  .input-prepend
+                    %span.add-on
+                      %i.icon-key
+                    =f.password_field :password, class: 'span2', id: 'inputIcon', placeholder: 'Password'
+              .control-group
+                %label.control-label
+                .controls
+                  =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
+        .span4
+          %p
+            You don't have an account?
+            =link_to 'Sign up now!', signup_path
 -#= render 'pages/footer'

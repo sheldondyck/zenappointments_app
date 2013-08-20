@@ -3,5 +3,5 @@
 - else
   $('.new-appointment').remove();
   $('#active-hour').removeAttr('id');
-  $('.edit-hour.hour-#{@hour}').append("<div class='client-appointment'>#{@name}</div>");
+  $('.edit-hour.hour-#{@hour}').append("<div class='client-appointment' data-appointment=#{@appointment.id}>#{@name}</div>");
   $('.client-appointment').draggable()
