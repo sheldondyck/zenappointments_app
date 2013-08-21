@@ -69,7 +69,7 @@ describe 'account pages' do
 
             describe 'should signin user again without tutorial' do
               before do
-                within '.form-signin' do
+                within '.signin-dialog' do
                   fill_in 'Email', with: 'my_email@my_company.com'
                   fill_in 'Password', with: 'foobar'
                 end

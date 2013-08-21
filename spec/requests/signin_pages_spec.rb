@@ -32,7 +32,7 @@ describe 'Signin Page' do
     before do
       @user = create(:user)
       visit signin_path
-      within '.form-signin' do
+      within '.signin-dialog' do
         fill_in 'Email', with: 'account@company.com'
         fill_in 'Password', with: 'abcdef'
       end
@@ -72,7 +72,7 @@ describe 'Signin Page' do
   describe 'incorrect signin' do
     before do
       visit signin_path
-      within '.form-signin' do
+      within '.signin-dialog' do
         fill_in 'session[email]', with: 'foo@bar.com'
         fill_in 'session[password]', with: 'bar1'
       end
