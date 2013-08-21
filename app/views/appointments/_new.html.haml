@@ -1,41 +1,43 @@
-%div.modal.new-appointment
-  -#%div.new-appointment.popover.top
-  .modal-header
-    %button.close{type:'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
-      %i.icon-remove
-    %h4
-      New Appointment
-  =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
-    .modal-body
-      =f.hidden_field :time, value: @date
-      =f.hidden_field :hour, value: 'HOUR'
-      =f.hidden_field :duration, value: 60
-      .row
-        .span2
-          .control-group{class: error_class(@client, :first_name)}
-            .controls
-              =f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
-        .span2
-          .control-group{class: error_class(@client, :last_name)}
-            .controls
-              =f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
-      .row
-        .span2
-          .control-group{class: error_class(@client, :telephone_cellular)}
-            .controls
-              =f.text_field :telephone_cellular, class: 'span2', id: 'inputIcon', placeholder: 'Cellular'
-        .span2
-          .control-group{class: error_class(@client, :telephone_office)}
-            .controls
-              =f.text_field :telephone_office, class: 'span2', id: 'inputIcon', placeholder: 'Office Telephone'
-      .row
-        .span2
-          .control-group{class: error_class(@client, :telephone_home)}
-            .controls
-              =f.text_field :telephone_home, class: 'span2', id: 'inputIcon', placeholder: 'Home Telephone'
-        .span2
-          .control-group{class: error_class(@client, :email)}
-            .controls
-              =f.text_field :email, class: 'span2', id: 'inputIcon', placeholder: 'Email'
-    .modal-footer
-      =button_tag 'Create', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
+.new-appointment#new-appointment
+  -#.modal
+  .modal-dialog
+    .modal-content
+      =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
+        .modal-header
+          %button.close{type:'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
+            %i.icon-remove
+          %h4
+            New Appointment
+        .modal-body
+          =f.hidden_field :time, value: @date
+          =f.hidden_field :hour, value: 'HOUR'
+          =f.hidden_field :duration, value: 60
+          .row
+            .span2
+              .control-group{class: error_class(@client, :first_name)}
+                .controls
+                  =f.text_field :first_name, class: 'span2', id: 'inputIcon', placeholder: 'First Name'
+            .span2
+              .control-group{class: error_class(@client, :last_name)}
+                .controls
+                  =f.text_field :last_name, class: 'span2', id: 'inputIcon', placeholder: 'Last Name'
+          .row
+            .span2
+              .control-group{class: error_class(@client, :telephone_cellular)}
+                .controls
+                  =f.text_field :telephone_cellular, class: 'span2', id: 'inputIcon', placeholder: 'Cellular'
+            .span2
+              .control-group{class: error_class(@client, :telephone_office)}
+                .controls
+                  =f.text_field :telephone_office, class: 'span2', id: 'inputIcon', placeholder: 'Office Telephone'
+          .row
+            .span2
+              .control-group{class: error_class(@client, :telephone_home)}
+                .controls
+                  =f.text_field :telephone_home, class: 'span2', id: 'inputIcon', placeholder: 'Home Telephone'
+            .span2
+              .control-group{class: error_class(@client, :email)}
+                .controls
+                  =f.text_field :email, class: 'span2', id: 'inputIcon', placeholder: 'Email'
+        .modal-footer
+          =button_tag 'Create', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'

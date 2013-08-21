@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 6361f4ee208335780bfcbfb7d83d5134af96009f
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,8 +47,6 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (2.3.2.1)
-      sass (~> 3.2)
     builder (3.1.4)
     callsite (0.0.11)
     capybara (2.1.0)
@@ -245,7 +251,7 @@ DEPENDENCIES
   bcrypt-ruby
   better_errors
   binding_of_caller
-  bootstrap-sass
+  bootstrap-sass!
   capybara
   coffee-rails
   debugger

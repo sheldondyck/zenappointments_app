@@ -1,8 +1,8 @@
-.navbar
+.navbar.navbar-default(role='navigation')
   .navbar-inner
     -# TODO need to define app_name url
-    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'brand'}
-    %ul.nav
+    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
+    %ul.nav.navbar-nav
       -# TODO need to define home final url
       %li{:class => active('accounts#home')}
         =link_to 'Home', accounts_home_path
@@ -16,7 +16,7 @@
       %li{:class => active('accounts#reports')}
         -# TODO need to define reports final url
         =link_to 'Reports' , accounts_reports_path
-    %ul.nav.pull-right
+    %ul.nav.navbar-nav.navbar-right
       %li
         -# TODO: where should this link to. should be the same as cog?
         =link_to current_user.name, user_path(@current_user)
