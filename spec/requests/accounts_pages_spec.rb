@@ -101,7 +101,7 @@ describe 'account pages' do
       it 'should show a first_name error message' do
         click_button submit
         should have_selector('.help-inline#first-name', text: 'Can\'t be blank')
-        should have_selector('.form-control.has-error')
+        should find_field('account[first_name]').has_selector('.form-control.has-error')
       end
 
       it 'should show a last_name error message' do
