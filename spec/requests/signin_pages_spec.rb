@@ -84,7 +84,7 @@ describe 'Signin Page' do
     end
 
     it 'has correct message' do
-      should have_selector('div.alert.alert-error', text: 'Invalid email or password')
+      should have_selector('div.alert.alert-danger', text: 'Invalid email or password')
     end
 
     it 'fills out email' do
@@ -98,7 +98,7 @@ describe 'Signin Page' do
 
     describe 'after visiting another page' do
       before { click_link 'Sign up now!' }
-      it { should_not have_selector('div.alert.alert-error') }
+      it { should_not have_selector('div.alert.alert-danger') }
     end
   end
 

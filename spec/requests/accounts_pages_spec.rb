@@ -95,12 +95,13 @@ describe 'account pages' do
 
       it 'should show a general error message' do
         click_button submit
-        should have_selector('.alert.alert-error', text: 'Please fix the problems with the form')
+        should have_selector('.alert.alert-danger', text: 'Please fix the problems with the form')
       end
 
       it 'should show a first_name error message' do
         click_button submit
         should have_selector('.help-inline#first-name', text: 'Can\'t be blank')
+        should have_selector('.form-control.has-error')
       end
 
       it 'should show a last_name error message' do

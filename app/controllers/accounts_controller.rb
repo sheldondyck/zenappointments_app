@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
       sign_in @user
       redirect_to accounts_welcome_path
     else
-      flash.now[:error] = 'Please fix the problems with the form'
+      flash.now[:danger] = 'Please fix the problems with the form'
       render 'new'
     end
   end

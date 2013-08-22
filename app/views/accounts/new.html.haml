@@ -5,61 +5,41 @@
       =link_to app_name, www_url
   .signup-dialog
     .row
-      .span7.offset3
+      .col-sm-6.col-sm-offset-3
         =form_for @account do |f|
-          .fieldset
-            %legend Sign Up
-            .control-group{class: error_class(@user, :first_name)}
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-user
-                  -#=f.text_field :first_name, class: 'span4', id: 'inputIcon', placeholder: 'First Name'
-                  %input.input{name: 'account[first_name]', value: @user[:first_name], placeholder: 'First Name', type: 'text', class: 'span4', id: 'inputIcon'}
-                %span.help-inline#first-name
-                  =error_message(@user, :first_name)
-            .control-group{class: error_class(@user, :last_name)}
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-user
-                  -#=f.text_field :last_name, class: 'span4', id: 'inputIcon', placeholder: 'Last Name'
-                  %input.input{name: 'account[last_name]', value: @user[:last_name], placeholder: 'Last Name', type: 'text', class: 'span4', id: 'inputIcon'}
-                %span.help-inline#last-name
-                  =error_message(@user, :last_name)
-            .control-group{class: error_class(@account, :company_name)}
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-building
-                  -# TODO this is generating a value field (with nothing) that breaks the formating. what to do???
-                  -#=f.text_field :company_name, class: 'span4', id: 'inputIcon', placeholder: 'Company Name'
-                  %input.input{class: 'span4', id: 'inputIcon', placeholder: 'Company Name', type: 'text', name: 'account[company_name]', value: @account[:company_name]}
-                %span.help-inline#company-name
-                  =error_message(@account, :company_name)
-            .control-group{class: error_class(@user, :email)}
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-envelope-alt
-                  -#=f.text_field :email, class: 'span4', id: 'inputIcon', placeholder: 'Email'
-                  %input.input{class: 'span4', id: 'inputIcon', placeholder: 'Email', type: 'text', name: 'account[email]', value: @user[:email]}
-                %span.help-inline#email
-                  =error_message(@user, :email)
-            .control-group{class: error_class(@user, :password)}
-              .controls
-                .input-prepend
-                  %span.add-on
-                    %i.icon-key
-                  =f.password_field :password, class: 'span3', id: 'inputIcon', placeholder: 'Password'
-                %span.help-inline#password
-                  =error_message(@user, :password)
-            .control-group
-              %label.control-label
-              .controls
-                =button_tag 'Sign Up', class: 'btn btn-primary', 'data-disable-with' => 'Signing Up ...'
+          %legend Sign Up
+          .form-group{class: error_class(@user, :first_name)}
+            -#=f.text_field :first_name, class: 'form-control', id: 'inputIcon', placeholder: 'First Name'
+            %input.input{name: 'account[first_name]', value: @user[:first_name], placeholder: 'First Name', type: 'text', class: 'form-control', id: 'inputIcon'}
+            %span.help-inline#first-name
+              =error_message(@user, :first_name)
+          .form-group{class: error_class(@user, :last_name)}
+            -#=f.text_field :last_name, class: 'form-control', id: 'inputIcon', placeholder: 'Last Name'
+            %input.input{name: 'account[last_name]', value: @user[:last_name], placeholder: 'Last Name', type: 'text', class: 'form-control', id: 'inputIcon'}
+            %span.help-inline#last-name
+              =error_message(@user, :last_name)
+          .form-group{class: error_class(@account, :company_name)}
+            .controls
+            -# TODO this is generating a value field (with nothing) that breaks the formating. what to do???
+            -#=f.text_field :company_name, class: 'form-control', id: 'inputIcon', placeholder: 'Company Name'
+            %input.input{class: 'form-control', id: 'inputIcon', placeholder: 'Company Name', type: 'text', name: 'account[company_name]', value: @account[:company_name]}
+            %span.help-inline#company-name
+              =error_message(@account, :company_name)
+          .form-group{class: error_class(@user, :email)}
+            -#=f.text_field :email, class: 'form-control', id: 'inputIcon', placeholder: 'Email'
+            %input.input{class: 'form-control', id: 'inputIcon', placeholder: 'Email', type: 'text', name: 'account[email]', value: @user[:email]}
+            %span.help-inline#email
+              =error_message(@user, :email)
+          .form-group{class: error_class(@user, :password)}
+            =f.password_field :password, class: 'form-control', id: 'inputIcon', placeholder: 'Password'
+            %span.help-inline#password
+              =error_message(@user, :password)
+          .form-group
+            %label.control-label
+            .controls
+              =button_tag 'Sign Up', class: 'btn btn-primary', 'data-disable-with' => 'Signing Up ...'
     .row
-      .span6.offset4
+      .col-sm-6.col-sm-offset-3
         %p
           I already have an account.
           =link_to 'Sign in now!', signin_path
