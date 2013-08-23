@@ -12,10 +12,13 @@ module ApplicationHelper
   end
 
   def flash_handler
+    # TODO: check that css_alert_map is complete
+    css_alert_map = {:notice => 'info', :alert => 'danger', :error => 'danger'}
     div = ""
     flash.each do |key, value|
+      css_alert = css_alert_map[key] ||= 'danger'
       div += "<div class='container'>"
-      div += "<div class='alert alert-#{key}' data-dismiss='alert'>"
+      div += "<div class='alert alert-#{css_alert}' data-dismiss='alert'>"
       div += "<strong>#{value}</strong>"
       div += "</div></div>"
     end

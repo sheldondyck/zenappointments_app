@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   private
     def authorize_user
-      redirect_to signin_path, notice: 'Access restricted, please sign in' unless signed_in?
+      redirect_to signin_path, alert: 'Access restricted, please sign in' unless signed_in?
     end
 
     def user_time_zone(&block)

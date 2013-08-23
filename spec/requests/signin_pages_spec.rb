@@ -112,4 +112,18 @@ describe 'Signin Page' do
       current_path.should == signup_path
     end
   end
+
+  describe 'visiting protected page without signin' do
+    before do
+      visit appointments_path
+    end
+
+    it 'should redirect to signin' do
+      current_path.should == signin_path
+    end
+
+    it 'should have alert message' do
+      should have_selector('div.alert.alert-danger', text: 'Access restricted, please sign in')
+    end
+  end
 end

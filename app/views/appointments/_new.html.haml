@@ -1,6 +1,6 @@
-.new-appointment#new-appointment
-  -#.modal
-  .modal-dialog
+-#.modal
+.modal-dialog
+  .new-appointment#new-appointment
     .modal-content
       =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
         .modal-header
@@ -16,21 +16,15 @@
             .col-sm-4
               .form-group{class: error_class(@client, :first_name)}
                 =f.text_field :first_name, class: 'form-control', id: 'inputIcon', placeholder: 'First Name'
-            .col-sm-4
               .form-group{class: error_class(@client, :last_name)}
                 =f.text_field :last_name, class: 'form-control', id: 'inputIcon', placeholder: 'Last Name'
-          .row
-            .col-sm-4
               .form-group{class: error_class(@client, :telephone_cellular)}
                 =f.text_field :telephone_cellular, class: 'form-control', id: 'inputIcon', placeholder: 'Cellular'
             .col-sm-4
               .form-group{class: error_class(@client, :telephone_office)}
                 =f.text_field :telephone_office, class: 'form-control', id: 'inputIcon', placeholder: 'Office Telephone'
-          .row
-            .col-sm-4
               .form-group{class: error_class(@client, :telephone_home)}
                 =f.text_field :telephone_home, class: 'form-control', id: 'inputIcon', placeholder: 'Home Telephone'
-            .col-sm-4
               .form-group{class: error_class(@client, :email)}
                 =f.text_field :email, class: 'form-control', id: 'inputIcon', placeholder: 'Email'
         .modal-footer
