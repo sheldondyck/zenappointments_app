@@ -11,7 +11,7 @@ jQuery.fn.registerNewAgendaDialog = (raw_dialog) ->
     #$('.new-appointment').offset({left:$(this).offset().left, top: $(this).offset().top - $(this).height()*2})
     $('.new-appointment').offset({left:$(this).offset().left, top:$(this).offset().top + $(this).height()*2})
     #$('.new-appointment').modal()
-    #$('.new-appointment').modal('show')
+    #$('#new-appointment').modal('show')
   this
 
 jQuery.fn.registerNewCalendarDialog = (dialog) ->

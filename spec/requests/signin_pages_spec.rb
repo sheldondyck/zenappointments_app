@@ -32,7 +32,7 @@ describe 'Signin Page' do
     before do
       @user = create(:user)
       visit signin_path
-      within '.form-signin' do
+      within '.signin-dialog' do
         fill_in 'Email', with: 'account@company.com'
         fill_in 'Password', with: 'abcdef'
       end
@@ -72,7 +72,7 @@ describe 'Signin Page' do
   describe 'incorrect signin' do
     before do
       visit signin_path
-      within '.form-signin' do
+      within '.signin-dialog' do
         fill_in 'session[email]', with: 'foo@bar.com'
         fill_in 'session[password]', with: 'bar1'
       end
@@ -84,7 +84,7 @@ describe 'Signin Page' do
     end
 
     it 'has correct message' do
-      should have_selector('div.alert.alert-error', text: 'Invalid email or password')
+      should have_selector('div.alert.alert-danger', text: 'Invalid email or password')
     end
 
     it 'fills out email' do
@@ -98,7 +98,7 @@ describe 'Signin Page' do
 
     describe 'after visiting another page' do
       before { click_link 'Sign up now!' }
-      it { should_not have_selector('div.alert.alert-error') }
+      it { should_not have_selector('div.alert.alert-danger') }
     end
   end
 
@@ -110,6 +110,20 @@ describe 'Signin Page' do
 
     it 'should be correct' do
       current_path.should == signup_path
+    end
+  end
+
+  describe 'visiting protected page without signin' do
+    before do
+      visit appointments_path
+    end
+
+    it 'should redirect to signin' do
+      current_path.should == signin_path
+    end
+
+    it 'should have alert message' do
+      should have_selector('div.alert.alert-danger', text: 'Access restricted, please sign in')
     end
   end
 end

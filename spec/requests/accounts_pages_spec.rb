@@ -69,7 +69,7 @@ describe 'account pages' do
 
             describe 'should signin user again without tutorial' do
               before do
-                within '.form-signin' do
+                within '.signin-dialog' do
                   fill_in 'Email', with: 'my_email@my_company.com'
                   fill_in 'Password', with: 'foobar'
                 end
@@ -95,12 +95,15 @@ describe 'account pages' do
 
       it 'should show a general error message' do
         click_button submit
-        should have_selector('.alert.alert-error', text: 'Please fix the problems with the form')
+        should have_selector('.alert.alert-danger', text: 'Please fix the problems with the form')
       end
 
       it 'should show a first_name error message' do
         click_button submit
+        #save_and_open_page
         should have_selector('.help-inline#first-name', text: 'Can\'t be blank')
+        # TODO: fails fix and add to all below
+        should have_selector('first_name.form-control.has-error')
       end
 
       it 'should show a last_name error message' do

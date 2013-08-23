@@ -5,29 +5,24 @@
       =link_to app_name, www_url
   .signin-dialog
     .row
-      .span4.offset4
+      .col-sm-6.col-sm-offset-3
         .well
-          =form_for :session, url: signin_path, html: {class: 'form-signin'} do |f|
-            .fieldset
-              %legend Welcome back
-              .control-group
-                .controls
-                  .input-prepend
-                    %span.add-on
-                      %i.icon-envelope-alt
-                    %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'span2', id: 'inputIcon'}
-              .control-group
-                .controls
-                  .input-prepend
-                    %span.add-on
-                      %i.icon-key
-                    =f.password_field :password, class: 'span2', id: 'inputIcon', placeholder: 'Password'
-              .control-group
-                %label.control-label
-                .controls
-                  =button_tag 'Sign In', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
-        .span4
-          %p
-            You don't have an account?
-            =link_to 'Sign up now!', signup_path
+          =form_for :session, url: signin_path, html: {class: 'form-horizontal'} do |f|
+            %legend Welcome back
+            .form-group
+              %label.col-lg-2.control-label Email
+              .col-lg-6
+                %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'form-control'}
+            .form-group
+              %label.col-lg-2.control-label Password
+              .col-lg-6
+                =f.password_field :password, class: 'form-control', placeholder: 'Password'
+            .form-group
+              .col-lg-offset-2.col-lg-6
+                =button_tag 'Sign In', type: 'submit', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
+    .row
+      .col-sm-6.col-sm-offset-3
+        %p
+          You don't have an account?
+          =link_to 'Sign up now!', signup_path
 -#= render 'pages/footer'

@@ -114,7 +114,7 @@ class AppointmentsController < ApplicationController
 
   def move
     begin
-      puts 'Appointments#move'
+      #puts 'Appointments#move'
       #puts 'move id: ' + params[:appointment_id].to_s
       #puts 'move: ' + params.to_yaml
       @appointment = Appointment.find_by(id: params[:appointment_id])
