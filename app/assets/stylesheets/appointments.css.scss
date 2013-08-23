@@ -125,7 +125,7 @@ h1.logo {
   //}
 
   td {
-    position:relative;
+    //position:relative; // TODO: causes borders to disappear with firefox
     background:#fff;
     color:#777;
     height:$hour-height;
