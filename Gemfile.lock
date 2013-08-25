@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 35705f455d37218d48116bacf6002ff1cb753083
+  revision: 4a8d1a9add83896cbc5f5441e209b00626f74338
   branch: 3
   specs:
     bootstrap-sass (3.0.0.0)
@@ -108,7 +108,7 @@ GEM
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
-    jbuilder (1.5.0)
+    jbuilder (1.5.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
