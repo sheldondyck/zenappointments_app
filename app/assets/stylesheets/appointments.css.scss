@@ -54,6 +54,9 @@ h1.logo {
 }
 
 #appointments #active-hour {
+  // TODO: moz and webkit are probably not correct
+  -moz-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
+  -webkit-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
   box-shadow: inset 0 0 3px 3px rgba(68,170,68,0.7);
 }
 

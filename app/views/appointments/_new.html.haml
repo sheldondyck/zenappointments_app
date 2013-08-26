@@ -3,15 +3,24 @@
   .new-appointment#new-appointment
     .modal-content
       =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
+        =f.hidden_field :time, value: @date
+        =f.hidden_field :hour, value: 'HOUR'
+        =f.hidden_field :duration, value: 60
         .modal-header
           %button.close{type: 'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
             %i.icon-remove
           %h4
             New Appointment
         .modal-body
-          =f.hidden_field :time, value: @date
-          =f.hidden_field :hour, value: 'HOUR'
-          =f.hidden_field :duration, value: 60
+          .row
+            .col-lg-8
+              .input-group
+                %input.form-control{type:'text'}
+                %span.input-group-btn
+                  %button.btn.btn-default{type:'button'} Search
+
+          .row
+            %br
           .row
             .col-sm-4
               .form-group{class: error_class(@client, :first_name)}
