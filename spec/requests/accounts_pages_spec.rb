@@ -101,29 +101,32 @@ describe 'account pages' do
       it 'should show a first_name error message' do
         click_button submit
         #save_and_open_page
-        should have_selector('.help-inline#first-name', text: 'Can\'t be blank')
-        # TODO: fails fix and add to all below
-        should have_selector('first_name.form-control.has-error')
+        should have_selector('p.help-block#first-name', text: 'Can\'t be blank')
+        should have_selector('.form-group.has-error#first-name')
       end
 
       it 'should show a last_name error message' do
         click_button submit
-        should have_selector('.help-inline#last-name', text: 'Can\'t be blank')
+        should have_selector('p.help-block#last-name', text: 'Can\'t be blank')
+        should have_selector('.form-group.has-error#last-name')
       end
 
       it 'should show a copmany_name error message' do
         click_button submit
-        should have_selector('.help-inline#company-name', text: 'Can\'t be blank')
+        should have_selector('p.help-block#company-name', text: 'Can\'t be blank')
+        should have_selector('.form-group.has-error#company-name')
       end
 
       it 'should show a email error message' do
         click_button submit
-        should have_selector('.help-inline#email', text: 'Can\'t be blank')
+        should have_selector('p.help-block#email', text: 'Can\'t be blank')
+        should have_selector('.form-group.has-error#email')
       end
 
       it 'should show a password error message' do
         click_button submit
-        should have_selector('.help-inline#password', text: 'Can\'t be blank')
+        should have_selector('p.help-block#password', text: 'Can\'t be blank')
+        should have_selector('.form-group.has-error#password')
       end
     end
 
@@ -289,12 +292,14 @@ describe 'account pages' do
 
       it 'should show a email error message' do
         click_button submit
-        should have_selector('.help-inline#email', text: 'Has already been taken')
+        should have_selector('p.help-block#email', text: 'Has already been taken')
+        should have_selector('.form-group.has-error#email')
       end
 
       it 'should show a company_name error message' do
         click_button submit
-        should have_selector('.help-inline#company-name', text: 'Has already been taken')
+        should have_selector('p.help-block#company-name', text: 'Has already been taken')
+        should have_selector('.form-group.has-error#company-name')
       end
     end
   end

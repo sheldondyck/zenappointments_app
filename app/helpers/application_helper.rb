@@ -57,7 +57,7 @@ module ApplicationHelper
 
   def error_class(h, sym)
     if h.errors.messages.has_key?(sym)
-      'error'
+      'has-error'
     end
   end
 
