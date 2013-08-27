@@ -7,22 +7,21 @@
     .row
       .col-sm-6.col-sm-offset-3
         .well
-          =form_for :session, url: signin_path do |f|
-            %legend Welcome back
-            .form-group
-              .row
-                %label.col-lg-4.control-label Email
-                .col-lg-6
-                  %input.input{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'form-control'}
-            .form-group
-              .row
-                %label.col-lg-4.control-label Password
-                .col-lg-6
-                  =f.password_field :password, class: 'form-control', placeholder: 'Password'
-            .form-group
-              .row
-                .col-lg-offset-4.col-lg-6
-                  =button_tag 'Sign In', type: 'submit', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
+          =form_for :session, url: signin_path, html: {class: 'form-horizontal'} do |f|
+            .row
+              .col-lg-12
+                %legend Welcome back
+                .form-group
+                  %label.col-lg-4.control-label{for: 'email'} Email
+                  .col-lg-6
+                    %input.input#email{name: 'session[email]', value: @email, placeholder: 'Email', type: 'text', class: 'form-control'}
+                .form-group
+                  %label.col-lg-4.control-label{for: 'password'} Password
+                  .col-lg-6
+                    =f.password_field :password, class: 'form-control', placeholder: 'Password', id: 'password'
+                .form-group
+                  .col-lg-offset-4.col-lg-6
+                    =button_tag 'Sign In', type: 'submit', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
     .row
       .col-sm-6.col-sm-offset-3
         %p
