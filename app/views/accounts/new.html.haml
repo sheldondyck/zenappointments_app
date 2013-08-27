@@ -13,6 +13,7 @@
               .row
                 %label.col-lg-4.control-label First Name
                 .col-lg-6
+                  -# TODO this is generating a value field (with nothing) that breaks the formating. what to do???
                   -#=f.text_field :first_name, class: 'form-control', id: 'inputIcon', placeholder: 'First Name'
                   %input.form-control{placeholder: 'First Name', name: 'account[first_name]', value: @user[:first_name], type: 'text'}
                   %p.help-block#first-name
@@ -21,6 +22,7 @@
               .row
                 %label.col-lg-4.control-label Last Name
                 .col-lg-6
+                  -# TODO this is generating a value field (with nothing) that breaks the formating. what to do???
                   -#=f.text_field :last_name, class: 'form-control', id: 'inputIcon', placeholder: 'Last Name'
                   %input.form-control{placeholder: 'Last Name', name: 'account[last_name]', value: @user[:last_name], type: 'text'}
                   %p.help-block#last-name
@@ -38,6 +40,7 @@
               .row
                 %label.col-lg-4.control-label Email
                 .col-lg-6
+                  -# TODO this is generating a value field (with nothing) that breaks the formating. what to do???
                   -#=f.text_field :email, class: 'form-control', id: 'inputIcon', placeholder: 'Email'
                   %input.form-control{placeholder: 'Email', name: 'account[email]', value: @user[:email], type: 'text'}
                   %p.help-block#email
