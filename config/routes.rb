@@ -18,6 +18,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'signout',                :to => 'sessions#destroy'
 
   get   'appointments',           :to => 'appointments#index'
+  get   'appointments/new',       :to => 'appointments#new'
   post  'appointments/create',    :to => 'appointments#create'
   post  'appointments/move',      :to => 'appointments#move'
 
