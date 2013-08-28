@@ -127,8 +127,8 @@ describe 'AppointmentsPages' do
 
         describe 'correct html' do
           it do
-            should have_selector('.new-appointment')
-            should have_selector('h4', 'New Appointment')
+            should have_selector('.appointment-dialog')
+            should have_selector('h4', 'Appointment')
             should have_field('appointment[first_name]')
             should have_field('appointment[last_name]')
             should have_field('appointment[telephone_cellular]')
@@ -155,7 +155,7 @@ describe 'AppointmentsPages' do
           end
 
           it do
-            should_not have_selector('.new-appointment')
+            should_not have_selector('.appointment-dialog')
             should have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')

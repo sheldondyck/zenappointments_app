@@ -1,7 +1,7 @@
 - if @appointment.nil?
-  $('.new-appointment').attr('id', 'error')
+  $('.appointment-dialog').attr('id', 'error')
 - else
-  $('.new-appointment').remove();
+  $('.appointment-dialog').remove();
   $('#active-hour').removeAttr('id');
   $('.edit-hour.hour-#{@hour}').append("<div class='client-appointment' data-appointment=#{@appointment.id}>#{@name}</div>");
   $('.client-appointment').draggable()

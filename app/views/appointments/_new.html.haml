@@ -1,5 +1,5 @@
--#.modal
 .appointment-dialog#new-appointment
+  .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
       =f.hidden_field :time, value: @date
@@ -16,10 +16,10 @@
         .appointment-details
           .appointment-date
             January 1 2013
-            %i.icon-calendar
+            -#%i.icon-calendar
           .appointment-time
             9:00am - 9:30am
-            %i.icon-time
+            -#%i.icon-time
           .appointment-duration
             30 mins.
         .appointment-client
@@ -34,7 +34,9 @@
             %span.input-group-addon
               %i.icon-search
       .appointment-footer
-.appointment-dialog#new-appointment
+
+-#.appointment-dialog#new-appointment
+  .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
       =f.hidden_field :time, value: @date
@@ -97,8 +99,8 @@
       .appointment-footer
         =button_tag 'Add Client', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
 
--#.modal
-.appointment-dialog#new-appointment
+-#.appointment-dialog#new-appointment
+  .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
       =f.hidden_field :time, value: @date
@@ -134,7 +136,7 @@
             john.smith@company.com
       .appointment-footer
 
-.modal-dialog
+-#.modal-dialog
   .new-appointment#new-appointment
     .modal-content
       =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
