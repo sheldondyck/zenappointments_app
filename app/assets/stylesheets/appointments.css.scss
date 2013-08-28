@@ -70,7 +70,7 @@ h1.logo {
   right:auto;
   padding-top:0px;
   padding-bottom:0px;
-  width:300px;
+  width:400px;
   margin-top:30px;// for tests
   margin-left:auto;
   margin-right:auto;
@@ -96,7 +96,7 @@ h1.logo {
       @include appointment-dialog-base;
       border-bottom: 1px solid #e5e5e5;
       background-color:#ddd;
-      padding-top: 15px;
+      padding-top: 10px;
       padding-bottom: 10px;
 
       h3 {
@@ -148,7 +148,7 @@ h1.logo {
           width: 50%;
           text-align: right;
           float: right;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: bold;
         }
 
@@ -169,10 +169,10 @@ h1.logo {
         font-size: 16px;
       }
 
-      .client-add {
+      .client-add, .client-edit {
         position: relative;
         display: inline;
-        padding: 0px 10px 0px 0px;
+        padding: 0px;
         cursor: pointer;
         background: transparent;
         border: 0px;
@@ -182,14 +182,14 @@ h1.logo {
         font-size: 14px;
         font-weight: bold;
         line-height: 1;
-        color: black;
+        color: #444;
         text-shadow: 0 1px 0 white;
-        opacity: 0.2;
+        //opacity: 0.5;
       }
 
       .appointment-client {
         @include appointment-dialog-base;
-        padding-bottom: 40px;
+        padding-bottom: 10px;
       }
     }
 
