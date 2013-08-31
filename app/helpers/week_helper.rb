@@ -12,7 +12,7 @@ module WeekHelper
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: "agenda" do
+      content_tag :table, class: "week" do
         header + week_rows
       end
     end

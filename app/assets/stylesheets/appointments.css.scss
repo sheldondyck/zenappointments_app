@@ -5,14 +5,13 @@ h1.logo {
   color: #444;
 }
 
-#appointments .calendar {
+#appointments .calendar, #appointments .agenda, #appointments .week {
   border-collapse:collapse;
   width:100%;
 
   td, th {
     font-family:"Lucida Grande", arial, helvetica, sans-serif;
     font-size:10px;
-    padding:6px;
     border:1px solid #999;
   }
 
@@ -20,19 +19,70 @@ h1.logo {
     background:#ddd;
     color:#666;
     text-align:center;
-    width:14.2857142857143%;
+    height:30px;
   }
 
   td {
     background:#fff;
     color:#777;
-    height:80px;
     vertical-align:top;
     font-size:16px;
   }
 
+  .corner {
+    background:#fff;
+    border-top:none;
+    border-left:none;
+  }
+
+  .hour {
+    padding:0px 6px 0px 0px;
+    background:#ddd;
+    text-align:right;
+    width:100px;
+  }
+
   .notmonth, .notmonth a { color:#ccc; }
   .today { background-color:#d7f2ff; }
+}
+
+#appointments .agenda {
+  th, td {
+    padding:0px;
+  }
+
+  td {
+    width:90%;
+    height:$hour-height;
+  }
+}
+
+#appointments .week {
+  th, td {
+    padding:0px 6px 0px 0px;
+  }
+
+  th {
+    width:12.5%;
+  }
+
+  td {
+    height:$hour-height;
+  }
+}
+
+#appointments .calendar {
+  td, th {
+    padding:6px;
+  }
+
+  th {
+    width:14.2857142857143%;
+  }
+
+  td {
+    height:80px;
+  }
 }
 
 #appointments #calendar-selector {
@@ -55,8 +105,8 @@ h1.logo {
 
 #appointments #active-hour {
   // TODO: moz and webkit are probably not correct
-  -moz-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
-  -webkit-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
+  //-moz-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
+  //-webkit-box-shadow: inset 3px 3px 3px rgba(68,170,68,0.7);
   box-shadow: inset 0 0 3px 3px rgba(68,170,68,0.7);
 }
 
@@ -80,7 +130,7 @@ h1.logo {
 }
 
 .appointment-content, .arrow:after {
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  //-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   // TODO: add moz
   box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);
 
@@ -93,6 +143,7 @@ h1.logo {
   background-clip: padding-box;
   outline: none;
   display: inline-block;
+  color:#444;
   //position: absolute;
 }
 
@@ -233,25 +284,6 @@ h1.logo {
   //border-top: 1px solid #e5e5e5;
 }
 
-.new-appointment {
-  //position:absolute;
-  //float:right;
-  //background:#fff;
-  //position:relative;
-  //border-style:solid;
-  //border-width:1px;
-  //height:300px;
-  //width:400px;
-  z-index:2;
-  //cursor:all-scroll;
-  //cursor:move;
-  //display:none;
-}
-
-.new-appointment#error {
-  border:1px solid #a00;
-}
-
 .client-appointment {
   position:absolute;
   background:#4a4;
@@ -262,51 +294,7 @@ h1.logo {
   border:1px solid #262;
   z-index:1;
   height:$hour-height;
-  width:150px;
-}
-
-#appointments .agenda {
-  border-collapse:collapse;
-  width:100%;
-
-  td, th {
-    font-family:"Lucida Grande", arial, helvetica, sans-serif;
-    font-size:10px;
-    padding:0px 6px 0px 0px;
-    border:1px solid #999;
-  }
-
-  th {
-    background:#ddd;
-    color:#666;
-    text-align:center;
-    //width:14.2857142857143%;
-  }
-
-  .corner {
-    background:#fff;
-    border-top:none;
-    border-left:none;
-  }
-
-  .hour {
-    background:#ddd;
-    text-align:right;
-    width:100px;
-  }
-
-  //.edit-hour {
-  //  width:90%; // TODO: hack because there are 1 employyes + 1 hour column
-  //}
-
-  td {
-    //position:relative; // TODO: causes borders to disappear with firefox
-    background:#fff;
-    color:#777;
-    height:$hour-height;
-    vertical-align:top;
-    font-size:16px;
-  }
+  width:12.5%;
 }
 
 #zen-logo {
@@ -321,14 +309,6 @@ h1.logo {
   // TODO: ugly hack to make it work
   top:65.0px;
 }
-
-/*#signout {
-  // TODO: should use absolute position
-  position:absolute;
-  right:0px;
-  // TODO: ugly hack to make it work
-  top:16.5px;
-}*/
 
 .nav-bar {
   background:#ddd;
