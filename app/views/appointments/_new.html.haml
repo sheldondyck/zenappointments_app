@@ -1,4 +1,4 @@
--#.appointment-dialog#new-appointment
+.appointment-dialog#new-appointment
   .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
@@ -35,7 +35,7 @@
               %i.icon-search
       .appointment-footer
 
-.appointment-dialog#new-appointment
+-#.appointment-dialog#new-appointment
   .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
