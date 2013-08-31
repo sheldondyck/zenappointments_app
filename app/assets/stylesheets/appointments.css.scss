@@ -130,30 +130,30 @@ h1.logo {
 }
 
 .appointment-content, .arrow:after {
+  overflow: hidden;
+
   //-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   // TODO: add moz
   box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);
 
-  //position: relative;
   background-color: #fcfcfc;
 
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  border-radius: 10px;
 
   background-clip: padding-box;
   outline: none;
   display: inline-block;
   color:#444;
-  //position: absolute;
 }
 
 .arrow {
-  width: 70px;
-  height: 72px;
+  width: 60px;
+  height: 40px;
   overflow: hidden;
   position: relative;
   left: 50%;
-  margin-left: -35px;
+  margin-left: -20px;
   bottom: -1px;
 }
 
@@ -162,10 +162,10 @@ h1.logo {
   border-radius: 0px;
   content: "";
   position: absolute;
-  left: 20px;
-  top: 60px;
-  width: 40px;
-  height: 40px;
+  left: 0px;
+  top: 20px;
+  width: 60px;
+  height: 60px;
   -webkit-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
   -moz-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
   box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
