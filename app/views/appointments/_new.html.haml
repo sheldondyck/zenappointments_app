@@ -1,4 +1,4 @@
-.appointment-dialog#new-appointment
+.appointment-dialog#appointment-template
   .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
@@ -6,44 +6,7 @@
       =f.hidden_field :hour, value: 'HOUR'
       =f.hidden_field :duration, value: 60
       .appointment-header
-        %button.close{type: 'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
-          %i.icon-remove
-        %button.color-selector{type: 'button'}
-          %i.icon-qrcode
-        %h3
-          Appointment
-      .appointment-body
-        .appointment-details
-          .appointment-date
-            January 1 2013
-            -#%i.icon-calendar
-          .appointment-time
-            9:00am - 9:30am
-            -#%i.icon-time
-          .appointment-duration
-            30 mins.
-        .appointment-client
-          %h4
-            Client
-            %button.client-add{type: 'button'}
-              %i.icon-plus
-              Add
-          .input-group
-            -# TODO: add label so clicking on search icon send focus and curso to text field
-            %input.form-control.search-query{placeholder: 'Search', type: 'text'}
-            %span.input-group-addon
-              %i.icon-search
-      .appointment-footer
-
--#.appointment-dialog#new-appointment
-  .arrow
-  .appointment-content
-    =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
-      =f.hidden_field :time, value: @date
-      =f.hidden_field :hour, value: 'HOUR'
-      =f.hidden_field :duration, value: 60
-      .appointment-header
-        %button.close{type: 'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
+        %button.close.appointment-close{type: 'button'}
           %i.icon-remove
         %button.color-selector{type: 'button'}
           %i.icon-qrcode
@@ -58,83 +21,72 @@
           .appointment-duration
             30 mins.
         .appointment-client
-          %h4
-            Client
-            %button.client-edit{type: 'button'}
-              %i.icon-search
-              Search
-          .row
-            .col-sm-6
-              .form-group#first-name{class: error_class(@client, :first_name)}
-                -# TODO for is not working here but works in signin. why?
-                %label.control-label{for: 'first-name'}
-                  First Name
-                  %input.form-control#first-name{placeholder: 'First Name', name: 'account[first_name]', value: @client[:first_name], type: 'text'}
-                  -unless error_message(@client, :first_name).nil?
-                    %p.help-block#first-name
-                      =error_message(@client, :first_name)
-              .form-group#telefone-celular{class: error_class(@client, :first_name)}
-                -# TODO for is not working here but works in signin. why?
-                %label.control-label{for: 'first-name'}
-                  Celular
-                  %input.form-control#first-name{placeholder: 'Celular', name: 'account[first_name]', value: @client[:first_name], type: 'text'}
-                  -unless error_message(@client, :first_name).nil?
-                    %p.help-block#first-name
-                      =error_message(@client, :first_name)
-            .col-sm-6
-              .form-group#last-name{class: error_class(@client, :last_name)}
-                %label.control-label{for: 'last-name'}
-                  Last Name
-                  %input.form-control#last-name{placeholder: 'Last Name', name: 'account[last_name]', value: @client[:last_name], type: 'text'}
-                  -unless error_message(@client, :last_name).nil?
-                    %p.help-block#last-name
-                      =error_message(@client, :last_name)
-              .form-group#last-name{class: error_class(@client, :last_name)}
-                %label.control-label{for: 'last-name'}
-                  Email
-                  %input.form-control#last-name{placeholder: 'Email', name: 'account[last_name]', value: @client[:last_name], type: 'text'}
-                  -unless error_message(@client, :last_name).nil?
-                    %p.help-block#last-name
-                      =error_message(@client, :last_name)
+          .appointment-client-search
+            %h4
+              Client
+              %button.btn-tool.client-add{type: 'button'}
+                %i.icon-plus
+                Add
+            .input-group
+              -# TODO: add label so clicking on search icon send focus and curso to text field
+              %input.form-control.search-query{placeholder: 'Search', type: 'text'}
+              %span.input-group-addon
+                %i.icon-search
+          .appointment-client-edit
+            %h4
+              Client
+              %button.btn-tool.client-search{type: 'button'}
+                %i.icon-search
+                Search
+            .row
+              .col-sm-6
+                .form-group#first-name{class: error_class(@client, :first_name)}
+                  -# TODO for is not working here but works in signin. why?
+                  %label.control-label{for: 'first-name'}
+                    First Name
+                    %input.form-control#first-name{placeholder: 'First Name', name: 'appointment[first_name]', value: @client[:first_name], type: 'text'}
+                    -unless error_message(@client, :first_name).nil?
+                      %p.help-block#first-name
+                        =error_message(@client, :first_name)
+                .form-group#telefone-celular{class: error_class(@client, :first_name)}
+                  -# TODO for is not working here but works in signin. why?
+                  %label.control-label{for: 'first-name'}
+                    Celular
+                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[first_name]', value: @client[:first_name], type: 'text'}
+                    -unless error_message(@client, :first_name).nil?
+                      %p.help-block#first-name
+                        =error_message(@client, :first_name)
+              .col-sm-6
+                .form-group#last-name{class: error_class(@client, :last_name)}
+                  %label.control-label{for: 'last-name'}
+                    Last Name
+                    %input.form-control#last-name{placeholder: 'Last Name', name: 'appointment[last_name]', value: @client[:last_name], type: 'text'}
+                    -unless error_message(@client, :last_name).nil?
+                      %p.help-block#last-name
+                        =error_message(@client, :last_name)
+                .form-group#last-name{class: error_class(@client, :last_name)}
+                  %label.control-label{for: 'last-name'}
+                    Email
+                    %input.form-control#last-name{placeholder: 'Email', name: 'appointment[last_name]', value: @client[:last_name], type: 'text'}
+                    -unless error_message(@client, :last_name).nil?
+                      %p.help-block#last-name
+                        =error_message(@client, :last_name)
+          .appointment-client-details
+            %h4
+              Client
+              %button.btn-tool.client-edit{type: 'button'}
+                %i.icon-edit
+                Edit
+            .appointment-name
+              %b
+                John Smith
+            .appointment-field
+              (11) 3141-5636
+            .appointment-field
+              john.smith@company.com
       .appointment-footer
-        =button_tag 'Add Client', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
-
--#.appointment-dialog#new-appointment
-  .arrow
-  .appointment-content
-    =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
-      =f.hidden_field :time, value: @date
-      =f.hidden_field :hour, value: 'HOUR'
-      =f.hidden_field :duration, value: 60
-      .appointment-header{style: 'background-color: #ada;'}
-        %button.close{type: 'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
-          %i.icon-remove
-        %button.color-selector{type: 'button'}
-          %i.icon-qrcode
-        %h3
-          John Smith
-      .appointment-body
-        .appointment-details
-          .appointment-date
-            January 1 2013
-          .appointment-time
-            9:00am - 9:30am
-          .appointment-duration
-            30 mins.
-        .appointment-client
-          %h4
-            Client
-            %button.client-edit{type: 'button'}
-              %i.icon-edit
-              Edit
-          .appointment-name
-            %b
-              John Smith
-          .appointment-field
-            (11) 3141-5636
-          .appointment-field
-            john.smith@company.com
-      .appointment-footer
+        .appointment-client-edit
+          =button_tag 'Add Client', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
 
 -#.modal-dialog
   .new-appointment#new-appointment

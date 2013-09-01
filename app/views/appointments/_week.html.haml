@@ -6,12 +6,3 @@
       -@appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d" % hour].each do |appointment|
         .client-appointment{data: {appointment: appointment.id}}
           =appointment.client.name
-  :coffee
-    # TODO: duplicate with _day
-    jQuery ->
-      $('.agenda').registerNewAgendaDialog('#{j render('new')}')
-      $('.client-appointment').draggable({snap: '.edit-hour'})
-      $('.edit-hour').droppable
-        accept: '.client-appointment',
-        drop: (event, ui) ->
-          $.ajax '#{appointments_move_path}', type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}

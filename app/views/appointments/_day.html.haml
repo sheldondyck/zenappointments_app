@@ -2,16 +2,9 @@
   =render('header')
   =agenda @date, @employees do |employee, hour|
     -if @appointments_by_hour[hour]
-      -n = 0
+      -n = 100
       -@appointments_by_hour[hour].each do |appointment|
+        -# TODO fix ugly css position hack
         .client-appointment{style: "left:#{n}px;", data: {appointment: appointment.id}}
           =appointment.client.name
         -n = n + 50
-  :coffee
-    jQuery ->
-      $('.agenda').registerNewAgendaDialog('#{j render('new')}')
-      $('.client-appointment').draggable({snap: '.edit-hour'})
-      $('.edit-hour').droppable
-        accept: '.client-appointment',
-        drop: (event, ui) ->
-          $.ajax '#{appointments_move_path}', type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}

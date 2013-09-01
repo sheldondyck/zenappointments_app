@@ -128,6 +128,10 @@ h1.logo {
   display: block;
 }
 
+#appointment-template {
+  display: none;
+}
+
 .appointment-content, .arrow:after {
   overflow: hidden;
 
@@ -252,34 +256,46 @@ h1.logo {
     font-size: 16px;
     //text-shadow: 0 1px 0 white;
   }
+}
 
-  // TODO combine into one class client-button?
-  .client-add, .client-edit {
-    position: relative;
-    display: inline;
-    padding: 0px;
-    cursor: pointer;
-    background: transparent;
-    border: 0px;
-    -webkit-appearance: none;
-    float: right;
-    text-align: right;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 1;
-    color: #666;
-    text-shadow: 0 1px 0 white;
-    //opacity: 0.5;
-  }
+// TODO combine into one class client-button?
+.btn-tool {
+  position: relative;
+  display: inline;
+  padding: 0px;
+  cursor: pointer;
+  background: transparent;
+  border: 0px;
+  -webkit-appearance: none;
+  float: right;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  color: #666;
+  text-shadow: 0 1px 0 white;
+  //opacity: 0.5;
+}
 
-  .client-add:hover, .client-edit:hover, .client-add:focus, .client-edit:focus {
-    color: #222;
-  }
+.btn-tool:hover, .btn-tool:focus {
+  color: #222;
+}
 
-  .appointment-client {
-    @include appointment-dialog-base;
-    padding-bottom: 10px;
-  }
+.appointment-client {
+  @include appointment-dialog-base;
+  padding-bottom: 10px;
+}
+
+.appointment-client-search {
+  display: block;
+}
+
+.appointment-client-edit {
+  display: none;
+}
+
+.appointment-client-details {
+  display: none;
 }
 
 .appointment-footer {

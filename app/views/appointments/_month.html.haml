@@ -7,6 +7,3 @@
       -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
         %li
           =appointment.client.name
-  -#:coffee
-    jQuery ->
-      $('.calendar').registerNewCalendarDialog('#{j render('new')}')
