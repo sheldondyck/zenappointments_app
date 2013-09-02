@@ -7,6 +7,7 @@ $ ->
     $('.appointment-date').html($(this).data('date-value'))
     $('.appointment-time').html($(this).data('hour-value'))
     $('.appointment-duration').html($(this).data('duration-value'))
+    ShowClientAppointmentSearchPartial()
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow
@@ -20,6 +21,21 @@ $ ->
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
 
+ShowClientAppointmentSearchPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'block')
+  $('.appointment-client-edit').css('display', 'none')
+
+ShowClientAppointmentEditPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'none')
+  $('.appointment-client-edit').css('display', 'block')
+
+ShowClientAppointmentAddPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'none')
+  $('.appointment-client-edit').css('display', 'block')
+
 $ ->
   $('.appointment-close').click ->
     $('.appointment-dialog').css('display', 'none')
@@ -27,21 +43,15 @@ $ ->
 
 $ ->
   $('.client-search').click ->
-    $('.appointment-client-details').css('display', 'none')
-    $('.appointment-client-search').css('display', 'block')
-    $('.appointment-client-edit').css('display', 'none')
+    ShowClientAppointmentSearchPartial()
 
 $ ->
   $('.client-edit').click ->
-    $('.appointment-client-details').css('display', 'none')
-    $('.appointment-client-search').css('display', 'none')
-    $('.appointment-client-edit').css('display', 'block')
+    ShowClientAppointmentEditPartial()
 
 $ ->
   $('.client-add').click ->
-    $('.appointment-client-details').css('display', 'none')
-    $('.appointment-client-search').css('display', 'none')
-    $('.appointment-client-edit').css('display', 'block')
+    ShowClientAppointmentAddPartial()
 
 $ ->
   $('.client-appointment').click (ev) ->
