@@ -36,7 +36,10 @@ module AgendaHelper
     end
 
     def employee_cell(employee, hour)
-      content_tag :td, view.capture(employee, hour, &callback), class: employee_classes(hour), data:{date: date.to_s, hour: hour}
+      # TODO: code smell
+      # 1. too long
+      # 2 date_value formatting is duplicated in controller
+      content_tag :td, view.capture(employee, hour, &callback), class: employee_classes(hour), data:{date: date.to_s, hour: hour, date_value: date.strftime('%B %e %Y'), hour_value: "#{hour}:00 - #{hour + 1}:00", duration_value: '60 mins.'}
     end
 
     def hour_classes(hour)
@@ -48,7 +51,8 @@ module AgendaHelper
     def employee_classes(hour)
       classes = []
       classes << 'edit-hour'
-      classes << 'hour-' + hour.to_s
+      # TODO: OK to remove "hour-n"?
+      #classes << 'hour-' + hour.to_s
       classes.empty? ? nil : classes.join(' ')
     end
 

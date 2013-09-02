@@ -134,7 +134,7 @@ class AppointmentsController < ApplicationController
     def client_params
       params.require(:appointment).permit(:first_name,
                                            :last_name,
-                                           :telephone_celular,
+                                           :telephone_cellular,
                                            :email)
     end
 

@@ -2,8 +2,8 @@
   .arrow
   .appointment-content
     =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
+      =f.hidden_field :hour, class: 'hour-field'
       =f.hidden_field :time, value: @date
-      =f.hidden_field :hour, value: 'HOUR'
       =f.hidden_field :duration, value: 60
       .appointment-header
         %button.close.appointment-close{type: 'button'}
@@ -52,7 +52,7 @@
                   -# TODO for is not working here but works in signin. why?
                   %label.control-label{for: 'first-name'}
                     Celular
-                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[first_name]', value: @client[:first_name], type: 'text'}
+                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[tellephone_celular]', value: @client[:first_name], type: 'text'}
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
@@ -67,7 +67,7 @@
                 .form-group#last-name{class: error_class(@client, :last_name)}
                   %label.control-label{for: 'last-name'}
                     Email
-                    %input.form-control#last-name{placeholder: 'Email', name: 'appointment[last_name]', value: @client[:last_name], type: 'text'}
+                    %input.form-control#last-name{placeholder: 'Email', name: 'appointment[email]', value: @client[:last_name], type: 'text'}
                     -unless error_message(@client, :last_name).nil?
                       %p.help-block#last-name
                         =error_message(@client, :last_name)
