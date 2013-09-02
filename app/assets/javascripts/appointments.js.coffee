@@ -42,3 +42,18 @@ $ ->
     $('.appointment-client-details').css('display', 'none')
     $('.appointment-client-search').css('display', 'none')
     $('.appointment-client-edit').css('display', 'block')
+
+$ ->
+  $('.client-appointment').click (ev) ->
+    ev.stopPropagation()
+    $('#active-hour').removeAttr('id')
+    $('#active-client').removeAttr('id')
+    $(this).attr('id', 'active-client')
+    $('#appoinment-template').append('#active-client')
+    $('.appointment-client-details').css('display', 'block')
+    $('.appointment-client-search').css('display', 'none')
+    $('.appointment-client-edit').css('display', 'none')
+    $('.appointment-dialog').css('display', 'block')
+    # TODO 400 is the size of dialog. fix this
+    # TODO 12 is a magic number because of arrow
+    $('.appointment-dialog').offset({left:$('#active-client').offset().left + $('#active-client').width() / 2 - 400 / 2, top:$('#active-client').offset().top + $('#active-client').height() - 12})

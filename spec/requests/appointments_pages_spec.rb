@@ -121,7 +121,9 @@ describe 'AppointmentsPages' do
     describe 'new appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find('td.edit-hour.hour-0').click
+          #find('td.edit-hour.hour-0').click
+          #find('data-hour', text: '3').click
+          find(:xpath, '//td[@data-hour="3"').click
           #  save_and_open_page
         end
 

@@ -6,5 +6,8 @@
       -@appointments_by_hour[hour].each do |appointment|
         -# TODO fix ugly css position hack
         .client-appointment{style: "left:#{n}px;", data: {appointment: appointment.id}}
-          =appointment.client.name
+          .client-appointment-name
+            =appointment.client.name
+          .client-appointment-time
+            ="#{hour}:00 - #{hour + 1}:00"
         -n = n + 50
