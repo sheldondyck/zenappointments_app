@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require angular
-//= require angular-resource
+// require angular
+// require angular-resource
 //= require turbolinks
 //= require bootstrap
 //= require_tree .

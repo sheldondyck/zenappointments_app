@@ -1,11 +1,2 @@
 =render 'layouts/menu'
 %h1 Clients
-.test
-  %div(ng-controller='ClientCtrl')
-    %form
-      %input(ng-model='clientSearch.first_name'){type:'text'}
-    %ul
-      %li(ng-repeat="client in clients")
-        {{client.first_name}}
-        {{client.last_name}}
-        {{client.email}}
