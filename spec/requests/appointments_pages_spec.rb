@@ -59,19 +59,21 @@ describe 'AppointmentsPages' do
 
       # TODO: get the config for the account for start/end hour and verify that all are shown
       it do
-        should have_selector('td.edit-hour.hour-7')
-        should have_selector('td.edit-hour.hour-8')
-        should have_selector('td.edit-hour.hour-9')
-        should have_selector('td.edit-hour.hour-10')
-        should have_selector('td.edit-hour.hour-11')
-        should have_selector('td.edit-hour.hour-12')
-        should have_selector('td.edit-hour.hour-13')
-        should have_selector('td.edit-hour.hour-14')
-        should have_selector('td.edit-hour.hour-15')
-        should have_selector('td.edit-hour.hour-16')
-        should have_selector('td.edit-hour.hour-17')
-        should have_selector('td.edit-hour.hour-18')
-        should have_selector('td.edit-hour.hour-19')
+        # TODO: does not have .edit-hour
+        #should have_selector('td.edit-hour.hour-7')
+        should have_selector(:xpath, '//td[@data-hour="7"]')
+        should have_selector(:xpath, '//td[@data-hour="8"]')
+        should have_selector(:xpath, '//td[@data-hour="9"]')
+        should have_selector(:xpath, '//td[@data-hour="10"]')
+        should have_selector(:xpath, '//td[@data-hour="11"]')
+        should have_selector(:xpath, '//td[@data-hour="12"]')
+        should have_selector(:xpath, '//td[@data-hour="13"]')
+        should have_selector(:xpath, '//td[@data-hour="14"]')
+        should have_selector(:xpath, '//td[@data-hour="15"]')
+        should have_selector(:xpath, '//td[@data-hour="16"]')
+        should have_selector(:xpath, '//td[@data-hour="17"]')
+        should have_selector(:xpath, '//td[@data-hour="18"]')
+        should have_selector(:xpath, '//td[@data-hour="19"]')
         should have_selector('h3', Time.zone.now.strftime('%A, %B %e %Y'))
       end
     end
@@ -118,12 +120,16 @@ describe 'AppointmentsPages' do
       end
     end
 
-    describe 'new appointment dialog', js: true do
+    # TODO: verify search dialog html
+    # TODO: verify details dialog html
+
+    describe 'create client appointment dialog', js: true do
       describe 'should show dialog' do
         before do
           #find('td.edit-hour.hour-0').click
           #find('data-hour', text: '3').click
-          find(:xpath, '//td[@data-hour="3"').click
+          find(:xpath, '//td[@data-hour="3"]').click
+          click_button 'Add'
           #  save_and_open_page
         end
 
@@ -135,17 +141,17 @@ describe 'AppointmentsPages' do
             should have_field('appointment[last_name]')
             should have_field('appointment[telephone_cellular]')
             should have_field('appointment[email]')
-            should have_button('Create')
+            should have_button('Add Client')
             should_not have_selector('.client-appointment')
           end
         end
 
         describe 'save appointment' do
           before do
-            fill_in 'First Name', with: 'Client Test_Name 1'
-            fill_in 'Email', with: 'client_1@client_domain.com'
+            fill_in 'appointment[first_name]', with: 'Client Test_Name 1'
+            fill_in 'appointment[email]', with: 'client_1@client_domain.com'
             #save_and_open_page
-            click_button 'Create'
+            click_button 'Add Client'
             # TODO: find a better way then sleeping
             sleep 0.2
             #puts Capybara.default_wait_time
@@ -157,9 +163,9 @@ describe 'AppointmentsPages' do
           end
 
           it do
-            should_not have_selector('.appointment-dialog')
-            should have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
-            should_not have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
+            #should_not have_selector('.appointment-dialog')
+            should have_selector('//td[@data-hour="3"] .client-appointment', text: 'Client Test_Name 1')
+            should_not have_selector('//td[@data-hour="4"] .client-appointment', text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
 
@@ -180,7 +186,8 @@ describe 'AppointmentsPages' do
           describe 'drag and drop' do
             before do
               appointment = find('.client-appointment')
-              destination = find('td.edit-hour.hour-1')
+              destination = find('//td[@data-hour="5"]')
+              save_and_open_page
               appointment.drag_to(destination)
               sleep 0.5
               #save_and_open_page
@@ -190,7 +197,7 @@ describe 'AppointmentsPages' do
               # TODO: need to update DOM in move.js.haml
               it do
                 #should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
-                #should have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
+                should have_selector('//td[@data-hour="5"] .client-appointment', text: 'Client Test_Name 1')
               end
             end
 

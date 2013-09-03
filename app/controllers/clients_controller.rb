@@ -21,4 +21,7 @@ class ClientsController < ApplicationController
 
   def destroy
   end
+
+  def search
+  end
 end

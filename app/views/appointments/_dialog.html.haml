@@ -52,7 +52,7 @@
                   -# TODO for is not working here but works in signin. why?
                   %label.control-label{for: 'first-name'}
                     Celular
-                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[tellephone_celular]', value: @client[:first_name], type: 'text'}
+                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[telephone_cellular]', value: @client[:first_name], type: 'text'}
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
@@ -87,46 +87,3 @@
       .appointment-footer
         .appointment-client-edit
           =button_tag 'Add Client', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
-
--#.modal-dialog
-  .new-appointment#new-appointment
-    .modal-content
-      =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
-        =f.hidden_field :time, value: @date
-        =f.hidden_field :hour, value: 'HOUR'
-        =f.hidden_field :duration, value: 60
-        .modal-header
-          %button.close{type: 'button', data: {dismiss:'modal'}, aria: {hidden:'true'}}
-            %i.icon-remove
-          %h4
-            Appointment
-        .modal-body
-          .row
-            .col-sm-8
-              .input-group
-                %input.form-control.search-query{placeholder: 'Search', type: 'text'}
-                %span.input-group-btn
-                  %button.btn.btn-default{type:'button'}
-                    %i.icon-search
-                    -#div class="input-append">
-                      <input type="text" class="span2 search-query">
-                      <button type="submit" class="btn"><i class="icon-search"></i></button>
-          .row
-            %br
-          .row
-            .col-sm-4
-              .form-group{class: error_class(@client, :first_name)}
-                =f.text_field :first_name, class: 'form-control', id: 'inputIcon', placeholder: 'First Name'
-              .form-group{class: error_class(@client, :last_name)}
-                =f.text_field :last_name, class: 'form-control', id: 'inputIcon', placeholder: 'Last Name'
-              .form-group{class: error_class(@client, :telephone_cellular)}
-                =f.text_field :telephone_cellular, class: 'form-control', id: 'inputIcon', placeholder: 'Cellular'
-            .col-sm-4
-              .form-group{class: error_class(@client, :telephone_office)}
-                =f.text_field :telephone_office, class: 'form-control', id: 'inputIcon', placeholder: 'Office Telephone'
-              .form-group{class: error_class(@client, :telephone_home)}
-                =f.text_field :telephone_home, class: 'form-control', id: 'inputIcon', placeholder: 'Home Telephone'
-              .form-group{class: error_class(@client, :email)}
-                =f.text_field :email, class: 'form-control', id: 'inputIcon', placeholder: 'Email'
-        .modal-footer
-          =button_tag 'Create', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
