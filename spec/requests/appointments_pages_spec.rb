@@ -146,7 +146,7 @@ describe 'AppointmentsPages' do
           end
         end
 
-        describe 'save appointment' do
+        describe 'save appointment', js: true do
           before do
             fill_in 'appointment[first_name]', with: 'Client Test_Name 1'
             fill_in 'appointment[email]', with: 'client_1@client_domain.com'
@@ -159,13 +159,13 @@ describe 'AppointmentsPages' do
             #  puts Capybara.default_wait_time
             #  page.evaluate_script 'jQuery.active == 0'
             #end
-            #save_and_open_page
+            save_and_open_page
           end
 
           it do
             #should_not have_selector('.appointment-dialog')
-            should have_selector('//td[@data-hour="3"] .client-appointment', text: 'Client Test_Name 1')
-            should_not have_selector('//td[@data-hour="4"] .client-appointment', text: 'Client Test_Name 1')
+            should have_xpath("//td[@data-hour='3']/div[@class='client-appointment']", text: 'Client Test_Name 1')
+            should_not have_selector("//td[@data-hour='4'] .client-appointment", text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
 
@@ -186,8 +186,8 @@ describe 'AppointmentsPages' do
           describe 'drag and drop' do
             before do
               appointment = find('.client-appointment')
-              destination = find('//td[@data-hour="5"]')
-              save_and_open_page
+              destination = find(:xpath, '//td[@data-hour="5"]')
+              #save_and_open_page
               appointment.drag_to(destination)
               sleep 0.5
               #save_and_open_page
@@ -197,7 +197,7 @@ describe 'AppointmentsPages' do
               # TODO: need to update DOM in move.js.haml
               it do
                 #should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
-                should have_selector('//td[@data-hour="5"] .client-appointment', text: 'Client Test_Name 1')
+                should have_selector('//td[@data-hour="5" and @class="client-appointment"]', text: 'Client Test_Name 1')
               end
             end
 

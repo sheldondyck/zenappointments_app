@@ -36,6 +36,11 @@ ShowClientAppointmentAddPartial = ->
   $('.appointment-client-search').css('display', 'none')
   $('.appointment-client-edit').css('display', 'block')
 
+HideClientAppointmentDialog = ->
+  alert 'hide client'
+  $('.appointment-dialog').css('display', 'none')
+  $('#active-hour').removeAttr('id')
+
 $ ->
   $('.client-search').click ->
     ShowClientAppointmentSearchPartial()
@@ -50,8 +55,7 @@ $ ->
 
 $ ->
   $('.appointment-close').click ->
-    $('.appointment-dialog').css('display', 'none')
-    $('#active-hour').removeAttr('id')
+    HideClientAppointmentDialog()
 
 $ ->
   $('.client-appointment').click (ev) ->
