@@ -2,7 +2,8 @@
   =render('header')
   =agenda @date, @employees do |employee, hour|
     -if @appointments_by_hour[hour]
-      -n = 100
+      -# TODO magic numbers for alignment with our
+      -n = 100 + 5
       -@appointments_by_hour[hour].each do |appointment|
         -# TODO fix ugly css position hack
         .client-appointment{style: "left:#{n}px;", data: {appointment: appointment.id}}
@@ -10,4 +11,4 @@
             =appointment.client.name
           .client-appointment-time
             ="#{hour}:00 - #{hour + 1}:00"
-        -n = n + 50
+        -n = n + 120 + 10
