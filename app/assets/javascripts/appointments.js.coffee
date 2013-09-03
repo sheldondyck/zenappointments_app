@@ -28,7 +28,6 @@ ShowClientAppointmentAddPartial = ->
   $('.appointment-client-edit').css('display', 'block')
 
 HideClientAppointmentDialog = ->
-  alert 'hide client'
   $('.appointment-dialog').css('display', 'none')
   $('#active-hour').removeAttr('id')
 
