@@ -1,7 +1,8 @@
 - if @appointment.nil?
   $('.appointment-dialog').attr('id', 'error');
 - else
-  $('#active-hour').append("<div class='client-appointment' data-appointment='#{@appointment.id}'>#{@name}</div>");
+  -# TODO ugly offset magic number
+  !="$('#active-hour').append('#{escape_javascript(render('card', appointment: @appointment, hour: @hour, offset: 105))}');"
   $('.client-appointment').draggable();
   -# TODO does not call function
   -#HideClientAppointmentDialog();

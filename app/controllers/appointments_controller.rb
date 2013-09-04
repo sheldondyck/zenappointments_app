@@ -85,7 +85,7 @@ class AppointmentsController < ApplicationController
 
       unless @client.nil?
         @name = @client.name
-        @hour = params.require(:appointment).permit(:hour)[:hour]
+        @hour = params.require(:appointment).permit(:hour)[:hour].to_i
         #puts appointment_params[:time]
         # TODO: removing in_time_zone did generate a F with specs. huh?
         time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)

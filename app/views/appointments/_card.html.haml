@@ -1,0 +1,7 @@
+-# TODO fix ugly css position hack
+.client-appointment{style: "left:#{offset}px;", data: {appointment: appointment.id}}
+  .client-appointment-name
+    =appointment.client.name
+  .client-appointment-time
+    ="#{hour}:00 - #{hour + 1}:00"
+

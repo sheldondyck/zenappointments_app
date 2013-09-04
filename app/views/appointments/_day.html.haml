@@ -3,12 +3,7 @@
   =agenda @date, @employees do |employee, hour|
     -if @appointments_by_hour[hour]
       -# TODO magic numbers for alignment with our
-      -n = 100 + 5
+      -offset = 100 + 5
       -@appointments_by_hour[hour].each do |appointment|
-        -# TODO fix ugly css position hack
-        .client-appointment{style: "left:#{n}px;", data: {appointment: appointment.id}}
-          .client-appointment-name
-            =appointment.client.name
-          .client-appointment-time
-            ="#{hour}:00 - #{hour + 1}:00"
-        -n = n + 120 + 10
+        =render('card', appointment: appointment, hour: hour, offset: offset)
+        -offset = offset + 120 + 10
