@@ -32,14 +32,6 @@ HideClientAppointmentDialog = ->
   $('#active-hour').removeAttr('id')
 
 $ ->
-  $('.client-appointment').draggable({snap: '.edit-hour'})
-  $('.edit-hour').droppable
-    accept: '.client-appointment',
-    drop: (event, ui) ->
-      # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
-
-$ ->
   $('.client-search').click ->
     ShowClientAppointmentSearchPartial()
 
@@ -54,6 +46,38 @@ $ ->
 $ ->
   $('.appointment-close').click ->
     HideClientAppointmentDialog()
+
+#$ ->
+#  $('#appointments').show ->
+#    alert 'show appointments 2'
+
+#$ ->
+#  $('#appointments').live 'change', ->
+#    $('.client-appointment').draggable({snap: '.edit-hour'})
+#    $('.edit-hour').droppable
+#      accept: '.client-appointment',
+#      drop: (event, ui) ->
+#        # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
+#        $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+
+# TODO: This code had to be duplicated in index.js.haml because view day <-> week changes were losing the event handler. Tried to use live be didn't work.
+# Need to find final solution.
+$ ->
+  $('.client-appointment').draggable({snap: '.edit-hour'})
+  $('.edit-hour').droppable
+    accept: '.client-appointment',
+    drop: (event, ui) ->
+      # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
+      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+
+# TODO:
+#$ ->
+# $('.client-appointment').live 'draggable', snap: '.edit-hour'
+# $('.edit-hour').live 'droppable', ->
+#   accept: '.client-appointment',
+#   drop: (event, ui) ->
+#     # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
+#     $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
 
 $ ->
   # TODO: calling ShowClientAppointmentDialog does not work so this code is duplicated
