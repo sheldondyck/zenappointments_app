@@ -1,8 +1,18 @@
-// TODO: Can this be coffeescript/haml?
-$('#appointments-panel').remove();
-$('#appointments').append('#{j render(@view)}');
-$('.appointment-dialog').css('display', 'none')
+:coffee
+  $('#appointments-panel').remove()
+  $('#appointments').append("#{j render(@view)}")
+  $('.appointment-dialog').css('display', 'none')
 
 // TODO: duplicate in appointments.js.coffee
-$('.client-appointment').draggable({snap: '.edit-hour'});
-$('.edit-hour').droppable({accept: '.client-appointment', drop: function(event, ui) { return $.ajax("/appointments/move", { type: 'POST', data: { appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour') } }); } }); 
+//$('.client-appointment').draggable({snap: '.edit-hour'});
+//$('.edit-hour').droppable({accept: '.client-appointment', drop: function(event, ui) { return $.ajax("/appointments/move", { type: 'POST', data: { appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour') } }); } });
+
+:coffee
+  # TODO: duplicate in appointments.js.coffee
+  $ ->
+    $('.client-appointment').draggable({snap: '.edit-hour'})
+    $('.edit-hour').droppable
+      accept: '.client-appointment',
+      drop: (event, ui) ->
+        # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
+        $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}

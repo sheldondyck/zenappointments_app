@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 82f1b343ffc0069bf99d2a3d4f0190bc87ba89ed
+  revision: 1344c58711e9ba30cbbd028908ea3fe6df73969d
   branch: 3
   specs:
     bootstrap-sass (3.0.0.0)
@@ -112,7 +112,7 @@ GEM
     json (1.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
-    libnotify (0.8.1)
+    libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
     listen (1.3.0)
