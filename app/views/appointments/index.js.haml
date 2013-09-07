@@ -1,7 +1,7 @@
 // TODO: Can this be coffeescript/haml?
 $('#appointments-panel').remove();
-$('#appointments').append('#{j render(@view)}');
-$('.appointment-dialog').css('display', 'none')
+$('#appointments').append("#{escape_javascript render(@view)}");
+$('.appointment-dialog').css('display', 'none');
 
 // TODO: duplicate in appointments.js.coffee
 $('.client-appointment').draggable({snap: '.edit-hour'});
