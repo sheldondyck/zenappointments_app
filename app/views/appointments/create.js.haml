@@ -1,8 +1,10 @@
+// TODO change to coffeescript
 - if @appointment.nil?
   $('.appointment-dialog').attr('id', 'error');
 - else
   -# TODO ugly offset magic number
-  !="$('#active-hour').append('#{escape_javascript(render('card', appointment: @appointment, hour: @hour, offset: 105))}');"
+  -#!="$('#active-hour').append('#{escape_javascript(render('card', appointment: @appointment, hour: @hour, offset: 105))}');"
+  $('#active-hour').append("#{j render('card', appointment: @appointment, hour: @hour, offset: 105)}");
   $('.client-appointment').draggable();
   -# TODO does not call function
   -#HideClientAppointmentDialog();
