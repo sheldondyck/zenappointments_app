@@ -23,5 +23,11 @@ class ClientsController < ApplicationController
   end
 
   def search
+    puts 'search: ' + params[:term]
+    #@clients = Client.limit(10).all(conditions: ['first_name = ? or last_name = ?', params[:term], params[:term]])
+    @clients = Client.search_name(params[:term], 10)
+    #puts 'first_name:' + @clients.first
+
+    respond_to :json, @clients.to_json
   end
 end

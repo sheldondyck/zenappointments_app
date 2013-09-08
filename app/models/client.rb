@@ -29,6 +29,8 @@ class Client < ActiveRecord::Base
                           format: { with: VALID_EMAIL_REGEX },
                           uniqueness: { case_sensitive: false }
 
+  scope :search_name, -> (term, limit) { limit(limit).where('first_name = ? or last_name = ?', term, term) }
+
   def name
     first_name + ' ' + last_name
   end

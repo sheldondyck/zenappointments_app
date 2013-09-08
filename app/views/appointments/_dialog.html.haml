@@ -6,7 +6,7 @@
       =f.hidden_field :time, value: @date
       =f.hidden_field :duration, value: 60
       .appointment-header
-        %button.close.appointment-close{type: 'button'}
+        %button.close.close-appointment-dialog{type: 'button'}
           %i.icon-remove
         %button.color-selector{type: 'button'}
           %i.icon-qrcode
@@ -24,18 +24,18 @@
           .appointment-client-search
             %h4
               Client
-              %button.btn-tool.client-add{type: 'button'}
+              %button.btn-tool.show-client-add{type: 'button'}
                 %i.icon-plus
                 Add
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
-              %input.form-control.search-query{placeholder: 'Search', type: 'text'}
+              %input.form-control.search-client{placeholder: 'Search', type: 'text'}
               %span.input-group-addon
                 %i.icon-search
           .appointment-client-edit
             %h4
               Client
-              %button.btn-tool.client-search{type: 'button'}
+              %button.btn-tool.show-client-search{type: 'button'}
                 %i.icon-search
                 Search
             .row
@@ -74,7 +74,7 @@
           .appointment-client-details
             %h4
               Client
-              %button.btn-tool.client-edit{type: 'button'}
+              %button.btn-tool.show-client-edit{type: 'button'}
                 %i.icon-edit
                 Edit
             .appointment-name

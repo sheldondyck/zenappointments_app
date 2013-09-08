@@ -32,20 +32,24 @@ HideClientAppointmentDialog = ->
   $('#active-hour').removeAttr('id')
 
 $ ->
-  $('.client-search').click ->
+  $('.show-client-search').click ->
     ShowClientAppointmentSearchPartial()
 
 $ ->
-  $('.client-edit').click ->
+  $('.show-client-edit').click ->
     ShowClientAppointmentEditPartial()
 
 $ ->
-  $('.client-add').click ->
+  $('.show-client-add').click ->
     ShowClientAppointmentAddPartial()
 
 $ ->
-  $('.appointment-close').click ->
+  $('.close-appointment-dialog').click ->
     HideClientAppointmentDialog()
+
+$ ->
+  $('.search-client').keyup ->
+    $.ajax "/clients/search", type: 'GET', data: {term: $(this).val()}
 
 #$ ->
 #  $('#appointments').show ->
