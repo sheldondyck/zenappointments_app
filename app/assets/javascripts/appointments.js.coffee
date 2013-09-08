@@ -49,7 +49,11 @@ $ ->
 
 $ ->
   $('.search-client').keyup ->
-    $.ajax "/clients/search", type: 'GET', data: {term: $(this).val()}
+    $.ajax "/clients/search",
+      type: 'GET',
+      data: {term: $(this).val()}
+      success: ->
+        $('.client-search-results').append("oi")
 
 #$ ->
 #  $('#appointments').show ->
