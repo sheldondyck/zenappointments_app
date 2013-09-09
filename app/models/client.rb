@@ -29,7 +29,10 @@ class Client < ActiveRecord::Base
                           format: { with: VALID_EMAIL_REGEX },
                           uniqueness: { case_sensitive: false }
 
-  scope :search_name, -> (term, limit) { limit(limit).where('first_name = ? or last_name = ?', term, term) }
+  # TODO: NEED TO ADD CORRECT CODE HERE. RIGHT NOT IS HARD CODED TO 1!
+  default_scope { where(account_id: 1) }
+
+  scope :search_name, -> (term, limit) { limit(limit).order('first_name, last_name').where('first_name like ? or last_name like ?', "#{term}%", "#{term}%") }
 
   def name
     first_name + ' ' + last_name

@@ -24,10 +24,12 @@ class ClientsController < ApplicationController
 
   def search
     puts 'search: ' + params[:term]
-    #@clients = Client.limit(10).all(conditions: ['first_name = ? or last_name = ?', params[:term], params[:term]])
-    #@clients = Client.search_name(params[:term], 10)
-    #puts 'first_name:' + @clients.first
-
-    #respond_to :json, @clients.to_json
+    # TODO: what is best way to not do the search if :term == "" ?
+    @clients = Array.new
+    # TODO: why is this scope not lazy loaded? should only execute at db on view render,
+    # but in the console is executing imediately.
+    @clients = Client.search_name(params[:term], 10).to_a unless params[:term].empty?
+    #pp @clients
+    #puts 'first_name:' + @clients.first.first_name unless @clients.size == 0
   end
 end

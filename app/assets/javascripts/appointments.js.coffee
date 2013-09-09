@@ -47,13 +47,14 @@ $ ->
   $('.close-appointment-dialog').click ->
     HideClientAppointmentDialog()
 
+    # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?
 $ ->
   $('.search-client').keyup ->
     $.ajax "/clients/search",
       type: 'GET',
       data: {term: $(this).val()}
-      success: ->
-        $('.client-search-results').append("oi")
+      error: ->
+        alert 'error' # TODO: added generic error handler
 
 #$ ->
 #  $('#appointments').show ->
