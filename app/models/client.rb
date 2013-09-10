@@ -31,7 +31,7 @@ class Client < ActiveRecord::Base
 
   default_scope { where(account_id: Account.current_id) }
 
-  scope :search_name, -> (term, limit) { limit(limit).order('first_name, last_name').where('first_name like ? or last_name like ?', "#{term}%", "#{term}%") }
+  scope :search_name, -> (term, limit) { where('first_name like ? or last_name like ?', "#{term}%", "#{term}%").order('first_name, last_name').limit(limit) }
 
   def name
     first_name + ' ' + last_name

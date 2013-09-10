@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   around_filter :user_time_zone if :current_user
   before_action :scope_current_account
+  after_action :unscope_current_account
 
   private
     def authorize_user
@@ -20,9 +21,9 @@ class ApplicationController < ActionController::Base
 
     def scope_current_account
       Account.current_id = @current_user.id unless @current_user.nil?
-      #yield
-      #puts "cope_current_account #{Account.current_id}, #{@current_user.id}"
-    ensure
-      #Account.current_id = nil
+    end
+
+    def unscope_current_account
+      Account.current_id = nil
     end
 end
