@@ -159,7 +159,7 @@ describe 'AppointmentsPages' do
             #  puts Capybara.default_wait_time
             #  page.evaluate_script 'jQuery.active == 0'
             #end
-            save_and_open_page
+            #save_and_open_page
           end
 
           it do
@@ -222,7 +222,7 @@ describe 'AppointmentsPages' do
 #        sleep 0.5
 #        fill_in 'First Name', with: 'Client Test_Name 1'
 #        fill_in 'Email', with: 'client_1@client_domain.com'
-#        save_and_open_page
+#        #save_and_open_page
 #      end
 #      it 'should create an appointment' do
 #        expect { click_button 'Create' }.to change(Appointment, :count).by(1)

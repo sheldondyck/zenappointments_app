@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :authorize_user
+  prepend_before_action :authorize_user
   respond_to :json, :html
 
   def index

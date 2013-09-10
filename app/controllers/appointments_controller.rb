@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :authorize_user
+  prepend_before_action :authorize_user
   respond_to :json, :html
 
   # TODO the definition of START_DAY is duplicated
@@ -24,10 +24,8 @@ class AppointmentsController < ApplicationController
     # TODO: needs to be cleaned up obviously
     # TODO: calling 3 selects when only one is used
     @appointments_by_date = Hash.new
-    # TODO: ops! not multi-tenent!
-    # TODO: Is account_id get correct id?
-    # TODO: why is this not chaining the default_scope
-    r = Appointment.where(time: @date.beginning_of_month..@date.end_of_month, account_id: @current_user).order(:time).includes(:client)
+    #puts "Account.current_id: #{Account.current_id}"
+    r = Appointment.where(time: @date.beginning_of_month..@date.end_of_month).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d")
       if @appointments_by_date.has_key?(k)
@@ -38,14 +36,9 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_week = Hash.new
-    # TODO: ops! not multi-tenent!
-    # TODO: Is account_id get correct id?
-    # TODO: why is this not chaining the default_scope
-    puts 'ooooooooooooooooooooooooooooooooooooooooooooooiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii'
-    r = Appointment.includes(:client).order(:time).where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY))
+    r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY)).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H")
-      #pp k
       if @appointments_by_week.has_key?(k)
         @appointments_by_week[k].push(appointment)
       else
@@ -54,10 +47,7 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_hour = Hash.new
-    # TODO: ops! not multi-tenent!
-    # TODO: Is account_id get correct id?
-    # TODO: why is this not chaining the default_scope
-    r = Appointment.where(time: @date.beginning_of_day..@date.end_of_day, account_id: @current_user).order(:time).includes(:client)
+    r = Appointment.where(time: @date.beginning_of_day..@date.end_of_day).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.hour
       if @appointments_by_hour.has_key?(k)
