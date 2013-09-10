@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   around_filter :user_time_zone if :current_user
+  around_filter :scope_current_account
 
   private
     def authorize_user
@@ -15,5 +16,12 @@ class ApplicationController < ActionController::Base
     def user_time_zone(&block)
       # TODO: need to define this per user. create field time_zone in database?
       Time.use_zone('Tokyo', &block)
+    end
+
+    def scope_current_account
+      Account.current_id = current_user.id unless @current_user.nil?
+      yield
+    ensure
+      Account.current_id = nil
     end
 end

@@ -22,4 +22,6 @@ class Appointment < ActiveRecord::Base
   validates :time,      presence:   true
   validates :duration,  presence:   true,
                         inclusion:  15..(24*60)
+
+  default_scope { where(account_id: Account.current_id) }
 end

@@ -4,6 +4,7 @@ module SessionsHelper
   end
 
   def sign_in(user)
+    #puts 'sign_in: ' + user.to_yaml
     signin_token = User.new_signin_token
     cookies.permanent[:signin_token] = signin_token
     user.update_attribute(:signin_token, User.encrypt(signin_token))

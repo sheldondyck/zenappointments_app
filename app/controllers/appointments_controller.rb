@@ -26,6 +26,7 @@ class AppointmentsController < ApplicationController
     @appointments_by_date = Hash.new
     # TODO: ops! not multi-tenent!
     # TODO: Is account_id get correct id?
+    # TODO: why is this not chaining the default_scope
     r = Appointment.where(time: @date.beginning_of_month..@date.end_of_month, account_id: @current_user).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d")
@@ -39,7 +40,9 @@ class AppointmentsController < ApplicationController
     @appointments_by_week = Hash.new
     # TODO: ops! not multi-tenent!
     # TODO: Is account_id get correct id?
-    r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY), account_id: @current_user).order(:time).includes(:client)
+    # TODO: why is this not chaining the default_scope
+    puts 'ooooooooooooooooooooooooooooooooooooooooooooooiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii'
+    r = Appointment.includes(:client).order(:time).where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY))
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H")
       #pp k
@@ -53,6 +56,7 @@ class AppointmentsController < ApplicationController
     @appointments_by_hour = Hash.new
     # TODO: ops! not multi-tenent!
     # TODO: Is account_id get correct id?
+    # TODO: why is this not chaining the default_scope
     r = Appointment.where(time: @date.beginning_of_day..@date.end_of_day, account_id: @current_user).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.hour

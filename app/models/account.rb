@@ -17,6 +17,9 @@ class Account < ActiveRecord::Base
   attr_accessor :last_name
   attr_accessor :email
   attr_accessor :password
+  # TODO: cattr_accessor IS NOT thread safe.
+  # Add accessors with Thread.current[account_id] = id
+  cattr_accessor :current_id
 
   has_many :users,        dependent: :delete_all
   has_many :employees,    dependent: :delete_all
