@@ -1,0 +1,4 @@
+%select.form-control(multiple)
+  - @clients.each do |c|
+    %option.results-item{data: {id: c.id}}
+      =c.name
