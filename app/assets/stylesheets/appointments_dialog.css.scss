@@ -1,0 +1,193 @@
+@mixin appointment-dialog-base {
+  padding: 0px 15px;
+  display: block;
+}
+
+.appointment-dialog {
+  left:50%;
+  right:auto;
+  padding-top:0px;
+  padding-bottom:0px;
+  width:400px;
+  margin-left:auto;
+  margin-right:auto;
+  z-index:3;
+  box-sizing: border-box;
+  display: block;
+}
+
+#appointment-template {
+  display: none;
+}
+
+.appointment-content, .arrow:after {
+  overflow: hidden;
+
+  //-webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  // TODO: add moz
+  box-shadow:0 5px 15px rgba(0, 0, 0, 0.5);
+
+  background-color: #fcfcfc;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+  background-clip: padding-box;
+  outline: none;
+  display: inline-block;
+  color:#444;
+}
+
+.arrow {
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  margin-left: -10px;
+  bottom: -1px;
+}
+
+.arrow:after {
+  background-color:#ddd;
+  border-radius: 0px;
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 18px;
+  width: 25px;
+  height: 25px;
+  -webkit-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+  -moz-box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+  box-shadow: 6px 5px 9px -9px black, 5px 6px 9px -9px black;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+}
+
+.appointment-header {
+  @include appointment-dialog-base;
+  border-bottom: 1px solid #e5e5e5;
+  background-color:#ddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    //text-shadow: 0 1px 0 white;
+  }
+
+  .color-selector {
+    padding: 0px 10px 0px 0px;
+    cursor: pointer;
+    background: transparent;
+    border: 0px;
+    -webkit-appearance: none;
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: black;
+    text-shadow: 0 1px 0 white;
+    opacity: 0.2;
+  }
+}
+
+.appointment-body {
+  padding-top: 10px;
+
+  .appointment-details {
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    display: block;
+    padding-bottom: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+
+    .appointment-date {
+      @include appointment-dialog-base;
+      height: 20px;
+      width: 50%;
+      float: left;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .appointment-time {
+      @include appointment-dialog-base;
+      display: block;
+      height: 20px;
+      width: 50%;
+      text-align: right;
+      float: right;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .appointment-duration {
+      @include appointment-dialog-base;
+      display: block;
+      height: 20px;
+      width: 100%;
+      text-align: right;
+      //float: right;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  }
+
+  h4 {
+    font-size: 16px;
+    //text-shadow: 0 1px 0 white;
+  }
+}
+
+.btn-tool {
+  position: relative;
+  display: inline;
+  padding: 0px;
+  cursor: pointer;
+  background: transparent;
+  border: 0px;
+  -webkit-appearance: none;
+  float: right;
+  text-align: right;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  color: #666;
+  text-shadow: 0 1px 0 white;
+  //opacity: 0.5;
+}
+
+.btn-tool:hover, .btn-tool:focus {
+  color: #222;
+}
+
+.appointment-client {
+  @include appointment-dialog-base;
+  padding-bottom: 10px;
+}
+
+.appointment-client-search {
+  display: block;
+}
+
+.appointment-client-edit {
+  display: none;
+}
+
+.appointment-client-details {
+  display: none;
+}
+
+.appointment-footer {
+  @include appointment-dialog-base;
+  padding-bottom: 15px;
+  //border-top: 1px solid #e5e5e5;
+}
+
