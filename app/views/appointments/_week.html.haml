@@ -4,9 +4,4 @@
     -#=hour.to_s + ':00'
     -if @appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d" % hour]
       -@appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d" % hour].each do |appointment|
-        .client-appointment{data: {appointment: appointment.id}}
-          -# TODO: duplicate in day.html
-          .client-appointment-name
-            =appointment.client.name
-          .client-appointment-time
-            ="#{hour}:00 - #{hour + 1}:00"
+        =render('card', appointment: appointment, hour: hour)
