@@ -78,6 +78,7 @@ $ ->
     drop: (event, ui) ->
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+      $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
 
 # TODO:
 #$ ->

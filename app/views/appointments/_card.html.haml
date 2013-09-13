@@ -1,5 +1,8 @@
-.client-appointment{data: {appointment: appointment.id,
-                            name: appointment.client.name}}
+.client-appointment{id: appointment.id,
+  data: {appointment: appointment.id,
+    name: appointment.client.name,
+    email: appointment.client.email,
+    telephone_cellular: appointment.client.telephone_cellular}}
   .client-appointment-name
     =appointment.client.name
   .client-appointment-time
