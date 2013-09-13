@@ -4,7 +4,7 @@ $('.appointment-dialog').css('display', 'none');
 
 // TODO: duplicate in appointments.js.coffee
 $('.client-appointment').draggable({snap: '.edit-hour'});
-$('.edit-hour').droppable({accept: '.client-appointment', drop: function(event, ui) { return $.ajax("/appointments/move", { type: 'POST', data: { appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour') } }); } });
+$('.edit-hour').droppable({accept: '.client-appointment', drop: function(event, ui) { if($(ui.draggable).parent() !==$(this)){ $(ui.draggable).appendTo($(this)); return $.ajax("/appointments/move", { type: 'POST', data: { appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour') } }); alert('oi'); } } }); 
 
 -## TODO: duplicate in appointments.js.coffee
 -##$ ->

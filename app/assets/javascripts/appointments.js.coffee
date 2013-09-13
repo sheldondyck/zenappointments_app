@@ -77,8 +77,9 @@ $ ->
     accept: '.client-appointment',
     drop: (event, ui) ->
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+      # TODO this is duplicated in index.js.haml. and it causing headaches!
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
+      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
 
 # TODO:
 #$ ->
