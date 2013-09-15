@@ -72,14 +72,29 @@ $ ->
 # TODO: This code had to be duplicated in index.js.haml because view day <-> week changes were losing the event handler. Tried to use live be didn't work.
 # Need to find final solution.
 $ ->
-  $('.client-appointment').draggable({snap: '.edit-hour'})
+  $('.client-appointment').draggable(
+    {
+      snap: '.edit-hour',
+      containment: '.appointment',
+      drag: ->
+        offset = $(this).offset()
+        xPos = offset.left
+        yPos = offset.top
+        $(this).text('x: ' + xPos + ' y: ' + yPos)
+      stop: ->
+        alert 'stopped'
+    }
+  )
   $('.edit-hour').droppable
     accept: '.client-appointment',
     drop: (event, ui) ->
+      alert 'drop'
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       # TODO this is duplicated in index.js.haml. and it causing headaches!
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+    over: ->
+      $(this).animate({'border-width' : '5px', 'border-color' : '#0f0'}, 500)
 
 # TODO:
 #$ ->
