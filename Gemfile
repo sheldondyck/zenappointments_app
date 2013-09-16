@@ -32,6 +32,14 @@ group :development do
   #gem 'ruby-debug'
   gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
+
+  group :linux_development do
+    gem 'rb-inotify'
+  end
+
+  group :mac_development do
+    gem 'rb-fsevent'
+  end
 end
 
 group :test do
@@ -52,14 +60,6 @@ end
 
 group :production do
   gem 'rails_12factor'
-end
-
-group :linux_development do
-  gem 'rb-inotify'
-end
-
-group :mac_development do
-  gem 'rb-fsevent'
 end
 
 group :doc do
