@@ -94,7 +94,8 @@ $ ->
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
     over: ->
-      $(this).animate({'border-width' : '5px', 'border-color' : '#0f0'}, 500)
+      $(this).animate({'border-width' : '2px', 'border-color' : '#4a4'}, 500)
+      #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
 
 # TODO:
 #$ ->
