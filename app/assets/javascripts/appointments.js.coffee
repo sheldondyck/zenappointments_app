@@ -13,25 +13,6 @@
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-hour').offset().left + $('#active-hour').width() / 2 - 400 / 2, top:$('#active-hour').offset().top + $('#active-hour').height() - 12})
 
-(exports ? this).ShowClientAppointmentSearchPartial = ->
-  $('.appointment-client-details').css('display', 'none')
-  $('.appointment-client-search').css('display', 'block')
-  $('.appointment-client-edit').css('display', 'none')
-
-(exports ? this).ShowClientAppointmentEditPartial = ->
-  $('.appointment-client-details').css('display', 'none')
-  $('.appointment-client-search').css('display', 'none')
-  $('.appointment-client-edit').css('display', 'block')
-
-(exports ? this).ShowClientAppointmentAddPartial = ->
-  $('.appointment-client-details').css('display', 'none')
-  $('.appointment-client-search').css('display', 'none')
-  $('.appointment-client-edit').css('display', 'block')
-
-(exports ? this).HideClientAppointmentDialog = ->
-  $('.appointment-dialog').css('display', 'none')
-  $('#active-hour').removeAttr('id')
-
 (exports ? this).SetupClientAppointmentDragDrop = ->
   alert 'SetupClientAppointmentDragDrop'
   $('.client-appointment').draggable(
@@ -58,6 +39,25 @@
     over: ->
       $(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
       #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
+
+(exports ? this).ShowClientAppointmentSearchPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'block')
+  $('.appointment-client-edit').css('display', 'none')
+
+(exports ? this).ShowClientAppointmentEditPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'none')
+  $('.appointment-client-edit').css('display', 'block')
+
+(exports ? this).ShowClientAppointmentAddPartial = ->
+  $('.appointment-client-details').css('display', 'none')
+  $('.appointment-client-search').css('display', 'none')
+  $('.appointment-client-edit').css('display', 'block')
+
+(exports ? this).HideClientAppointmentDialog = ->
+  $('.appointment-dialog').css('display', 'none')
+  $('#active-hour').removeAttr('id')
 
 $ ->
   $('.show-client-search').click ->
