@@ -14,7 +14,7 @@
     $('.appointment-dialog').offset({left:$('#active-hour').offset().left + $('#active-hour').width() / 2 - 400 / 2, top:$('#active-hour').offset().top + $('#active-hour').height() - 12})
 
 (exports ? this).SetupClientAppointmentDragDrop = ->
-  alert 'SetupClientAppointmentDragDrop'
+  #alert 'SetupClientAppointmentDragDrop'
   $('.client-appointment').draggable(
     {
       snap: '.edit-hour',
@@ -23,21 +23,21 @@
         offset = $(this).offset()
         xPos = offset.left
         yPos = offset.top
-        $(this).text('x: ' + xPos + ' y: ' + yPos)
+        #$(this).text('x: ' + xPos + ' y: ' + yPos)
       stop: ->
-        alert 'stopped'
+        #alert 'stopped'
     }
   )
   $('.edit-hour').droppable
     accept: '.client-appointment',
     drop: (event, ui) ->
-      alert 'drop'
+      #alert 'drop'
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       # TODO this is duplicated in index.js.haml. and it causing headaches!
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
     over: ->
-      $(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
+      #$(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
       #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
 
 (exports ? this).ShowClientAppointmentSearchPartial = ->
