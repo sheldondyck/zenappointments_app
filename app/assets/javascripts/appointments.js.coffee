@@ -1,4 +1,5 @@
-ShowClientAppointmentDialog = ->
+(exports ? this).ShowClientAppointmentDialog = ->
+  $('#appointments').delegate '.edit-hour', 'click', ->
     $('#active-hour').removeAttr('id')
     $(this).attr('id', 'active-hour')
     $('#appoinment-template').append('#active-hour')
@@ -12,24 +13,51 @@ ShowClientAppointmentDialog = ->
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-hour').offset().left + $('#active-hour').width() / 2 - 400 / 2, top:$('#active-hour').offset().top + $('#active-hour').height() - 12})
 
-ShowClientAppointmentSearchPartial = ->
+(exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'block')
   $('.appointment-client-edit').css('display', 'none')
 
-ShowClientAppointmentEditPartial = ->
+(exports ? this).ShowClientAppointmentEditPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'none')
   $('.appointment-client-edit').css('display', 'block')
 
-ShowClientAppointmentAddPartial = ->
+(exports ? this).ShowClientAppointmentAddPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'none')
   $('.appointment-client-edit').css('display', 'block')
 
-HideClientAppointmentDialog = ->
+(exports ? this).HideClientAppointmentDialog = ->
   $('.appointment-dialog').css('display', 'none')
   $('#active-hour').removeAttr('id')
+
+(exports ? this).SetupClientAppointmentDragDrop = ->
+  alert 'SetupClientAppointmentDragDrop'
+  $('.client-appointment').draggable(
+    {
+      snap: '.edit-hour',
+      containment: '.appointment',
+      drag: ->
+        offset = $(this).offset()
+        xPos = offset.left
+        yPos = offset.top
+        $(this).text('x: ' + xPos + ' y: ' + yPos)
+      stop: ->
+        alert 'stopped'
+    }
+  )
+  $('.edit-hour').droppable
+    accept: '.client-appointment',
+    drop: (event, ui) ->
+      alert 'drop'
+      # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
+      # TODO this is duplicated in index.js.haml. and it causing headaches!
+      $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
+      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+    over: ->
+      $(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
+      #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
 
 $ ->
   $('.show-client-search').click ->
@@ -56,73 +84,13 @@ $ ->
       error: ->
         alert 'error' # TODO: added generic error handler
 
-#$ ->
-#  $('#appointments').show ->
-#    alert 'show appointments 2'
+$ -> SetupClientAppointmentDragDrop()
 
-#$ ->
-#  $('#appointments').live 'change', ->
-#    $('.client-appointment').draggable({snap: '.edit-hour'})
-#    $('.edit-hour').droppable
-#      accept: '.client-appointment',
-#      drop: (event, ui) ->
-#        # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-#        $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
-
-# TODO: This code had to be duplicated in index.js.haml because view day <-> week changes were losing the event handler. Tried to use live be didn't work.
-# Need to find final solution.
-$ ->
-  $('.client-appointment').draggable(
-    {
-      snap: '.edit-hour',
-      containment: '.appointment',
-      drag: ->
-        offset = $(this).offset()
-        xPos = offset.left
-        yPos = offset.top
-        $(this).text('x: ' + xPos + ' y: ' + yPos)
-      stop: ->
-        alert 'stopped'
-    }
-  )
-  $('.edit-hour').droppable
-    accept: '.client-appointment',
-    drop: (event, ui) ->
-      alert 'drop'
-      # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-      # TODO this is duplicated in index.js.haml. and it causing headaches!
-      $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
-      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
-    over: ->
-      $(this).animate({'border-width' : '2px', 'border-color' : '#4a4'}, 500)
-      #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
-
-# TODO:
-#$ ->
-# $('.client-appointment').live 'draggable', snap: '.edit-hour'
-# $('.edit-hour').live 'droppable', ->
-#   accept: '.client-appointment',
-#   drop: (event, ui) ->
-#     # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-#     $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+$ -> ShowClientAppointmentDialog()
 
 $ ->
-  # TODO: calling ShowClientAppointmentDialog does not work so this code is duplicated
-  $('#appointments').delegate '.edit-hour', 'click', ->
-    $('#active-hour').removeAttr('id')
-    $(this).attr('id', 'active-hour')
-    $('#appoinment-template').append('#active-hour')
-    $('.hour-field').attr('value', $(this).data('hour'))
-    $('.appointment-date').html($(this).data('date-value'))
-    $('.appointment-time').html($(this).data('hour-value'))
-    $('.appointment-duration').html($(this).data('duration-value'))
-    ShowClientAppointmentSearchPartial()
-    $('.appointment-dialog').css('display', 'block')
-    # TODO 400 is the size of dialog. fix this
-    # TODO 12 is a magic number because of arrow
-    $('.appointment-dialog').offset({left:$('#active-hour').offset().left + $('#active-hour').width() / 2 - 400 / 2, top:$('#active-hour').offset().top + $('#active-hour').height() - 12})
-
-$ ->
+  # TODO lots of duplicate code here
+  # TODO CLEAN UP!
   $('#appointments').delegate '.client-appointment', 'click', (ev) ->
     ev.stopPropagation()
     $('#active-hour').removeAttr('id')

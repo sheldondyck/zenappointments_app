@@ -1,16 +1,4 @@
 $('#appointments-panel').remove();
 $('#appointments').append("#{escape_javascript render(@view)}");
-$('.appointment-dialog').css('display', 'none');
-
-// TODO: duplicate in appointments.js.coffee
-$('.client-appointment').draggable({snap: '.edit-hour'});
-$('.edit-hour').droppable({accept: '.client-appointment', drop: function(event, ui) { if($(ui.draggable).parent() !==$(this)){ $(ui.draggable).appendTo($(this)); return $.ajax("/appointments/move", { type: 'POST', data: { appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour') } }); alert('oi'); } } }); 
-
--## TODO: duplicate in appointments.js.coffee
--##$ ->
--##  $('.client-appointment').draggable({snap: '.edit-hour'})
-//#  $('.edit-hour').droppable
-//#    accept: '.client-appointment',
-//#    drop: (event, ui) ->
-//#      # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
-//#      $.ajax "/appointments/move", type: 'POST', data: {appointment_id: $(ui.draggable).data('appointment'), date: $(this).data('date'), hour: $(this).data('hour')}
+HideClientAppointmentDialog();
+SetupClientAppointmentDragDrop();
