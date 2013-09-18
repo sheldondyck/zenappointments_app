@@ -1,4 +1,4 @@
 $('#appointments-panel').remove();
 $('#appointments').append("#{escape_javascript render(@view)}");
 HideClientAppointmentDialog();
-SetupClientAppointmentDragDrop();
+InstallClientAppointmentHandler();
