@@ -89,6 +89,7 @@ $ -> SetupClientAppointmentDragDrop()
 $ -> ShowClientAppointmentDialog()
 
 $ ->
+  # TODO is this needed?
   # TODO lots of duplicate code here
   # TODO CLEAN UP!
   $('#appointments').delegate '.client-appointment', 'click', (ev) ->
