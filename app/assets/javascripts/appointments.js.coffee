@@ -102,9 +102,9 @@ $ ->
   $('.search-client').keyup ->
     $.ajax "/clients/search",
       type: 'GET',
-      data: {term: $(this).val()}
+      data: { term: $(this).val() }
       error: ->
-        alert 'error' # TODO: added generic error handler
+        #alert 'error' # TODO: added generic error handler
 
 
 $ -> InstallClientAppointmentHandler()

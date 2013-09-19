@@ -21,6 +21,7 @@ class AppointmentsController < ApplicationController
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [1]
 
+    # TODO: this function is a complete mess
     # TODO: needs to be cleaned up obviously
     # TODO: calling 3 selects when only one is used
     @appointments_by_date = Hash.new
@@ -64,12 +65,22 @@ class AppointmentsController < ApplicationController
       #puts client_params.merge(account_id: @current_user.account_id).to_yaml
 
       # TODO: this function is a complete mess
-      @client = Client.find_by(params.require(:appointment).permit(:email))
+      # TODO: this function is a complete mess
+      # TODO: this function is a complete mess
+      # TODO: this function is a complete mess
+      # TODO: this function is a complete mess
+      unless params[:client_id].nil?
+        @client = Client.find(params[:client_id])
+      else
+        @client = Client.find_by(params.require(:appointment).permit(:email))
+      end
       #puts @client.to_yaml
-      @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
-      # TODO: create was not returning id in postgres in prod.  need to reload.
-      # is this normal?
-      @client = Client.find_by(params.require(:appointment).permit(:email))
+      if @client.nil?
+        @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
+        # TODO: create was not returning id in postgres in prod.  need to reload.
+        # is this normal?
+        @client = Client.find_by(params.require(:appointment).permit(:email))
+      end
 
       #@client = Client.find_or_create_by(params.require(:appointment).permit(:email)) do |client|
         #client.account_id = @current_user.account_id

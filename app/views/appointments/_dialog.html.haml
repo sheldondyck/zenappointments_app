@@ -1,39 +1,44 @@
 .appointment-dialog#appointment-template
   .arrow
   .appointment-content
-    =form_for :appointment, url: appointments_create_path, html: {class: 'form-inline', data: {remote: 'true'}} do |f|
-      =f.hidden_field :hour, class: 'hour-field'
-      =f.hidden_field :time, value: @date
-      =f.hidden_field :duration, value: 60
-      .appointment-header
-        %button.close.close-appointment-dialog{type: 'button'}
-          %i.icon-remove
-        %button.color-selector{type: 'button'}
-          %i.icon-qrcode
-        %h3
-          Appointment
-      .appointment-body
-        .appointment-details
-          .appointment-date
-            January 1 2013
-          .appointment-time
-            9:00am - 9:30am
-          .appointment-duration
-            30 mins.
-        .appointment-client
-          .appointment-client-search
-            %h4
-              Client
-              %button.btn-tool.show-client-add{type: 'button'}
-                %i.icon-plus
-                Add
+    .appointment-header
+      %button.close.close-appointment-dialog{type: 'button'}
+        %i.icon-remove
+      %button.color-selector{type: 'button'}
+        %i.icon-qrcode
+      %h3
+        Appointment
+    .appointment-body
+      .appointment-details
+        .appointment-date
+          January 1 2013
+        .appointment-time
+          9:00am - 9:30am
+        .appointment-duration
+          30 mins.
+      .appointment-client
+        .appointment-client-search
+          %h4
+            Client
+            %button.btn-tool.show-client-add{type: 'button'}
+              %i.icon-plus
+              Add
+          -# TODO: seach is sending result only after 2 chars. 1 char generates an error. this is a new problem after adding add button
+          =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
+            =f.hidden_field :hour, class: 'hour-field'
+            =f.hidden_field :time, value: @date
+            =f.hidden_field :duration, value: 60
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
               %input.form-control.search-client{placeholder: 'Search', type: 'text'}
               %span.input-group-addon
                 %i.icon-search
             .client-search-results
-          .appointment-client-edit
+        .appointment-client-edit
+          =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
+            =f.hidden_field :hour, class: 'hour-field'
+            =f.hidden_field :time, value: @date
+            =f.hidden_field :duration, value: 60
             %h4
               Client
               %button.btn-tool.show-client-search{type: 'button'}
@@ -57,6 +62,8 @@
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
+                .form-group
+                  =button_tag 'Add', class: 'btn btn-primary', 'data-disable-with' => 'Adding ...'
               .col-sm-6
                 .form-group#last-name{class: error_class(@client, :last_name)}
                   %label.control-label{for: 'last-name'}
@@ -72,19 +79,17 @@
                     -unless error_message(@client, :last_name).nil?
                       %p.help-block#last-name
                         =error_message(@client, :last_name)
-          .appointment-client-details
-            %h4
-              Client
-              %button.btn-tool.show-client-edit{type: 'button'}
-                %i.icon-edit
-                Edit
-            .appointment-name
-              %b
-                John Smith
-            .appointment-field
-              (11) 3141-5636
-            .appointment-field
-              john.smith@company.com
+        .appointment-client-details
+          %h4
+            Client
+            %button.btn-tool.show-client-edit{type: 'button'}
+              %i.icon-edit
+              Edit
+          .appointment-name
+            %b
+              John Smith
+          .appointment-field
+            (11) 3141-5636
+          .appointment-field
+            john.smith@company.com
       .appointment-footer
-        .appointment-client-edit
-          =button_tag 'Add Client', class: 'btn btn-primary', 'data-disable-with' => 'Creating ...'
