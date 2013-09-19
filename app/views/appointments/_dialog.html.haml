@@ -24,6 +24,7 @@
               %i.icon-plus
               Add
           -# TODO: seach is sending result only after 2 chars. 1 char generates an error. this is a new problem after adding add button
+          -# chars 'a' and 's' are being sent only after 2 chars. others work on first char. WTF
           =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
             =f.hidden_field :hour, class: 'hour-field'
             =f.hidden_field :time, value: @date
