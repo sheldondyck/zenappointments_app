@@ -30,7 +30,7 @@ module WeekHelper
           hour_cell(hour).html_safe +
           weeks.map do |week|
             week.map do |day|
-              appointment_cell(day, hour)
+              appointment_cell(day, hour, 60)
             end.join.html_safe
           end.join.html_safe
         end
@@ -41,8 +41,16 @@ module WeekHelper
       content_tag :td, '%02d:00' % hour, class: hour_classes(hour)
     end
 
-    def appointment_cell(day, hour)
-      content_tag :td, view.capture(day, hour, &callback), class: appointment_classes(hour), data:{date: day.to_s, hour: hour}
+    def appointment_cell(day, hour, duration)
+      content_tag :td, view.capture(day, hour, &callback),
+        class: appointment_classes(hour),
+        data: {
+          date: day.to_s,
+          date_pretty:  day.strftime('%A %B %e %Y'), # TODO this format is duplicated in controller
+          hour: hour,
+          interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
+          duration: duration
+        }
     end
 
     def hour_classes(hour)

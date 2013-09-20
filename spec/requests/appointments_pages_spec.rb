@@ -136,12 +136,15 @@ describe 'AppointmentsPages' do
         describe 'correct html' do
           it do
             should have_selector('.appointment-dialog')
+            should have_selector('.appointment-date', text: 'January 1, 2013')
+            should have_selector('.appointment-time', text: '3:00 - 4:00')
+            should have_selector('.appointment-duration', text: '60 mins')
             should have_selector('h4', 'Appointment')
             should have_field('appointment[first_name]')
             should have_field('appointment[last_name]')
             should have_field('appointment[telephone_cellular]')
             should have_field('appointment[email]')
-            should have_button('Add Client')
+            should have_button('Add')
             should_not have_selector('.client-appointment')
           end
         end
@@ -151,7 +154,7 @@ describe 'AppointmentsPages' do
             fill_in 'appointment[first_name]', with: 'Client Test_Name 1'
             fill_in 'appointment[email]', with: 'client_1@client_domain.com'
             #save_and_open_page
-            click_button 'Add Client'
+            click_button 'Add'
             # TODO: find a better way then sleeping
             sleep 0.2
             #puts Capybara.default_wait_time

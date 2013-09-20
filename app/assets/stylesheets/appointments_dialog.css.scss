@@ -164,6 +164,10 @@
   display: none;
 }
 
+.appointment-field.title {
+  font-weight: bold;
+}
+
 .appointment-footer {
   @include appointment-dialog-base;
   padding-bottom: 15px;

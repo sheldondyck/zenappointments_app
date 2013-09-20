@@ -5,9 +5,10 @@
     $(this).attr('id', 'active-hour')
     $('#appoinment-template').append('#active-hour')
     $('.hour-field').attr('value', $(this).data('hour'))
-    $('.appointment-date').html($(this).data('date-value'))
-    $('.appointment-time').html($(this).data('hour-value'))
-    $('.appointment-duration').html($(this).data('duration-value'))
+    $('.appointment-date').html($(this).data('date-pretty'))
+    # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
+    $('.appointment-time').html($(this).data('interval'))
+    $('.appointment-duration').html($(this).data('duration') + " mins.")
     ShowClientAppointmentSearchPartial()
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
@@ -23,6 +24,15 @@
     $(this).attr('id', 'active-client')
     $('#appoinment-template').append('#active-client')
     ShowClientAppointmentDetailsPartial()
+    $('.appointment-date').html($(this).closest('.edit-hour').data('date-pretty'))
+    # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
+    $('.appointment-time').html($(this).closest('.edit-hour').data('interval'))
+    $('.appointment-duration').html($(this).closest('.edit-hour').data('duration') + " mins.")
+
+    $('.appointment-field .name').html($(this).data('name'))
+    $('.appointment-field .email').html($(this).data('email'))
+    $('.appointment-field .telephone-cellular').html($(this).data('telephone-cellular'))
+
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow

@@ -26,7 +26,7 @@ module AgendaHelper
       hours.map do |hour|
         content_tag :tr do
           hour_cell(hour).html_safe +
-          employees.map { |employee| employee_cell(employee, hour) }.join.html_safe
+          employees.map { |employee| employee_cell(employee, hour, 60) }.join.html_safe
         end
       end.join.html_safe
     end
@@ -35,11 +35,19 @@ module AgendaHelper
       content_tag :td, '%02d:00' % hour, class: hour_classes(hour)
     end
 
-    def employee_cell(employee, hour)
+    def employee_cell(employee, hour, duration)
       # TODO: code smell
       # 1. too long
-      # 2 date_value formatting is duplicated in controller
-      content_tag :td, view.capture(employee, hour, &callback), class: employee_classes(hour), data:{date: date.to_s, hour: hour, date_value: date.strftime('%B %e %Y'), hour_value: "#{hour}:00 - #{hour + 1}:00", duration_value: '60 mins.'}
+      # 2 date_pretty formatting is duplicated in controller
+      content_tag :td, view.capture(employee, hour, &callback),
+        class: employee_classes(hour),
+        data: {
+          date: date.to_s,
+          hour: hour,
+          date_pretty:  date.strftime('%A %B %e %Y'), # TODO this format is duplicated in controller
+          interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
+          duration: duration
+        }
     end
 
     def hour_classes(hour)
