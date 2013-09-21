@@ -46,7 +46,8 @@ module WeekHelper
         class: appointment_classes(hour),
         data: {
           date: day.to_s,
-          date_pretty:  day.strftime('%A %B %e %Y'), # TODO this format is duplicated in controller
+          date_pretty:  day.strftime('%B %e %Y'), # TODO this format is duplicated in controller
+          weekday: day.strftime('%A'),
           hour: hour,
           interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
           duration: duration
