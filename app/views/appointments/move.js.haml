@@ -1,4 +1,4 @@
-var card = $(".client-appointment##{@appointment.id} .client-appointment-time");
+var card = $(".client-appointment.#{@appointment.id} .client-appointment-time");
 var hour = card.closest('.edit-hour').data('hour');
 // TODO fix this. should be abstracted to data
 card.html(hour + ":00 - " + (hour + 1).toString() + ":00");
