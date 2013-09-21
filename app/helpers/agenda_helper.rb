@@ -40,13 +40,14 @@ module AgendaHelper
       # TODO: code smell
       # 1. too long
       # 2 date_pretty formatting is duplicated in controller
+      # 3. duplicate in week_agenda
       content_tag :td, view.capture(employee, hour, &callback),
         class: employee_classes(hour),
         data: {
           date: date.to_s,
           hour: hour,
           date_pretty:  date.strftime('%B %e %Y'), # TODO this format is duplicated in controller
-          weekday: day.strftime('%A'),
+          weekday: date.strftime('%A'),
           interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
           duration: duration
         }
