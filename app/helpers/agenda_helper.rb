@@ -1,3 +1,4 @@
+# TODO agenda_help week_helper calendar_help should be combined
 module AgendaHelper
   def agenda(date = Date.today, employees = [], &block)
     Agenda.new(self, date, employees, block).table
@@ -44,7 +45,8 @@ module AgendaHelper
         data: {
           date: date.to_s,
           hour: hour,
-          date_pretty:  date.strftime('%A %B %e %Y'), # TODO this format is duplicated in controller
+          date_pretty:  date.strftime('%B %e %Y'), # TODO this format is duplicated in controller
+          weekday: day.strftime('%A'),
           interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
           duration: duration
         }

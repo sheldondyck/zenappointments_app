@@ -1,3 +1,4 @@
+# TODO agenda_help week_helper calendar_help should be combined
 module CalendarHelper
   def calendar(date = Date.today, &block)
     Calendar.new(self, date, block).table
