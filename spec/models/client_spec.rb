@@ -20,6 +20,8 @@ require 'spec_helper'
 
 describe Client do
   before do
+    @account = build(:account)
+    Account.current_id = @account.id
     @client = build(:client)
   end
 
@@ -137,21 +139,19 @@ describe Client do
       end
     end
 
+    # TODO This spec discovered some problems with the default scopes. Write some tests for default_scope account_id
+
     describe 'is normalized to lower case' do
-      subject { @client.email }
       before do
         @client.email = @client.email.upcase
         @client.save
-        pp @client
         @client.email = @client.email.downcase
-        @normalized_client = Client.find_by(email: @client.email)
-        # TODO db connection problem? does see the id
-        pp Client.find(@client.id)
-        pp Client.all
-        pp @normalized_client
+        Account.current_id = @account.id
+        # TODO account_id is null in this find even after tying to set the Account.current_id. force account_id corrects the test
+        @normalized_client = Client.find_by(email: @client.email, account_id: @client.account_id)
       end
       it 'should be valid' do
-        should == @normalized_client.email
+        @client.email == @normalized_client.email
       end
     end
 

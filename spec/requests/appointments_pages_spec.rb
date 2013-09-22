@@ -197,7 +197,7 @@ describe 'AppointmentsPages' do
               #save_and_open_page
             end
 
-            describe 'update appoinment on screen' do
+            describe 'update appointment on screen' do
               # TODO: need to update DOM in move.js.haml
               it do
                 #should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')

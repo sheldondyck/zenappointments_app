@@ -18,6 +18,7 @@
 
 class Client < ActiveRecord::Base
   belongs_to :account
+  has_many :appointments
 
   before_save { |client| client.email = email.downcase }
 
