@@ -126,18 +126,18 @@ describe 'AppointmentsPages' do
     describe 'create client appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          #find('td.edit-hour.hour-0').click
-          #find('data-hour', text: '3').click
           find(:xpath, '//td[@data-hour="3"]').click
-          #save_and_open_page
+          # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
+          Time.zone = 'Tokyo'
           click_button 'Add'
+          #save_and_open_page
         end
 
         describe 'correct html' do
           it do
             should have_selector('.appointment-dialog')
-            should have_selector('.appointment-weekday', text: DateTime.now.strftime('%A'))
-            should have_selector('.appointment-date', text: DateTime.now.strftime('%B %e %Y'))
+            should have_selector('.appointment-weekday', text: Time.zone.now.strftime('%A'))
+            should have_selector('.appointment-date', text: Time.zone.now.strftime('%B %e %Y'))
             should have_selector('.appointment-time', text: '3:00 - 4:00')
             should have_selector('.appointment-duration', text: '60 mins')
             should have_selector('h4', 'Appointment')
