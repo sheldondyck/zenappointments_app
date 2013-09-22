@@ -36,6 +36,8 @@ describe Client do
   it { should respond_to(:telephone_cellular) }
   it { should respond_to(:telephone_home) }
   it { should respond_to(:telephone_office) }
+  it { should respond_to(:account) }
+  it { should respond_to(:appointments) }
 
   describe 'first_name' do
     describe 'is valid' do

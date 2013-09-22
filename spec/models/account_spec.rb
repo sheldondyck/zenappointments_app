@@ -27,6 +27,10 @@ describe Account do
   it { should respond_to(:company_name) }
   it { should respond_to(:configuration) }
   it { should respond_to(:active) }
+  it { should respond_to(:users) }
+  it { should respond_to(:clients) }
+  it { should respond_to(:employees) }
+  it { should respond_to(:appointments) }
 
   describe 'company_name' do
     describe 'is valid' do

@@ -14,4 +14,6 @@
 require 'spec_helper'
 
 describe Employee do
+  it { should respond_to(:account) }
+  it { should respond_to(:appointments) }
 end

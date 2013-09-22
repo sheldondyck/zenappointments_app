@@ -25,6 +25,10 @@ describe Appointment do
   it { should be_valid }
   it { should respond_to(:time) }
   it { should respond_to(:duration) }
+  it { should respond_to(:account) }
+  it { should respond_to(:user) }
+  it { should respond_to(:client) }
+  it { should respond_to(:employee) }
 
   describe 'time' do
     describe 'is valid' do

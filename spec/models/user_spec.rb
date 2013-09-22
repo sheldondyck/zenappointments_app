@@ -35,6 +35,8 @@ describe User do
   it { should respond_to(:account_administrator) }
   it { should respond_to(:active) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:account) }
+  it { should respond_to(:appointments) }
   it { expect(User).to respond_to(:new_signin_token) }
   it { expect(User).to respond_to(:encrypt) }
 
