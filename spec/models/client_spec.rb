@@ -142,10 +142,17 @@ describe Client do
       before do
         @client.email = @client.email.upcase
         @client.save
+        pp @client
         @client.email = @client.email.downcase
-        @normalized_client = Client.find_by email: @client.email
+        @normalized_client = Client.find_by(email: @client.email)
+        # TODO db connection problem? does see the id
+        pp Client.find(@client.id)
+        pp Client.all
+        pp @normalized_client
       end
-      it { should == @normalized_client.email }
+      it 'should be valid' do
+        should == @normalized_client.email
+      end
     end
 
     describe 'duplicated is not valid' do

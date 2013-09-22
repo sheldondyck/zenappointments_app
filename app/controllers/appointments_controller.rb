@@ -72,6 +72,7 @@ class AppointmentsController < ApplicationController
       unless params[:client_id].nil?
         @client = Client.find(params[:client_id])
       else
+        # TODO: added email: to this and it broke. why?
         @client = Client.find_by(params.require(:appointment).permit(:email))
       end
       #puts @client.to_yaml
@@ -79,6 +80,7 @@ class AppointmentsController < ApplicationController
         @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
         # TODO: create was not returning id in postgres in prod.  need to reload.
         # is this normal?
+        # TODO: added email: to this and it broke. why?
         @client = Client.find_by(params.require(:appointment).permit(:email))
       end
 
