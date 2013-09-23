@@ -28,7 +28,7 @@ describe "Clients Page" do
     end
 
     describe 'correct html' do
-      it { should have_title('Zen Appointments | ' + @user.name) }
+      it { should have_title(app_name + ' | ' + @user.name) }
       it { should have_selector('h1', text: 'Clients') }
       describe 'client menu' do
         it_behaves_like 'a signedin menu'

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def app_name
-    'Zen Appointments'
+    'ZenAppointments'
   end
 
   def title

@@ -15,8 +15,8 @@ describe 'account pages' do
 
     describe 'correct html' do
       it { should have_title('Sign Up') }
-      it { should have_selector('h1', text: 'Zen Appointments') }
-      it { should have_link('Zen Appointments', href: www_url) }
+      it { should have_selector('h1', text: app_name) }
+      it { should have_link(app_name, href: www_url) }
       it { should have_selector('legend', text: 'Sign Up') }
       it { should have_field('account[first_name]') }
       it { should have_field('account[last_name]') }
