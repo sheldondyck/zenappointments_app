@@ -28,7 +28,7 @@ describe "UsersPages" do
     end
 
     describe 'html' do
-      it { should have_title('ZenAppointments | ' + @user.name) }
+      it { should have_title('Zen Appointments | ' + @user.name) }
       it { should have_selector('h1', text: 'User Config') }
       describe 'user menu' do
         it_behaves_like 'a signedin menu'

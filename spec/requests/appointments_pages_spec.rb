@@ -27,7 +27,7 @@ describe 'AppointmentsPages' do
     end
 
     describe 'correct html' do
-      it { should have_title('ZenAppointments | ' + @user.name) }
+      it { should have_title('Zen Appointments | ' + @user.name) }
       describe 'appointments menu' do
         it_behaves_like 'a signedin menu'
         it do
