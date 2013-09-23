@@ -22,6 +22,7 @@ class Client < ActiveRecord::Base
 
   before_save { |client| client.email = email.downcase }
 
+  # TODO VALID_EMAIL_REGEX is duplicated in users.rb
   VALID_EMAIL_REGEX = /\A[\w+\-_.]+@[a-z\d\-_.]+\.[a-z]+\z/i
   validates :first_name,  presence: true,
                           length: { maximum: 50 }

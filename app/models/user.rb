@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   belongs_to :account
   has_many :appointments
 
+  # TODO VALID_EMAIL_REGEX is duplicated in client.rb
   VALID_EMAIL_REGEX = /\A[\w+\-_.]+@[a-z\d\-_.]+\.[a-z]+\z/i
   validates :first_name,  presence: true,
                           length: { maximum: 50 }
