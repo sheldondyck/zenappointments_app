@@ -5,6 +5,7 @@
     %ul
     -if @appointments_by_date[date.strftime("%Y-%m-%d")]
       -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
+        -# TODO this unless should not be required but solved a 500 error in prod. Why?
         -unless appointment.client.nil?
           %li
             =appointment.client.name
