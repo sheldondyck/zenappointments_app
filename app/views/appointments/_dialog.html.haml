@@ -2,9 +2,9 @@
   .arrow
   .appointment-content
     .appointment-header
-      %button.close.close-appointment-dialog{type: 'button'}
+      %button.close.close-appointment-dialog{ type: 'button' }
         %i.icon-remove
-      %button.color-selector{type: 'button'}
+      %button.color-selector{ type: 'button' }
         %i.icon-qrcode
       %h3
         Appointment
@@ -24,7 +24,7 @@
         .appointment-client-search
           %h4
             Client
-            %button.btn-tool.show-client-add{type: 'button'}
+            %button.btn-tool.show-client-add{ type: 'button' }
               %i.icon-plus
               Add
           -# TODO: seach is sending result only after 2 chars. 1 char generates an error. this is a new problem after adding add button
@@ -35,7 +35,7 @@
             =f.hidden_field :duration, value: 60
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
-              %input.form-control.search-client{placeholder: 'Search', type: 'text'}
+              %input.form-control.search-client{ placeholder: 'Search', type: 'text' }
               %span.input-group-addon
                 %i.icon-search
             .client-search-results
@@ -46,48 +46,48 @@
             =f.hidden_field :duration, value: 60
             %h4
               Client
-              %button.btn-tool.show-client-search{type: 'button'}
+              %button.btn-tool.show-client-search{ type: 'button' }
                 %i.icon-search
                 Search
             .row
               .col-sm-6
-                .form-group#first-name{class: error_class(@client, :first_name)}
+                .form-group#first-name{ class: error_class(@client, :first_name) }
                   -# TODO for is not working here but works in signin. why?
-                  %label.control-label{for: 'first-name'}
+                  %label.control-label{ for: 'first-name' }
                     First Name
-                    %input.form-control#first-name{placeholder: 'First Name', name: 'appointment[first_name]', value: @client[:first_name], type: 'text'}
+                    %input.form-control#first-name{ placeholder: 'First Name', name: 'appointment[first_name]', value: @client[:first_name], type: 'text' }
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
-                .form-group#telefone-celular{class: error_class(@client, :first_name)}
+                .form-group#telefone-celular{ class: error_class(@client, :first_name) }
                   -# TODO for is not working here but works in signin. why?
-                  %label.control-label{for: 'first-name'}
+                  %label.control-label{ for: 'first-name' }
                     Celular
-                    %input.form-control#first-name{placeholder: 'Celular', name: 'appointment[telephone_cellular]', value: @client[:first_name], type: 'text'}
+                    %input.form-control#first-name{ placeholder: 'Celular', name: 'appointment[telephone_cellular]', value: @client[:first_name], type: 'text' }
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
                 .form-group
                   =button_tag 'Add', class: 'btn btn-primary', 'data-disable-with' => 'Adding ...'
               .col-sm-6
-                .form-group#last-name{class: error_class(@client, :last_name)}
-                  %label.control-label{for: 'last-name'}
+                .form-group#last-name{ class: error_class(@client, :last_name) }
+                  %label.control-label{ for: 'last-name' }
                     Last Name
-                    %input.form-control#last-name{placeholder: 'Last Name', name: 'appointment[last_name]', value: @client[:last_name], type: 'text'}
+                    %input.form-control#last-name{ placeholder: 'Last Name', name: 'appointment[last_name]', value: @client[:last_name], type: 'text' }
                     -unless error_message(@client, :last_name).nil?
                       %p.help-block#last-name
                         =error_message(@client, :last_name)
-                .form-group#last-name{class: error_class(@client, :last_name)}
-                  %label.control-label{for: 'last-name'}
+                .form-group#last-name{ class: error_class(@client, :last_name) }
+                  %label.control-label{ for: 'last-name' }
                     Email
-                    %input.form-control#last-name{placeholder: 'Email', name: 'appointment[email]', value: @client[:last_name], type: 'text'}
+                    %input.form-control#last-name{ placeholder: 'Email', name: 'appointment[email]', value: @client[:last_name], type: 'text' }
                     -unless error_message(@client, :last_name).nil?
                       %p.help-block#last-name
                         =error_message(@client, :last_name)
         .appointment-client-details
           %h4
             Client
-            %button.btn-tool.show-client-edit{type: 'button'}
+            %button.btn-tool.show-client-edit{ type: 'button' }
               %i.icon-edit
               Edit
           .appointment-field.title

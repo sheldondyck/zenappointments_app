@@ -1,5 +1,7 @@
-%select.form-control(multiple){name: 'client_id'}
-  -@clients.each do |c|
-    %option.results-item{value: c.id, data: {id: c.id}}
-      =c.name
-=button_tag 'Add', class: 'btn btn-primary', 'data-disable-with' => 'Adding ...'
+.form-group
+  %select.form-control(multiple){ name: 'client_id' }
+    -@clients.each do |c|
+      %option.results-item{ value: c.id, data: { id: c.id } }
+        =c.name
+.form-group
+  =button_tag 'Add', class: 'btn btn-primary', 'data-disable-with' => 'Adding ...'
