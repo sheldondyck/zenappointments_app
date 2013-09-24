@@ -39,19 +39,16 @@
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-client').offset().left + $('#active-client').width() / 2 - 400 / 2, top:$('#active-client').offset().top + $('#active-client').height() - 12})
-  $('.client-appointment').draggable(
-    {
-      snap: '.edit-hour',
-      containment: '.appointment',
-      drag: ->
-        offset = $(this).offset()
-        xPos = offset.left
-        yPos = offset.top
-        #$(this).text('x: ' + xPos + ' y: ' + yPos)
-      stop: ->
-        #alert 'stopped'
-    }
-  )
+  $('.client-appointment').draggable
+    snap: '.edit-hour',
+    containment: '.appointment',
+    drag: ->
+      offset = $(this).offset()
+      xPos = offset.left
+      yPos = offset.top
+      #$(this).text('x: ' + xPos + ' y: ' + yPos)
+    stop: ->
+      #alert 'stopped'
   $('.edit-hour').droppable
     accept: '.client-appointment',
     drop: (event, ui) ->
@@ -68,6 +65,10 @@
     over: ->
       #$(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
       #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
+  $('.client-appointment').resizable
+    # TODO magic number comes from appointments.css.scss $hour-height:50px;
+    grid: [145, 61],
+    handles: 's'
 
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
