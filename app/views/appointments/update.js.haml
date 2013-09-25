@@ -1,0 +1,9 @@
+// TODO duplicated in move
+var duration = "#{@appointment.duration}"
+var card_time = $(".client-appointment.#{@appointment.id} .client-appointment-time");
+var hour = card_time.closest('tr.hour-row').data('hour');
+// TODO fix this. should be abstracted to data
+card_time.html(hour + ":00 - " + (hour + duration / 60).toString() + ":00");
+$(".client-appointment.#{@appointment.id}").data('duration', duration);
+// TODO maybe better to remove data-interval and recalulate every time it is needed?
+$(".client-appointment.#{@appointment.id}").data('interval', hour + ":00 - " + (hour + duration / 60).toString() + ":00");
