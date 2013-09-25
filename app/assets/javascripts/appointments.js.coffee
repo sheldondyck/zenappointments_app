@@ -53,6 +53,7 @@
       #      ' hour: ' + $(this).closest('tr.hour-row').data('hour')
   $('.edit-hour').droppable
     accept: '.client-appointment',
+    tolerance: 'pointer',
     drop: (event, ui) ->
       #alert 'drop pos top:' + ui.position.top + ' left:' + ui.position.left
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
