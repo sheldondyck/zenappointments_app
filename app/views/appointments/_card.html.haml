@@ -1,9 +1,11 @@
-.client-appointment{ class: appointment.id,
+.client-appointment{ class: [appointment.id, "duration-#{appointment.duration}"],
   data: { appointment: appointment.id,
+    duration: appointment.duration,
     name: appointment.client.name,
     email: appointment.client.email,
-    telephone_cellular: appointment.client.telephone_cellular}}
+    interval: format_appointment_interval(hour, appointment.duration),
+    telephone_cellular: appointment.client.telephone_cellular } }
   .client-appointment-name
     =appointment.client.name
   .client-appointment-time
-    ="#{hour}:00 - #{hour + 1}:00"
+    =format_appointment_interval(hour, appointment.duration)

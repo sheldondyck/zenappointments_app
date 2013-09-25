@@ -25,7 +25,13 @@ module AgendaHelper
 
     def hour_rows
       hours.map do |hour|
-        content_tag :tr do
+        content_tag :tr,
+          class: 'hour-row',
+          data: {
+            hour: hour,
+            interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
+            duration: 60 # TODO magic number duration here. should be dynamical
+          } do
           hour_cell(hour).html_safe +
           employees.map { |employee| employee_cell(employee, hour, 60) }.join.html_safe
         end
@@ -44,12 +50,9 @@ module AgendaHelper
       content_tag :td, view.capture(employee, hour, &callback),
         class: employee_classes(hour),
         data: {
+          weekday: date.strftime('%A'), # TODO should be removed. since is duplicated in the header th
           date: date.to_s,
-          hour: hour,
-          date_pretty:  date.strftime('%B %e %Y'), # TODO this format is duplicated in controller
-          weekday: date.strftime('%A'),
-          interval: "#{hour}:00 - #{hour + 1}:00", # TODO this cal. is duplicated in card.html.
-          duration: duration
+          date_pretty:  date.strftime('%B %e %Y') # TODO this format is duplicated in controller
         }
     end
 

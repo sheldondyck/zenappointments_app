@@ -4,12 +4,12 @@
     $('#active-hour').removeAttr('id')
     $(this).attr('id', 'active-hour')
     $('#appoinment-template').append('#active-hour')
-    $('.hour-field').attr('value', $(this).data('hour'))
+    $('.hour-field').attr('value', $(this).closest('tr.hour-row').data('hour'))
     $('.appointment-weekday').html($(this).data('weekday'))
     $('.appointment-date').html($(this).data('date-pretty'))
     # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
-    $('.appointment-time').html($(this).data('interval'))
-    $('.appointment-duration').html($(this).data('duration') + " mins.")
+    $('.appointment-time').html($(this).closest('tr.hour-row').data('interval'))
+    $('.appointment-duration').html($(this).closest('tr.hour-row').data('duration') + " mins.")
     ShowClientAppointmentSearchPartial()
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
@@ -28,8 +28,8 @@
     $('.appointment-weekday').html($(this).closest('.edit-hour').data('weekday'))
     $('.appointment-date').html($(this).closest('.edit-hour').data('date-pretty'))
     # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
-    $('.appointment-time').html($(this).closest('.edit-hour').data('interval'))
-    $('.appointment-duration').html($(this).closest('.edit-hour').data('duration') + " mins.")
+    $('.appointment-time').html($(this).data('interval'))
+    $('.appointment-duration').html($(this).data('duration') + " mins.")
 
     $('.appointment-field .name').html($(this).data('name'))
     $('.appointment-field .email').html($(this).data('email'))
@@ -47,12 +47,14 @@
       xPos = offset.left
       yPos = offset.top
       #$(this).text('x: ' + xPos + ' y: ' + yPos)
-    stop: ->
-      #alert 'stopped'
+    stop: (event, ui) ->
+      #alert 'stopped ' + $(ui.draggable).data('appointment') +
+      #      ' date: ' + $(this).data('date') +
+      #      ' hour: ' + $(this).closest('tr.hour-row').data('hour')
   $('.edit-hour').droppable
     accept: '.client-appointment',
     drop: (event, ui) ->
-      #alert 'drop'
+      alert 'drop pos top:' + ui.position.top + ' left:' + ui.position.left
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       $.ajax "/appointments/move",
@@ -60,15 +62,27 @@
         data: {
           appointment_id: $(ui.draggable).data('appointment'),
           date: $(this).data('date'),
-          hour: $(this).data('hour')
-        }
+          hour: $(this).closest('tr.hour-row').data('hour')
+        },
     over: ->
       #$(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
       #$(this).animate({'box-shadow': 'inset 0 0 3px 3px rgba(68,170,68,0.7)'}, 500)
+  #$('.agenda').droppable
+  #  accept: '.client-appointment',
+  #  drop: (event, ui) ->
+  #    #alert 'drop agenda'
+  $('.hour-grid').resizable
+    grid: [100, 50]
   $('.client-appointment').resizable
     # TODO magic number comes from appointments.css.scss $hour-height:50px;
-    grid: [145, 61],
-    handles: 's'
+    handles: 's',
+    stop: (event, ui) ->
+      $.ajax "/appointments/update",
+        type: 'POST',
+        data: {
+          appointment_id: $(ui.element).data('appointment'),
+          duration: parseInt((ui.size.height + 59) / 60) * 60
+        }
 
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')

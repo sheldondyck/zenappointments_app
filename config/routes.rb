@@ -18,6 +18,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'appointments/new',       :to => 'appointments#new'
   post  'appointments/create',    :to => 'appointments#create'
   post  'appointments/move',      :to => 'appointments#move'
+  post  'appointments/update',    :to => 'appointments#update'
   #resources :appointments
 
   get   'signin',                 :to => 'sessions#new'

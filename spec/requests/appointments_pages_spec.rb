@@ -61,19 +61,19 @@ describe 'AppointmentsPages' do
       it do
         # TODO: does not have .edit-hour
         #should have_selector('td.edit-hour.hour-7')
-        should have_selector(:xpath, '//td[@data-hour="7"]')
-        should have_selector(:xpath, '//td[@data-hour="8"]')
-        should have_selector(:xpath, '//td[@data-hour="9"]')
-        should have_selector(:xpath, '//td[@data-hour="10"]')
-        should have_selector(:xpath, '//td[@data-hour="11"]')
-        should have_selector(:xpath, '//td[@data-hour="12"]')
-        should have_selector(:xpath, '//td[@data-hour="13"]')
-        should have_selector(:xpath, '//td[@data-hour="14"]')
-        should have_selector(:xpath, '//td[@data-hour="15"]')
-        should have_selector(:xpath, '//td[@data-hour="16"]')
-        should have_selector(:xpath, '//td[@data-hour="17"]')
-        should have_selector(:xpath, '//td[@data-hour="18"]')
-        should have_selector(:xpath, '//td[@data-hour="19"]')
+        should have_selector(:xpath, '//tr[@data-hour="7"]')
+        should have_selector(:xpath, '//tr[@data-hour="8"]')
+        should have_selector(:xpath, '//tr[@data-hour="9"]')
+        should have_selector(:xpath, '//tr[@data-hour="10"]')
+        should have_selector(:xpath, '//tr[@data-hour="11"]')
+        should have_selector(:xpath, '//tr[@data-hour="12"]')
+        should have_selector(:xpath, '//tr[@data-hour="13"]')
+        should have_selector(:xpath, '//tr[@data-hour="14"]')
+        should have_selector(:xpath, '//tr[@data-hour="15"]')
+        should have_selector(:xpath, '//tr[@data-hour="16"]')
+        should have_selector(:xpath, '//tr[@data-hour="17"]')
+        should have_selector(:xpath, '//tr[@data-hour="18"]')
+        should have_selector(:xpath, '//tr[@data-hour="19"]')
         should have_selector('h3', Time.zone.now.strftime('%A, %B %e %Y'))
       end
     end
@@ -86,7 +86,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should have_selector('td.edit-hour.hour-12')
+        should have_selector('td.edit-hour')
         should have_selector('h3', Time.zone.now.strftime('week %V - %Y'))
         #should have_selector('h1', 'Week')
       end
@@ -101,7 +101,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit-hour.hour-12')
+        should_not have_selector('td.edit-hour')
         should have_selector('h3', Time.zone.now.strftime('%B %Y'))
       end
     end
@@ -126,15 +126,17 @@ describe 'AppointmentsPages' do
     describe 'create client appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find(:xpath, '//td[@data-hour="3"]').click
+          find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']").click
+          #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']").click
           # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
-          Time.zone = 'Tokyo'
+          #Time.zone = 'Tokyo'
           click_button 'Add'
-          #save_and_open_page
+          save_and_open_page
         end
 
         describe 'correct html' do
           it do
+            # TODO this is broken because we are selecting the wrong element //tr[@class='hour-row' and @data-hour='3'], but the spec is passing
             should have_selector('.appointment-dialog')
             should have_selector('.appointment-weekday', text: Time.zone.now.strftime('%A'))
             should have_selector('.appointment-date', text: Time.zone.now.strftime('%B %e %Y'))
@@ -168,7 +170,7 @@ describe 'AppointmentsPages' do
 
           it do
             #should_not have_selector('.appointment-dialog')
-            should have_xpath("//td[@data-hour='3']/div[@class='client-appointment']", text: 'Client Test_Name 1')
+            should have_xpath("//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']/div[@class='client-appointment']", text: 'Client Test_Name 1')
             should_not have_selector("//td[@data-hour='4'] .client-appointment", text: 'Client Test_Name 1')
             should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end

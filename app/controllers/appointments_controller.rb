@@ -138,6 +138,19 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def update
+    begin
+      #puts 'Appointments#update'
+      #puts 'update id: ' + params[:appointment_id].to_s
+      #puts 'update: ' + params.to_yaml
+      @appointment = Appointment.find_by(id: params[:appointment_id])
+      @appointment.update(duration: params[:duration])
+      #pp @appointment
+    rescue => e
+      puts 'Appointments#update exception: ' + e.message
+    end
+  end
+
   private
     def client_params
       params.require(:appointment).permit(:first_name,

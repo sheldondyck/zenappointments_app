@@ -5,4 +5,5 @@ describe AppointmentsController do
   it { should respond_to(:index) }
   it { should respond_to(:create) }
   it { should respond_to(:move) }
+  it { should respond_to(:update) }
 end
