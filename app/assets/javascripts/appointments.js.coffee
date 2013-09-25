@@ -54,7 +54,7 @@
   $('.edit-hour').droppable
     accept: '.client-appointment',
     drop: (event, ui) ->
-      alert 'drop pos top:' + ui.position.top + ' left:' + ui.position.left
+      #alert 'drop pos top:' + ui.position.top + ' left:' + ui.position.left
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       $.ajax "/appointments/move",
