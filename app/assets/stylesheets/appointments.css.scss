@@ -132,6 +132,18 @@ h1.logo {
   }
 }
 
+li.month-appointment {
+  border: 1px solid #262;
+  box-shadow: inset 0 0 3px 3px rgba(68,170,68,0.7);
+  background: #8d8;
+  margin: 1px;
+  padding: 2px 5px;
+  font-size:10px;
+  color:#222;
+  font-weight: bold;
+  list-style: none;
+}
+
 @for $i from 0 to 24 {
   .client-appointment.duration-#{($i + 1) * 60} {
     height: $hour-height * ($i + 1)
