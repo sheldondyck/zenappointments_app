@@ -177,14 +177,21 @@
   font-weight: bold;
 }
 
+.appointment-delete {
+  display: block;
+  float: right;
+  text-align: right;
+}
+
 .appointment-footer {
   @include appointment-dialog-base;
+  padding-top: 15px;
   padding-bottom: 15px;
 }
 
 .btn-tool {
   position: relative;
-  display: inline;
+  //display: block;
   padding: 0px;
   cursor: pointer;
   background: transparent;
