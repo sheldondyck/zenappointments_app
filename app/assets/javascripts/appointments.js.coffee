@@ -42,6 +42,8 @@
   $('.client-appointment').draggable
     snap: '.edit-hour',
     containment: '.appointment',
+    start: ->
+      HideClientAppointmentDialog()
     drag: ->
       offset = $(this).offset()
       xPos = offset.left
