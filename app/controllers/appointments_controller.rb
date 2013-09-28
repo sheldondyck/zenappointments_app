@@ -151,6 +151,10 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def delete
+    @appointment = Appointment.find_by(id: params[:appointment_id])
+  end
+
   private
     def client_params
       params.require(:appointment).permit(:first_name,

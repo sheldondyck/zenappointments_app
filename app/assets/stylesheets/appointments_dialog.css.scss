@@ -178,16 +178,16 @@
 }
 
 .appointment-delete {
-  display: block;
-  float: right;
-  text-align: right;
+  //display: block;
+  //float: right;
+  //text-align: right;
+  padding-bottom: 15px;
 }
 
 .appointment-footer {
   @include appointment-dialog-base;
-  padding-top: 15px;
   padding-bottom: 15px;
-  background-color: #f00;
+  display: block;
 }
 
 .btn-tool {
@@ -210,5 +210,9 @@
 
 .btn-tool:hover, .btn-tool:focus {
   color: #222;
+}
+
+.btn-delete:hover, .btn-delete:focus {
+  color: #600;
 }
 

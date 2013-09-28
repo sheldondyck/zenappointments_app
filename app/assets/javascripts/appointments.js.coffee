@@ -3,14 +3,14 @@
   $('#appointments').delegate '.edit-hour', 'click', ->
     $('#active-hour').removeAttr('id')
     $(this).attr('id', 'active-hour')
-    $('#appoinment-template').append('#active-hour')
+    #$(this).append($('.appointment-dialog'))
+    ShowClientAppointmentSearchPartial()
     $('.hour-field').attr('value', $(this).closest('tr.hour-row').data('hour'))
     $('.appointment-weekday').html($(this).data('weekday'))
     $('.appointment-date').html($(this).data('date-pretty'))
     # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
     $('.appointment-time').html($(this).closest('tr.hour-row').data('interval'))
     $('.appointment-duration').html($(this).closest('tr.hour-row').data('duration') + " mins.")
-    ShowClientAppointmentSearchPartial()
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow
@@ -23,17 +23,17 @@
     $('#active-hour').removeAttr('id')
     $('#active-client').removeAttr('id')
     $(this).attr('id', 'active-client')
-    $('#appoinment-template').append('#active-client')
+    #$(this).append($('.appointment-dialog'))
     ShowClientAppointmentDetailsPartial()
     $('.appointment-weekday').html($(this).closest('.edit-hour').data('weekday'))
     $('.appointment-date').html($(this).closest('.edit-hour').data('date-pretty'))
     # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
     $('.appointment-time').html($(this).data('interval'))
     $('.appointment-duration').html($(this).data('duration') + " mins.")
-
     $('.appointment-field .name').html($(this).data('name'))
     $('.appointment-field .email').html($(this).data('email'))
     $('.appointment-field .telephone-cellular').html($(this).data('telephone-cellular'))
+    $('.appointment-dialog').data('appointment', $(this).data('appointment'))
 
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
@@ -87,6 +87,16 @@
           duration: parseInt((ui.size.height + 59) / 60) * 60
         }
 
+$ ->
+  $('.delete-appointment').click ->
+    $.ajax "/appointments/delete",
+      type: 'POST',
+      data: {
+        appointment_id: $('.appointment-dialog').data('appointment')
+      }
+      error: ->
+        #alert 'error' # TODO: added generic error handler
+        #
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'block')
@@ -126,6 +136,7 @@ $ ->
 $ ->
   $('.close-appointment-dialog').click ->
     HideClientAppointmentDialog()
+
 
     # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?
 $ ->
