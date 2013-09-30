@@ -1,5 +1,4 @@
 .container
-  !=flash_handler
   .app-title
     %h1
       =link_to app_name, www_url
@@ -11,6 +10,7 @@
             .row
               .col-lg-12
                 %legend Welcome back
+                !=flash_handler
                 .form-group
                   %label.col-lg-4.control-label{for: 'email'} Email
                   .col-lg-6
