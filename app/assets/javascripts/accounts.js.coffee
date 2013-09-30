@@ -1,17 +1,9 @@
-#jQuery ->
-  #$('.show-hide-password').click ->
-    #$('#password').type = 'text'
-    #$('#email').visibility = 'hidden'
-    #$('.password').visibility = 'hidden'
-    #alert 'pasword ' + $('input#password').val()
-
 $ ->
   $(".show-hide-password").each (index, input) ->
     $input = $(input)
-    #alert 'each '
-    $(".btn-show-hide-password").click(->
-      #alert 'click'
+    $(".btn-show-hide-password").click ->
       change = ""
+      # TODO How will this be localized to portugues since we are using Show/Hide as a boolean
       if $(this).html() is "Show"
         $(this).html "Hide"
         change = "text"
@@ -22,8 +14,9 @@ $ ->
         .attr("id", $input.attr("id"))
         .attr("name", $input.attr("name"))
         .attr("class", $input.attr("class"))
+        .attr("placeholder", $input.attr("placeholder"))
         .val($input.val())
         .insertBefore($input)
       $input.remove()
       $input = rep
-      ).insertAfter $input
+      $input.append('span.input-group-btn#password')

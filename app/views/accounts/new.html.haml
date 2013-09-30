@@ -56,15 +56,14 @@
                   %label.control-label{for: 'password'} Password
                   .input-group
                     =f.password_field :password, class: 'form-control show-hide-password', placeholder: 'Password', id: 'password'
-                    %span.input-group-btn
-                      -#=button_tag 'Show', class: 'btn btn-default btn-show-hide-password'
+                    %span.input-group-btn#password
                       %button.btn.btn-default.btn-show-hide-password{type: :button} Show
                   -unless error_message(@user, :password).nil?
                     %p.help-block#password
                       =error_message(@user, :password)
               .col-sm-4
                 .signup-field-help
-                  Great passwords use upper and lower case characters, numbers, and symbols like !"£$%&.
+                  Great passwords use upper and lower case characters, numbers, and symbols like !"£$%#.
             .row
               .col-sm-8
                 %p
@@ -74,7 +73,7 @@
                   =link_to 'Privacy Policy', '#'
               .col-sm-4
                 .signup-field-help
-                  Our lawyers made use put this.
+                  -#Our lawyers made us add this part.
             .row
               .col-lg-8
                 .form-group
@@ -99,7 +98,7 @@
               %p Iaculis eget sem. Pellentesque non lacinia est, et posuere sem
               %strong Some Happy User
           %br
-          %h4 What companies are using #{app_name}
+          %h4 Companies that are using #{app_name}
           %br
           .row
             .col-md-4
