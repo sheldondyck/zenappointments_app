@@ -259,7 +259,6 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails_12factor
   rb-fsevent
-  rb-inotify
   rspec-rails
   sass-rails
   sdoc

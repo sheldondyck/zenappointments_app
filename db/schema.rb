@@ -93,15 +93,15 @@ ActiveRecord::Schema.define(version: 20130808124645) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["signin_token"], name: "index_users_on_signin_token", using: :btree
 
-  add_foreign_key "appointments", "accounts", :name => "appointments_account_id_fk"
-  add_foreign_key "appointments", "clients", :name => "appointments_client_id_fk"
-  add_foreign_key "appointments", "employees", :name => "appointments_employee_id_fk"
-  add_foreign_key "appointments", "users", :name => "appointments_user_id_fk"
+  add_foreign_key "appointments", "accounts", name: "appointments_account_id_fk"
+  add_foreign_key "appointments", "clients", name: "appointments_client_id_fk"
+  add_foreign_key "appointments", "employees", name: "appointments_employee_id_fk"
+  add_foreign_key "appointments", "users", name: "appointments_user_id_fk"
 
-  add_foreign_key "clients", "accounts", :name => "clients_account_id_fk"
+  add_foreign_key "clients", "accounts", name: "clients_account_id_fk"
 
-  add_foreign_key "employees", "accounts", :name => "employees_account_id_fk"
+  add_foreign_key "employees", "accounts", name: "employees_account_id_fk"
 
-  add_foreign_key "users", "accounts", :name => "users_account_id_fk"
+  add_foreign_key "users", "accounts", name: "users_account_id_fk"
 
 end

@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
 
+# TODO extract to seperate module
+def is_mac?
+  RUBY_PLATFORM.downcase.include?('darwin')
+end
+
+def is_linux?
+  RUBY_PLATFORM.downcase.include?('linux')
+end
+
 ruby '2.0.0'
 
 gem 'rails', '4.0.0'
@@ -33,13 +42,8 @@ group :development do
   gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 
-  group :linux_development do
-    gem 'rb-inotify'
-  end
-
-  group :mac_development do
-    gem 'rb-fsevent'
-  end
+  gem 'rb-inotify' if is_linux?
+  gem 'rb-fsevent' if is_mac?
 end
 
 group :test do
