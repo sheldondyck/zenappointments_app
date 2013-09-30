@@ -42,8 +42,8 @@ group :development do
   gem 'debugger'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 
-  gem 'rb-inotify' if is_linux?
-  gem 'rb-fsevent' if is_mac?
+  #gem 'rb-inotify' if is_linux?
+  #gem 'rb-fsevent' if is_mac?
 end
 
 group :test do

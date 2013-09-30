@@ -258,7 +258,6 @@ DEPENDENCIES
   poltergeist
   rails (= 4.0.0)
   rails_12factor
-  rb-fsevent
   rspec-rails
   sass-rails
   sdoc
