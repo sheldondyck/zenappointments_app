@@ -17,10 +17,9 @@ module ApplicationHelper
     div = ""
     flash.each do |key, value|
       css_alert = css_alert_map[key] ||= 'danger'
-      div += "<div class='container'>"
       div += "<div class='alert alert-#{css_alert}' data-dismiss='alert'>"
       div += "<strong>#{value}</strong>"
-      div += "</div></div>"
+      div += "</div>"
     end
     div
   end
