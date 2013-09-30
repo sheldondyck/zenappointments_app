@@ -126,12 +126,16 @@ describe 'AppointmentsPages' do
     describe 'create client appointment dialog', js: true do
       describe 'should show dialog' do
         before do
-          find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']").click
+          #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='edit-hour']").click()
+          #find(:xpath, "/html/body/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda']/tbody/tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']").click()
+          find(:xpath, "//tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']").click()
+
+          #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']").click
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']").click
           # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
-          #Time.zone = 'Tokyo'
+          Time.zone = 'Tokyo'
           click_button 'Add'
-          save_and_open_page
+          #save_and_open_page
         end
 
         describe 'correct html' do
@@ -139,7 +143,7 @@ describe 'AppointmentsPages' do
             # TODO this is broken because we are selecting the wrong element //tr[@class='hour-row' and @data-hour='3'], but the spec is passing
             should have_selector('.appointment-dialog')
             should have_selector('.appointment-weekday', text: Time.zone.now.strftime('%A'))
-            should have_selector('.appointment-date', text: Time.zone.now.strftime('%B %e %Y'))
+            should have_selector(:xpath, "//div[@class='appointment-date']", text: Time.zone.now.strftime('%B %e %Y'))
             should have_selector('.appointment-time', text: '3:00 - 4:00')
             should have_selector('.appointment-duration', text: '60 mins')
             should have_selector('h4', 'Appointment')

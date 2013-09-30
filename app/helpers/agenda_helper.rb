@@ -52,7 +52,7 @@ module AgendaHelper
         data: {
           weekday: date.strftime('%A'), # TODO should be removed. since is duplicated in the header th
           date: date.to_s,
-          date_pretty:  date.strftime('%B %e %Y') # TODO this format is duplicated in controller
+          date_pretty: date.strftime('%B %e %Y') # TODO this format is duplicated in controller
         }
     end
 
