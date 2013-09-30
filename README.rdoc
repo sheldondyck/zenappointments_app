@@ -10,8 +10,10 @@ r generate model Appointment account_id:integer accounts:foreign_key user_id:int
 
 heroku pg:reset DATABASE_URL --confirm zenappointmentsapp
 
+pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
+
 == TODO
 
 * Q: Change company_name to office name?
 * Q: start using angularjs?
-  A: yes
+  A: maybe

@@ -4,54 +4,107 @@
     %h1
       =link_to app_name, www_url
   .signup-dialog
-    .row
-      .col-sm-6.col-sm-offset-3
-        .well
-          =form_for @account, html: {class: 'form-horizontal'} do |f|
+    -#=form_for @account, html: {class: 'form-horizontal'} do |f|
+    =form_for @account do |f|
+      .row
+        .col-sm-8
+          .well
+            %legend Get started with #{app_name} by filling out this simple form
             .row
-              .col-lg-12
-                %legend Sign Up
+              .col-sm-4
                 .form-group#first-name{class: error_class(@user, :first_name)}
                   -# TODO for is not working here but works in signin. why?
-                  %label.col-lg-4.control-label{for: 'first-name'} First Name
-                  .col-lg-6
-                    %input.form-control#first-name{placeholder: 'First Name', name: 'account[first_name]', value: @user[:first_name], type: 'text'}
-                    -unless error_message(@user, :first_name).nil?
-                      %p.help-block#first-name
-                        =error_message(@user, :first_name)
+                  %label.control-label{for: 'first-name'} First Name
+                  %input.form-control#first-name{placeholder: 'First Name', name: 'account[first_name]', value: @user[:first_name], type: 'text'}
+                  -unless error_message(@user, :first_name).nil?
+                    %p.help-block#first-name
+                      =error_message(@user, :first_name)
+              .col-sm-4
                 .form-group#last-name{class: error_class(@user, :last_name)}
-                  %label.col-lg-4.control-label{for: 'last-name'} Last Name
-                  .col-lg-6
-                    %input.form-control#last-name{placeholder: 'Last Name', name: 'account[last_name]', value: @user[:last_name], type: 'text'}
-                    -unless error_message(@user, :last_name).nil?
-                      %p.help-block#last-name
-                        =error_message(@user, :last_name)
+                  %label.control-label{for: 'last-name'} Last Name
+                  %input.form-control#last-name{placeholder: 'Last Name', name: 'account[last_name]', value: @user[:last_name], type: 'text'}
+                  -unless error_message(@user, :last_name).nil?
+                    %p.help-block#last-name
+                      =error_message(@user, :last_name)
+              .col-sm-4
+                .signup-field-help
+            .row
+              .col-sm-8
                 .form-group#company-name{class: error_class(@account, :company_name)}
-                  %label.col-lg-4.control-label{for: 'company-name'} Company Name
-                  .col-lg-6
-                    %input.form-control#company-name{placeholder: 'Company Name', name: 'account[company_name]', value: @account[:company_name], type: 'text'}
-                    -unless error_message(@account, :company_name).nil?
-                      %p.help-block#company-name
-                        =error_message(@account, :company_name)
+                  %label.control-label{for: 'company-name'} Company Name
+                  %input.form-control#company-name{placeholder: 'Company Name', name: 'account[company_name]', value: @account[:company_name], type: 'text'}
+                  -unless error_message(@account, :company_name).nil?
+                    %p.help-block#company-name
+                      =error_message(@account, :company_name)
+              .col-sm-4
+                .signup-field-help
+                  If you don`t have a company then that is not a problem, just use your own name.
+            .row
+              .col-sm-8
                 .form-group#email{class: error_class(@user, :email)}
-                  %label.col-lg-4.control-label{for: 'email'} Email
-                  .col-lg-6
-                    %input.form-control#email{placeholder: 'Email', name: 'account[email]', value: @user[:email], type: 'text'}
-                    -unless error_message(@user, :email).nil?
-                      %p.help-block#email
-                        =error_message(@user, :email)
+                  %label.control-label{for: 'email'} Email
+                  %input.form-control#email{placeholder: 'Email', name: 'account[email]', value: @user[:email], type: 'text'}
+                  -unless error_message(@user, :email).nil?
+                    %p.help-block#email
+                      =error_message(@user, :email)
+              .col-sm-4
+                .signup-field-help
+                  We'll send you an email to activate your account, so please triple-check that you've typed it correctly.
+            .row
+              .col-sm-8
                 .form-group#password{class: error_class(@user, :password)}
-                  %label.col-lg-4.control-label{for: 'password'} Password
-                  .col-lg-6
-                    =f.password_field :password, class: 'form-control', placeholder: 'Password', id: 'password'
-                    -unless error_message(@user, :password).nil?
-                      %p.help-block#password
-                        =error_message(@user, :password)
+                  %label.control-label{for: 'password'} Password
+                  .input-group
+                    =f.password_field :password, class: 'form-control show-hide-password', placeholder: 'Password', id: 'password'
+                    %span.input-group-btn
+                      -#=button_tag 'Show', class: 'btn btn-default btn-show-hide-password'
+                      %button.btn.btn-default.btn-show-hide-password{type: :button} Show
+                  -unless error_message(@user, :password).nil?
+                    %p.help-block#password
+                      =error_message(@user, :password)
+              .col-sm-4
+                .signup-field-help
+                  Great passwords use upper and lower case characters, numbers, and symbols like !"£$%&.
+            .row
+              .col-sm-8
+                %p
+                  By clicking "Create my #{app_name} account!", you agree to our
+                  =link_to 'Terms of Service', '#'
+                  and
+                  =link_to 'Privacy Policy', '#'
+              .col-sm-4
+                .signup-field-help
+                  Our lawyers made use put this.
+            .row
+              .col-lg-8
                 .form-group
-                  .col-lg-offset-4.col-lg-6
-                    =button_tag 'Sign Up', class: 'btn btn-primary', 'data-disable-with' => 'Signing Up ...'
-  .row
-    .col-sm-6.col-sm-offset-3
-      %p
-        I already have an account.
-        =link_to 'Sign in now!', signin_path
+                  =submit_tag "Create my #{app_name} account!", class: 'btn btn-primary', 'data-disable-with' => 'Signing Up ...'
+                %p
+                  I already have an account.
+                  =link_to 'Sign in now!', signin_path
+        .col-sm-4
+          %h4 What some people are saying about #{app_name}
+          %br
+          .row
+            .col-sm-4
+              =image_tag 'http://placehold.it/75x75'
+            .col-sm-8
+              %p Iaculis eget sem. Pellentesque non lacinia est, et posuere sem
+              %strong Some Happy User
+          %br
+          .row
+            .col-sm-4
+              =image_tag 'http://placehold.it/75x75'
+            .col-sm-8
+              %p Iaculis eget sem. Pellentesque non lacinia est, et posuere sem
+              %strong Some Happy User
+          %br
+          %h4 What companies are using #{app_name}
+          %br
+          .row
+            .col-md-4
+              =image_tag 'http://placehold.it/100x100'
+            .col-md-4
+              =image_tag 'http://placehold.it/100x100'
+            .col-md-4
+              =image_tag 'http://placehold.it/100x100'
