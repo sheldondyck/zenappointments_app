@@ -1,5 +1,4 @@
 .container
-  !=flash_handler
   .app-title
     %h1
       =link_to app_name, www_url
@@ -10,6 +9,7 @@
         .col-sm-8
           .well
             %legend Get started with #{app_name} by filling out this simple form
+            !=flash_handler
             .row
               .col-sm-4
                 .form-group#first-name{class: error_class(@user, :first_name)}
