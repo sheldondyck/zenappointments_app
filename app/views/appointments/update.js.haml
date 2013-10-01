@@ -6,4 +6,5 @@ var hour = card_time.closest('tr.hour-row').data('hour');
 card_time.html(hour + ":00 - " + (hour + duration / 60).toString() + ":00");
 $(".client-appointment.#{@appointment.id}").data('duration', duration);
 // TODO maybe better to remove data-interval and recalulate every time it is needed?
+// TODO think about using #{format_appointment_interval(hour, duration)}
 $(".client-appointment.#{@appointment.id}").data('interval', hour + ":00 - " + (hour + duration / 60).toString() + ":00");
