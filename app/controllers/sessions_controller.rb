@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to appointments_path
     else
-      flash.now[:danger] = 'Invalid email or password'
+      flash.now[:alert] = 'Invalid email or password'
       render 'new'
     end
   end
