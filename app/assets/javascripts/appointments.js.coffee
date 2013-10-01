@@ -33,7 +33,7 @@
     $('.appointment-field .name').html($(this).data('name'))
     $('.appointment-field .email').html($(this).data('email'))
     $('.appointment-field .telephone-cellular').html($(this).data('telephone-cellular'))
-    $('.appointment-dialog').data('appointment', $(this).data('appointment'))
+    $('.appointment-dialog').attr('data-appointment', $(this).data('appointment'))
 
     $('.appointment-dialog').css('display', 'block')
     # TODO 400 is the size of dialog. fix this
@@ -92,7 +92,9 @@ $ ->
     $.ajax "/appointments/delete",
       type: 'POST',
       data: {
-        appointment_id: $('.appointment-dialog').data('appointment')
+        # TODO can not mix data and attr together because of caching in jQuery.
+        # Investigate what are the best pratices
+        appointment_id: $('.appointment-dialog').attr('data-appointment')
       }
       error: ->
         #alert 'error' # TODO: added generic error handler
