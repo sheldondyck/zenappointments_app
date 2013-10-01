@@ -17,7 +17,7 @@ class AppointmentsController < ApplicationController
     @client = Client.new
     @title = @current_user.name
     # TODO is Date.current in current time zone? If not add.
-    @date = params[:date] ? Date.parse(params[:date]) : Date.current
+    @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [1]
@@ -73,13 +73,13 @@ class AppointmentsController < ApplicationController
         end
       end
 
-      puts @client.to_yaml
+      #puts @client.to_yaml
 
       @name = @client.name
       @hour = params[:appointment][:hour].to_i
       # TODO: removing in_time_zone did generate a F with specs. huh?
       time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
-      puts 'time: ' + time.to_yaml
+      #puts 'time: ' + time.to_yaml
       @appointment = Appointment.create!(appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
