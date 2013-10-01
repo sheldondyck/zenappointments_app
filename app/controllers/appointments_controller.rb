@@ -73,10 +73,12 @@ class AppointmentsController < ApplicationController
         @client = Client.find(params[:client_id])
       else
         # TODO: added email: to this and it broke. why?
+        puts 'email: ' + params.require(:appointment).permit(:email).to_yaml
         @client = Client.find_by(params.require(:appointment).permit(:email))
       end
       #puts @client.to_yaml
       if @client.nil?
+        puts 'email.nil? true'
         @client = Client.create!(client_params.merge(account_id: @current_user.account_id))
         # TODO: create was not returning id in postgres in prod.  need to reload.
         # is this normal?
@@ -96,6 +98,7 @@ class AppointmentsController < ApplicationController
         #puts appointment_params[:time]
         # TODO: removing in_time_zone did generate a F with specs. huh?
         time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
+        puts 'time: ' + time.to_yaml
         #puts time
         #puts appointment_params.merge(account_id: @current_user.account_id,
         #                         user_id: @current_user.id,
