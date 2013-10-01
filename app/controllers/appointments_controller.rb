@@ -77,11 +77,11 @@ class AppointmentsController < ApplicationController
       end
       #puts @client.to_yaml
       if @client.nil?
-        @client = Client.create(client_params.merge(account_id: @current_user.account_id)) if @client.nil?
+        @client = Client.create!(client_params.merge(account_id: @current_user.account_id))
         # TODO: create was not returning id in postgres in prod.  need to reload.
         # is this normal?
         # TODO: added email: to this and it broke. why?
-        @client = Client.find_by(params.require(:appointment).permit(:email))
+        @client = Client.find_by!(params.require(:appointment).permit(:email))
       end
 
       #@client = Client.find_or_create_by(params.require(:appointment).permit(:email)) do |client|
@@ -108,7 +108,7 @@ class AppointmentsController < ApplicationController
                                                                 time: time))
         #@appointment = nil
         #raise 'lazy!'
-        @appointment.save
+        @appointment.save!
       end
     rescue => e
       puts 'appointments#create exception: ' + e.message
