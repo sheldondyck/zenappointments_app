@@ -78,8 +78,9 @@ class AppointmentsController < ApplicationController
       end
       #puts @client.to_yaml
       if @client.nil?
-        puts 'email.nil? true'
-        @client = Client.create!(client_params.merge(account_id: @current_user.account_id))
+        puts '@client.nil? true'
+        @client = Client.create(client_params.merge(account_id: @current_user.account_id))
+        puts '@client: ' + @client.to_yaml
         # TODO: create was not returning id in postgres in prod.  need to reload.
         # is this normal?
         # TODO: added email: to this and it broke. why?
