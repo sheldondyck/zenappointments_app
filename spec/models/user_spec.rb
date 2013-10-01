@@ -192,6 +192,10 @@ describe User do
       it { should_not be_valid }
     end
 
+    describe 'accepts special characters' do
+      before { @user.password = '!"£$%#.' }
+      it { should be_valid }
+    end
   end
 
   describe 'password_digest' do

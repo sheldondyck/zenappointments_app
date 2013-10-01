@@ -62,71 +62,38 @@ class AppointmentsController < ApplicationController
 
   def create
     begin
-      #puts params.require(:appointment).permit(:email).to_yaml
-      #puts client_params.merge(account_id: @current_user.account_id).to_yaml
-
-      # TODO: this function is a complete mess
-      # TODO: this function is a complete mess
-      # TODO: this function is a complete mess
-      # TODO: this function is a complete mess
-      # TODO: this function is a complete mess
       unless params[:client_id].nil?
-        @client = Client.find(params[:client_id])
+        @client = Client.find_by!(id: params[:client_id])
       else
-        # TODO: added email: to this and it broke. why?
-        puts 'email: ' + params.require(:appointment).permit(:email).to_yaml
-        @client = Client.find_by(params.require(:appointment).permit(:email))
-      end
-      #puts @client.to_yaml
-      if @client.nil?
-        puts '@client.nil? true'
-        @client = Client.create(client_params.merge(account_id: @current_user.account_id))
-        puts '@client: ' + @client.to_yaml
-        # TODO: create was not returning id in postgres in prod.  need to reload.
-        # is this normal?
-        # TODO: added email: to this and it broke. why?
-        @client = Client.find_by!(params.require(:appointment).permit(:email))
+        @client = Client.find_or_create_by!(email: params[:appointment][:email]) do |client|
+          client.account_id = @current_user.account_id
+          client.first_name = params[:appointment][:first_name]
+          client.last_name = params[:appointment][:last_name]
+          client.telephone_cellular = params[:appointment][:telephone_cellular]
+        end
       end
 
-      #@client = Client.find_or_create_by(params.require(:appointment).permit(:email)) do |client|
-        #client.account_id = @current_user.account_id
-        #client.first_name = params.require(:appointment).permit(:first_name)
-        #client.first_name = params[:first_name]
-      #end
+      puts @client.to_yaml
 
-      unless @client.nil?
-        @name = @client.name
-        @hour = params.require(:appointment).permit(:hour)[:hour].to_i
-        #puts appointment_params[:time]
-        # TODO: removing in_time_zone did generate a F with specs. huh?
-        time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
-        puts 'time: ' + time.to_yaml
-        #puts time
-        #puts appointment_params.merge(account_id: @current_user.account_id,
-        #                         user_id: @current_user.id,
-        #                         client_id: @client.id,
-        #                         time: time).to_yaml
-
-        @appointment = Appointment.new(appointment_params.merge(account_id: @current_user.account_id,
-                                                                user_id: @current_user.id,
-                                                                client_id: @client.id,
-                                                                time: time))
-        #@appointment = nil
-        #raise 'lazy!'
-        @appointment.save!
-      end
+      @name = @client.name
+      @hour = params[:appointment][:hour].to_i
+      # TODO: removing in_time_zone did generate a F with specs. huh?
+      time = appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
+      puts 'time: ' + time.to_yaml
+      @appointment = Appointment.create!(appointment_params.merge(account_id: @current_user.account_id,
+                                                              user_id: @current_user.id,
+                                                              client_id: @client.id,
+                                                              time: time))
     rescue => e
       puts 'appointments#create exception: ' + e.message
       if @client.nil?
-        puts 'Client was nil!'
+        puts 'appointments#create client was nil'
         @client = Client.new(client_params.merge(account_id: @current_user.account_id))
         @client.valid?
       else
-        puts 'Client was not nil!'
+        puts 'appointments#create client was not nil'
         @client.valid?
       end
-      #@appointment = Appointment.new
-      #@client = Client.new
     end
   end
 
