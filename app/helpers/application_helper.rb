@@ -15,9 +15,7 @@ module ApplicationHelper
     # TODO: check that css_alert_map is complete
     css_alert_map = {:notice => 'info', :alert => 'danger', :error => 'danger'}
     div = ""
-    puts 'flash_handler'
     flash.each do |key, value|
-      puts key.to_yaml
       css_alert = css_alert_map[key] ||= 'danger'
       div += "<div class='alert alert-#{css_alert}' data-dismiss='alert'>"
       div += "<h4>Opps...</h4>" if key == :alert || key == :error
