@@ -16,6 +16,7 @@ class AppointmentsController < ApplicationController
     #@appointment = Appointment.new
     @client = Client.new
     @title = @current_user.name
+    # TODO is Date.current in current time zone? If not add.
     @date = params[:date] ? Date.parse(params[:date]) : Date.current
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
@@ -26,7 +27,7 @@ class AppointmentsController < ApplicationController
     # TODO: calling 3 selects when only one is used
     @appointments_by_date = Hash.new
     #puts "Account.current_id: #{Account.current_id}"
-    r = Appointment.where(time: @date.beginning_of_month..@date.end_of_month).order(:time).includes(:client)
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_month..@date.in_time_zone.end_of_month).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d")
       if @appointments_by_date.has_key?(k)
@@ -37,7 +38,7 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_week = Hash.new
-    r = Appointment.where(time: @date.beginning_of_week(START_DAY)..@date.end_of_week(START_DAY)).order(:time).includes(:client)
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_week(START_DAY)..@date.in_time_zone.end_of_week(START_DAY)).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H")
       if @appointments_by_week.has_key?(k)
@@ -48,7 +49,7 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_hour = Hash.new
-    r = Appointment.where(time: @date.beginning_of_day..@date.end_of_day).order(:time).includes(:client)
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_day..@date.in_time_zone.end_of_day).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.hour
       if @appointments_by_hour.has_key?(k)
