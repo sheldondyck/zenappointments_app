@@ -125,7 +125,8 @@ class AppointmentsController < ApplicationController
 
   def destroy
     @appointment = Appointment.find_by!(id: params[:appointment_id])
-    @appointment.destroy
+    # TODO destroy here does not use default scope. why?
+    @appointment.delete
   end
 
   private
