@@ -124,7 +124,7 @@ describe 'AppointmentsPages' do
     # TODO: verify details dialog html
 
     describe 'create client appointment dialog', js: true do
-      describe 'should show dialog' do
+      describe 'should show dialog', js: true do
         before do
           #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='edit-hour']").click()
           #find(:xpath, "/html/body/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda']/tbody/tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']").click()
@@ -138,7 +138,7 @@ describe 'AppointmentsPages' do
           #save_and_open_page
         end
 
-        describe 'correct html' do
+        describe 'correct html', js: true do
           it do
             # TODO this is broken because we are selecting the wrong element //tr[@class='hour-row' and @data-hour='3'], but the spec is passing
             should have_selector('.appointment-dialog')
@@ -163,20 +163,20 @@ describe 'AppointmentsPages' do
             #save_and_open_page
             click_button 'Add'
             # TODO: find a better way then sleeping
-            sleep 0.5
+            sleep 1.5
             #puts Capybara.default_wait_time
             #wait_until(Capybara.default_wait_time) do
             #  puts Capybara.default_wait_time
             #  page.evaluate_script 'jQuery.active == 0'
             #end
-            #save_and_open_page
+            save_and_open_page
           end
 
           it do
             #should_not have_selector('.appointment-dialog')
-            should have_xpath("//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']/div[@class='client-appointment']", text: 'Client Test_Name 1')
-            should_not have_selector("//td[@data-hour='4'] .client-appointment", text: 'Client Test_Name 1')
-            should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
+            should have_xpath("//tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']/div[@class='client-appointment duration-60 ui-draggable ui-resizable']/div[@class='client-appointment-name']", text: 'Client Test_Name 1')
+            #should_not have_selector("//td[@data-hour='4'] .client-appointment", text: 'Client Test_Name 1')
+            #should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
 
           describe 'verify appointment', js: true do

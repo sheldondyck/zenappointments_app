@@ -123,9 +123,9 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @appointment = Appointment.find_by!(id: params[:appointment_id])
-    @appointment.delete
+    @appointment.destroy
   end
 
   private

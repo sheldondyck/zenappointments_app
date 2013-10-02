@@ -89,7 +89,7 @@
 
 $ ->
   $('.delete-appointment').click ->
-    $.ajax "/appointments/delete",
+    $.ajax "/appointments/destroy",
       type: 'POST',
       data: {
         # TODO can not mix data and attr together because of caching in jQuery.
