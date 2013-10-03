@@ -1,5 +1,6 @@
 .client-appointment{ class: [appointment.id, "duration-#{appointment.duration}"],
   data: { appointment: appointment.id,
+    client: appointment.client.id,
     duration: appointment.duration,
     name: appointment.client.name,
     first_name: appointment.client.first_name,

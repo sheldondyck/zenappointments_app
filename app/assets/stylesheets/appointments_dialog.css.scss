@@ -17,6 +17,11 @@
   visibility: hidden;
 }
 
+.appointment-dialog-error {
+  color: #600;
+  display: none;
+}
+
 #appointment-template {
   display: none;
   // TODO: hack to test
@@ -215,5 +220,13 @@
 
 .btn-delete:hover, .btn-delete:focus {
   color: #600;
+}
+
+.if-client-exists {
+  display: none;
+}
+
+.if-client-not-exists {
+  display: none;
 }
 

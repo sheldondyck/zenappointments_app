@@ -14,6 +14,9 @@
     $('.appointment-dialog').css('display', 'block')
     $('.appointment-dialog').css('visibility', 'visible')
 
+    $('.if-client-not-exists').css('display', 'block')
+    $('.if-client-exists').css('display', 'none')
+
     ResetClientAppointmentDialog()
 
     # TODO 400 is the size of dialog. fix this
@@ -38,6 +41,11 @@
     $('.appointment-field .email').html($(this).data('email'))
     $('.appointment-field .telephone-cellular').html($(this).data('telephone-cellular'))
     $('.appointment-dialog').attr('data-appointment', $(this).data('appointment'))
+    $('input.client_id').val($(this).data('client'))
+
+    $('.if-client-not-exists').css('display', 'none')
+    $('.if-client-exists').css('display', 'block')
+    $('.appointment-dialog-error').css('display', 'none')
 
     # Load client into form
     $('.first-name').val($(this).data('first-name'))
@@ -142,6 +150,7 @@ $ ->
     $('.last-name').val('')
     $('.email').val('')
     $('.telephone-cellular').val('')
+    $('.appointment-dialog-error').css('display', 'none')
 
 $ ->
   $('.show-client-details').click ->
@@ -162,16 +171,6 @@ $ ->
 $ ->
   $('.close-appointment-dialog').click ->
     HideClientAppointmentDialog()
-
-    ###
-$ ->
-  $('.if-client-exists').show ->
-    alert 'exists'
-
-$ ->
-  $('.if-client-not-exists').show ->
-    #alert 'not exists'
-    ###
 
 $ ->
   # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?

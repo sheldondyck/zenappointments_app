@@ -7,6 +7,7 @@
       %button.color-selector{ type: 'button' }
         %i.icon-qrcode
       %h3
+        %i.icon-warning-sign.appointment-dialog-error
         Appointment
     .appointment-body
       .appointment-details
@@ -44,16 +45,19 @@
             =f.hidden_field :hour, class: 'hour-field'
             =f.hidden_field :time, value: @date
             =f.hidden_field :duration, value: 60
-            %h4
-              Client
-              -#.if-client-exists
+            =f.hidden_field :client_id, class: :client_id
+            .if-client-not-exists
+              %h4
+                Client
+                %button.btn-tool.show-client-search{ type: 'button' }
+                  %i.icon-search
+                  Search
+            .if-client-exists
+              %h4
+                Client
                 %button.btn-tool.show-client-details{ type: 'button' }
                   %i.icon-user
                   Details
-              -#.if-client-not-exists
-              %button.btn-tool.show-client-search{ type: 'button' }
-                %i.icon-search
-                Search
             .row
               .col-sm-6
                 .form-group#first-name{ class: error_class(@client, :first_name) }
@@ -73,7 +77,7 @@
                       %p.help-block#telephone-cellular
                         =error_message(@client, :telephone_cellular)
                 .form-group
-                  =button_tag 'Add', class: 'btn btn-primary', 'data-disable-with' => 'Adding ...'
+                  =button_tag 'Save', class: 'btn btn-primary', 'data-disable-with' => 'Saving ...'
               .col-sm-6
                 .form-group#last-name{ class: error_class(@client, :last_name) }
                   %label.control-label{ for: 'last-name' }

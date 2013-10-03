@@ -161,7 +161,7 @@ describe 'AppointmentsPages' do
             fill_in 'appointment[first_name]', with: 'Client Test_Name 1'
             fill_in 'appointment[email]', with: 'client_1@client_domain.com'
             #save_and_open_page
-            click_button 'Add'
+            click_button 'Save'
             # TODO: find a better way then sleeping
             sleep 1.5
             #puts Capybara.default_wait_time
@@ -169,7 +169,7 @@ describe 'AppointmentsPages' do
             #  puts Capybara.default_wait_time
             #  page.evaluate_script 'jQuery.active == 0'
             #end
-            save_and_open_page
+            #save_and_open_page
           end
 
           it do

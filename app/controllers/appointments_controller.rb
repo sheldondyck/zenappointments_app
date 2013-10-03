@@ -62,8 +62,9 @@ class AppointmentsController < ApplicationController
 
   def create
     begin
-      unless params[:client_id].nil?
-        @client = Client.find_by!(id: params[:client_id])
+      unless params[:appointment][:client_id].nil?
+        #puts 'client_id: ' + params[:appointment][:client_id]
+        @client = Client.find_by!(id: params[:appointment][:client_id])
       else
         @client = Client.find_or_create_by!(email: params[:appointment][:email]) do |client|
           client.account_id = @current_user.account_id
@@ -116,7 +117,7 @@ class AppointmentsController < ApplicationController
       #puts 'update id: ' + params[:appointment_id].to_s
       #puts 'update: ' + params.to_yaml
       # TODO update client data as well
-      @appointment = Appointment.find_by(id: params[:appointment_id])
+      @appointment = Appointment.find_by!(id: params[:appointment_id])
       @appointment.update(duration: params[:duration])
       #pp @appointment
     rescue => e

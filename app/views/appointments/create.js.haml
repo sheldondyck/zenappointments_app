@@ -1,6 +1,6 @@
 // TODO change to coffeescript
 - if @appointment.nil?
-  $('.appointment-dialog').attr('id', 'error');
+  $('.appointment-dialog-error').css('display', 'inline');
 - else
   -# TODO duplicate code
   $('#active-hour').append("#{j render('card', appointment: @appointment, hour: @hour, offset: 105)}");
