@@ -13,6 +13,7 @@
     $('.appointment-duration').html($(this).closest('tr.hour-row').data('duration') + " mins.")
     $('.appointment-dialog').css('display', 'block')
     $('.appointment-dialog').css('visibility', 'visible')
+    $('input.client_id').val('')
 
     $('.if-client-not-exists').css('display', 'block')
     $('.if-client-exists').css('display', 'none')

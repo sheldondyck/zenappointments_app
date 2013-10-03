@@ -62,8 +62,9 @@ class AppointmentsController < ApplicationController
 
   def create
     begin
-      unless params[:appointment][:client_id].nil?
-        #puts 'client_id: ' + params[:appointment][:client_id]
+      # TODO find the RailsWay(tm) of doing this
+      if params[:appointment][:client_id].to_i > 0
+        puts 'client_id: ' + params[:appointment][:client_id]
         @client = Client.find_by!(id: params[:appointment][:client_id])
       else
         @client = Client.find_or_create_by!(email: params[:appointment][:email]) do |client|
