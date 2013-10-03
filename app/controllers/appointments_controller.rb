@@ -115,6 +115,7 @@ class AppointmentsController < ApplicationController
       #puts 'Appointments#update'
       #puts 'update id: ' + params[:appointment_id].to_s
       #puts 'update: ' + params.to_yaml
+      # TODO update client data as well
       @appointment = Appointment.find_by(id: params[:appointment_id])
       @appointment.update(duration: params[:duration])
       #pp @appointment

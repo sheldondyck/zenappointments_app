@@ -12,6 +12,10 @@
     $('.appointment-time').html($(this).closest('tr.hour-row').data('interval'))
     $('.appointment-duration').html($(this).closest('tr.hour-row').data('duration') + " mins.")
     $('.appointment-dialog').css('display', 'block')
+    $('.appointment-dialog').css('visibility', 'visible')
+
+    ResetClientAppointmentDialog()
+
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-hour').offset().left + $('#active-hour').width() / 2 - 400 / 2, top:$('#active-hour').offset().top + $('#active-hour').height() - 12})
@@ -35,7 +39,14 @@
     $('.appointment-field .telephone-cellular').html($(this).data('telephone-cellular'))
     $('.appointment-dialog').attr('data-appointment', $(this).data('appointment'))
 
+    # Load client into form
+    $('.first-name').val($(this).data('first-name'))
+    $('.last-name').val($(this).data('last-name'))
+    $('.email').val($(this).data('email'))
+    $('.telephone-cellular').val($(this).data('telephone-cellular'))
+
     $('.appointment-dialog').css('display', 'block')
+    $('.appointment-dialog').css('visibility', 'visible')
     # TODO 400 is the size of dialog. fix this
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-client').offset().left + $('#active-client').width() / 2 - 400 / 2, top:$('#active-client').offset().top + $('#active-client').height() - 12})
@@ -121,7 +132,20 @@ $ ->
 
 (exports ? this).HideClientAppointmentDialog = ->
   $('.appointment-dialog').css('display', 'none')
+  $('.appointment-dialog').css('visibility', 'hidden')
   $('#active-hour').removeAttr('id')
+
+(exports ? this).ResetClientAppointmentDialog = ->
+    $('.client-search-results').empty()
+    $('.search-client').val('')
+    $('.first-name').val('')
+    $('.last-name').val('')
+    $('.email').val('')
+    $('.telephone-cellular').val('')
+
+$ ->
+  $('.show-client-details').click ->
+    ShowClientAppointmentDetailsPartial()
 
 $ ->
   $('.show-client-search').click ->
@@ -139,9 +163,18 @@ $ ->
   $('.close-appointment-dialog').click ->
     HideClientAppointmentDialog()
 
-
-    # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?
+    ###
 $ ->
+  $('.if-client-exists').show ->
+    alert 'exists'
+
+$ ->
+  $('.if-client-not-exists').show ->
+    #alert 'not exists'
+    ###
+
+$ ->
+  # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?
   $('.search-client').keyup ->
     $.ajax "/clients/search",
       type: 'GET',

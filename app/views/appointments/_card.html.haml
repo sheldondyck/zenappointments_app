@@ -2,9 +2,11 @@
   data: { appointment: appointment.id,
     duration: appointment.duration,
     name: appointment.client.name,
+    first_name: appointment.client.first_name,
+    last_name: appointment.client.last_name,
     email: appointment.client.email,
-    interval: format_appointment_interval(hour, appointment.duration),
-    telephone_cellular: appointment.client.telephone_cellular } }
+    telephone_cellular: appointment.client.telephone_cellular,
+    interval: format_appointment_interval(hour, appointment.duration) } }
   .client-appointment-name
     =appointment.client.name
   .client-appointment-time
