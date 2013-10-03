@@ -18,14 +18,16 @@
 }
 
 .appointment-dialog-error {
-  color: #600;
+  padding: 0 5px 0 0;
+  color: #800;
   display: none;
+  text-shadow: 0 1px 0 white;
+  font-weight: bold;
+  opacity: 0.9;
 }
 
 #appointment-template {
   display: none;
-  // TODO: hack to test
-  //display: block;
 }
 
 .appointment-content, .arrow:after {
