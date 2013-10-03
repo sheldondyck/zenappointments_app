@@ -220,8 +220,16 @@
   color: #222;
 }
 
+.btn-tool:active {
+  color: #040;
+}
+
 .btn-delete:hover, .btn-delete:focus {
   color: #600;
+}
+
+.btn-delete:active {
+  color: #a00;
 }
 
 .if-client-exists {
