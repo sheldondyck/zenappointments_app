@@ -46,14 +46,14 @@
             =f.hidden_field :duration, value: 60
             %h4
               Client
-              .if-client-exists
+              -#.if-client-exists
                 %button.btn-tool.show-client-details{ type: 'button' }
                   %i.icon-user
                   Details
-              .if-client-not-exists
-                %button.btn-tool.show-client-search{ type: 'button' }
-                  %i.icon-search
-                  Search
+              -#.if-client-not-exists
+              %button.btn-tool.show-client-search{ type: 'button' }
+                %i.icon-search
+                Search
             .row
               .col-sm-6
                 .form-group#first-name{ class: error_class(@client, :first_name) }
