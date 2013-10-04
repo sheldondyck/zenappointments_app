@@ -75,7 +75,7 @@ class AppointmentsController < ApplicationController
         end
       end
 
-      #puts @client.to_yaml
+      puts @client.to_yaml
 
       @name = @client.name
       @hour = params[:appointment][:hour].to_i
@@ -86,6 +86,7 @@ class AppointmentsController < ApplicationController
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
                                                               time: time))
+      puts @appointment.to_yaml
     rescue => e
       puts 'appointments#create exception: ' + e.message
       if @client.nil?

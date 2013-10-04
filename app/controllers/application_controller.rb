@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def scope_current_account
-      Account.current_id = @current_user.id unless @current_user.nil?
+      Account.current_id = @current_user.account_id unless @current_user.nil?
     end
 
     def unscope_current_account
