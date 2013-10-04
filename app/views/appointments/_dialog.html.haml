@@ -37,6 +37,7 @@
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
               %input.form-control.search-client{ placeholder: 'Search', type: 'text' }
+              -# TODO: PUT icon-search icon inside text field. currently the span looks like a button that does nothing
               %span.input-group-addon
                 %i.icon-search
             .client-search-results
@@ -71,7 +72,7 @@
                 .form-group#telefone-celular{ class: error_class(@client, :first_name) }
                   -# TODO for is not working here but works in signin. why?
                   %label.control-label{ for: 'telephone-cellular' }
-                    Celular
+                    Cellular
                     %input.form-control.telephone-cellular{ placeholder: 'Cellular', name: 'appointment[telephone_cellular]', value: @client[:telephone_cellular], type: 'text' }
                     -unless error_message(@client, :first_name).nil?
                       %p.help-block#telephone-cellular
