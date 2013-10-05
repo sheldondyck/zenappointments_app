@@ -1,7 +1,7 @@
 #appointments-panel
   =render('header')
-  =week @date do |date, hour|
+  =week @date do |date, hour, slot, slot_duration|
     -#=hour.to_s + ':00'
     -if @appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d" % hour]
       -@appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d" % hour].each do |appointment|
-        =render('card', appointment: appointment, hour: hour, duration: 60)
+        =render('card', appointment: appointment, hour: hour) if slot == 0

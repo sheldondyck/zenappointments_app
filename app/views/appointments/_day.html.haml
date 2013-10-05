@@ -1,6 +1,6 @@
 #appointments-panel
   =render('header')
-  =agenda @date, @employees do |employee, hour|
+  =agenda @date, @employees do |employee, hour, slot, slot_duration|
     -if @appointments_by_hour[hour]
       -@appointments_by_hour[hour].each do |appointment|
-        =render('card', appointment: appointment, hour: hour)
+        =render('card', appointment: appointment, hour: hour) if slot == 0

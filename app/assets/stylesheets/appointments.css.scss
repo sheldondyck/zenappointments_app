@@ -1,4 +1,6 @@
+$number-slots-per-hour: 4;
 $hour-height: 50px;
+$slot-height: $hour-height / $number-slots-per-hour;
 
 h1.logo {
   font-family: helvetica;
@@ -36,10 +38,10 @@ h1.logo {
   }
 
   .hour {
-    padding:0px 6px 0px 0px;
-    background:#ddd;
-    text-align:right;
-    width:100px;
+    padding: 3px 6px 10px 10px;
+    background: #ddd;
+    text-align: right;
+    width: 200px;
   }
 
   .notmonth, .notmonth a { color:#ccc; }
@@ -59,7 +61,7 @@ h1.logo {
 
 #appointments .week {
   th, td {
-    padding:0px 6px 0px 0px;
+    padding:0px 0px 0px 0px;
   }
 
   th {
@@ -147,6 +149,24 @@ li.month-appointment {
 @for $i from 0 to 24 {
   .client-appointment.duration-#{($i + 1) * 60} {
     height: $hour-height * ($i + 1)
+  }
+}
+
+.slot {
+  display: block;
+  width: 100%;
+}
+
+@for $i from 0 to 3 {
+  .slot.slot-#{$i} {
+    height: $slot-height;
+
+    @if $i == 1 {
+      border-bottom: 1px dashed #d5d5d5;
+    }
+    @else if $i != 3 {
+      border-bottom: 1px dotted #e5e5e5;
+    }
   }
 }
 
