@@ -13,6 +13,11 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 
+# TODO had to downgrade multi_json and sass because rails refused to init.
+# Remove these two lines and try again later
+gem 'multi_json', '1.8.0'
+gem 'sass', '3.2.11'
+
 gem 'sass-rails' #, '~> 4.0.0.rc2'
 gem 'coffee-rails' #, '~> 4.0.0'
 gem 'jquery-rails'
