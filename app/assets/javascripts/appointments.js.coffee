@@ -60,7 +60,7 @@
     # TODO 12 is a magic number because of arrow
     $('.appointment-dialog').offset({left:$('#active-client').offset().left + $('#active-client').width() / 2 - 400 / 2, top:$('#active-client').offset().top + $('#active-client').height() - 12})
   $('.client-appointment').draggable
-    snap: '.edit-hour',
+    snap: '.slot',
     containment: '.appointment',
     start: ->
       HideClientAppointmentDialog()
@@ -73,7 +73,7 @@
       #alert 'stopped ' + $(ui.draggable).data('appointment') +
       #      ' date: ' + $(this).data('date') +
       #      ' hour: ' + $(this).closest('tr.hour-row').data('hour')
-  $('.edit-hour').droppable
+  $('.slot').droppable
     accept: '.client-appointment',
     tolerance: 'pointer',
     drop: (event, ui) ->
@@ -84,8 +84,9 @@
         type: 'POST',
         data: {
           appointment_id: $(ui.draggable).data('appointment'),
-          date: $(this).data('date'),
-          hour: $(this).closest('tr.hour-row').data('hour')
+          date: $(this).closest('.edit-hour').data('date'),
+          hour: $(this).closest('tr.hour-row').data('hour'),
+          slot: $(this).data('slot')
         },
     over: ->
       #$(this).animate({'border-width': '2px', 'border-color': '#4a4'}, 500)
@@ -95,7 +96,7 @@
   #  drop: (event, ui) ->
   #    #alert 'drop agenda'
   $('.hour-grid').resizable
-    grid: [100, 50]
+    grid: [100, 10]
   $('.client-appointment').resizable
     # TODO magic number comes from appointments.css.scss $hour-height:50px;
     handles: 's',
@@ -104,7 +105,10 @@
         type: 'POST',
         data: {
           appointment_id: $(ui.element).data('appointment'),
-          duration: parseInt((ui.size.height + 59) / 60) * 60
+          # TODO duration cal. is a hack.
+          duration: parseInt((ui.size.height + 59) / 60) * 60,
+          # TODO this is not correct
+          slot: $(ui.element).data('slot')
         }
 
 $ ->

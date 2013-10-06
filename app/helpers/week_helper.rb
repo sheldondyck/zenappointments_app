@@ -26,7 +26,7 @@ module WeekHelper
         content_tag :th, class: 'corner' do
           weeks.map do |week|
             week.map do |day|
-              content_tag :th, day.strftime('%A'),
+              content_tag :th, day.strftime('%A - %m/%e'),
                 class: 'day-col',
                  # TODO this is duplicated in th col. how do we get this in onclick?
                 data: { weekday: day.strftime('%A') }
@@ -102,15 +102,22 @@ module WeekHelper
       (0...APPOINTMENT_SLOTS).map do |slot|
         content_tag :div,
           view.capture(day, hour, slot, SLOT_DURATION, &callback),
-          class: appointmet_slot_class(slot)
+          class: appointment_slot_class(slot),
+          data: appointment_slot_data(slot)
       end.join.html_safe
     end
 
-    def appointmet_slot_class(slot)
+    def appointment_slot_class(slot)
       classes = []
       classes << "slot"
       classes << "slot-#{slot}"
       classes.join(" ")
+    end
+
+    def appointment_slot_data(slot)
+      data = {
+        slot: slot
+      }
     end
 
     def weeks

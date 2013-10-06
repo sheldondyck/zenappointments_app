@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
 
   # TODO the definition of START_DAY is duplicated
   START_DAY = :sunday
-  NAV_TITLE = {day: '%A, %B %e %Y', week: 'week %V - %Y', weeks2: 'week2 %Y', month: '%B %Y', months2: 'Months 2 %B %Y', year: '%Y', years2: '%Y - %Y 2'}
+  NAV_TITLE = {day: '%A, %B %e %Y', week: 'Week %V - %Y', weeks2: 'Bi-Weekly %Y', month: '%B %Y', months2: 'Bi-Monthly  %B %Y', year: '%Y', years2: '%Y - %Y'}
 
   def new
     #@appointment = Appointment.new
@@ -106,7 +106,8 @@ class AppointmentsController < ApplicationController
       #puts 'move id: ' + params[:appointment_id].to_s
       #puts 'move: ' + params.to_yaml
       @appointment = Appointment.find_by(id: params[:appointment_id])
-      @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour]))
+      #TODO magic number 15mins is a hack here
+      @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour], min: params[:slot].to_i * 15))
       #pp @appointment
     rescue => e
       puts 'Appointments#move exception: ' + e.message

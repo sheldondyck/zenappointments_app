@@ -157,7 +157,7 @@ li.month-appointment {
   width: 100%;
 }
 
-@for $i from 0 to 3 {
+@for $i from 0 to 4 {
   .slot.slot-#{$i} {
     height: $slot-height;
 

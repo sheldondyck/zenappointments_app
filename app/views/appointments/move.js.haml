@@ -1,9 +1,11 @@
 var duration = $(".client-appointment.#{@appointment.id}").data('duration')
 var card_time = $(".client-appointment.#{@appointment.id} .client-appointment-time");
 var hour = card_time.closest('tr.hour-row').data('hour');
+var slot = card_time.closest('.slot').data('slot');
 // TODO fix this. should be abstracted to data
-card_time.html(hour + ":00 - " + (hour + duration / 60).toString() + ":00");
-card_time.data('duration', hour + ":00 - " + (hour + duration / 60).toString() + ":00");
+card_time.html(hour + ":" + slot * 15 + " - " + (hour + duration / 60).toString() + ":" + slot * 15);
+// TODO yuck!!
+card_time.data('duration', hour + ":" + slot * 15 + " - " + (hour + duration / 60).toString() + ":" + slot * 15);
 
 // TODO maybe better to remove data-interval and recalulate every time it is needed?
-$(".client-appointment.#{@appointment.id}").data('interval', hour + ":00 - " + (hour + duration / 60).toString() + ":00");
+$(".client-appointment.#{@appointment.id}").data('interval', hour + ":" + slot * 15 + " - " + (hour + duration / 60).toString() + ":" + slot * 15);
