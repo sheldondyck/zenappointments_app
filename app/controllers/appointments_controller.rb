@@ -40,7 +40,7 @@ class AppointmentsController < ApplicationController
     @appointments_by_week = Hash.new
     r = Appointment.where(time: @date.in_time_zone.beginning_of_week(START_DAY)..@date.in_time_zone.end_of_week(START_DAY)).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
-      k = appointment.time.strftime("%Y-%m-%d %H")
+      k = appointment.time.strftime("%Y-%m-%d %H:%M")
       if @appointments_by_week.has_key?(k)
         @appointments_by_week[k].push(appointment)
       else

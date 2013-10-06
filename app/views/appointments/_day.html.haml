@@ -3,4 +3,4 @@
   =agenda @date, @employees do |employee, hour, slot, slot_duration|
     -if @appointments_by_hour[hour]
       -@appointments_by_hour[hour].each do |appointment|
-        =render('card', appointment: appointment, hour: hour) if slot == 0
+        =render('card', appointment: appointment, hour: hour, slot: slot) if slot == 0

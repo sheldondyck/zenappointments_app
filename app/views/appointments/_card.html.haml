@@ -7,8 +7,8 @@
     last_name: appointment.client.last_name,
     email: appointment.client.email,
     telephone_cellular: appointment.client.telephone_cellular,
-    interval: format_appointment_interval(hour, appointment.duration) } }
+    interval: format_appointment_interval(hour, slot, appointment.duration) } }
   .client-appointment-name
     =appointment.client.name
   .client-appointment-time
-    =format_appointment_interval(hour, appointment.duration)
+    =format_appointment_interval(hour, slot, appointment.duration)
