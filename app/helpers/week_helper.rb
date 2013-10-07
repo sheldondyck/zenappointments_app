@@ -92,10 +92,10 @@ module WeekHelper
     def hour_data(day, hour)
       data = {
         # TODO should be removed. since is duplicated in the header th
-        weekday: day.strftime('%a'),
+        weekday: day.strftime('%A'),
         date: day.to_s,
         # TODO this format is duplicated in controller
-        date_pretty: day.strftime('%b %e %y') }
+        date_pretty: day.strftime('%B %e %Y') }
     end
 
     def appointment_slots(day, hour)
