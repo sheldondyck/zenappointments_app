@@ -105,8 +105,11 @@ class AppointmentsController < ApplicationController
       #puts 'Appointments#move'
       #puts 'move id: ' + params[:appointment_id].to_s
       #puts 'move: ' + params.to_yaml
+      @hour = params[:hour].to_i
+      @slot = params[:slot].to_i
       @appointment = Appointment.find_by(id: params[:appointment_id])
-      #TODO magic number 15mins is a hack here
+      # TODO magic number 15mins is a hack here
+      # TODO what do we do about slot? remove? add more generic solution?
       @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour], min: params[:slot].to_i * 15))
       #pp @appointment
     rescue => e
