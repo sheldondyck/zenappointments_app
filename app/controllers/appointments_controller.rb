@@ -123,6 +123,9 @@ class AppointmentsController < ApplicationController
       #puts 'update id: ' + params[:appointment_id].to_s
       #puts 'update: ' + params.to_yaml
       # TODO update client data as well
+      # TODO should move and update be combined into one action?
+      @hour = params[:hour].to_i
+      @slot = params[:slot].to_i
       @appointment = Appointment.find_by!(id: params[:appointment_id])
       @appointment.update(duration: params[:duration])
       #pp @appointment

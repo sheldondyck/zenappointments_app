@@ -1,12 +1,6 @@
 // TODO duplicated in move
-var duration = "#{@appointment.duration}"
-var card_time = $(".client-appointment.#{@appointment.id} .client-appointment-time");
-var hour = card_time.closest('tr.hour-row').data('hour');
-var slot = card_time.closest('.slot').data('slot');
 // TODO fix this. should be abstracted to data
-card_time.html(hour + ":" + slot * 15 + " - " + (hour + duration / 60).toString() + ":" + slot * 15);
-
-$(".client-appointment.#{@appointment.id}").data('duration', duration);
+$(".client-appointment.#{@appointment.id} .client-appointment-time").html("#{format_appointment_interval(@hour, @slot, @appointment.duration)}");
+$(".client-appointment.#{@appointment.id}").data('duration', "#{@appointment.duration}");
 // TODO maybe better to remove data-interval and recalulate every time it is needed?
-// TODO think about using #{format_appointment_interval(hour, duration)}
-$(".client-appointment.#{@appointment.id}").data('interval', hour + ":" + slot * 15 + " - " + (hour + duration / 60).toString() + ":" + slot * 15);
+$(".client-appointment.#{@appointment.id}").data('interval', "#{format_appointment_interval(@hour, @slot, @appointment.duration)}");
