@@ -116,8 +116,8 @@ GEM
     libnotify (0.8.2)
       ffi (>= 1.0.11)
     libv8 (3.16.14.3)
-    listen (2.0.0)
-      celluloid (>= 0.15.1)
+    listen (2.0.1)
+      celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     mail (2.5.4)
@@ -158,7 +158,7 @@ GEM
       rails_serve_static_assets
       rails_stdout_logging
     rails_serve_static_assets (0.0.1)
-    rails_stdout_logging (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.0.0)
       actionpack (= 4.0.0)
       activesupport (= 4.0.0)
