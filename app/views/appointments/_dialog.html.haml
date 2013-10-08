@@ -34,6 +34,7 @@
             =f.hidden_field :hour, class: 'hour-field'
             =f.hidden_field :time, value: @date
             =f.hidden_field :duration, value: 60
+            =f.hidden_field :slot, value: 0
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
               %input.form-control.search-client{ placeholder: 'Search', type: 'text' }
@@ -43,10 +44,11 @@
             .client-search-results
         .appointment-client-edit
           =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
+            =f.hidden_field :client_id, class: :client_id
             =f.hidden_field :hour, class: 'hour-field'
             =f.hidden_field :time, value: @date
             =f.hidden_field :duration, value: 60
-            =f.hidden_field :client_id, class: :client_id
+            =f.hidden_field :slot, value: 0
             .if-client-not-exists
               %h4
                 Client

@@ -3,6 +3,7 @@
   $('.appointment-dialog-error').css('display', 'inline');
 - else
   -# TODO duplicate code
-  $('#active-hour').append("#{j render('card', appointment: @appointment, hour: @hour, offset: 105)}");
+  -# TODO magic number offset
+  $('#active-hour').prepend("#{j render('card', appointment: @appointment, hour: @hour, slot: @slot, offset: 105)}");
   InstallClientAppointmentHandler();
   HideClientAppointmentDialog();

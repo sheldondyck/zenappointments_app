@@ -79,6 +79,7 @@ class AppointmentsController < ApplicationController
 
       @name = @client.name
       @hour = params[:appointment][:hour].to_i
+      @slot = params[:appointment][:slot].to_i
       # TODO: removing in_time_zone did generate a F with specs. huh?
       time = safe_appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
       #puts 'time: ' + time.to_yaml
