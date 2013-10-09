@@ -111,7 +111,7 @@
         data: {
           appointment_id: $(ui.element).data('appointment'),
           # TODO duration cal. is a hack.
-          duration: parseInt((ui.size.height + 15) / 15) * 15,
+          duration: parseInt((ui.size.height + 15) / 15 + (ui.size.height - 60) / 60) * 15,
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).closest('.slot').data('slot')
         }

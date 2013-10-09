@@ -2,7 +2,7 @@
 #  watch('Gemfile')
 #end
 
-guard :rspec, zeus: true, bundler: false, all_after_pass: true, all_on_start: true do
+guard :rspec, bundler: false, all_after_pass: false, all_on_start: true do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
