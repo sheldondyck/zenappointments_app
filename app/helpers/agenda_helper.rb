@@ -32,7 +32,7 @@ module AgendaHelper
     def hour_rows
       hours.map do |hour|
         content_tag :tr, class: 'hour-row', data: hour_row_data(hour) do
-          hour_row_cell(hour).html_safe +
+          hour_row_header(hour).html_safe +
           employees.map do |employee|
             employee_cell(employee, hour, APPOINTMENT_DURATION)
           end.join.html_safe
@@ -40,14 +40,8 @@ module AgendaHelper
       end.join.html_safe
     end
 
-    def hour_row_class(hour)
-      classes = []
-      classes << 'hour'
-      classes.empty? ? nil : classes.join(' ')
-    end
-
-    def hour_row_cell(hour)
-      content_tag :td, '%02d:00' % hour, class: hour_row_class(hour)
+    def hour_row_header(hour)
+      content_tag :td, '%2d:00' % hour, class: 'hour-header'
     end
 
     def hour_row_data(hour)
@@ -66,7 +60,7 @@ module AgendaHelper
 
     def employee_class(hour)
       classes = []
-      classes << 'edit-hour'
+      classes << 'hour'
       # TODO: OK to remove "hour-n"?
       #classes << 'hour-' + hour.to_s
       classes.empty? ? nil : classes.join(' ')

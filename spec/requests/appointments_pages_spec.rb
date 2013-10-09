@@ -59,8 +59,8 @@ describe 'AppointmentsPages' do
 
       # TODO: get the config for the account for start/end hour and verify that all are shown
       it do
-        # TODO: does not have .edit-hour
-        #should have_selector('td.edit-hour.hour-7')
+        # TODO: does not have .hour
+        #should have_selector('td.hour')
         should have_selector(:xpath, '//tr[@data-hour="7"]')
         should have_selector(:xpath, '//tr[@data-hour="8"]')
         should have_selector(:xpath, '//tr[@data-hour="9"]')
@@ -86,7 +86,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should have_selector('td.edit-hour')
+        should have_selector('td.hour')
         should have_selector('h3', Time.zone.now.strftime('week %V - %Y'))
         #should have_selector('h1', 'Week')
       end
@@ -101,7 +101,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit-hour')
+        should_not have_selector('td.hour')
         should have_selector('h3', Time.zone.now.strftime('%B %Y'))
       end
     end
@@ -114,7 +114,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.edit-hour.hour-12')
+        should_not have_selector('td.hour.hour-12')
         should have_selector('h1', 'Year')
         should have_selector('h3', Time.zone.now.strftime('%Y'))
       end
@@ -126,11 +126,11 @@ describe 'AppointmentsPages' do
     describe 'create client appointment dialog', js: true do
       describe 'should show dialog', js: true do
         before do
-          #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='edit-hour']").click()
-          #find(:xpath, "/html/body/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda']/tbody/tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']").click()
-          find(:xpath, "//tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']").click()
+          #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='hour']").click()
+          #find(:xpath, "/html/body/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda']/tbody/tr[@class='hour-row'][4]/td[@class='hour ui-droppable']").click()
+          find(:xpath, "//tr[@class='hour-row'][4]/td[@class='hour ui-droppable']").click()
 
-          #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='edit-hour']").click
+          #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='hour']").click
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']").click
           # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
           Time.zone = 'Tokyo'
@@ -174,7 +174,7 @@ describe 'AppointmentsPages' do
 
           it do
             #should_not have_selector('.appointment-dialog')
-            should have_xpath("//tr[@class='hour-row'][4]/td[@class='edit-hour ui-droppable']/div[@class='client-appointment duration-60 ui-draggable ui-resizable']/div[@class='client-appointment-name']", text: 'Client Test_Name 1')
+            should have_xpath("//tr[@class='hour-row'][4]/td[@class='hour ui-droppable']/div[@class='client-appointment duration-60 ui-draggable ui-resizable']/div[@class='client-appointment-name']", text: 'Client Test_Name 1')
             #should_not have_selector("//td[@data-hour='4'] .client-appointment", text: 'Client Test_Name 1')
             #should_not have_selector('.client-appointment', text: 'Client Test_Name 2')
           end
@@ -190,7 +190,7 @@ describe 'AppointmentsPages' do
             #it 'shoud stay the same' do
             #  expect { click_link 'Day' }.to change(Appointment, :count).by(0)
             #end
-            #it { should have_selector('td.edit-hour.hour-0.client-appointment', text: 'Client Test_Name 1') }
+            #it { should have_selector('td.hour.hour-0.client-appointment', text: 'Client Test_Name 1') }
           end
 
           describe 'drag and drop' do
@@ -206,7 +206,7 @@ describe 'AppointmentsPages' do
             describe 'update appointment on screen' do
               # TODO: need to update DOM in move.js.haml
               it do
-                #should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
+                #should_not have_selector('td.hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
                 should have_selector('//td[@data-hour="5" and @class="client-appointment"]', text: 'Client Test_Name 1')
               end
             end
@@ -217,8 +217,8 @@ describe 'AppointmentsPages' do
             #  end
 
             #  it do
-            #    should_not have_selector('td.edit-hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
-            #    should have_selector('td.edit-hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
+            #    should_not have_selector('td.hour.hour-0 .client-appointment', text: 'Client Test_Name 1')
+            #    should have_selector('td.hour.hour-1 .client-appointment', text: 'Client Test_Name 1')
             #  end
             #end
           end
@@ -228,7 +228,7 @@ describe 'AppointmentsPages' do
 
 #    describe 'with valid appointment data', js: true do
 #      before do
-#        find('td.edit-hour.hour-14').click
+#        find('td.hour.hour-14').click
 #        sleep 0.5
 #        fill_in 'First Name', with: 'Client Test_Name 1'
 #        fill_in 'Email', with: 'client_1@client_domain.com'
@@ -258,9 +258,9 @@ describe 'AppointmentsPages' do
 
 #    it 'should update the appointment' do
 #        expect { click_button 'Create' }.to change(Appointment, :count).by(1)
-#      should have_selector('td.edit-hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
+#      should have_selector('td.hour.hour-10 .client-appointment', text: 'Client Test_Name 1')
 #      appointment = find('.client-appointment')
-#      destination = find('td.edit-hour.hour-15')
+#      destination = find('td.hour.hour-15')
 #      appointment.drag_to(destination)
 #    end
 #  end

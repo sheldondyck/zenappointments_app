@@ -1,6 +1,6 @@
 (exports ? this).InstallShowClientAppointmentDialogHandler = ->
   # TODO lots of duplicate code here
-  $('#appointments').delegate '.edit-hour', 'click', ->
+  $('#appointments').delegate '.hour', 'click', ->
     $('#active-hour').removeAttr('id')
     $(this).attr('id', 'active-hour')
     #$(this).append($('.appointment-dialog'))
@@ -33,8 +33,8 @@
     $(this).attr('id', 'active-client')
     #$(this).append($('.appointment-dialog'))
     ShowClientAppointmentDetailsPartial()
-    $('.appointment-weekday').html($(this).closest('.edit-hour').data('weekday'))
-    $('.appointment-date').html($(this).closest('.edit-hour').data('date-pretty'))
+    $('.appointment-weekday').html($(this).closest('.hour').data('weekday'))
+    $('.appointment-date').html($(this).closest('.hour').data('date-pretty'))
     # TODO need to remove hour interval and replace with something more flexible. (multiples of 5mins or 15mins?)
     $('.appointment-time').html($(this).data('interval'))
     $('.appointment-duration').html($(this).data('duration') + " mins.")
@@ -77,14 +77,19 @@
     accept: '.client-appointment',
     tolerance: 'pointer',
     drop: (event, ui) ->
-      #alert 'drop pos top:' + ui.position.top + ' left:' + ui.position.left
+      #alert 'dragged \n\tpos top:' + ui.position.top + '\n' +
+      #  '\theight: ' + $(ui.draggable).height() + '\n' +
+      #  '\toffset top: ' + $(ui.draggable).offset().top + '\n' +
+      #  'dropped\n\tpos top: ' + $(this).position().top + '\n' +
+      #  '\theight: ' + $(this).height() + '\n' +
+      #  '\toffset top: ' + $(this).offset().top
       $(ui.draggable).appendTo $(this) if $(ui.draggable).parent() isnt $(this)
       # TODO fixed path has to be abstracted.  can`t and shouldn`t use path helpers here.
       $.ajax "/appointments/move",
         type: 'POST',
         data: {
           appointment_id: $(ui.draggable).data('appointment'),
-          date: $(this).closest('.edit-hour').data('date'),
+          date: $(this).closest('.hour').data('date'),
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).data('slot')
         },
@@ -106,7 +111,7 @@
         data: {
           appointment_id: $(ui.element).data('appointment'),
           # TODO duration cal. is a hack.
-          duration: parseInt((ui.size.height + 59) / 60) * 60,
+          duration: parseInt((ui.size.height + 15) / 15) * 15,
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).closest('.slot').data('slot')
         }

@@ -40,7 +40,7 @@ module WeekHelper
       content_tag :div, class: 'hour-grid' do
         hours.map do |hour|
           content_tag :tr, class: 'hour-row', data: hour_row_data(hour) do
-            hour_row_cell(hour, APPOINTMENT_DURATION).html_safe +
+            hour_row_header(hour).html_safe +
             weeks.map do |week|
               week.map do |day|
                 hour_cell(day, hour)
@@ -60,8 +60,8 @@ module WeekHelper
         duration: APPOINTMENT_DURATION }
     end
 
-    def hour_row_cell(hour, duration)
-      content_tag :td, '%02d:00' % hour, class: hour_row_class(hour)
+    def hour_row_header(hour)
+      content_tag :td, '%2d:00' % hour, class: 'hour-header'
     end
 
     def hour_row_class(hour)
@@ -81,7 +81,7 @@ module WeekHelper
 
     def hour_class(hour)
       classes = []
-      classes << 'edit-hour'
+      classes << 'hour'
       #classes << 'hour-' + hour.to_s
       #classes << "today" if day == Date.today
       #classes << "notmonth" if day.month != date.month
