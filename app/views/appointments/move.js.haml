@@ -1,3 +1,4 @@
+// TODO duplicated in move
 $(".client-appointment.#{@appointment.id} .client-appointment-time").html("#{format_appointment_interval(@hour, @slot, @appointment.duration)}");
 // TODO maybe better to remove data-interval and recalulate every time it is needed?
 $(".client-appointment.#{@appointment.id}").data('interval', "#{format_appointment_interval(@hour, @slot, @appointment.duration)}");
