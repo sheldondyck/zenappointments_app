@@ -108,9 +108,10 @@ class AppointmentsController < ApplicationController
       #puts 'move: ' + params.to_yaml
       @hour = params[:hour].to_i
       @slot = params[:slot].to_i
-      @appointment = Appointment.find_by(id: params[:appointment_id])
+      @appointment = Appointment.find_by!(id: params[:appointment_id])
       # TODO magic number 15mins is a hack here
       # TODO what do we do about slot? remove? add more generic solution?
+      # TODO does not use default_scope. why?
       @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour], min: params[:slot].to_i * 15))
       #pp @appointment
     rescue => e
@@ -125,6 +126,7 @@ class AppointmentsController < ApplicationController
       #puts 'update: ' + params.to_yaml
       # TODO update client data as well
       # TODO should move and update be combined into one action?
+      # TODO does not use default_scope. why?
       @hour = params[:hour].to_i
       @slot = params[:slot].to_i
       @appointment = Appointment.find_by!(id: params[:appointment_id])

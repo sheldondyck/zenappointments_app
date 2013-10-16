@@ -103,7 +103,6 @@
   $('.hour-grid').resizable
     grid: [100, 10]
   $('.client-appointment').resizable
-    # TODO magic number comes from appointments.css.scss $hour-height:50px;
     handles: 's',
     stop: (event, ui) ->
       $.ajax "/appointments/update",
@@ -111,7 +110,8 @@
         data: {
           appointment_id: $(ui.element).data('appointment'),
           # TODO duration cal. is a hack.
-          duration: parseInt((ui.size.height + 15) / 15 + (ui.size.height - 60) / 60) * 15,
+          # 15mins should be parameterized
+          duration: parseInt((ui.size.height) / ($(this).closest('.slot').height())) * 15,
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).closest('.slot').data('slot')
         }
@@ -121,7 +121,7 @@ $ ->
     $.ajax "/appointments/destroy",
       type: 'POST',
       data: {
-        # TODO can not mix data and attr together because of caching in jQuery.
+        # TODO was using .data('appointment') here. Can not mix data and attr together because of caching in jQuery.
         # Investigate what are the best pratices
         appointment_id: $('.appointment-dialog').attr('data-appointment')
       }

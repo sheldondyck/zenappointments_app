@@ -1,5 +1,5 @@
 $number-slots-per-hour: 4;
-$hour-height: 50px;
+$hour-height: 40px;
 $slot-height: $hour-height / $number-slots-per-hour;
 
 h1.logo {
@@ -38,7 +38,7 @@ h1.logo {
   }
 
   .hour-header {
-    padding: 3px 6px 10px 10px;
+    padding: 3px 6px 0px 10px;
     background: #ddd;
     text-align: right;
     width: 200px;
