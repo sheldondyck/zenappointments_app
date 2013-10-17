@@ -1,9 +1,10 @@
-$day-start-hour: 0;
-$day-finish-hour: 24;
-$number-minutes-per-hour: 60;
-$number-slots-per-hour: 4;
-$hour-height: 40px;
-$slot-height: $hour-height / $number-slots-per-hour;
+$duration-min-hour: 0;
+$duration-max-hour: 24;
+$minutes-per-hour: 60;
+$min-number-slots: 2;
+$max-number-slots: 8;
+$hour-height: 50px;
+$hour-height-unitless: 50;
 
 h1.logo {
   font-family: helvetica;
@@ -153,9 +154,18 @@ li.month-appointment {
   list-style: none;
 }
 
-@for $i from $day-start-hour to $day-finish-hour * $number-slots-per-hour {
-  .client-appointment.duration-#{($i + 1) * $number-minutes-per-hour / $number-slots-per-hour} {
-    height: $slot-height * ($i + 1)
+@for $slot from $min-number-slots to $max-number-slots + 1 {
+  //@debug "slot: #{$slot}";
+  @for $hour from $duration-min-hour to $duration-max-hour * $slot {
+    // 7 slots per hour generates a decimal number that can not be used as a class name.
+    @if $slot != 7 {
+      //@debug "hour: #{$hour}";
+      //@debug "slot px: #{$minutes-per-hour / $slot}";
+      // TODO hack: multipling by 10 here because slot: 8 generetes a decimal .5
+      .client-appointment.duration-#{$slot}-#{($hour * $minutes-per-hour / $slot) * 10} {
+        height: 1px * ($hour-height-unitless / $slot) * ($hour + 1);
+      }
+    }
   }
 }
 
@@ -164,15 +174,17 @@ li.month-appointment {
   width: 100%;
 }
 
-@for $i from 0 to $number-slots-per-hour {
-  .slot.slot-#{$i} {
-    height: $slot-height;
+@for $tot-slot from $min-number-slots to $max-number-slots + 1 {
+  @for $slot from 0 to $tot-slot {
+    .slot.slot-#{$tot-slot}-#{$slot} {
+      height: $hour-height / $tot-slot;
 
-    @if $i == ($number-slots-per-hour / 2 - 1) {
-      border-bottom: 1px dashed #d5d5d5;
-    }
-    @else if $i != ($number-slots-per-hour - 1) {
-      border-bottom: 1px dotted #e5e5e5;
+      @if $slot == ($tot-slot / 2 - 1) {
+        border-bottom: 1px dashed #d5d5d5;
+      }
+      @else if $slot != ($tot-slot - 1) {
+        border-bottom: 1px dotted #e5e5e5;
+      }
     }
   }
 }

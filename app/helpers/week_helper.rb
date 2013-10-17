@@ -1,4 +1,5 @@
 # TODO agenda_help week_helper calendar_help should be combined
+
 module WeekHelper
   def week(date = Date.today, &block)
     Week.new(self, date, block).table
@@ -7,11 +8,10 @@ module WeekHelper
   class Week < Struct.new(:view, :date, :callback)
     START_DAY = :sunday
     # TODO duplicated in agenda_helper
-    APPOINTMENT_SLOTS = 4
     FIRST_HOUR = 0
     LAST_HOUR = 24
     APPOINTMENT_DURATION = 60
-    SLOT_DURATION = 60 / APPOINTMENT_SLOTS
+    SLOT_DURATION = 60 / Account.slots_per_hour
 
     delegate :content_tag, to: :view
 
@@ -99,7 +99,7 @@ module WeekHelper
     end
 
     def appointment_slots(day, hour)
-      (0...APPOINTMENT_SLOTS).map do |slot|
+      (0...Account.slots_per_hour).map do |slot|
         content_tag :div,
           view.capture(day, hour, slot, SLOT_DURATION, &callback),
           class: appointment_slot_class(slot),
@@ -110,7 +110,7 @@ module WeekHelper
     def appointment_slot_class(slot)
       classes = []
       classes << "slot"
-      classes << "slot-#{slot}"
+      classes << "slot-#{Account.slots_per_hour}-#{slot}"
       classes.join(" ")
     end
 

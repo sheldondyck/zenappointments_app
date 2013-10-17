@@ -22,6 +22,7 @@ describe Account do
   it { should be_valid }
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
+  it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:company_name) }
@@ -31,6 +32,9 @@ describe Account do
   it { should respond_to(:clients) }
   it { should respond_to(:employees) }
   it { should respond_to(:appointments) }
+  it { expect(Account).to respond_to(:current_id) }
+  it { expect(Account).to respond_to(:slots_per_hour) }
+  it { expect(Account).to respond_to(:minutes_per_slot) }
 
   describe 'company_name' do
     describe 'is valid' do
@@ -104,19 +108,27 @@ describe Account do
     before { @user = create(:user) }
 
     describe 'has correct first_name' do
-      it { @user.first_name.should == 'First Name' }
+      it { @account.user.first_name.should == 'First Name' }
     end
 
     describe 'has correct last_name' do
-      it { @user.last_name.should == 'Last Name' }
+      it { @account.user.last_name.should == 'Last Name' }
+    end
+
+    describe 'is correct' do
+      it { @account.user.name.should == 'First Name Last Name' }
+    end
+
+    describe 'is incorrect' do
+      it { @account.user.name.should_not == 'Name Last Name' }
     end
 
     describe 'has correct email' do
-      it { @user.email.should == 'account@company.com' }
+      it { @account.user.email.should == 'account@company.com' }
     end
 
     describe 'has admin privs' do
-      it { @user.account_administrator.should be_true }
+      it { @account.user.account_administrator.should be_true }
     end
   end
 end

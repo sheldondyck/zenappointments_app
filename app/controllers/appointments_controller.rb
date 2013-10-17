@@ -109,10 +109,9 @@ class AppointmentsController < ApplicationController
       @hour = params[:hour].to_i
       @slot = params[:slot].to_i
       @appointment = Appointment.find_by!(id: params[:appointment_id])
-      # TODO magic number 15mins is a hack here
       # TODO what do we do about slot? remove? add more generic solution?
       # TODO does not use default_scope. why?
-      @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour], min: params[:slot].to_i * 15))
+      @appointment.update(time: params[:date].to_date.in_time_zone.change(hour: params[:hour], min: params[:slot].to_i * Account.minutes_per_slot))
       #pp @appointment
     rescue => e
       puts 'Appointments#move exception: ' + e.message

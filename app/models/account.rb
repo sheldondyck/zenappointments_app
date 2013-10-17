@@ -35,4 +35,15 @@ class Account < ActiveRecord::Base
   def self.current_id
     Thread.current[:account_id]
   end
+
+  def self.slots_per_hour
+    # Valid values: 2, 3, 4, 5, 6, 8
+    # Invalid values: 7
+    # TODO: should we allow 3, 5?
+    8
+  end
+
+  def self.minutes_per_slot
+    (60 / Account.slots_per_hour)
+  end
 end

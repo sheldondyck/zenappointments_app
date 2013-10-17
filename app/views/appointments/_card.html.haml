@@ -1,4 +1,4 @@
-.client-appointment{ class: [appointment.id, "duration-#{appointment.duration}"],
+.client-appointment{ class: [appointment.id, "duration-#{Account.slots_per_hour}-#{appointment.duration * 10}"],
   data: { appointment: appointment.id,
     client: appointment.client.id,
     duration: appointment.duration,

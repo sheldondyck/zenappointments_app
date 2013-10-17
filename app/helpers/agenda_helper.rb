@@ -8,9 +8,8 @@ module AgendaHelper
     # TODO duplicated in week_helper
     FIRST_HOUR = 0
     LAST_HOUR = 24
-    APPOINTMENT_SLOTS = 4
     APPOINTMENT_DURATION = 60
-    SLOT_DURATION = 60 / APPOINTMENT_SLOTS
+    SLOT_DURATION = 60 / Account.slots_per_hour
 
     delegate :content_tag, to: :view
 
@@ -79,7 +78,7 @@ module AgendaHelper
     end
 
     def appointment_slots(day, hour)
-      (0...APPOINTMENT_SLOTS).map do |slot|
+      (0...Account.slots_per_hour).map do |slot|
         content_tag :div,
           view.capture(day, hour, slot, SLOT_DURATION, &callback),
           class: appointment_slot_class(slot),
@@ -90,7 +89,7 @@ module AgendaHelper
     def appointment_slot_class(slot)
       classes = []
       classes << "slot"
-      classes << "slot-#{slot}"
+      classes << "slot-#{Account.slots_per_hour}-#{slot}"
       classes.join(" ")
     end
 
