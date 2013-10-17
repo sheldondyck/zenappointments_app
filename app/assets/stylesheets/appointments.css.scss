@@ -1,4 +1,7 @@
-$number-slots-per-hour: 4;
+$day-start-hour: 0;
+$day-finish-hour: 24;
+$number-minutes-per-hour: 60;
+$number-slots-per-hour: 6;
 $hour-height: 40px;
 $slot-height: $hour-height / $number-slots-per-hour;
 
@@ -150,8 +153,8 @@ li.month-appointment {
   list-style: none;
 }
 
-@for $i from 0 to 24 * 4 {
-  .client-appointment.duration-#{($i + 1) * 15} {
+@for $i from $day-start-hour to $day-finish-hour * $number-slots-per-hour {
+  .client-appointment.duration-#{($i + 1) * $number-minutes-per-hour / $number-slots-per-hour} {
     height: $slot-height * ($i + 1)
   }
 }
@@ -161,14 +164,14 @@ li.month-appointment {
   width: 100%;
 }
 
-@for $i from 0 to 4 {
+@for $i from 0 to $number-slots-per-hour {
   .slot.slot-#{$i} {
     height: $slot-height;
 
-    @if $i == 1 {
+    @if $i == ($number-slots-per-hour / 2 - 1) {
       border-bottom: 1px dashed #d5d5d5;
     }
-    @else if $i != 3 {
+    @else if $i != ($number-slots-per-hour - 1) {
       border-bottom: 1px dotted #e5e5e5;
     }
   }
