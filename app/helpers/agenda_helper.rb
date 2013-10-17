@@ -8,7 +8,7 @@ module AgendaHelper
     # TODO duplicated in week_helper
     FIRST_HOUR = 0
     LAST_HOUR = 24
-    APPOINTMENT_SLOTS = 6
+    APPOINTMENT_SLOTS = 4
     APPOINTMENT_DURATION = 60
     SLOT_DURATION = 60 / APPOINTMENT_SLOTS
 
