@@ -15,7 +15,7 @@ gem 'rails', '4.0.0'
 
 # TODO had to downgrade multi_json and sass because rails refused to init.
 # Remove these two lines and try again later
-gem 'multi_json', '1.8.0'
+#gem 'multi_json', '1.8.0'
 gem 'sass', '3.2.11'
 # TODO had to downgard listen because guard stopped working
 # Remove this line and try again later
