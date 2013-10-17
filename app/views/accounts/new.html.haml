@@ -18,6 +18,7 @@
                   %input.form-control#first-name{placeholder: 'First Name', name: 'account[first_name]', value: @user[:first_name], type: 'text'}
                   -unless error_message(@user, :first_name).nil?
                     %p.help-block#first-name
+                      %i.icon-warning-sign
                       =error_message(@user, :first_name)
               .col-sm-4
                 .form-group#last-name{class: error_class(@user, :last_name)}
@@ -25,6 +26,7 @@
                   %input.form-control#last-name{placeholder: 'Last Name', name: 'account[last_name]', value: @user[:last_name], type: 'text'}
                   -unless error_message(@user, :last_name).nil?
                     %p.help-block#last-name
+                      %i.icon-warning-sign
                       =error_message(@user, :last_name)
               .col-sm-4
                 .signup-field-help
@@ -35,6 +37,7 @@
                   %input.form-control#company-name{placeholder: 'Company Name', name: 'account[company_name]', value: @account[:company_name], type: 'text'}
                   -unless error_message(@account, :company_name).nil?
                     %p.help-block#company-name
+                      %i.icon-warning-sign
                       =error_message(@account, :company_name)
               .col-sm-4
                 .signup-field-help
@@ -46,6 +49,7 @@
                   %input.form-control#email{placeholder: 'Email', name: 'account[email]', value: @user[:email], type: 'text'}
                   -unless error_message(@user, :email).nil?
                     %p.help-block#email
+                      %i.icon-warning-sign
                       =error_message(@user, :email)
               .col-sm-4
                 .signup-field-help
@@ -60,6 +64,7 @@
                       %button.btn.btn-default.btn-show-hide-password{type: :button} Show
                   -unless error_message(@user, :password).nil?
                     %p.help-block#password
+                      %i.icon-warning-sign
                       =error_message(@user, :password)
               .col-sm-4
                 .signup-field-help

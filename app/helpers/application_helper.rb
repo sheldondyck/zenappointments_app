@@ -18,11 +18,15 @@ module ApplicationHelper
     flash.each do |key, value|
       css_alert = css_alert_map[key] ||= 'danger'
       div += "<div class='alert alert-#{css_alert}' data-dismiss='alert'>"
-      div += "<h4>Opps...</h4>" if key == :alert || key == :error
+      div += "<h4>#{icon_tag('warning-sign')} Opps...</h4>" if key == :alert || key == :error
       div += "<strong>#{value}</strong>"
       div += "</div>"
     end
     div
+  end
+
+  def icon_tag icon_name
+    "<i class='icon-#{icon_name}'></i>"
   end
 
   def menu_link_icon_to icon_name, href, alt = ''
