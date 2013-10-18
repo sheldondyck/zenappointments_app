@@ -40,7 +40,7 @@ class Account < ActiveRecord::Base
     # Valid values: 2, 3, 4, 5, 6, 8
     # Invalid values: 7
     # TODO: should we allow 3, 5?
-    4
+    6
   end
 
   def self.minutes_per_slot
@@ -52,6 +52,10 @@ class Account < ActiveRecord::Base
   end
 
   def self.ending_hour
-    18
+    20
+  end
+
+  def self.appointment_duration
+    60
   end
 end

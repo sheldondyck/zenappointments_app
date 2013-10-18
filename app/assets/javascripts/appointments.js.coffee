@@ -101,7 +101,7 @@
   #  drop: (event, ui) ->
   #    #alert 'drop agenda'
   $('.client-appointment').resizable
-    grid: [0, $('.slot').height() + 1],
+    grid: [100, $('.slot').height() + 1],
     handles: 's',
     stop: (event, ui) ->
       $.ajax "/appointments/update",

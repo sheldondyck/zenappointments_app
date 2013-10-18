@@ -6,8 +6,6 @@ module AgendaHelper
 
   class Agenda < Struct.new(:view, :date, :employees, :callback)
     # TODO duplicated in week_helper
-    APPOINTMENT_DURATION = 60
-    SLOT_DURATION = 60 / Account.slots_per_hour
 
     delegate :content_tag, to: :view
 
@@ -31,7 +29,7 @@ module AgendaHelper
         content_tag :tr, class: 'hour-row', data: hour_row_data(hour) do
           hour_row_header(hour).html_safe +
           employees.map do |employee|
-            employee_cell(employee, hour, APPOINTMENT_DURATION)
+            employee_cell(employee, hour, Account.appointment_duration)
           end.join.html_safe
         end
       end.join.html_safe
@@ -46,7 +44,7 @@ module AgendaHelper
         hour: hour,
         # TODO this cal. is duplicated in card.html.
         interval: "#{hour}:00 - #{hour + 1}:00",
-        duration: APPOINTMENT_DURATION }
+        duration: Account.appointment_duration }
     end
 
     def employee_cell(employee, hour, duration)
@@ -78,7 +76,7 @@ module AgendaHelper
     def appointment_slots(day, hour)
       (0...Account.slots_per_hour).map do |slot|
         content_tag :div,
-          view.capture(day, hour, slot, SLOT_DURATION, &callback),
+          view.capture(day, hour, slot, Account.minutes_per_slot, &callback),
           class: appointment_slot_class(slot),
           data: appointment_slot_data(slot)
       end.join.html_safe

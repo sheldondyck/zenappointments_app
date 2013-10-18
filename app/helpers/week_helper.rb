@@ -8,8 +8,6 @@ module WeekHelper
   class Week < Struct.new(:view, :date, :callback)
     START_DAY = :sunday
     # TODO duplicated in agenda_helper
-    APPOINTMENT_DURATION = 60
-    SLOT_DURATION = 60 / Account.slots_per_hour
 
     delegate :content_tag, to: :view
 
@@ -53,7 +51,7 @@ module WeekHelper
         # TODO this cal. is duplicated in card.html.
         interval: "#{hour}:00 - #{hour + 1}:00",
         # TODO magic number duration here. should be dynamical
-        duration: APPOINTMENT_DURATION }
+        duration: Account.appointment_duration }
     end
 
     def hour_row_header(hour)
@@ -97,7 +95,7 @@ module WeekHelper
     def appointment_slots(day, hour)
       (0...Account.slots_per_hour).map do |slot|
         content_tag :div,
-          view.capture(day, hour, slot, SLOT_DURATION, &callback),
+          view.capture(day, hour, slot, Account.minutes_per_slot, &callback),
           class: appointment_slot_class(slot),
           data: appointment_slot_data(slot)
       end.join.html_safe
