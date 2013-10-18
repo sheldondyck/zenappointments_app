@@ -35,6 +35,8 @@ describe Account do
   it { expect(Account).to respond_to(:current_id) }
   it { expect(Account).to respond_to(:slots_per_hour) }
   it { expect(Account).to respond_to(:minutes_per_slot) }
+  it { expect(Account).to respond_to(:starting_hour) }
+  it { expect(Account).to respond_to(:ending_hour) }
 
   describe 'company_name' do
     describe 'is valid' do

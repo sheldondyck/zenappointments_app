@@ -46,4 +46,12 @@ class Account < ActiveRecord::Base
   def self.minutes_per_slot
     (60 / Account.slots_per_hour)
   end
+
+  def self.starting_hour
+    7
+  end
+
+  def self.ending_hour
+    18
+  end
 end

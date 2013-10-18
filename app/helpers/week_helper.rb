@@ -8,8 +8,6 @@ module WeekHelper
   class Week < Struct.new(:view, :date, :callback)
     START_DAY = :sunday
     # TODO duplicated in agenda_helper
-    FIRST_HOUR = 0
-    LAST_HOUR = 24
     APPOINTMENT_DURATION = 60
     SLOT_DURATION = 60 / Account.slots_per_hour
 
@@ -125,9 +123,7 @@ module WeekHelper
     end
 
     def hours
-      first = FIRST_HOUR
-      last = LAST_HOUR
-      (first..last).to_a
+      (Account.starting_hour..Account.ending_hour).to_a
     end
   end
 end
