@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// TODO: only import required files. load only needed jquery bootstrap files
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
