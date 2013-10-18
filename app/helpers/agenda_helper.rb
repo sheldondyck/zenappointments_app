@@ -14,7 +14,7 @@ module AgendaHelper
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: 'agenda' do
+      content_tag :table, class: 'agenda minutes', data: { slots: Account.slots_per_hour, minutes: Account.minutes_per_slot } do
         header + hour_rows
       end
     end

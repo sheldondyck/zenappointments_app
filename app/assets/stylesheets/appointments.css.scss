@@ -3,8 +3,8 @@ $duration-max-hour: 24;
 $minutes-per-hour: 60;
 $min-number-slots: 2;
 $max-number-slots: 8;
-$hour-height: 50px;
-$hour-height-unitless: 50;
+$hour-height-unitless: 80;
+$hour-height: 1px * $hour-height-unitless;
 
 h1.logo {
   font-family: helvetica;
@@ -154,16 +154,19 @@ li.month-appointment {
   list-style: none;
 }
 
-@for $slot from $min-number-slots to $max-number-slots + 1 {
-  //@debug "slot: #{$slot}";
-  @for $hour from $duration-min-hour to $duration-max-hour * $slot {
-    // 7 slots per hour generates a decimal number that can not be used as a class name.
-    @if $slot != 7 {
-      //@debug "hour: #{$hour}";
-      //@debug "slot px: #{$minutes-per-hour / $slot}";
-      // TODO hack: multipling by 10 here because slot: 8 generetes a decimal .5
-      .client-appointment.duration-#{$slot}-#{($hour * $minutes-per-hour / $slot) * 10} {
-        height: 1px * ($hour-height-unitless / $slot) * ($hour + 1);
+@for $tot-slot from $min-number-slots through $max-number-slots {
+  @for $hour from $duration-min-hour through $duration-max-hour {
+    @for $slot from 0 to $tot-slot {
+      // TODO: need to loop from 0 to $slots
+      // 7 slots per hour generates a decimal number that can not be used as a class name.
+      @if $tot-slot != 7 {
+        @if $hour + $slot != 0 {
+          @debug "tot-slot: #{$tot-slot} hour: #{$hour} slot: #{$slot} slot px: #{($hour * $minutes-per-hour + ($minutes-per-hour / $tot-slot) * $slot)}";
+          // TODO hack: multipling by 10 here because slot: 8 generetes a decimal .5
+          .client-appointment.duration-#{$tot-slot}-#{($hour * $minutes-per-hour + ($minutes-per-hour / $tot-slot) * $slot) * 10} {
+            height: 1px * (($hour-height-unitless / $tot-slot) * ($hour * $tot-slot + $slot) + $hour);
+          }
+        }
       }
     }
   }

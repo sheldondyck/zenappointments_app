@@ -100,18 +100,15 @@
   #  accept: '.client-appointment',
   #  drop: (event, ui) ->
   #    #alert 'drop agenda'
-  $('.hour-grid').resizable
-    grid: [100, 10]
   $('.client-appointment').resizable
+    grid: [0, $('.slot').height() + 1],
     handles: 's',
     stop: (event, ui) ->
       $.ajax "/appointments/update",
         type: 'POST',
         data: {
           appointment_id: $(ui.element).data('appointment'),
-          # TODO duration cal. is a hack.
-          # 15mins should be parameterized
-          duration: parseInt((ui.size.height) / ($(this).closest('.slot').height())) * 15,
+          duration: (parseInt((ui.size.height) / ($(this).closest('.slot').height()))) * $(this).closest('.minutes').data('minutes'),
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).closest('.slot').data('slot')
         }

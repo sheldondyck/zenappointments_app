@@ -16,7 +16,7 @@ module WeekHelper
     delegate :content_tag, to: :view
 
     def table
-      content_tag :table, class: "week" do
+      content_tag :table, class: 'week minutes', data: { slots: Account.slots_per_hour, minutes: Account.minutes_per_slot } do
         header + week_rows
       end
     end
@@ -37,18 +37,16 @@ module WeekHelper
     end
 
     def week_rows
-      content_tag :div, class: 'hour-grid' do
-        hours.map do |hour|
-          content_tag :tr, class: 'hour-row', data: hour_row_data(hour) do
-            hour_row_header(hour).html_safe +
-            weeks.map do |week|
-              week.map do |day|
-                hour_cell(day, hour)
-              end
-            end.join.html_safe
-          end
-        end.join.html_safe
-      end
+      hours.map do |hour|
+        content_tag :tr, class: 'hour-row', data: hour_row_data(hour) do
+          hour_row_header(hour).html_safe +
+          weeks.map do |week|
+            week.map do |day|
+              hour_cell(day, hour)
+            end
+          end.join.html_safe
+        end
+      end.join.html_safe
     end
 
     def hour_row_data(hour)
