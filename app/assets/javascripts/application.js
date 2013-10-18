@@ -18,5 +18,6 @@
 // require angular-resource
 // require turbolinks
 //= require bootstrap
+//
 //= require_tree .
 //= require_self
