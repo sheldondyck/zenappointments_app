@@ -113,18 +113,6 @@
           slot: $(this).closest('.slot').data('slot')
         }
 
-$ ->
-  $('.delete-appointment').click ->
-    $.ajax "/appointments/destroy",
-      type: 'POST',
-      data: {
-        # TODO was using .data('appointment') here. Can not mix data and attr together because of caching in jQuery.
-        # Investigate what are the best pratices
-        appointment_id: $('.appointment-dialog').attr('data-appointment')
-      }
-      error: ->
-        #alert 'error' # TODO: added generic error handler
-        #
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'block')
@@ -149,15 +137,17 @@ $ ->
   $('.appointment-dialog').css('display', 'none')
   $('.appointment-dialog').css('visibility', 'hidden')
   $('#active-hour').removeAttr('id')
+  ResetDeleteConfirm()
 
 (exports ? this).ResetClientAppointmentDialog = ->
-    $('.client-search-results').empty()
-    $('.search-client').val('')
-    $('.first-name').val('')
-    $('.last-name').val('')
-    $('.email').val('')
-    $('.telephone-cellular').val('')
-    $('.appointment-dialog-error').css('display', 'none')
+  $('.client-search-results').empty()
+  $('.search-client').val('')
+  $('.first-name').val('')
+  $('.last-name').val('')
+  $('.email').val('')
+  $('.telephone-cellular').val('')
+  $('.appointment-dialog-error').css('display', 'none')
+  ResetDeleteConfirm()
 
 $ ->
   $('.show-client-details').click ->
@@ -180,6 +170,25 @@ $ ->
     HideClientAppointmentDialog()
 
 $ ->
+  $('.delete-appointment').click ->
+    $('.appointment-delete-confirm').css('display', 'block')
+    $('.appointment-delete').css('display', 'none')
+    $('.appointment-footer').attr('class', 'appointment-footer delete-confirm')
+
+$ ->
+  $('.delete-appointment-confirm').click ->
+    $.ajax "/appointments/destroy",
+      type: 'POST',
+      data: {
+        # TODO was using .data('appointment') here. Can not mix data and attr together because of caching in jQuery.
+        # Investigate what are the best pratices
+        appointment_id: $('.appointment-dialog').attr('data-appointment')
+      }
+      error: ->
+        #alert 'error' # TODO: added generic error handler
+        #
+
+$ ->
   # TODO can this be added to the html as a jquery-ujs attribute? such as data-keyup?
   $('.search-client').keyup ->
     $.ajax "/clients/search",
@@ -188,6 +197,10 @@ $ ->
       error: ->
         #alert 'error' # TODO: added generic error handler
 
+ResetDeleteConfirm = ->
+  $('.appointment-delete-confirm').css('display', 'none')
+  $('.appointment-delete').css('display', 'block')
+  $('.appointment-footer').attr('class', 'appointment-footer')
 
 $ -> InstallClientAppointmentHandler()
 $ -> InstallShowClientAppointmentDialogHandler()

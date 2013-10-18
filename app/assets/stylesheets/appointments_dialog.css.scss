@@ -167,6 +167,7 @@
 
 .appointment-client {
   @include appointment-dialog-base;
+  padding-bottom: 5px;
 }
 
 .appointment-client-search {
@@ -192,10 +193,24 @@
   padding-bottom: 15px;
 }
 
+.appointment-delete-confirm {
+  background-color: $zen-colour-danger;
+  padding-top: 15px;
+  display: none;
+}
+
+.delete-appointment-confirm {
+  color: $zen-colour-danger;
+}
+
 .appointment-footer {
   @include appointment-dialog-base;
   padding-bottom: 15px;
   display: block;
+}
+
+.appointment-footer.delete-confirm {
+  background-color: $zen-colour-danger;
 }
 
 .btn-tool {
@@ -225,7 +240,7 @@
 }
 
 .btn-delete:hover, .btn-delete:focus {
-  color: #600;
+  color: $zen-colour-danger;
 }
 
 .btn-delete:active {
