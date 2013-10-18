@@ -19,7 +19,7 @@
 
 .appointment-dialog-error {
   padding: 0 5px 0 0;
-  color: #800;
+  color: $zen-colour-danger;
   display: none;
   text-shadow: 0 1px 0 white;
   font-weight: bold;
@@ -244,7 +244,7 @@
 }
 
 .btn-delete:active {
-  color: #a00;
+  color: $zen-colour-danger-highlight;
 }
 
 .if-client-exists {
