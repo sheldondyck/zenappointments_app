@@ -149,6 +149,11 @@
   $('.appointment-dialog-error').css('display', 'none')
   ResetDeleteConfirm()
 
+  # TODO: Add support for mousewheel to change month when in month view
+#$ ->
+#  $(window).scroll ->
+#    alert 'scroll'
+
 $ ->
   $('.show-client-details').click ->
     ShowClientAppointmentDetailsPartial()
