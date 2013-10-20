@@ -2,14 +2,9 @@
 .col-lg-2
   %h4 Calendar
   %h4 Clients
+  %h4 Tags
 .col-lg-10
   .main
-    #view_selector
-      .btn-group{id: 'calendar-selector', data: {toggle: 'buttons-radio'}}
-        =link_to 'Day', appointments_path(view: 'day'), {alt: 'Day', id: 'link-day', class: 'btn btn-default', data: {remote: 'true'}}
-        =link_to 'Week', appointments_path(view: 'week'), {alt: 'Week', id: 'link-week', class: 'btn btn-default', data: {remote: 'true'}}
-        =link_to 'Month', appointments_path(view: 'month'), {alt: 'Month', id: 'link-month', class: 'btn btn-default', data: {remote: 'true'}}
-        =link_to 'Year', appointments_path(view: 'year'), {alt: 'Year', id: 'link-year', class: 'btn btn-default', data: {remote: 'true'}}
     #appointments
       =render @view
   =render 'dialog'
