@@ -198,24 +198,10 @@ li.month-appointment {
 }
 
 #view_selector {
-  // TODO: should use absolute position
-  position:absolute;
-  right:0px;
-  // TODO: ugly hack to make it work
-  top:65.0px;
+  position: absolute;
+  right: 20px;
 }
 
-.nav-bar {
-  background:#ddd;
-  color:#333;
-  width:100%;
-  font-family:"Lucida Grande", arial, helvetica, sans-serif;
-  font-size:14px;
-  padding:6px;
-  border:1px solid #999;
-  a {
-    text-decoration:none;
-    padding:0 10px;
-    color:#333;
-  }
+.navbar {
+  margin-bottom: 0px;
 }
