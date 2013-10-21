@@ -3,6 +3,12 @@ require 'spec_helper'
 describe AppointmentsHelper do
   subject { helper }
 
+  describe 'active_btn' do
+    it { should respond_to(:active_btn) }
+    it { expect(active_btn('day', 'day')).to eq('btn btn-default active') }
+    it { expect(active_btn('day', 'week')).to eq('btn btn-default') }
+  end
+
   describe 'format_appointment_interval' do
     it { should respond_to(:format_appointment_interval) }
     it { expect(format_appointment_interval(0, 0, 15)).to eq('00:00 - 00:15') }

@@ -4,4 +4,12 @@ module AppointmentsHelper
     finish = start + duration.minutes
     "#{start.strftime("%H:%M")} - #{finish.strftime("%H:%M")}"
   end
+
+  def active_btn(view_name, view_active)
+    if view_name == view_active
+      return 'btn btn-default active'
+    else
+      return 'btn btn-default'
+    end
+  end
 end

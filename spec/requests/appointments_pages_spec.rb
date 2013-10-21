@@ -61,6 +61,8 @@ describe 'AppointmentsPages' do
       it do
         # TODO: does not have .hour
         #should have_selector('td.hour')
+        # TODO add test for day btn being active
+        should have_selector(:xpath, '//tr[@data-hour="7"]')
         should have_selector(:xpath, '//tr[@data-hour="7"]')
         should have_selector(:xpath, '//tr[@data-hour="8"]')
         should have_selector(:xpath, '//tr[@data-hour="9"]')
@@ -74,7 +76,7 @@ describe 'AppointmentsPages' do
         should have_selector(:xpath, '//tr[@data-hour="17"]')
         should have_selector(:xpath, '//tr[@data-hour="18"]')
         should have_selector(:xpath, '//tr[@data-hour="19"]')
-        should have_selector('h3', Time.zone.now.strftime('%A, %B %e %Y'))
+        should have_selector('.view-header-title', Time.zone.now.strftime('%A, %B %e %Y'))
       end
     end
 
@@ -87,7 +89,8 @@ describe 'AppointmentsPages' do
 
       it do
         should have_selector('td.hour')
-        should have_selector('h3', Time.zone.now.strftime('week %V - %Y'))
+        should have_selector('.view-header-title', Time.zone.now.strftime('Week %V - %Y'))
+        # TODO add test for day btn being active
         #should have_selector('h1', 'Week')
       end
     end
@@ -102,7 +105,8 @@ describe 'AppointmentsPages' do
 
       it do
         should_not have_selector('td.hour')
-        should have_selector('h3', Time.zone.now.strftime('%B %Y'))
+        should have_selector('.view-header-title', Time.zone.now.strftime('%B %Y'))
+        # TODO add test for day btn being active
       end
     end
 
@@ -116,7 +120,8 @@ describe 'AppointmentsPages' do
       it do
         should_not have_selector('td.hour.hour-12')
         should have_selector('h1', 'Year')
-        should have_selector('h3', Time.zone.now.strftime('%Y'))
+        should have_selector('.view-header-title', Time.zone.now.strftime('%Y'))
+        # TODO add test for day btn being active
       end
     end
 
