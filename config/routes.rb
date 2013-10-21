@@ -1,6 +1,8 @@
 ZenAppointmentsApp::Application.routes.draw do
   get 'employees/index',          :to => 'employees#index'
 
+  get 'payments/index',           :to => 'payments#index'
+
   get 'users/index',              :to => 'users#index'
   resources :users
 
