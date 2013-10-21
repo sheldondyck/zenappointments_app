@@ -11,6 +11,25 @@ h1.logo {
   color: #444;
 }
 
+.calendar-mini {
+  margin-top: $zen-menu-margin-bottom;
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    background: #ddd;
+    color: #666;
+    text-align: center;
+  }
+
+  td, th {
+    padding: 3px;
+  }
+
+  .notmonth, .notmonth a { color:#ccc; }
+  .today { background-color:#d7f2ff; }
+}
+
 #appointments .calendar, #appointments .agenda, #appointments .week {
   border-collapse:collapse;
   width:100%;
@@ -199,7 +218,7 @@ li.month-appointment {
 
 .view-header {
   height: 60px;
-  padding: 20px 0px 10px 0px;
+  padding: $zen-menu-margin-bottom 0px 10px 0px;
   position: relative;
   //margin: 10px;
 }

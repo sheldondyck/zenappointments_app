@@ -1,6 +1,6 @@
 #appointments-panel
   =render('header')
-  =calendar @date do |date|
+  =calendar 'calendar', @date do |date|
     =date.day
     %ul
     -if @appointments_by_date[date.strftime("%Y-%m-%d")]

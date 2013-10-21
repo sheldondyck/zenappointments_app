@@ -1,6 +1,7 @@
 =render 'layouts/menu'
 .col-sm-2
-  %h4 Calendar
+  =calendar 'calendar-mini' do |date|
+    =date.day
   %h4 Clients
   .input-group
     -# TODO: add label so clicking on search icon send focus and curso to text field
