@@ -5,7 +5,6 @@ module AgendaHelper
   end
 
   class Agenda < Struct.new(:view, :date, :employees, :callback)
-    # TODO duplicated in week_helper
 
     delegate :content_tag, to: :view
 

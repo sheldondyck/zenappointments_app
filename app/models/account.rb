@@ -58,4 +58,8 @@ class Account < ActiveRecord::Base
   def self.appointment_duration
     60
   end
+
+  def self.start_of_week
+    :monday
+  end
 end

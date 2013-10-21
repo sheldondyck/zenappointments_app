@@ -6,8 +6,6 @@ module WeekHelper
   end
 
   class Week < Struct.new(:view, :date, :callback)
-    START_DAY = :sunday
-    # TODO duplicated in agenda_helper
 
     delegate :content_tag, to: :view
 
@@ -115,8 +113,8 @@ module WeekHelper
     end
 
     def weeks
-      first = date.beginning_of_week(START_DAY)
-      last = date.end_of_week(START_DAY)
+      first = date.beginning_of_week(Account.start_of_week)
+      last = date.end_of_week(Account.start_of_week)
       (first..last).to_a.in_groups_of(7)
     end
 

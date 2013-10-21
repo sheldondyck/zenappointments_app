@@ -6,6 +6,7 @@ module CalendarHelper
 
   class Calendar < Struct.new(:view, :date, :callback)
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
+    # TODO: should we get this value from Account.start_of_week?
     START_DAY = :sunday
 
     delegate :content_tag, to: :view
