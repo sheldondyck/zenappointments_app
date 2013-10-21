@@ -2,6 +2,13 @@
 .col-sm-2
   %h4 Calendar
   %h4 Clients
+  .input-group
+    -# TODO: add label so clicking on search icon send focus and curso to text field
+    %input.form-control.search-client{ placeholder: 'Search', type: 'text' }
+    -# TODO: PUT icon-search icon inside text field. currently the span looks like a button that does nothing
+    %span.input-group-addon
+      %i.icon-search
+  .client-search-results
   %h4 Tags
 .col-sm-10
   .main

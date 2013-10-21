@@ -26,7 +26,7 @@ describe 'AppointmentsPages' do
       current_path.should == appointments_path
     end
 
-    describe 'correct html' do
+    describe 'correct page html' do
       it { should have_title(app_name + ' | ' + @user.name) }
       describe 'appointments menu' do
         it_behaves_like 'a signedin menu'
@@ -44,6 +44,13 @@ describe 'AppointmentsPages' do
         should have_selector('i.icon-angle-left')
         # TODO: test link of angle-right
         should have_selector('i.icon-angle-right')
+        should have_selector('a.btn.btn-default.active', text: 'Day')
+        should_not have_selector('a.btn.btn-default.active', text: 'Week')
+        should_not have_selector('a.btn.btn-default.active', text: 'Month')
+        should_not have_selector('a.btn.btn-default.active', text: 'Year')
+        should have_selector('a.btn.btn-default', text: 'Week')
+        should have_selector('a.btn.btn-default', text: 'Month')
+        should have_selector('a.btn.btn-default', text: 'Year')
         should have_link('Day', href: appointments_path(view: 'day'))
         should have_link('Week', href: appointments_path(view: 'week'))
         should have_link('Month', href: appointments_path(view: 'month'))
@@ -61,7 +68,10 @@ describe 'AppointmentsPages' do
       it do
         # TODO: does not have .hour
         #should have_selector('td.hour')
-        # TODO add test for day btn being active
+        should have_selector('a.btn.btn-default.active', text: 'Day')
+        should_not have_selector('a.btn.btn-default.active', text: 'Week')
+        should_not have_selector('a.btn.btn-default.active', text: 'Month')
+        should_not have_selector('a.btn.btn-default.active', text: 'Year')
         should have_selector(:xpath, '//tr[@data-hour="7"]')
         should have_selector(:xpath, '//tr[@data-hour="7"]')
         should have_selector(:xpath, '//tr[@data-hour="8"]')
@@ -83,14 +93,17 @@ describe 'AppointmentsPages' do
     describe 'week agenda', js: true do
       before do
         click_link 'Week'
-        sleep 0.1
+        sleep 0.5
         #save_and_open_page
       end
 
       it do
-        should have_selector('td.hour')
+        #should have_selector('td.hour')
+        should_not have_selector('a.btn.btn-default.active', text: 'Day')
+        should have_selector('a.btn.btn-default.active', text: 'Week')
+        should_not have_selector('a.btn.btn-default.active', text: 'Month')
+        should_not have_selector('a.btn.btn-default.active', text: 'Year')
         should have_selector('.view-header-title', Time.zone.now.strftime('Week %V - %Y'))
-        # TODO add test for day btn being active
         #should have_selector('h1', 'Week')
       end
     end
@@ -99,14 +112,17 @@ describe 'AppointmentsPages' do
       before do
         click_link 'Month'
         # TODO: find a better way then sleeping
-        sleep 0.2
+        sleep 0.5
         #save_and_open_page
       end
 
       it do
-        should_not have_selector('td.hour')
+        #should_not have_selector('td.hour')
+        should_not have_selector('a.btn.btn-default.active', text: 'Day')
+        should_not have_selector('a.btn.btn-default.active', text: 'Week')
+        should have_selector('a.btn.btn-default.active', text: 'Month')
+        should_not have_selector('a.btn.btn-default.active', text: 'Year')
         should have_selector('.view-header-title', Time.zone.now.strftime('%B %Y'))
-        # TODO add test for day btn being active
       end
     end
 
@@ -118,10 +134,13 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.hour.hour-12')
+        #should_not have_selector('td.hour.hour-12')
         should have_selector('h1', 'Year')
+        should_not have_selector('a.btn.btn-default.active', text: 'Day')
+        should_not have_selector('a.btn.btn-default.active', text: 'Week')
+        should_not have_selector('a.btn.btn-default.active', text: 'Month')
+        should have_selector('a.btn.btn-default.active', text: 'Year')
         should have_selector('.view-header-title', Time.zone.now.strftime('%Y'))
-        # TODO add test for day btn being active
       end
     end
 
@@ -133,7 +152,8 @@ describe 'AppointmentsPages' do
         before do
           #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='hour']").click()
           #find(:xpath, "/html/body/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda']/tbody/tr[@class='hour-row'][4]/td[@class='hour ui-droppable']").click()
-          find(:xpath, "//tr[@class='hour-row'][4]/td[@class='hour ui-droppable']").click()
+          find(:xpath, "/html/body/div[@class='col-sm-10']/div[@class='main']/div[@id='appointments']/div[@id='appointments-panel']/table[@class='agenda minutes']/tbody/tr[@class='hour-row'][4]/td[@id='active-hour']/div[@class='slot slot-4-0 ui-droppable']").click()
+          #find(:xpath, "//tr[@class='hour-row'][4]/td[@class='hour ui-droppable']").click()
 
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='hour']").click
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']").click
@@ -143,7 +163,7 @@ describe 'AppointmentsPages' do
           #save_and_open_page
         end
 
-        describe 'correct html', js: true do
+        describe 'correct dialog html', js: true do
           it do
             # TODO this is broken because we are selecting the wrong element //tr[@class='hour-row' and @data-hour='3'], but the spec is passing
             should have_selector('.appointment-dialog')
