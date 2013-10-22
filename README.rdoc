@@ -12,6 +12,8 @@ heroku pg:reset DATABASE_URL --confirm zenappointmentsapp
 
 pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 
+rake brakeman:run
+
 == TODO
 
 * Q: Change company_name to office name?

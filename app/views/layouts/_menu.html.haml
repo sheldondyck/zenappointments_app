@@ -1,7 +1,7 @@
 .navbar.navbar-default(role='navigation')
   .navbar-inner
     -# TODO need to define app_name url
-    =link_to image_tag('zen_logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
+    =link_to image_tag('zen-logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
     %ul.nav.navbar-nav
       -# TODO need to define home final url
       %li{:class => active('accounts#home')}

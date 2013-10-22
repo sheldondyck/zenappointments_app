@@ -41,6 +41,7 @@ gem 'awesome_print'
 group :development do
   gem 'therubyracer', platforms: :ruby
   gem 'rspec-rails'
+  gem "brakeman", :require => false
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
