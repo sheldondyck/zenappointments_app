@@ -1,8 +1,6 @@
 -# TODO: calling function on @date (through send) that came from the net. Things that make you go hmmm.
 .view-header
   .view-header-quick-nav
-    -#=remote_link_icon_to 'calendar', '#'
-    -# TODO Add today button?
     =link_to 'Today', appointments_path(date: Date.current),
         { alt: 'Today',
           id: 'link-today',
