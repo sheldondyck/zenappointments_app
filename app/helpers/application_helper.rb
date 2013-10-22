@@ -31,7 +31,7 @@ module ApplicationHelper
 
   def menu_link_icon_to icon_name, href, alt = ''
     unless alt.blank?
-      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {alt: alt, id: "link-#{icon_name}"}
+      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {alt: alt, id: "link-#{icon_name}", data: { toogle: 'tooltip', original_title: 'my tooltip', title: 'foo'}}
     else
       link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {id: "link-#{icon_name}"}
     end
