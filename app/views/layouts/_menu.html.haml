@@ -24,6 +24,7 @@
         =link_to current_user.name, user_path(@current_user)
       %li
         -# TODO: where should this link to. should be the same as user_name?
-        =menu_link_icon_to 'cog', user_path(@current_user)
+        -# TODO: add bubble help text
+        =menu_link_icon_to 'cog', user_path(@current_user), 'Configuration'
       %li
-        =menu_link_icon_to 'signout', signout_path
+        =menu_link_icon_to 'signout', signout_path, 'Log Out'
