@@ -2,9 +2,9 @@ $duration-min-hour: 0;
 $duration-max-hour: 24;
 $minutes-per-hour: 60;
 $min-number-slots: 2;
-$max-number-slots: 8;
-$hour-height-unitless: 40;
-$hour-height: 1px * $hour-height-unitless;
+$max-number-slots: 6;
+$slot-height-unitless: 20;
+$slot-height: 1px * $slot-height-unitless;
 
 h1.logo {
   font-family: helvetica;
@@ -26,36 +26,36 @@ h1.logo {
     padding: 3px;
   }
 
-  .notmonth, .notmonth a { color:#ccc; }
-  .today { background-color:#d7f2ff; }
+  .notmonth, .notmonth a { color: #ccc; }
+  .today { background-color: #d7f2ff; }
 }
 
 #appointments .calendar, #appointments .agenda, #appointments .week {
   border-collapse:collapse;
-  width:100%;
+  width: 100%;
 
   td, th {
     font-family:"Lucida Grande", arial, helvetica, sans-serif;
-    font-size:10px;
-    border:1px solid #999;
+    font-size: 10px;
+    border: 1px solid #999;
   }
 
   th {
-    background:#ddd;
-    color:#666;
+    background: #ddd;
+    color: #666;
     text-align:center;
-    height:30px;
+    height: 30px;
   }
 
   td {
-    background:#fff;
-    color:#777;
+    background: #fff;
+    color: #777;
     vertical-align:top;
-    font-size:16px;
+    font-size: 16px;
   }
 
   .corner {
-    background:#fff;
+    background: #fff;
     border-top:none;
     border-left:none;
   }
@@ -71,64 +71,59 @@ h1.logo {
     text-align: left;
   }
 
-  .notmonth, .notmonth a { color:#ccc; }
-  .today { background-color:#d7f2ff; }
+  .notmonth, .notmonth a { color: #ccc; }
+  .today { background-color: #d7f2ff; }
 }
 
 #appointments .agenda {
   th, td {
-    padding:0px;
+    padding: 0px;
   }
 
   td {
-    width:90%;
-    height:$hour-height;
+    width: 90%;
   }
 }
 
 #appointments .week {
   th, td {
-    padding:0px 0px 0px 0px;
+    padding: 0px;
   }
 
   th {
-    width:12.5%;
-  }
-
-  td {
-    height:$hour-height;
+    width: 12.5%;
   }
 }
 
 #appointments .calendar {
   td, th {
-    padding:6px;
+    padding: 6px;
   }
 
   th {
-    width:14.2857142857143%;
+    width: 14.2857142857143%;
   }
 
   td {
-    height:80px;
+    height: 80px;
   }
 }
 
 #appointments #calendar-selector {
   // TODO: not centering the group
-  margin-left:auto;
-  margin-right:auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #appointments #month {
-  margin:0;
-  padding-bottom:10px;
+  margin: 0px;
+  padding-bottom: 10px;
   text-align:center;
-  font-size:22px;
+  font-size: 22px;
   a {
     text-decoration:none;
-    padding:0 10px;
-    color:#999;
+    padding: 0 10px;
+    color: #999;
   }
 }
 
@@ -167,12 +162,13 @@ li.month-appointment {
   background: #8d8;
   margin: 1px;
   padding: 2px 5px;
-  font-size:10px;
-  color:#222;
+  font-size: 10px;
+  color: #222;
   font-weight: bold;
   list-style: none;
 }
 
+// TODO only generate $tot-slot for 2, 4, 6
 @for $tot-slot from $min-number-slots through $max-number-slots {
   @for $hour from $duration-min-hour through $duration-max-hour {
     @for $slot from 0 to $tot-slot {
@@ -183,7 +179,7 @@ li.month-appointment {
           @debug "tot-slot: #{$tot-slot} hour: #{$hour} slot: #{$slot} slot px: #{($hour * $minutes-per-hour + ($minutes-per-hour / $tot-slot) * $slot)}";
           // TODO hack: multipling by 10 here because slot: 8 generetes a decimal .5
           .client-appointment.duration-#{$tot-slot}-#{($hour * $minutes-per-hour + ($minutes-per-hour / $tot-slot) * $slot) * 10} {
-            height: 1px * (($hour-height-unitless / $tot-slot) * ($hour * $tot-slot + $slot) + $hour);
+            height: 1px * (($slot-height-unitless) * ($hour * $tot-slot + $slot) + $hour);
           }
         }
       }
@@ -196,10 +192,11 @@ li.month-appointment {
   width: 100%;
 }
 
-@for $tot-slot from $min-number-slots to $max-number-slots + 1 {
+// TODO only generate $tot-slot for 2, 4, 6
+@for $tot-slot from $min-number-slots through $max-number-slots {
   @for $slot from 0 to $tot-slot {
     .slot.slot-#{$tot-slot}-#{$slot} {
-      height: $hour-height / $tot-slot;
+      height: $slot-height;
 
       @if $slot == ($tot-slot / 2 - 1) {
         border-bottom: 1px dashed #d5d5d5;
