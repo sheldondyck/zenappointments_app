@@ -14,6 +14,8 @@ pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
 
 rake brakeman:run
 
+rails_best_practices .
+
 == TODO
 
 * Q: Change company_name to office name?
