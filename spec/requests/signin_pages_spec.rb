@@ -17,13 +17,13 @@ describe 'Signin Page' do
       #save_and_open_page
     }
 
-    it { should have_title('Sign In') }
+    it { should have_title('Log In') }
     it { should have_selector('h1', text: app_name) }
     it { should have_link(app_name, href: www_url) }
     it { should have_selector('legend', text: 'Welcome back') }
     it { should have_field('session[email]') }
     it { should have_field('session[password]') }
-    it { should have_button('Sign In') }
+    it { should have_button('Log In') }
     it { should have_selector('p', text: 'You don\'t have an account?') }
     it { should have_link('Sign up now!', href: signup_path) }
   end
@@ -37,7 +37,7 @@ describe 'Signin Page' do
         fill_in 'Password', with: 'abcdef'
       end
       #save_and_open_page
-      click_button 'Sign In'
+      click_button 'Log In'
       #save_and_open_page
     end
 
@@ -64,7 +64,7 @@ describe 'Signin Page' do
 
     describe 'it should signout' do
       before { find_by_id('link-signout').click }
-      it { should have_button 'Sign In' }
+      it { should have_button 'Log In' }
       it { current_path.should == '/' }
     end
   end
@@ -76,10 +76,10 @@ describe 'Signin Page' do
         fill_in 'session[email]', with: 'foo@bar.com'
         fill_in 'session[password]', with: 'bar1'
       end
-      click_button 'Sign In'
+      click_button 'Log In'
     end
 
-    it 'does not sign in' do
+    it 'does not log in' do
       current_path.should == signin_path
     end
 
@@ -123,7 +123,7 @@ describe 'Signin Page' do
     end
 
     it 'should have alert message' do
-      should have_selector('div.alert.alert-danger', text: 'Access restricted, please sign in')
+      should have_selector('div.alert.alert-danger', text: 'Access restricted, please log in')
     end
   end
 end

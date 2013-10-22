@@ -27,7 +27,7 @@ describe 'account pages' do
       it { should have_button('Show') }
       it { should have_selector(:xpath, "//button[@class='btn btn-default btn-show-hide-password']", text: "Show") }
       it { should have_selector('p', text: 'I already have an account.') }
-      it { should have_link('Sign in now!', href: signin_path) }
+      it { should have_link('Log in now!', href: signin_path) }
     end
 
     let(:submit) { "Create my #{app_name} account!" }
@@ -69,7 +69,7 @@ describe 'account pages' do
             # TODO is their a better way to test with icons?
             before { find_by_id('link-signout').click }
 
-            it { should have_button('Sign In') }
+            it { should have_button('Log In') }
 
             describe 'should signin user again without tutorial' do
               before do
@@ -77,7 +77,7 @@ describe 'account pages' do
                   fill_in 'Email', with: 'my_email@my_company.com'
                   fill_in 'Password', with: 'foobar'
                 end
-                click_button 'Sign In'
+                click_button 'Log In'
               end
               it { current_path.should == appointments_path }
             end

@@ -18,7 +18,7 @@ describe 'AppointmentsPages' do
         fill_in 'Email', with: 'account@company.com'
         fill_in 'Password', with: 'abcdef'
       end
-      click_button 'Sign In'
+      click_button 'Log In'
       #save_and_open_page
     end
 
