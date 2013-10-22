@@ -3,8 +3,13 @@
   .view-header-quick-nav
     -#=remote_link_icon_to 'calendar', '#'
     -# TODO Add today button?
-    =remote_link_icon_to 'angle-left', appointments_path(date: @date.send('prev_' + @view), view: @view)
-    =remote_link_icon_to 'angle-right', appointments_path(date: @date.send('next_' + @view), view: @view)
+    =link_to 'Today', appointments_path(date: Date.current),
+        { alt: 'Today',
+          id: 'link-today',
+          class: 'btn btn-default',
+          data: { remote: 'true' } }
+    =remote_link_icon_to 'angle-left', appointments_path(date: @date.send('prev_' + @view), view: @view), '<'
+    =remote_link_icon_to 'angle-right', appointments_path(date: @date.send('next_' + @view), view: @view), '>'
   .view-header-title
     =@nav_title
   .view-header-selector

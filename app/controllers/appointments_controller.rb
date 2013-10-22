@@ -16,7 +16,7 @@ class AppointmentsController < ApplicationController
     #@appointment = Appointment.new
     @client = Client.new
     @title = @current_user.name
-    # TODO is Date.current in current time zone? If not add.
+    # TODO is Date.parse in current time zone? If not add.
     @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])

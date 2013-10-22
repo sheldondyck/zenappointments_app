@@ -33,6 +33,7 @@ describe 'AppointmentsPages' do
         it do
           should_not have_selector('li.active', text: 'Home')
           should have_selector('li.active', text: 'Appointments')
+          should_not have_selector('li.active', text: 'Payments')
           should_not have_selector('li.active', text: 'Clients')
           should_not have_selector('li.active', text: 'Employees')
           should_not have_selector('li.active', text: 'Reports')
@@ -40,9 +41,12 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        # TODO: test link of angle-left
+        # TODO find out how to test for this.
+        #should have_link("<i class='icon-angle-left'></i>", href: appointments_path(view: 'day', date: Time.zone.now))
+        #should have_selector('i.icon-angle-left', href: appointments_path(view: 'day', date: Time.zone.now))
         should have_selector('i.icon-angle-left')
-        # TODO: test link of angle-right
+        should have_link('Today', href: appointments_path(date: Date.current))
+        #should have_link('>', href: appointments_path(view: 'day', date: Time.zone.now))
         should have_selector('i.icon-angle-right')
         should have_selector('a.btn.btn-default.active', text: 'Day')
         should_not have_selector('a.btn.btn-default.active', text: 'Week')
@@ -51,10 +55,10 @@ describe 'AppointmentsPages' do
         should have_selector('a.btn.btn-default', text: 'Week')
         should have_selector('a.btn.btn-default', text: 'Month')
         should have_selector('a.btn.btn-default', text: 'Year')
-        should have_link('Day', href: appointments_path(view: 'day'))
-        should have_link('Week', href: appointments_path(view: 'week'))
-        should have_link('Month', href: appointments_path(view: 'month'))
-        should have_link('Year', href: appointments_path(view: 'year'))
+        should have_link('Day', href: appointments_path(view: 'day', date: Date.current))
+        should have_link('Week', href: appointments_path(view: 'week', date: Date.current))
+        should have_link('Month', href: appointments_path(view: 'month', date: Date.current))
+        should have_link('Year', href: appointments_path(view: 'year', date: Date.current))
       end
     end
 
