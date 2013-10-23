@@ -6,7 +6,6 @@ module WeekHelper
   end
 
   class Week < Struct.new(:view, :date, :callback)
-
     delegate :content_tag, to: :view
 
     def table

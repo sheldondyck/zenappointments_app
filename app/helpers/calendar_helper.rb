@@ -5,22 +5,22 @@ module CalendarHelper
   end
 
   class Calendar < Struct.new(:view, :date, :callback)
-    HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
-    HEADER_COMPACT = %w[S M T W T F S]
-    # TODO: should we get this value from Account.start_of_week?
-    START_DAY = :sunday
-
     delegate :content_tag, to: :view
 
     def table(klass)
       content_tag :table, class: klass do
-        header + week_rows
+        header(klass) + week_rows
       end
     end
 
-    def header
+    def header(klass)
       content_tag :tr do
-        HEADER_COMPACT.map { |day| content_tag :th, day }.join.html_safe
+        header_weeks.map do |week|
+          week.map do |day|
+            # TODO yuck. find 'railsway'(tm) for this
+            content_tag :th, klass == 'calendar-mini' ? day.strftime('%a')[0,1] : day.strftime('%A')
+          end.join.html_safe
+        end.join.html_safe
       end
     end
 
@@ -40,13 +40,20 @@ module CalendarHelper
       classes = []
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
+      classes << "weekend" if (day.saturday? || day.sunday?)
       classes << 'edit-day'
       classes.empty? ? nil : classes.join(" ")
     end
 
+    def header_weeks
+      first = date.beginning_of_week(Account.start_of_week)
+      last = date.end_of_week(Account.start_of_week)
+      (first..last).to_a.in_groups_of(7)
+    end
+
     def weeks
-      first = date.beginning_of_month.beginning_of_week(START_DAY)
-      last = date.end_of_month.end_of_week(START_DAY)
+      first = date.beginning_of_month.beginning_of_week(Account.start_of_week)
+      last = date.end_of_month.end_of_week(Account.start_of_week)
       (first..last).to_a.in_groups_of(7)
     end
   end
