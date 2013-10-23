@@ -1,24 +1,24 @@
 # TODO agenda_help week_helper calendar_help should be combined
 module CalendarHelper
-  def calendar(klass, date = Date.today, &block)
-    Calendar.new(self, date, block).table(klass)
+  def calendar(mini, date = Date.today, &block)
+    Calendar.new(self, date, block).table(mini)
   end
 
   class Calendar < Struct.new(:view, :date, :callback)
     delegate :content_tag, to: :view
 
-    def table(klass)
-      content_tag :table, class: klass do
-        header(klass) + week_rows
+    def table(mini)
+      content_tag :table, class: mini ? 'calendar-mini' : 'calendar' do
+        header(mini) + week_rows
       end
     end
 
-    def header(klass)
+    def header(mini)
       content_tag :tr do
         header_weeks.map do |week|
           week.map do |day|
             # TODO yuck. find 'railsway'(tm) for this
-            content_tag :th, klass == 'calendar-mini' ? day.strftime('%a')[0,1] : day.strftime('%A')
+            content_tag :th, mini ? day.strftime('%a')[0,1] : day.strftime('%A')
           end.join.html_safe
         end.join.html_safe
       end
