@@ -1,19 +1,19 @@
 # TODO agenda_help week_helper calendar_help should be combined
 module CalendarHelper
   def calendar(mini, date = Date.today, &block)
-    Calendar.new(self, date, block).table(mini)
+    Calendar.new(self, date, mini, block).table
   end
 
-  class Calendar < Struct.new(:view, :date, :callback)
+  class Calendar < Struct.new(:view, :date, :mini, :callback)
     delegate :content_tag, to: :view
 
-    def table(mini)
+    def table
       content_tag :table, class: mini ? 'calendar-mini' : 'calendar' do
-        header(mini) + week_rows
+        header + week_rows
       end
     end
 
-    def header(mini)
+    def header
       content_tag :tr do
         header_weeks.map do |week|
           week.map do |day|
@@ -38,10 +38,10 @@ module CalendarHelper
 
     def day_classes(day)
       classes = []
+      classes << "mini" if mini
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
       classes << "weekend" if (day.saturday? || day.sunday?)
-      classes << 'edit-day'
       classes.empty? ? nil : classes.join(" ")
     end
 
