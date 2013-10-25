@@ -26,30 +26,30 @@ module ApplicationHelper
   end
 
   def icon_tag icon_name
-    "<i class='icon-#{icon_name}'></i>"
+    "<i class='fa fa-#{icon_name}'></i>"
   end
 
   def menu_link_icon_to icon_name, href, alt = ''
     unless alt.blank?
-      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {alt: alt, id: "link-#{icon_name}"}
+      link_to raw("<i class='fa fa-#{icon_name} fa-lg'></i>"), href, {alt: alt, id: "link-#{icon_name}"}
     else
-      link_to raw("<i class='icon-#{icon_name} icon-large'></i>"), href, {id: "link-#{icon_name}"}
+      link_to raw("<i class='fa fa-#{icon_name} fa-lg'></i>"), href, {id: "link-#{icon_name}"}
     end
   end
 
   def link_icon_to icon_name, href, alt = ''
     unless alt.blank?
-      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {alt: alt, class: 'btn btn-default', id: "link-#{icon_name}"}
+      link_to raw("<i class='fa fa-#{icon_name}'></i>"), href, {alt: alt, class: 'btn btn-default', id: "link-#{icon_name}"}
     else
-      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {class: 'btn btn-default', id: "link-#{icon_name}"}
+      link_to raw("<i class='fa fa-#{icon_name}'></i>"), href, {class: 'btn btn-default', id: "link-#{icon_name}"}
     end
   end
 
   def remote_link_icon_to icon_name, href, alt = ''
     unless alt.blank?
-      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {alt: alt, class: 'btn btn-default', id: "link-#{icon_name}", data: {remote: 'true'}}
+      link_to raw("<i class='fa fa-#{icon_name}'></i>"), href, {alt: alt, class: 'btn btn-default', id: "link-#{icon_name}", data: {remote: 'true'}}
     else
-      link_to raw("<i class='icon-#{icon_name}'></i>"), href, {class: 'btn btn-default', id: "link-#{icon_name}", data: {remote: 'true'}}
+      link_to raw("<i class='fa fa-#{icon_name}'></i>"), href, {class: 'btn btn-default', id: "link-#{icon_name}", data: {remote: 'true'}}
     end
   end
 

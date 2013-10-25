@@ -1,44 +1,72 @@
-(exports ? this).buildCal = (m, y, cM, cH, cDW, cD, brdr) ->
-  #alert 'buildCal'
+(exports ? this).buildCal = (m, y) ->
+  # TODO: need to add support for Account.start_of_week
   mn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   dim = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  oD = new Date(y, m - 1, 1) #DD replaced line to fix date bug when current day is 31st
-  oD.od = oD.getDay() + 1 #DD replaced line to fix date bug when current day is 31st
-  todaydate = new Date() #DD added
-  scanfortoday = (if (y is todaydate.getFullYear() and m is todaydate.getMonth() + 1) then todaydate.getDate() else 0) #DD added
+  oPM = new Date(y, m - 2, 1)
+  oNM = new Date(y, m, 1)
+  oD = new Date(y, m - 1, 1)
+  oD.od = oD.getDay() + 1
+  todaydate = new Date()
+  scanfortoday = (if (y == todaydate.getFullYear() and m == todaydate.getMonth() + 1) then todaydate.getDate() else NaN)
   dim[1] = (if (((oD.getFullYear() % 100 isnt 0) and (oD.getFullYear() % 4 is 0)) or (oD.getFullYear() % 400 is 0)) then 29 else 28)
-  t = "<div class=\"" + cM + "\"><table class=\"" + cM + "\" cols=\"7\" cellpadding=\"0\" border=\"" + brdr + "\" cellspacing=\"0\"><tr align=\"center\">"
-  t += "<td colspan=\"7\" align=\"center\" class=\"" + cH + "\">" + mn[m - 1] + " - " + y + "</td></tr><tr align=\"center\">"
+  t = "<div class='calendar-mini'><table cols='7'><tr>"
+  t += "<td colspan='7'><div data-date='" + oPM.toISOString() + "' class='calendar-mini-previous-month'><i class='fa fa-chevron-left'/></div>" + mn[m - 1] + " " + y + "<div data-date='" + oNM.toISOString() + "' class='calendar-mini-next-month'><i class='fa fa-chevron-right'/></div></td></tr><tr>"
   s = 0
   while s < 7
-    t += "<td class=\"" + cDW + "\">" + "SMTWTFS".substr(s, 1) + "</td>"
+    t += "<th>" + "SMTWTFS".substr(s, 1) + "</th>"
     s++
-  t += "</tr><tr align=\"center\">"
+  t += "</tr><tr>"
   i = 1
-  while i <= 42
-    x = (if ((i - oD.od >= 0) and (i - oD.od < dim[m - 1])) then i - oD.od + 1 else "&nbsp;")
-    #DD added
-    x = "<span id=\"today\">" + x + "</span>"  if x is scanfortoday #DD added
-    t += "<td class=\"" + cD + "\">" + x + "</td>"
-    t += "</tr><tr align=\"center\">"  if ((i) % 7 is 0) and (i < 36)
+  f = false
+  while i <= 42 and !f
+    weekend = ""
+    x = (if ((i - oD.od >= 0) and (i - oD.od < dim[m - 1])) then i - oD.od + 1 else (i - oD.od + 1))
+    oCD = new Date(y, m - 1, x)
+
+    if x == scanfortoday
+      today = " today"
+    else
+      today = ""
+
+    if (oCD.getDay() == 0 or oCD.getDay() == 6 )
+      weekend = " weekend"
+    else
+      weekend = ""
+
+    if ((i - oD.od >= 0) and (i - oD.od < dim[m - 1]))
+      t += "<td class='day" + today + weekend + "'>" + x + "</td>"
+    else
+      if (i - oD.od >= 0)
+        f = true if ((i) % 7 is 0) and (i < 36)
+        nn = i - oD.od - dim[m - 1] + 1
+        t += "<td class='day notmonth" + today + weekend + "'>" + nn + "</td>"
+      else
+        pn = dim[m - 1] + x - 1
+        t += "<td class='day notmonth" + today + weekend + "'>" + pn + "</td>"
+
+    if !f
+      t += "</tr><tr>"  if ((i) % 7 is 0) and (i < 36)
+    else
+      t += "</tr>"
+
     i++
   t += "</tr></table></div>"
 
 jQuery ->
-  $('.calendar-mini-js').ready = ->
-    alert 'oi mini'
+  showCalendarMini()
 
-$ ->
-  $(document).ready = ->
-    alert 'oi mini 2'
+(exports ? this).showCalendarMini = (date = new Date())->
+  curmonth = date.getMonth() + 1
+  curyear = date.getFullYear()
 
-jQuery ->
-  foo()
+  if $('.calendar-mini-js').length > 0
+    $('.calendar-mini-js').html(buildCal(curmonth, curyear))
 
-(exports ? this).foo = ->
-  todaydate=new Date()
-  curmonth=todaydate.getMonth()+1  #get current month (1-12)
-  curyear=todaydate.getFullYear() #get current year
+    $('.calendar-mini-previous-month').click ->
+      showCalendarMini(new Date($(this).data('date')))
 
-  $('.calendar-mini-js').append(buildCal(curmonth ,curyear, "main", "month", "daysofweek", "days", 1))
+    $('.calendar-mini-next-month').click ->
+      showCalendarMini(new Date($(this).data('date')))
 
+      #$('.calendar-mini-js td.day').click ->
+      #alert $(this).html()

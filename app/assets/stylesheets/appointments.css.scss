@@ -30,6 +30,16 @@ h1.logo {
   .weekend { background-color: #eee; }
   .notmonth, .notmonth a { color: #ccc; }
   .today { background-color: #8d8; }
+
+  .calendar-mini-previous-month {
+    @include btn-borderless-base;
+    float: left;
+  }
+
+  .calendar-mini-next-month {
+    @include btn-borderless-base;
+    float: right;
+  }
 }
 
 #appointments .calendar, #appointments .agenda, #appointments .week {

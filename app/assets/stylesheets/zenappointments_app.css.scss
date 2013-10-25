@@ -4,3 +4,16 @@ $zen-colour-danger-highlight: darken($zen-colour-danger, 20);
 
 // geometry
 $zen-menu-margin-bottom: 20px;
+
+@mixin btn-borderless-base {
+  border: 0px;
+  -webkit-appearance: none;
+  line-height: 1;
+  font-weight: bold;
+  padding: 0px;
+  cursor: pointer;
+  background: transparent;
+  color: #666;
+  text-shadow: 0 1px 0 white;
+  opacity: 0.9;
+}

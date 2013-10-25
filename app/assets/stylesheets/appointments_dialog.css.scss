@@ -216,19 +216,10 @@
 .btn-tool {
   position: relative;
   //display: block;
-  padding: 0px;
-  cursor: pointer;
-  background: transparent;
-  border: 0px;
-  -webkit-appearance: none;
   float: right;
   text-align: right;
   font-size: 14px;
-  font-weight: bold;
-  line-height: 1;
-  color: #666;
-  text-shadow: 0 1px 0 white;
-  opacity: 0.9;
+  @include btn-borderless-base;
 }
 
 .btn-tool:hover, .btn-tool:focus {
