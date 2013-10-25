@@ -18,7 +18,7 @@ module ApplicationHelper
     flash.each do |key, value|
       css_alert = css_alert_map[key] ||= 'danger'
       div += "<div class='alert alert-#{css_alert}' data-dismiss='alert'>"
-      div += "<h4>#{icon_tag('warning-sign')} Opps...</h4>" if key == :alert || key == :error
+      div += "<h4>#{icon_tag('exclamation-triangle')} Opps...</h4>" if key == :alert || key == :error
       div += "<strong>#{value}</strong>"
       div += "</div>"
     end

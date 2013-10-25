@@ -11,9 +11,9 @@ shared_examples 'a signedin menu' do
       should have_link('Employees', href: employees_index_path)
       should have_link('Reports', href: accounts_reports_path)
       # TODO verify cog link url
-      should have_selector('i.icon-cog')
+      should have_selector('i.fa.fa-cog')
       # TODO verify signout link url
-      should have_selector('i.icon-signout')
+      should have_selector('i.fa.fa-sign-out')
       should have_link(@user.name, href: user_path(@user))
     end
   end

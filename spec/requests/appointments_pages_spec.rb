@@ -12,6 +12,8 @@ describe 'AppointmentsPages' do
     subject { page }
 
     before do
+      # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
+      Time.zone = 'Tokyo'
       @user = create(:user)
       visit signin_path
       within '.signin-dialog' do
@@ -44,10 +46,10 @@ describe 'AppointmentsPages' do
         # TODO find out how to test for this.
         #should have_link("<i class='icon-angle-left'></i>", href: appointments_path(view: 'day', date: Time.zone.now))
         #should have_selector('i.icon-angle-left', href: appointments_path(view: 'day', date: Time.zone.now))
-        should have_selector('i.icon-angle-left')
+        should have_selector('i.fa.fa-angle-left')
         should have_link('Today', href: appointments_path(date: Date.current))
         #should have_link('>', href: appointments_path(view: 'day', date: Time.zone.now))
-        should have_selector('i.icon-angle-right')
+        should have_selector('i.fa.fa-angle-right')
         should have_selector('a.btn.btn-default.active', text: 'Day')
         should_not have_selector('a.btn.btn-default.active', text: 'Week')
         should_not have_selector('a.btn.btn-default.active', text: 'Month')
@@ -161,8 +163,6 @@ describe 'AppointmentsPages' do
 
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']/td[@class='hour']").click
           #find(:xpath, "//tr[@class='hour-row' and @data-hour='3']").click
-          # TODO need to get timezone from config. for now we are using Tokyo to find assumptions
-          Time.zone = 'Tokyo'
           click_button 'Add'
           #save_and_open_page
         end

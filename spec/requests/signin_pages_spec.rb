@@ -47,8 +47,8 @@ describe 'Signin Page' do
 
     describe 'has correct html' do
       # TODO:
-      #it { should have_link('.icon-signout', href: signout_path) }
-      it { should have_selector('i.icon-signout') }
+      #it { should have_link('.fa.fa-sign-out', href: signout_path) }
+      it { should have_selector('i.fa.fa-sign-out') }
       it { should have_text(@user.name) }
       it { should have_link(@user.name, href: user_path(@user)) }
     end
@@ -63,7 +63,7 @@ describe 'Signin Page' do
     end
 
     describe 'it should signout' do
-      before { find_by_id('link-signout').click }
+      before { find_by_id('link-sign-out').click }
       it { should have_button 'Log In' }
       it { current_path.should == '/' }
     end
@@ -85,6 +85,7 @@ describe 'Signin Page' do
 
     it 'has correct message' do
       should have_selector('div.alert.alert-danger', text: 'Invalid email or password')
+      should have_selector('i.fa.fa-exclamation-triangle')
     end
 
     it 'fills out email' do
@@ -124,6 +125,7 @@ describe 'Signin Page' do
 
     it 'should have alert message' do
       should have_selector('div.alert.alert-danger', text: 'Access restricted, please log in')
+      should have_selector('i.fa.fa-exclamation-triangle')
     end
   end
 end

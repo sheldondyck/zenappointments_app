@@ -63,11 +63,11 @@ describe 'account pages' do
           before { click_link 'Skip Tutorial' }
           it { current_path.should == appointments_path }
           # TODO is their a better way to test with icons?
-          it { should have_selector('i.icon-signout') }
+          it { should have_selector('i.fa.fa-sign-out') }
 
           describe 'should signout user' do
             # TODO is their a better way to test with icons?
-            before { find_by_id('link-signout').click }
+            before { find_by_id('link-sign-out').click }
 
             it { should have_button('Log In') }
 
@@ -100,6 +100,7 @@ describe 'account pages' do
       it 'should show a general error message' do
         click_button submit
         should have_selector('.alert.alert-danger', text: 'Please fix the problems with the form')
+        should have_selector('i.fa.fa-exclamation-triangle')
       end
 
       it 'should show a first_name error message' do

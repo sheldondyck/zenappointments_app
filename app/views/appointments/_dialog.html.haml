@@ -3,11 +3,11 @@
   .appointment-content
     .appointment-header
       %button.close.close-appointment-dialog{ type: 'button' }
-        %i.icon-remove
+        %i.fa.fa-times
       %button.color-selector{ type: 'button' }
-        %i.icon-qrcode
+        %i.fa.fa-qrcode
       %h3
-        %i.icon-warning-sign.appointment-dialog-error
+        %i.fa.fa-exclamation-triangle.appointment-dialog-error
         Appointment
     .appointment-body
       .appointment-details
@@ -26,7 +26,7 @@
           %h4
             Client
             %button.btn-tool.show-client-add{ type: 'button' }
-              %i.icon-plus
+              %i.fa.fa-plus
               Add
           =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
             =f.hidden_field :hour, class: 'hour-field'
@@ -36,9 +36,9 @@
             .input-group
               -# TODO: add label so clicking on search icon send focus and curso to text field
               %input.form-control.search-client{ placeholder: 'Search', type: 'text' }
-              -# TODO: PUT icon-search icon inside text field. currently the span looks like a button that does nothing
+              -# TODO: PUT fa-search icon inside text field. currently the span looks like a button that does nothing
               %span.input-group-addon
-                %i.icon-search
+                %i.fa.fa-search
             .client-search-results
         .appointment-client-edit
           =form_for :appointment, url: appointments_create_path, html: { class: 'form-inline', data: { remote: 'true' } } do |f|
@@ -51,18 +51,18 @@
               %h4
                 Client
                 %button.btn-tool.show-client-search{ type: 'button' }
-                  %i.icon-search
+                  %i.fa.fa-search
                   Search
             .if-client-exists
               %h4
                 Client
                 %button.btn-tool.show-client-details{ type: 'button' }
-                  %i.icon-user
+                  %i.fa.fa-user
                   Details
             .row
               .col-sm-6
                 .form-group#first-name{ class: error_class(@client, :first_name) }
-                  -# TODO for is not working here but works in signin. why?
+                  -# TODO clicking on for does not select textbox here but works in signin. why?
                   %label.control-label{ for: 'first-name' }
                     First Name
                     %input.form-control.first-name{ placeholder: 'First Name', name: 'appointment[first_name]', value: @client[:first_name], type: 'text' }
@@ -70,7 +70,7 @@
                       %p.help-block#first-name
                         =error_message(@client, :first_name)
                 .form-group#telefone-celular{ class: error_class(@client, :first_name) }
-                  -# TODO for is not working here but works in signin. why?
+                  -# TODO clicking on for does not select textbox here but works in signin. why?
                   %label.control-label{ for: 'telephone-cellular' }
                     Cellular
                     %input.form-control.telephone-cellular{ placeholder: 'Cellular', name: 'appointment[telephone_cellular]', value: @client[:telephone_cellular], type: 'text' }
@@ -98,7 +98,7 @@
           %h4
             Client
             %button.btn-tool.show-client-edit{ type: 'button' }
-              %i.icon-edit
+              %i.fa.fa-pencil-square-o
               Edit
           .appointment-field.title
             .name
@@ -108,7 +108,7 @@
             .telephone-cellular
           .appointment-delete
             %button.btn-tool.btn-delete.delete-appointment{ type: 'button' }
-              %i.icon-minus-sign
+              %i.fa.fa-minus-circle
               Delete
       .appointment-footer
         .appointment-delete-confirm

@@ -14,6 +14,6 @@ describe ApplicationHelper do
   it { should respond_to(:www_url) }
   it { should respond_to(:icon_tag) }
   it { expect(www_url).to eq('http://127.0.0.1:4000') }
-  it { expect(icon_tag('warning-sign')).to eq("<i class='icon-warning-sign'></i>") }
+  it { expect(icon_tag('exclamation-triangle')).to eq("<i class='fa fa-exclamation-triangle'></i>") }
 end
 
