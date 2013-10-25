@@ -11,37 +11,6 @@ h1.logo {
   color: #444;
 }
 
-.calendar-mini {
-  margin-top: $zen-menu-margin-bottom;
-  border-collapse: collapse;
-  width: 100%;
-
-  th {
-    background: #ddd;
-    color: #666;
-  }
-
-  td, th {
-    border-bottom: 1px solid #bbb;
-    text-align: center;
-    padding: 3px;
-  }
-
-  .weekend { background-color: #eee; }
-  .notmonth, .notmonth a { color: #ccc; }
-  .today { background-color: #8d8; }
-
-  .calendar-mini-previous-month {
-    @include btn-borderless-base;
-    float: left;
-  }
-
-  .calendar-mini-next-month {
-    @include btn-borderless-base;
-    float: right;
-  }
-}
-
 #appointments .calendar, #appointments .agenda, #appointments .week {
   border-collapse:collapse;
   width: 100%;

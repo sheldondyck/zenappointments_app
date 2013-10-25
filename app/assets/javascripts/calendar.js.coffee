@@ -29,18 +29,10 @@
   while i <= 42 and !f
     oCD = new Date(y, m - 1, i - oD.od + 1)
     klass = ""
-
-    if oCD.getDate() == scanfortoday
-      klass = " today"
-
-    if oCD.getDay() == 0 or oCD.getDay() == 6
-      klass += " weekend"
-
-    if (i - oD.od >= 0) and (i - oD.od < dim[m - 1])
-      t += "<td class='day" + klass + "' data-date='" + oCD.toISOString() + "'>" + oCD.getDate() + "</td>"
-    else
-      t += "<td class='day notmonth" + klass + "' data-date='" + oCD.toISOString() + "'>" + oCD.getDate() + "</td>"
-
+    klass = " today" if oCD.getDate() == scanfortoday
+    klass += " weekend" if oCD.getDay() == 0 or oCD.getDay() == 6
+    klass += " notmonth" if !((i - oD.od >= 0) and (i - oD.od < dim[m - 1]))
+    t += "<td class='day" + klass + "' data-date='" + oCD.toISOString() + "'>" + linkTo(oCD) + "</td>"
     f = true if ((i) % 7 == 0) and ((i - oD.od + 1) >= dim[m - 1])
 
     if !f
@@ -50,6 +42,9 @@
       t += "</tr>"
 
   t += "</tr></table>"
+
+linkTo = (oDate) ->
+  return "<a href='/appointments?date=" + oDate.toISOString() + "' data-remote='true'>" + oDate.getDate() + "</a>"
 
 jQuery ->
   showCalendarMini()
@@ -68,5 +63,5 @@ jQuery ->
     $('.calendar-mini-next-month').click ->
       showCalendarMini(new Date($(this).data('next-date')))
 
-    $('.calendar-mini-js td.day').click ->
-      alert $(this).data('date')
+      #$('.calendar-mini-js td.day').click ->
+      #alert $(this).data('date')

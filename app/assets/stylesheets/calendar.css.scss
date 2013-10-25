@@ -1,0 +1,51 @@
+.calendar-mini {
+  margin-top: $zen-menu-margin-bottom;
+  margin-bottom: 50px;
+  border-collapse: collapse;
+  width: 100%;
+
+  th {
+    background: #ddd;
+    color: #666;
+  }
+
+  td, th {
+    border-bottom: 1px solid #bbb;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    //padding-left: 3px;
+    //padding-right: 3px;
+  }
+
+  .weekend { background-color: #eee; }
+  .notmonth, .notmonth a { color: #ccc; }
+  .today { background-color: #8d8; }
+
+  .calendar-mini-previous-month {
+    @include btn-borderless-base;
+    float: left;
+  }
+
+  .calendar-mini-next-month {
+    @include btn-borderless-base;
+    float: right;
+  }
+
+  // TODO fix problems with link hit area. there are some pixels where the day is highlighted but the link is not active
+  a {
+    text-decoration: none;
+    color: #666;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  a:hover, .day:hover, a:focus, .day:focus {
+    background-color: #888;
+    color: #ddd;
+    font-weight: 500;
+  }
+}
+
