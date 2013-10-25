@@ -40,7 +40,7 @@ class Account < ActiveRecord::Base
     # Valid values: 2, 3, 4, 5, 6, 8
     # Invalid values: 7
     # TODO: should we allow 3, 5?
-    6
+    4
   end
 
   def self.minutes_per_slot
@@ -61,5 +61,6 @@ class Account < ActiveRecord::Base
 
   def self.start_of_week
     :monday
+    #:sunday
   end
 end
