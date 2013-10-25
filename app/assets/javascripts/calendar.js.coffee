@@ -14,8 +14,8 @@
   todaydate = new Date()
   scanfortoday = (if (y == todaydate.getFullYear() and m == todaydate.getMonth() + 1) then todaydate.getDate() else NaN)
   dim[1] = (if (((oD.getFullYear() % 100 isnt 0) and (oD.getFullYear() % 4 is 0)) or (oD.getFullYear() % 400 is 0)) then 29 else 28)
-  t = "<div class='calendar-mini'><table cols='7'><tr>"
-  t += "<td colspan='7'><div data-date='" + oPM.toISOString() + "' class='calendar-mini-previous-month'><i class='fa fa-chevron-left'/></div>" + mn[m - 1] + " " + y + "<div data-date='" + oNM.toISOString() + "' class='calendar-mini-next-month'><i class='fa fa-chevron-right'/></div></td></tr><tr>"
+  t = "<table class='calendar-mini' cols='7'><tr>"
+  t += "<td colspan='7'><div data-previous-date='" + oPM.toISOString() + "' class='calendar-mini-previous-month'><i class='fa fa-chevron-left'/></div>" + mn[m - 1] + " " + y + "<div data-next-date='" + oNM.toISOString() + "' class='calendar-mini-next-month'><i class='fa fa-chevron-right'/></div></td></tr><tr>"
   s = 0
 
   while s < 7
@@ -49,7 +49,7 @@
     else
       t += "</tr>"
 
-  t += "</tr></table></div>"
+  t += "</tr></table>"
 
 jQuery ->
   showCalendarMini()
@@ -63,10 +63,10 @@ jQuery ->
     $('.calendar-mini-js').html(buildCal(curMonth, curYear, 1))
 
     $('.calendar-mini-previous-month').click ->
-      showCalendarMini(new Date($(this).data('date')))
+      showCalendarMini(new Date($(this).data('previous-date')))
 
     $('.calendar-mini-next-month').click ->
-      showCalendarMini(new Date($(this).data('date')))
+      showCalendarMini(new Date($(this).data('next-date')))
 
     $('.calendar-mini-js td.day').click ->
       alert $(this).data('date')
