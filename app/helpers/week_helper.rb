@@ -58,21 +58,20 @@ module WeekHelper
     def hour_row_class(hour)
       classes = []
       classes << 'hour'
-      #classes << "today" if day == Date.today
-      #classes << "notmonth" if day.month != date.month
-      #classes << 'edit-day'
       classes.empty? ? nil : classes.join(" ")
     end
 
     def hour_cell(day, hour)
-      content_tag :td, class: hour_class(hour), data: hour_data(day, hour) do
+      content_tag :td, class: hour_class(day, hour), data: hour_data(day, hour) do
         appointment_slots(day, hour)
       end
     end
 
-    def hour_class(hour)
+    def hour_class(day, hour)
       classes = []
       classes << 'hour'
+      #classes << "today" if day == Date.today
+      classes << "weekend" if (day.saturday? || day.sunday?)
       #classes << 'hour-' + hour.to_s
       #classes << "today" if day == Date.today
       #classes << "notmonth" if day.month != date.month
