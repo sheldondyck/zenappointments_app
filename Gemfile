@@ -60,7 +60,7 @@ group :test do
   gem 'turn', '>= 0.8.3', :require => false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'guard'
+  gem 'guard', '>=2.1.0'
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-zeus'
