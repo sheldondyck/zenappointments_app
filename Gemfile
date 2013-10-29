@@ -21,7 +21,8 @@ gem 'sass', '3.2.11'
 # Remove this line and try again later
 #gem 'listen', '~> 0.4.3'
 
-gem 'sass-rails' #, '~> 4.0.0.rc2'
+#gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'sass-rails' #'~> 4.0.1', :git => 'git://github.com/rails/sass-rails.git'
 gem 'coffee-rails' #, '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
