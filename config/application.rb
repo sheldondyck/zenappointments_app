@@ -22,5 +22,7 @@ module ZenAppointmentsApp
 
     # Add for bootstrap
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+
+    config.active_record.schema_format = :sql
   end
 end
