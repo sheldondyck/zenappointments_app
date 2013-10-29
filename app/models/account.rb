@@ -15,8 +15,11 @@
 class Account < ActiveRecord::Base
   attr_accessor :first_name
   attr_accessor :last_name
+  attr_accessor :name
   attr_accessor :email
   attr_accessor :password
+
+  #after_create :create_user
 
   has_many :users,        dependent: :delete_all
   has_many :employees,    dependent: :delete_all
@@ -27,6 +30,10 @@ class Account < ActiveRecord::Base
                            length: { maximum: 100 },
                            uniqueness: { case_sensitive: false }
   validates :active,       inclusion: { in: [true, false] }
+
+  #def create_user
+  #  puts "create_user account_id: #{id} #{self.first_name} f#{first_name}"
+  #end
 
   def self.current_id=(id)
     Thread.current[:account_id] = id

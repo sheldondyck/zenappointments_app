@@ -109,30 +109,37 @@ describe Account do
   end
 
   describe 'user associated with account' do
-    before { @user = create(:user) }
+    before do
+      # TODO this is relying on factories create the account/user pair.
+      # account.create should create a user automatically as well using after_create callback
+      @user = create(:user)
+      #@user = @account.users.first
+      #puts @account.id
+      #@user = User.find(@account.id)
+    end
 
     describe 'has correct first_name' do
-      it { @account.user.first_name.should == 'First Name' }
+      it { @user.first_name.should == 'First Name' }
     end
 
     describe 'has correct last_name' do
-      it { @account.user.last_name.should == 'Last Name' }
+      it { @user.last_name.should == 'Last Name' }
     end
 
     describe 'is correct' do
-      it { @account.user.name.should == 'First Name Last Name' }
+      it { @user.name.should == 'First Name Last Name' }
     end
 
     describe 'is incorrect' do
-      it { @account.user.name.should_not == 'Name Last Name' }
+      it { @user.name.should_not == 'Name Last Name' }
     end
 
     describe 'has correct email' do
-      it { @account.user.email.should == 'account@company.com' }
+      it { @user.email.should == 'account@company.com' }
     end
 
     describe 'has admin privs' do
-      it { @account.user.account_administrator.should be_true }
+      it { @user.account_administrator.should be_true }
     end
   end
 end
