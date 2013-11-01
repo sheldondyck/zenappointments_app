@@ -67,6 +67,3 @@ jQuery ->
 
     $('.calendar-mini-next-month').click ->
       showCalendarMini(new Date($(this).data('next-date')))
-
-      #$('.calendar-mini-js td.day').click ->
-      #alert $(this).data('date')
