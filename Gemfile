@@ -11,7 +11,7 @@ end
 
 ruby '2.0.0'
 
-gem 'rails', '4.0.1.rc1'
+gem 'rails', '4.0.1'
 
 # TODO had to downgrade multi_json and sass because rails refused to init.
 # Remove these two lines and try again later
