@@ -6,9 +6,8 @@ $max-number-slots: 6;
 $slot-height-unitless: 20;
 $slot-height: 1px * $slot-height-unitless;
 
-h1.logo {
-  font-family: helvetica;
-  color: #444;
+.signup-dialog {
+  padding: 30px 0px 0px 0px;
 }
 
 #appointments .calendar, #appointments .agenda, #appointments .week {

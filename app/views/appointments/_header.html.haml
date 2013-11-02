@@ -1,13 +1,14 @@
 -# TODO: calling function on @date (through send) that came from the net. Things that make you go hmmm.
 .view-header
   .view-header-quick-nav
-    =link_to 'Today', appointments_path(date: Date.current),
-        { alt: 'Today',
-          id: 'link-today',
-          class: 'btn btn-default',
-          data: { remote: 'true' } }
-    =remote_link_icon_to 'angle-left', appointments_path(date: @date.send('prev_' + @view), view: @view), '<'
-    =remote_link_icon_to 'angle-right', appointments_path(date: @date.send('next_' + @view), view: @view), '>'
+    .btn-group{data: {toggle: 'buttons-radio'}}
+      =remote_link_icon_to 'angle-left', appointments_path(date: @date.send('prev_' + @view), view: @view), '<'
+      =link_to 'Today', appointments_path(date: Date.current),
+          { alt: 'Today',
+            id: 'link-today',
+            class: 'btn btn-default',
+            data: { remote: 'true' } }
+      =remote_link_icon_to 'angle-right', appointments_path(date: @date.send('next_' + @view), view: @view), '>'
   .view-header-title
     =@nav_title
   .view-header-selector
