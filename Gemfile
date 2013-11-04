@@ -32,6 +32,7 @@ gem 'foreigner'
 #gem 'bootstrap-sass' #, '~> 2.3.2.0'
 gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 gem 'font-awesome-rails'
+#gem 'chart-js-rails'
 #gem 'angularjs-rails'
 gem 'awesome_print'
 
