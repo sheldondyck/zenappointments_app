@@ -28,11 +28,13 @@
 
   while i <= 42 and !f
     oCD = new Date(y, m - 1, i - oD.od + 1)
-    klass = ""
-    klass = " today " if formatISODate(oCD) == scanfortoday
+    sCD = formatISODate(oCD)
+    klass = " date-"
+    klass += sCD
+    klass = " today " if sCD == scanfortoday
     klass += " weekend" if oCD.getDay() == 0 or oCD.getDay() == 6
     klass += " notmonth " + scanfortoday if !((i - oD.od >= 0) and (i - oD.od < dim[m - 1]))
-    t += "<td class='day" + klass + "' data-date='" + formatISODate(oCD) + "'>" + linkTo(oCD) + "</td>"
+    t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + linkTo(oCD) + "</td>"
     f = true if ((i) % 7 == 0) and ((i - oD.od + 1) >= dim[m - 1])
 
     if !f
@@ -43,18 +45,30 @@
 
   t += "</tr></table>"
 
+leadingZero = (n) ->
+  z = ""
+  if ( n < 10 )
+    z = "0" + n
+  else
+    z = n
+
+  return z
+
 formatISODate = (oDate) ->
-  # TODO should format as YYYY-MM-DD not YYYY-M-D
-  month = oDate.getMonth() + 1
-  return oDate.getFullYear() + "-" + month + "-" + oDate.getDate()
+  return oDate.getFullYear() + "-" + leadingZero(oDate.getMonth() + 1) + "-" + leadingZero(oDate.getDate())
 
 linkTo = (oDate) ->
   return "<a href='/appointments?date=" + formatISODate(oDate) + "' data-remote='true'>" + oDate.getDate() + "</a>"
 
 jQuery ->
-  showCalendarMini()
+  showSidebarCalendar()
 
-(exports ? this).showCalendarMini = (date = new Date())->
+(exports ? this).updateSidebarCalendar = (date, mode) ->
+  #alert 'sidebar calendar date: ' + date + ' mode: ' + mode
+  $('#active-day').removeAttr('id')
+  $('.date-' + date).attr('id', 'active-day')
+
+(exports ? this).showSidebarCalendar = (date = new Date())->
   curMonth = date.getMonth() + 1
   curYear = date.getFullYear()
 
@@ -63,7 +77,7 @@ jQuery ->
     $('.calendar-mini-js').html(buildCal(curMonth, curYear, 1))
 
     $('.calendar-mini-previous-month').click ->
-      showCalendarMini(new Date($(this).data('previous-date')))
+      showSidebarCalendar(new Date($(this).data('previous-date')))
 
     $('.calendar-mini-next-month').click ->
-      showCalendarMini(new Date($(this).data('next-date')))
+      showSidebarCalendar(new Date($(this).data('next-date')))

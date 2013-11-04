@@ -113,9 +113,6 @@
           slot: $(this).closest('.slot').data('slot')
         }
 
-(exports ? this).Oi = ->
-  alert 'oi'
-
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
   $('.appointment-client-search').css('display', 'block')
