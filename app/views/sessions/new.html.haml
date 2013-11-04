@@ -1,4 +1,4 @@
-=render('layouts/login_menu')
+=render('layouts/signinup_menu')
 .container
   .signin-dialog
     .row
@@ -19,10 +19,10 @@
                     =f.password_field :password, class: 'form-control', placeholder: 'Password', id: 'password'
                 .form-group
                   .col-lg-offset-4.col-lg-6
-                    =button_tag 'Log In', type: 'submit', class: 'btn btn-primary', 'data-disable-with' => 'Logging In ...'
+                    =button_tag 'Sign In', type: 'submit', class: 'btn btn-primary', 'data-disable-with' => 'Signing In ...'
     .row
       .col-sm-6.col-sm-offset-3
         %p
           You don't have an account?
-          =link_to 'Sign up now!', signup_path
+          =link_to 'Join Now!', signup_path
 -#= render 'pages/footer'

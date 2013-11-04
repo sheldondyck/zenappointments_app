@@ -19,7 +19,7 @@ describe 'reports pages' do
         fill_in 'Email', with: 'account@company.com'
         fill_in 'Password', with: 'abcdef'
       end
-      click_button 'Log In'
+      click_button 'Sign In'
       click_link 'Reports'
       #save_and_open_page
     end

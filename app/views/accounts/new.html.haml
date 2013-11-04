@@ -1,4 +1,4 @@
-=render('layouts/login_menu')
+=render('layouts/signinup_menu')
 .container
   .signup-dialog
     -#=form_for @account, html: {class: 'form-horizontal'} do |f|
@@ -87,7 +87,7 @@
                   =submit_tag "Create my #{app_name} account!", class: 'btn btn-primary', 'data-disable-with' => 'Signing Up ...'
                 %p
                   I already have an account.
-                  =link_to 'Log in now!', signin_path
+                  =link_to 'Sign in now!', signin_path
         .col-sm-4
           %h4 What some people are saying about #{app_name}
           %br
