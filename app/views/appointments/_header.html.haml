@@ -18,7 +18,7 @@
           id: 'link-day',
           class: active_btn(@view, 'day'),
           data: { remote: 'true' } }
-      =link_to 'Week', appointments_path(view: 'week', date: @beginning_of_week),
+      =link_to 'Week', appointments_path(view: 'week', date: @date),
         { alt: 'Week',
           id: 'link-week',
           class: active_btn(@view, 'week'),

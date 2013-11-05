@@ -14,11 +14,12 @@ class AppointmentsController < ApplicationController
     #@appointment = Appointment.new
     @client = Client.new
     @title = @current_user.name
+    @view = params[:view] ||= 'day'
     # TODO is Date.parse in current time zone? If not add.
     @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
-    @beginning_of_week = @date.beginning_of_week(Account.start_of_week)
-    @view = params[:view] ||= 'day'
+    @date = @date.beginning_of_week(Account.start_of_week) if @view == 'week'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
+    # TODO: should employees stay or go?
     @employees = [1]
 
     # TODO: this function is a complete mess
