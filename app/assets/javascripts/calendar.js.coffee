@@ -6,19 +6,20 @@ buildCal = (y, m, startOfWeek = 0) ->
 
   #alert 'y: ' + y + ' m: ' + m
 
-  if parseInt(m) == 1
-    #alert 'm == 1'
-    oPM = new Date(y - 1, 11, 1)
+  # TODO: we had to use day: 15 here because of timezone problems.
+  # testing when the day was 1-12-2013 caused problems since the day would get moved to 30 and month 11.
+  # using 15 is a hack since we only need the year and month here.
+  if m == 1
+    oPM = new Date(y - 1, 11, 15)
   else
-    oPM = new Date(y, m - 2, 1)
+    oPM = new Date(y, m - 2, 15)
 
-  if parseInt(m) == 12
-    #alert 'm == 12'
-    oNM = new Date(y + 1, 0, 1)
+  if m == 12
+    oNM = new Date(y + 1, 0, 15)
   else
-    oNM = new Date(y, m, 1)
+    oNM = new Date(y, m, 15)
 
-  oD = new Date(y, m - 1, 1)
+  oD = new Date(y, m - 1, 15)
 
   nM = oD.getMonth() + 1
 
