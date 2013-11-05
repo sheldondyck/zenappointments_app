@@ -1,3 +1,19 @@
 #appointments-panel
   =render('header')
-  %h1 Year
+  -# TODO this 'resets' something in the css. with this the next rows are alined correctly. FIX
+  .row
+    .col-sm-4
+    .col-sm-4
+  -1.step(12, 2) do |month|
+    .row
+      .col-sm-6
+        .year
+          =Date.new(@date.year, month).strftime("%B %Y")
+        =calendar true, Date.new(@date.year, month) do |date|
+          =date.day
+      .col-sm-6
+        .year
+          =Date.new(@date.year, month + 1).strftime("%B %Y")
+        =calendar true, Date.new(@date.year, month + 1)  do |date|
+          =date.day
+  =render('update_sidebar')

@@ -104,13 +104,11 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        #should have_selector('td.hour')
         should_not have_selector('a.btn.btn-default.active', text: 'Day')
         should have_selector('a.btn.btn-default.active', text: 'Week')
         should_not have_selector('a.btn.btn-default.active', text: 'Month')
         should_not have_selector('a.btn.btn-default.active', text: 'Year')
         should have_selector('.view-header-title', Time.zone.now.strftime('Week %V - %Y'))
-        #should have_selector('h1', 'Week')
       end
     end
 
@@ -123,7 +121,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        #should_not have_selector('td.hour')
+        should_not have_selector('td.hour')
         should_not have_selector('a.btn.btn-default.active', text: 'Day')
         should_not have_selector('a.btn.btn-default.active', text: 'Week')
         should have_selector('a.btn.btn-default.active', text: 'Month')
@@ -140,8 +138,19 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        #should_not have_selector('td.hour.hour-12')
-        should have_selector('h1', 'Year')
+        should_not have_selector('td.hour')
+        should have_selector('.year', 'January')
+        should have_selector('.year', 'February')
+        should have_selector('.year', 'March')
+        should have_selector('.year', 'Abril')
+        should have_selector('.year', 'May')
+        should have_selector('.year', 'June')
+        should have_selector('.year', 'July')
+        should have_selector('.year', 'August')
+        should have_selector('.year', 'September')
+        should have_selector('.year', 'October')
+        should have_selector('.year', 'November')
+        should have_selector('.year', 'December')
         should_not have_selector('a.btn.btn-default.active', text: 'Day')
         should_not have_selector('a.btn.btn-default.active', text: 'Week')
         should_not have_selector('a.btn.btn-default.active', text: 'Month')
