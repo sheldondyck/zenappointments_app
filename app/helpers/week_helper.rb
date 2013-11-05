@@ -23,7 +23,9 @@ module WeekHelper
               content_tag :th, class: 'day-col', data: { weekday: day.strftime('%A') } do
                 # TODO boo! rails does have routing in helpers
                 #content_tag :a, day.strftime('%A - %m/%e'), href: appointment_path(view: 'day', date: day)
-                content_tag :a, day.strftime('%A - %m/%e'), href: "/appointments?view=day&date=#{day.strftime('%Y-%m-%d')}"
+                content_tag :a, day.strftime('%A - %m/%e'),
+                  href: "/appointments?view=day&date=#{day.strftime('%Y-%m-%d')}",
+                  data: { remote: true }
               end
             end.join.html_safe
           end.join.html_safe
