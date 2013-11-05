@@ -22,6 +22,7 @@
   .notmonth, .notmonth a { color: #ccc; }
   .today { background-color: #8d8; }
   #active-day { background-color: #fd8; }
+  .weekend#active-day { background-color: #ee8; }
 
   .calendar-mini-previous-month {
     @include btn-borderless-base;
