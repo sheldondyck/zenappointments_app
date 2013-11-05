@@ -83,6 +83,7 @@ linkTo = (oDate) ->
   return "<a href='/appointments?date=" + formatISODate(oDate) + "' data-remote='true'>" + oDate.getDate() + "</a>"
 
 jQuery ->
+  # TODO this will run on every page. find a way so only runs when calendar-mini-js is in the dom
   showSidebarCalendar()
 
 showSidebarCalendar = (date = new Date())->
@@ -90,6 +91,8 @@ showSidebarCalendar = (date = new Date())->
   curYear = date.getFullYear()
   #alert 'show cal: ' + formatISODate(date) + ' curYear: ' + curYear  + ' curMonth: ' + curMonth
 
+  # TODO this is being run on every page. find a way so only runs when calendar-mini-js is in the dom
+  # TODO remove this brake code.
   if $('.calendar-mini-js').length > 0
     # TODO: need to add support for Account.start_of_week
     $('.calendar-mini-js').html(buildCal(curYear, curMonth, 1))
