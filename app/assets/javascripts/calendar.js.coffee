@@ -7,8 +7,9 @@ buildCal = (y, m, startOfWeek = 0) ->
   #alert 'y: ' + y + ' m: ' + m
 
   # TODO: we had to use day: 15 here because of timezone problems.
-  # testing when the day was 1-12-2013 caused problems since the day would get moved to 30 and month 11.
-  # using 15 is a hack since we only need the year and month here.
+  # testing when the day was 1-12-2013 caused problems since the day would get moved to 30
+  # and month 11. Using 15 is a hack since we only need the year and month here.
+  # SOLUTION: start using time_zone info from account config for all javascript Dates.
   if m == 1
     oPM = new Date(y - 1, 11, 15)
   else
