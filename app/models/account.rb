@@ -68,6 +68,7 @@ class Account < ActiveRecord::Base
 
   def self.start_of_week
     :monday
+    #:tuesday
     #:sunday
   end
 

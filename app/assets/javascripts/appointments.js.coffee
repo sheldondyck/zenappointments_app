@@ -207,6 +207,6 @@ ResetDeleteConfirm = ->
   $('.appointment-delete').css('display', 'block')
   $('.appointment-footer').attr('class', 'appointment-footer')
 
-$ -> InstallClientAppointmentHandler()
-$ -> InstallShowClientAppointmentDialogHandler()
+jQuery -> InstallClientAppointmentHandler()
+jQuery -> InstallShowClientAppointmentDialogHandler()
 
