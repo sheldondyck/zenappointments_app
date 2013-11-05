@@ -5,5 +5,4 @@
       -@appointments_by_hour[hour].each do |appointment|
         -# TODO: slot == 0 is a hack
         =render('card', appointment: appointment, hour: hour, slot: slot) if slot == 0
-  :coffee
-    updateSidebarCalendar "#{@date.strftime('%Y-%m-%d')}", 'day'
+  =render('update_sidebar')

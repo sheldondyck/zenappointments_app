@@ -2,8 +2,6 @@ class AppointmentsController < ApplicationController
   prepend_before_action :authorize_user
   respond_to :json, :html
 
-  # TODO the definition of START_DAY is duplicated
-  START_DAY = :sunday
   NAV_TITLE = {day: '%A, %B %e %Y', week: 'Week %V - %Y', weeks2: 'Bi-Weekly %Y', month: '%B %Y', months2: 'Bi-Monthly  %B %Y', year: '%Y', years2: '%Y - %Y'}
 
   def new
@@ -18,6 +16,7 @@ class AppointmentsController < ApplicationController
     @title = @current_user.name
     # TODO is Date.parse in current time zone? If not add.
     @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
+    @beginning_of_week = @date.beginning_of_week(Account.start_of_week)
     @view = params[:view] ||= 'day'
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     @employees = [1]
@@ -38,7 +37,7 @@ class AppointmentsController < ApplicationController
     end
 
     @appointments_by_week = Hash.new
-    r = Appointment.where(time: @date.in_time_zone.beginning_of_week(START_DAY)..@date.in_time_zone.end_of_week(START_DAY)).order(:time).includes(:client)
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_week(Account.start_of_week)..@date.in_time_zone.end_of_week(Account.start_of_week)).order(:time).includes(:client)
     r.each do |appointment| #.order(:time).group_by(&:time)
       k = appointment.time.strftime("%Y-%m-%d %H:%M")
       if @appointments_by_week.has_key?(k)

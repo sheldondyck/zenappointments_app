@@ -1,21 +1,41 @@
 # startOfWeek: Sunday = 0, ... Saturday = 6
-(exports ? this).buildCal = (m, y, startOfWeek = 0) ->
+#
+buildCal = (y, m, startOfWeek = 0) ->
   mn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   dim = [31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-  oPM = new Date(y, m - 2, 1)
-  oNM = new Date(y, m, 1)
+
+  #alert 'y: ' + y + ' m: ' + m
+
+  if parseInt(m) == 1
+    #alert 'm == 1'
+    oPM = new Date(y - 1, 11, 1)
+  else
+    oPM = new Date(y, m - 2, 1)
+
+  if parseInt(m) == 12
+    #alert 'm == 12'
+    oNM = new Date(y + 1, 0, 1)
+  else
+    oNM = new Date(y, m, 1)
+
   oD = new Date(y, m - 1, 1)
+
+  nM = oD.getMonth() + 1
 
   if oD.getDay() + 1 - startOfWeek == 0
     oD.od = oD.getDay() + 1 - startOfWeek + 7
   else
     oD.od = oD.getDay() + 1 - startOfWeek
 
+  #alert 'nm: ' + formatISODate(oNM)
+
   todaydate = new Date()
   scanfortoday = formatISODate(todaydate)
   dim[1] = (if (((oD.getFullYear() % 100 isnt 0) and (oD.getFullYear() % 4 is 0)) or (oD.getFullYear() % 400 is 0)) then 29 else 28)
-  t = "<table class='calendar-mini' cols='7'><tr>"
-  t += "<td colspan='7'><div data-previous-date='" + formatISODate(oPM) + "' class='calendar-mini-previous-month'><i class='fa fa-chevron-left'/></div>" + mn[m - 1] + " " + y + "<div data-next-date='" + formatISODate(oNM) + "' class='calendar-mini-next-month'><i class='fa fa-chevron-right'/></div></td></tr><tr>"
+  t = "<table class='calendar-mini' cols='7' data-year='" + oD.getFullYear() + "' data-month='" + nM + "'><tr>"
+  t += "<td colspan='7'><div data-previous-date='" + formatISODate(oPM) + "' class='calendar-mini-previous-month'><i class='fa fa-chevron-left'/></div>"
+  t += mn[m - 1] + " " + y
+  t += "<div data-next-date='" + formatISODate(oNM) + "' class='calendar-mini-next-month'><i class='fa fa-chevron-right'/></div></td></tr><tr>"
   s = 0
 
   while s < 7
@@ -63,21 +83,50 @@ linkTo = (oDate) ->
 jQuery ->
   showSidebarCalendar()
 
-(exports ? this).updateSidebarCalendar = (date, mode) ->
-  #alert 'sidebar calendar date: ' + date + ' mode: ' + mode
-  $('#active-day').removeAttr('id')
-  $('.date-' + date).attr('id', 'active-day')
-
-(exports ? this).showSidebarCalendar = (date = new Date())->
+showSidebarCalendar = (date = new Date())->
   curMonth = date.getMonth() + 1
   curYear = date.getFullYear()
+  #alert 'show cal: ' + formatISODate(date) + ' curYear: ' + curYear  + ' curMonth: ' + curMonth
 
   if $('.calendar-mini-js').length > 0
     # TODO: need to add support for Account.start_of_week
-    $('.calendar-mini-js').html(buildCal(curMonth, curYear, 1))
+    $('.calendar-mini-js').html(buildCal(curYear, curMonth, 1))
 
     $('.calendar-mini-previous-month').click ->
       showSidebarCalendar(new Date($(this).data('previous-date')))
 
     $('.calendar-mini-next-month').click ->
+      #alert 'next: ' + $(this).data('next-date')
       showSidebarCalendar(new Date($(this).data('next-date')))
+
+(exports ? this).updateSidebarCalendar = (y, m, d, mode) ->
+  oCD = new Date(y, parseInt(m) - 1, d)
+
+  #alert 'month: ' + $('.calendar-mini').data('month') + " m: " + parseInt(m)
+
+  if $('.calendar-mini').length > 0
+    if $('.calendar-mini').data('month') != parseInt(m)
+      showSidebarCalendar(oCD)
+
+  $('.calendar-mini-js').find('*#active-day').removeAttr('id')
+
+  if mode == 'day'
+    #alert 'sidebar calendar date: ' + formatISODate(oCD) + ' mode: ' + mode
+    $('.date-' + formatISODate(oCD)).attr('id', 'active-day')
+  else if mode == 'week'
+    i = 0
+    while i < 7
+      oCD = new Date(y, parseInt(m) - 1, parseInt(d) + i)
+      #alert 'sidebar calendar date: ' + formatISODate(oCD) + ' mode: ' + mode
+      $('.date-' + formatISODate(oCD)).attr('id', 'active-day')
+      ++i
+  else if mode == 'month'
+    i = 0
+    while i < 31
+      oCD = new Date(y, parseInt(m) - 1, 1 + i)
+      #alert 'sidebar calendar date: ' + formatISODate(oCD) + ' mode: ' + mode
+
+      if oCD.getMonth() + 1 == parseInt(m)
+        $('.date-' + formatISODate(oCD)).attr('id', 'active-day')
+
+      ++i
