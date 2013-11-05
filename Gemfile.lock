@@ -102,7 +102,7 @@ GEM
     foreigner (1.6.0)
       activerecord (>= 3.0.0)
     formatador (0.2.4)
-    guard (2.2.2)
+    guard (2.2.3)
       formatador (>= 0.2.4)
       listen (~> 2.1)
       lumberjack (~> 1.0)
