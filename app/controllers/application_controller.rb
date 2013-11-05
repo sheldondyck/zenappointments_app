@@ -15,8 +15,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_time_zone(&block)
-      # TODO: need to define this per user. create field time_zone in database?
-      Time.use_zone('Tokyo', &block)
+      Time.use_zone(Account.time_zone, &block)
     end
 
     def scope_current_account

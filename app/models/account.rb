@@ -70,4 +70,8 @@ class Account < ActiveRecord::Base
     :monday
     #:sunday
   end
+
+  def self.time_zone
+    'Tokyo'
+  end
 end

@@ -39,6 +39,7 @@ describe Account do
   it { expect(Account).to respond_to(:ending_hour) }
   it { expect(Account).to respond_to(:appointment_duration) }
   it { expect(Account).to respond_to(:start_of_week) }
+  it { expect(Account).to respond_to(:time_zone) }
 
   describe 'company_name' do
     describe 'is valid' do
