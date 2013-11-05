@@ -10,5 +10,8 @@
           -#%li.month-appointment.client-appointment
           %li.month-appointment
             -# TODO add slots
-            =appointment.client.name + ' @ ' + format_appointment_interval(12, 0, appointment.duration)
+            -# TODO why does time have a hour method but not minute?
+            -#=appointment.time.strftime('%M')
+            -# TODO minute is not working. no time to look now
+            =appointment.client.name + ' @ ' + format_appointment_interval(appointment.time.hour, 0, appointment.duration)
   =render('update_sidebar')
