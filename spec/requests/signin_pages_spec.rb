@@ -58,6 +58,11 @@ describe 'Signin Page' do
       current_path.should == appointments_path
     end
 
+    it 'visiting signin page should redirect to home when signed in' do
+      visit signin_path
+      current_path.should == accounts_home_path
+    end
+
     it 'should not be signed in after deleting cookies' do
       #pending 'delete cookies and verify that is not signed in'
     end
@@ -65,7 +70,15 @@ describe 'Signin Page' do
     describe 'it should signout' do
       before { find_by_id('link-sign-out').click }
       it { should have_button 'Sign In' }
-      it { current_path.should == '/' }
+
+      it 'should show root path' do
+        current_path.should == '/'
+      end
+
+      it 'visiting signin page should not redirect to home when not signed in' do
+        visit signin_path
+        current_path.should == signin_path
+      end
     end
   end
 

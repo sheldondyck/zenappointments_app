@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
     @title = 'Sign In'
+    redirect_to accounts_home_path if signed_in?
   end
 
   def create
