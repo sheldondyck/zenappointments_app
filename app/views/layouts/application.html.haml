@@ -3,9 +3,11 @@
   %head
     %title
       =title
-    -#=stylesheet_link_tag 'application', media: 'all'
-    =stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
+    =stylesheet_link_tag 'application', media: 'all'
+    -#=stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'true'
     =javascript_include_tag 'application'
+    -# TODO possible solultion for turbolinks problem is to serve jQuery from head and
+    -# the remain js from the body.
     -#=javascript_include_tag 'application', 'data-turbolinks-track' => 'true'
     =favicon_link_tag
     =csrf_meta_tags
