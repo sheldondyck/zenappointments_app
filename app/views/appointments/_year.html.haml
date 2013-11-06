@@ -4,16 +4,21 @@
   .row
     .col-sm-4
     .col-sm-4
-  -1.step(12, 2) do |month|
+  -1.step(12, 3) do |month|
     .row
-      .col-sm-6
+      .col-sm-4
         .year
           =Date.new(@date.year, month).strftime("%B %Y")
         =calendar true, Date.new(@date.year, month) do |date|
           =date.day
-      .col-sm-6
+      .col-sm-4
         .year
           =Date.new(@date.year, month + 1).strftime("%B %Y")
-        =calendar true, Date.new(@date.year, month + 1)  do |date|
+        =calendar true, Date.new(@date.year, month + 1) do |date|
+          =date.day
+      .col-sm-4
+        .year
+          =Date.new(@date.year, month + 2).strftime("%B %Y")
+        =calendar true, Date.new(@date.year, month + 2)  do |date|
           =date.day
   =render('update_sidebar')
