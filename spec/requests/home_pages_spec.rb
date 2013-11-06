@@ -30,7 +30,9 @@ describe 'home pages' do
 
     describe 'correct html' do
       it { should have_title(app_name + ' | ' + @user.name) }
-      it { should have_selector('h1', text: 'Home') }
+      it { should have_selector('h4', text: 'Activity') }
+      it { should have_selector('h4', text: 'Profit') }
+      it { should have_selector('h4', text: 'Revenue') }
       describe 'home menu' do
         it_behaves_like 'a signedin menu'
         it do

@@ -1,13 +1,14 @@
 =render 'layouts/app_menu'
 -#.container
 .col-sm-2
-  %ul.list-group
-    %li.list-group-item
+  .btn-group-vertical
+    -#{data: {toggle: 'buttons-radio'}}
+    %button.btn.btn-default(type='button')
       User
-    %li.list-group-item
+    %button.btn.btn-default(type='button')
       Administrator
-    %li.list-group-item
-      Payments
+    -#%button.btn.btn-default(type='button')
+    =link_to 'Payments', accounts_payments_path, class: 'btn btn-default'
 
 .col-sm-10
   %h1

@@ -32,6 +32,8 @@ describe Account do
   it { should respond_to(:clients) }
   it { should respond_to(:employees) }
   it { should respond_to(:appointments) }
+  it { expect(Account).to respond_to(:is_demo?) }
+  it { expect(Account).to respond_to(:remaining_demo_days) }
   it { expect(Account).to respond_to(:current_id) }
   it { expect(Account).to respond_to(:slots_per_hour) }
   it { expect(Account).to respond_to(:minutes_per_slot) }

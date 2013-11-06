@@ -11,5 +11,6 @@ describe AccountsController do
   it { should respond_to(:tutorial) }
   it { should respond_to(:home) }
   it { should respond_to(:reports) }
+  it { should respond_to(:payments) }
   #TODO: write specs for multi-tenant
 end

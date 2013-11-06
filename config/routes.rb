@@ -9,6 +9,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'clients/search',         :to => 'clients#search'
   resources :clients
 
+  get   'accounts/payments',      :to => 'accounts#payments'
   get   'accounts/welcome',       :to => 'accounts#welcome'
   get   'accounts/tutorial',      :to => 'accounts#tutorial'
   get   'accounts/reports',       :to => 'accounts#reports' #TODO: where should the reports be located?

@@ -50,6 +50,7 @@ class Account < ActiveRecord::Base
     4
   end
 
+  # TODO a lot of these config function will have to be changed to non-static
   def self.minutes_per_slot
     (60 / Account.slots_per_hour)
   end
@@ -74,5 +75,13 @@ class Account < ActiveRecord::Base
 
   def self.time_zone
     'Tokyo'
+  end
+
+  def self.is_demo?
+    true
+  end
+
+  def self.remaining_demo_days
+    29
   end
 end

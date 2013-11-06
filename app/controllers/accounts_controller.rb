@@ -38,6 +38,9 @@ class AccountsController < ApplicationController
     @title = @current_user.name
   end
 
+  def payments
+  end
+
   def welcome
     @title = 'Welcome ' + current_user.name
   end

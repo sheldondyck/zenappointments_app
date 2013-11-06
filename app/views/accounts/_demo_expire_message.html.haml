@@ -1,0 +1,11 @@
+.zen-account-demo-message
+  .container
+    %h5
+      Your
+      %b
+        =app_name
+      demo account will expire in
+      %b
+        =Account.remaining_demo_days
+        days.
+      =link_to 'Subscribe now and save!', accounts_payments_path
