@@ -4,18 +4,18 @@
     =link_to image_tag('zen-logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
     %ul.nav.navbar-nav
       -# TODO need to define home final url
-      %li{:class => active('accounts#home')}
+      %li{:class => active('accounts#home'), id: 'home'}
         =link_to 'Home', accounts_home_path
-      %li{:class => active('appointments#index')}
+      %li{:class => active('appointments#index'), id: 'appointments'}
         -# TODO inconsistent link names, others and index this is not
         =link_to 'Appointments', appointments_path
-      %li{:class => active('clients#index')}
-        =link_to 'Clients', clients_path, data: {remote: true}
-      %li{:class => active('payments#index')}
-        =link_to 'Payments', payments_index_path, data: {remote: true}
-      %li{:class => active('employees#index')}
-        =link_to 'Employees', employees_index_path, data: {remote: true}
-      %li{:class => active('accounts#reports')}
+      %li{:class => active('clients#index'), id: 'clients'}
+        =link_to 'Clients', clients_path#, data: {remote: true}
+      %li{:class => active('payments#index'), id: 'payments'}
+        =link_to 'Payments', payments_index_path#, data: {remote: true}
+      %li{:class => active('employees#index'), id: 'employees'}
+        =link_to 'Employees', employees_index_path#, data: {remote: true}
+      %li{:class => active('accounts#reports'), id: 'reports'}
         -# TODO need to define reports final url
         -# TODO should make a controller called reports
         =link_to 'Reports' , accounts_reports_path
