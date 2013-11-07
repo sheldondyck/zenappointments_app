@@ -6,7 +6,8 @@
       -# TODO need to define home final url
       %li{:class => active('accounts#home'), id: 'home'}
         =link_to 'Home', accounts_home_path
-      %li{:class => active('appointments#index'), id: 'appointments'}
+        -# TODO specs did not catch this error
+      %li{:class => active('appointments#index'), id: 'appointments_CONFLICT_WITH_VIEW_ID'}
         -# TODO inconsistent link names, others and index this is not
         =link_to 'Appointments', appointments_path
       %li{:class => active('clients#index'), id: 'clients'}
