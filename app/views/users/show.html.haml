@@ -1,39 +1,39 @@
 =render 'layouts/app_menu'
--#.container
-.col-sm-2
-  .btn-group-vertical
-    -#{data: {toggle: 'buttons-radio'}}
-    %button.btn.btn-default(type='button')
-      User
-    %button.btn.btn-default(type='button')
-      Administrator
-    -#%button.btn.btn-default(type='button')
-    =link_to 'Payments', accounts_payments_path, class: 'btn btn-default'
+.zen-navbody
+  .col-sm-2
+    .btn-group-vertical
+      -#{data: {toggle: 'buttons-radio'}}
+      %button.btn.btn-default(type='button')
+        User
+      %button.btn.btn-default(type='button')
+        Administrator
+      -#%button.btn.btn-default(type='button')
+      =link_to 'Payments', accounts_payments_path, class: 'btn btn-default'
 
-.col-sm-10
-  %h1
-    User Config
+  .col-sm-10
+    %h1
+      User Config
 
-  %h2 Normal user
-  %ul
-    %li Password
-    %li email (do we allow changing email? probably have too but this is the user_id for the account)
+    %h2 Normal user
+    %ul
+      %li Password
+      %li email (do we allow changing email? probably have too but this is the user_id for the account)
 
-  -# TODO this should be config for the account not user
-  %h2 Admin
-  %ul
-    %li Language: English/Portugues/Spanish
-    %li Time Zone and DST
-    %li Office Start/End hours
-    %li Start Week on monday
-    %li Default Duration Time
-    %li Number of Slots per hour (how do we explain this). smallest appointment?
-    %li Date Format mm/dd/yyyy or dd/mm/yyyy or yyyy/mm/dd
-    %li 12/24 clock
-    %li
-      Payment to ZenAppointments
-      %ul
-        %li Next Payment
-        %li Payment Method
-        %li Payment history
-        %li Cancel Account
+    -# TODO this should be config for the account not user
+    %h2 Admin
+    %ul
+      %li Language: English/Portugues/Spanish
+      %li Time Zone and DST
+      %li Office Start/End hours
+      %li Start Week on monday
+      %li Default Duration Time
+      %li Number of Slots per hour (how do we explain this). smallest appointment?
+      %li Date Format mm/dd/yyyy or dd/mm/yyyy or yyyy/mm/dd
+      %li 12/24 clock
+      %li
+        Payment to ZenAppointments
+        %ul
+          %li Next Payment
+          %li Payment Method
+          %li Payment history
+          %li Cancel Account

@@ -1,144 +1,145 @@
 =render 'layouts/app_menu'
-.container
-  %br
-  .row
-    .col-sm-8
-      %h4 Activity
-      %canvas#bar_chart{:height => "350", :width => "600"}
+.zen-navbody
+  .container
+    %br
+    .row
+      .col-sm-8
+        %h4 Activity
+        %canvas#bar_chart{:height => "350", :width => "600"}
 
-      :coffee
-        jQuery ->
-          data = {
-            labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
-            datasets : [
-              {
-                fillColor : "rgba(220,220,220,0.5)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                data : [65,59,90,81,56,55,40,44,55,44,64,44,]
-              },
-              {
-                fillColor : "rgba(151,187,205,0.5)",
-                strokeColor : "rgba(151,187,205,1)",
-                pointColor : "rgba(151,187,205,1)",
-                pointStrokeColor : "#fff",
-                data : [28,48,40,19,96,27,100,44,50,66,77,88]
-              }
-            ]
-          }
-
-          options = {
-            scaleShowLabels: false
-          }
-
-          oBarChart = new Chart($("#bar_chart").get(0).getContext("2d")).Bar(data, options)
-
-    .col-sm-4
-      .row
-        %center
-          %h4 Profit
-          %canvas#dounut_chart_1{:height => "150", :width => "350"}
-
-          :coffee
-            jQuery ->
-              data = [
+        :coffee
+          jQuery ->
+            data = {
+              labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+              datasets : [
                 {
-                  value : 100,
-                  color : "#D4CCC5"
+                  fillColor : "rgba(220,220,220,0.5)",
+                  strokeColor : "rgba(220,220,220,1)",
+                  pointColor : "rgba(220,220,220,1)",
+                  pointStrokeColor : "#fff",
+                  data : [65,59,90,81,56,55,40,44,55,44,64,44,]
                 },
                 {
-                  value : 40,
-                  color : "#949FB1"
-                },
-                {
-                  value : 120,
-                  color : "#4D5360"
+                  fillColor : "rgba(151,187,205,0.5)",
+                  strokeColor : "rgba(151,187,205,1)",
+                  pointColor : "rgba(151,187,205,1)",
+                  pointStrokeColor : "#fff",
+                  data : [28,48,40,19,96,27,100,44,50,66,77,88]
                 }
               ]
+            }
 
-              options = {
-                scaleShowLabels: false
-              }
+            options = {
+              scaleShowLabels: false
+            }
 
-              oDoughtnutChart1 = new Chart($("#dounut_chart_1").get(0).getContext("2d")).Doughnut(data, options)
+            oBarChart = new Chart($("#bar_chart").get(0).getContext("2d")).Bar(data, options)
 
-      .row
-        %center
-          %h4 Revenue
-          %canvas#dounut_chart_2{:height => "150", :width => "350"}
+      .col-sm-4
+        .row
+          %center
+            %h4 Profit
+            %canvas#dounut_chart_1{:height => "150", :width => "350"}
 
-          :coffee
-            jQuery ->
-              data = [
-                {
-                  value: 30,
-                  color:"#F7464A"
-                },
-                {
-                  value : 50,
-                  color : "#E2EAE9"
-                },
-                {
-                  value : 100,
-                  color : "#D4CCC5"
-                },
-                {
-                  value : 40,
-                  color : "#949FB1"
-                },
-                {
-                  value : 120,
-                  color : "#4D5360"
+            :coffee
+              jQuery ->
+                data = [
+                  {
+                    value : 100,
+                    color : "#D4CCC5"
+                  },
+                  {
+                    value : 40,
+                    color : "#949FB1"
+                  },
+                  {
+                    value : 120,
+                    color : "#4D5360"
+                  }
+                ]
+
+                options = {
+                  scaleShowLabels: false
                 }
-              ]
 
-              options = {
-                scaleShowLabels: false
-              }
+                oDoughtnutChart1 = new Chart($("#dounut_chart_1").get(0).getContext("2d")).Doughnut(data, options)
 
-              oDoughtnutChart2 = new Chart($("#dounut_chart_2").get(0).getContext("2d")).Doughnut(data, options)
--#
-  %h2 ZenAppointments Overview
+        .row
+          %center
+            %h4 Revenue
+            %canvas#dounut_chart_2{:height => "150", :width => "350"}
 
-  %ul
-    %li
-      Small Office Software that allows owners to mangage
-      %ul
-        %li Client Contact Info
-        %li Appointments
-        %li Payment Processing
+            :coffee
+              jQuery ->
+                data = [
+                  {
+                    value: 30,
+                    color:"#F7464A"
+                  },
+                  {
+                    value : 50,
+                    color : "#E2EAE9"
+                  },
+                  {
+                    value : 100,
+                    color : "#D4CCC5"
+                  },
+                  {
+                    value : 40,
+                    color : "#949FB1"
+                  },
+                  {
+                    value : 120,
+                    color : "#4D5360"
+                  }
+                ]
 
-  %h3 Features
-  %h4 Client
-  %ul
-    %li Info Details
-    %li History
-  %h4 Appointments
-  %ul
-    %li Schedule Details
-    %li Automatic Reminders via email or SMS
-    %li Associate a Payment
-  %h4 Payement
-  %ul
-    %li Processing
+                options = {
+                  scaleShowLabels: false
+                }
 
-  %h1 Home
-  %h3 Appointments
-  %ul
-    %li Show next Appointments
-    %li Show which Appointments have had confirmation emails/SMS sent
-    %li Show which Appointments have confirmed
+                oDoughtnutChart2 = new Chart($("#dounut_chart_2").get(0).getContext("2d")).Doughnut(data, options)
+  -#
+    %h2 ZenAppointments Overview
 
-  %h3 Stats
-  %ul
-    %li
-      graphs showing
-      %ul
-        %li Days with appoiments already sceduled (next 30 days)
-        %li percent usage per day
-        %li revenue
+    %ul
+      %li
+        Small Office Software that allows owners to mangage
+        %ul
+          %li Client Contact Info
+          %li Appointments
+          %li Payment Processing
 
-  %h2 Interface
+    %h3 Features
+    %h4 Client
+    %ul
+      %li Info Details
+      %li History
+    %h4 Appointments
+    %ul
+      %li Schedule Details
+      %li Automatic Reminders via email or SMS
+      %li Associate a Payment
+    %h4 Payement
+    %ul
+      %li Processing
 
-  %h4 Concerns
+    %h1 Home
+    %h3 Appointments
+    %ul
+      %li Show next Appointments
+      %li Show which Appointments have had confirmation emails/SMS sent
+      %li Show which Appointments have confirmed
+
+    %h3 Stats
+    %ul
+      %li
+        graphs showing
+        %ul
+          %li Days with appoiments already sceduled (next 30 days)
+          %li percent usage per day
+          %li revenue
+
+    %h2 Interface
+
+    %h4 Concerns

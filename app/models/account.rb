@@ -78,7 +78,7 @@ class Account < ActiveRecord::Base
   end
 
   def self.is_demo?
-    true
+    false
   end
 
   def self.remaining_demo_days

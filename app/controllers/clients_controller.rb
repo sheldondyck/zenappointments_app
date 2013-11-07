@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   def index
     #puts 'CLIENT INDEX'
     @title = @current_user.name
-    respond_with Client.all
+    #respond_with Client.all
   end
 
   def show

@@ -1,3 +1,4 @@
+// TODO: use .replaceWith() instead of .remove() here.
 $('#appointments-panel').remove();
 $('#appointments').append("#{escape_javascript render(@view)}");
 HideClientAppointmentDialog();

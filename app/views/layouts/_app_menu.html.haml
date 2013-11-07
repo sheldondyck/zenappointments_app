@@ -1,4 +1,4 @@
-.navbar.navbar-default(role='navigation')
+.navbar.navbar-default.zen-navbar(role='navigation')
   .navbar-inner
     -# TODO need to define app_name url
     =link_to image_tag('zen-logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
@@ -10,13 +10,14 @@
         -# TODO inconsistent link names, others and index this is not
         =link_to 'Appointments', appointments_path
       %li{:class => active('clients#index')}
-        =link_to 'Clients', clients_path
+        =link_to 'Clients', clients_path, data: {remote: true}
       %li{:class => active('payments#index')}
-        =link_to 'Payments', payments_index_path
+        =link_to 'Payments', payments_index_path, data: {remote: true}
       %li{:class => active('employees#index')}
-        =link_to 'Employees', employees_index_path
+        =link_to 'Employees', employees_index_path, data: {remote: true}
       %li{:class => active('accounts#reports')}
         -# TODO need to define reports final url
+        -# TODO should make a controller called reports
         =link_to 'Reports' , accounts_reports_path
     %ul.nav.navbar-nav.navbar-right
       %li
