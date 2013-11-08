@@ -16,3 +16,6 @@
 /tmp
 .rvmrc
 tags
+
+# Ignore application configuration
+/config/application.yml

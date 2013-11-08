@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ZenAppointmentsApp::Application.config.secret_key_base = '5d4fe566a783173a630be04586ccf0c67441f8bac5560e376fbb0397c6c97c9b09d5db03bae9a52aa4f0a10c6afcc1ed66f12d86837cff02d05d85131a03d445'
+ZenAppointmentsApp::Application.config.secret_key_base = Figaro.env.secret_key_base

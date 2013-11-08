@@ -97,6 +97,9 @@ GEM
       railties (>= 3.0.0)
     fastercsv (1.5.5)
     ffi (1.9.3)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
     foreigner (1.6.0)
@@ -289,6 +292,7 @@ DEPENDENCIES
   coffee-rails
   debugger
   factory_girl_rails
+  figaro
   font-awesome-rails
   foreigner
   guard (>= 2.1.0)
