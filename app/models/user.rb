@@ -41,10 +41,6 @@ class User < ActiveRecord::Base
                           length: { minimum: 6, maximum: 100 }
   validates :active,      inclusion: { in: [true, false] }
 
-  # TODO: adding default_scope here creates problems with signin code
-  # but user lists have to be scoped to the account. what to do?
-  #default_scope { where(account_id: Account.current_id) }
-
   def name
     first_name + ' ' + last_name
   end
@@ -54,7 +50,11 @@ class User < ActiveRecord::Base
   end
 
   def User.new_signin_token
-    SecureRandom.urlsafe_base64
+    begin
+      token = SecureRandom.urlsafe_base64
+    end while User.exists?(signin_token: User.encrypt(token))
+
+    return token
   end
 
   def User.encrypt(token)

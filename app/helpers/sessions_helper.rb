@@ -12,6 +12,7 @@ module SessionsHelper
   end
 
   def sign_out
+    self.current_user.update_attribute(:signin_token, '')
     self.current_user = nil
     cookies.delete(:signin_token)
   end
