@@ -18,6 +18,7 @@ class AppointmentsController < ApplicationController
     # TODO is Date.parse in current time zone? If not add.
     @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
     @date = @date.beginning_of_week(Account.start_of_week) if @view == 'week'
+    # TODO: brakeman is warning of security problem with this line
     @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
     # TODO: should employees stay or go?
     @employees = [1]
