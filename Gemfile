@@ -27,6 +27,7 @@ gem 'jbuilder' #, '~> 1.2'
 gem 'uglifier' #, '>= 1.3.0'
 gem 'bcrypt-ruby' #, '~> 3.0.0'
 gem 'haml'
+#gem 'haml-contrib'
 #gem 'rdiscount' # used for :markdown in haml
 gem 'figaro'
 gem 'pg'
