@@ -10,6 +10,59 @@ class AppointmentsController < ApplicationController
     @title = @current_user.name
   end
 
+  def day
+    @client = Client.new
+    @title = @current_user.name
+    @view = 'day'
+    # TODO is Date.parse in current time zone? If not add.
+    @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
+    @date = @date.beginning_of_week(Account.start_of_week) if @view == 'week'
+    # TODO: brakeman is warning of security problem with this line
+    @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
+    # TODO: should employees stay or go?
+    @employees = [1]
+
+    @appointments_by_date = Hash.new
+    #puts "Account.current_id: #{Account.current_id}"
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_month..@date.in_time_zone.end_of_month).order(:time).includes(:client)
+    r.each do |appointment| #.order(:time).group_by(&:time)
+      k = appointment.time.strftime("%Y-%m-%d")
+      if @appointments_by_date.has_key?(k)
+        @appointments_by_date[k].push(appointment)
+      else
+        @appointments_by_date[k] = [appointment]
+      end
+    end
+
+    render 'index'
+  end
+
+  def week
+    @client = Client.new
+    @title = @current_user.name
+    @view = 'week'
+    # TODO is Date.parse in current time zone? If not add.
+    @date = params[:date].nil? ? Date.current : Date.parse(params[:date])
+    @date = @date.beginning_of_week(Account.start_of_week) if @view == 'week'
+    # TODO: brakeman is warning of security problem with this line
+    @nav_title = @date.strftime(NAV_TITLE[@view.to_sym])
+    # TODO: should employees stay or go?
+    @employees = [1]
+
+    @appointments_by_week = Hash.new
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_week(Account.start_of_week)..@date.in_time_zone.end_of_week(Account.start_of_week)).order(:time).includes(:client)
+    r.each do |appointment| #.order(:time).group_by(&:time)
+      k = appointment.time.strftime("%Y-%m-%d %H:%M")
+      if @appointments_by_week.has_key?(k)
+        @appointments_by_week[k].push(appointment)
+      else
+        @appointments_by_week[k] = [appointment]
+      end
+    end
+
+    render 'index'
+  end
+
   def index
     #@appointment = Appointment.new
     @client = Client.new

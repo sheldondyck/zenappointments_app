@@ -17,12 +17,16 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'signup',                 :to => 'accounts#new'
   resources :accounts
 
-  get   'appointments',           :to => 'appointments#index'
-  get   'appointments/new',       :to => 'appointments#new'
-  post  'appointments/create',    :to => 'appointments#create'
-  post  'appointments/move',      :to => 'appointments#move'
-  post  'appointments/update',    :to => 'appointments#update'
-  post  'appointments/destroy',   :to => 'appointments#destroy'
+  get   'appointments',               :to => 'appointments#index'
+  get   'appointments/new',           :to => 'appointments#new'
+  post  'appointments/create',        :to => 'appointments#create'
+  post  'appointments/move',          :to => 'appointments#move'
+  post  'appointments/update',        :to => 'appointments#update'
+  post  'appointments/destroy',       :to => 'appointments#destroy'
+  get   'appointments/day/(:date)',   :to => 'appointments#day'
+  get   'appointments/week/(:date)',  :to => 'appointments#week'
+  get   'appointments/month/(:date)', :to => 'appointments#month'
+  get   'appointments/year/(:date)',  :to => 'appointments#year'
   #resources :appointments
 
   get   'signin',                 :to => 'sessions#new'
