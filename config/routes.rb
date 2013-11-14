@@ -23,10 +23,10 @@ ZenAppointmentsApp::Application.routes.draw do
   post  'appointments/move',          :to => 'appointments#move'
   post  'appointments/update',        :to => 'appointments#update'
   post  'appointments/destroy',       :to => 'appointments#destroy'
-  get   'appointments/day/(:date)',   :to => 'appointments#day'
-  get   'appointments/week/(:date)',  :to => 'appointments#week'
-  get   'appointments/month/(:date)', :to => 'appointments#month'
-  get   'appointments/year/(:date)',  :to => 'appointments#year'
+  get   'appointments/day/(:date)',   :to => 'appointments#day',      :as => 'appointments_day'
+  get   'appointments/week/(:date)',  :to => 'appointments#week',     :as => 'appointments_week'
+  get   'appointments/month/(:date)', :to => 'appointments#month',    :as => 'appointments_month'
+  get   'appointments/year/(:date)',  :to => 'appointments#year',     :as => 'appointments_year'
   #resources :appointments
 
   get   'signin',                 :to => 'sessions#new'
