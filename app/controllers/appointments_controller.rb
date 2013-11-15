@@ -98,6 +98,18 @@ class AppointmentsController < ApplicationController
     # TODO: should employees stay or go?
     @employees = [1]
 
+    @appointments_year = Hash.new
+    #puts "Account.current_id: #{Account.current_id}"
+    r = Appointment.where(time: @date.in_time_zone.beginning_of_year..@date.in_time_zone.end_of_year).order(:time).includes(:client)
+    r.each do |appointment| #.order(:time).group_by(&:time)
+      k = appointment.time.strftime("%Y-%m-%d")
+      if @appointments_year.has_key?(k)
+        @appointments_year[k].push(appointment)
+      else
+        @appointments_year[k] = [appointment]
+      end
+    end
+
     render 'index'
   end
 
