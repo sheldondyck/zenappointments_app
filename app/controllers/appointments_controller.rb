@@ -98,6 +98,7 @@ class AppointmentsController < ApplicationController
     # TODO: should employees stay or go?
     @employees = [1]
 
+    # TODO add all appoinments for the year?
     @appointments_year = Hash.new
     #puts "Account.current_id: #{Account.current_id}"
     r = Appointment.where(time: @date.in_time_zone.beginning_of_year..@date.in_time_zone.end_of_year).order(:time).includes(:client)
