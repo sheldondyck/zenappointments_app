@@ -112,6 +112,7 @@
           hour: $(this).closest('tr.hour-row').data('hour'),
           slot: $(this).closest('.slot').data('slot')
         }
+  InstallCalenderJump()
 
 (exports ? this).ShowClientAppointmentSearchPartial = ->
   $('.appointment-client-details').css('display', 'none')
@@ -148,6 +149,16 @@
   $('.telephone-cellular').val('')
   $('.appointment-dialog-error').css('display', 'none')
   ResetDeleteConfirm()
+
+(exports ? this).InstallCalenderJump = ->
+  $('.jump-appointment').click ->
+    # TODO FIXED paths
+    $.ajax "/appointments",
+      type: 'GET',
+      dataType: 'script',
+      data: { date: $(this).data("date") }
+      error: ->
+        #alert 'error' # TODO: added generic error handler
 
   # TODO: Add support for mousewheel to change month when in month view
 #$ ->

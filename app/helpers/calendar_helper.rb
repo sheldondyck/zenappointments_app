@@ -33,16 +33,23 @@ module CalendarHelper
     end
 
     def day_cell(day)
-      content_tag :td, view.capture(day, &callback), class: day_classes(day)
+      content_tag :td, view.capture(day, &callback), class: day_classes(day), data: day_data(day)
     end
 
     def day_classes(day)
       classes = []
-      classes << "mini" if mini
-      classes << "today" if day == Date.today
-      classes << "notmonth" if day.month != date.month
-      classes << "weekend" if (day.saturday? || day.sunday?)
-      classes.empty? ? nil : classes.join(" ")
+      classes << 'mini' if mini
+      classes << 'today' if day == Date.today
+      classes << 'notmonth' if day.month != date.month
+      classes << 'weekend' if (day.saturday? || day.sunday?)
+      classes << 'jump-appointment'
+      classes.empty? ? nil : classes.join(' ')
+    end
+
+    def day_data(day)
+      data = {
+        date: day.to_s
+      }
     end
 
     def header_weeks

@@ -57,9 +57,17 @@ $slot-height: 1px * $slot-height-unitless;
     text-align: left;
   }
 
-  .weekend { background-color: #eee; }
-  .notmonth, .notmonth a { color: #ccc; }
-  .today { background-color: #d7f2ff; }
+  .weekend {
+    background-color: #eee;
+  }
+
+  .notmonth, .notmonth a {
+    color: #ccc;
+  }
+
+  .today {
+    background-color: #d7f2ff;
+  }
 }
 
 #appointments .agenda {

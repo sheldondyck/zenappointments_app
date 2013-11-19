@@ -52,7 +52,8 @@ module WeekHelper
         # TODO this cal. is duplicated in card.html.
         interval: "#{hour}:00 - #{hour + 1}:00",
         # TODO magic number duration here. should be dynamical
-        duration: Account.appointment_duration }
+        duration: Account.appointment_duration
+      }
     end
 
     def hour_row_header(hour)
@@ -89,7 +90,8 @@ module WeekHelper
         weekday: day.strftime('%A'),
         date: day.to_s,
         # TODO this format is duplicated in controller
-        date_pretty: day.strftime('%B %e %Y') }
+        date_pretty: day.strftime('%B %e %Y')
+      }
     end
 
     def appointment_slots(day, hour)

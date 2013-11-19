@@ -56,7 +56,10 @@ buildCal = (y, m, startOfWeek = 0) ->
     klass = " today " if sCD == scanfortoday
     klass += " weekend" if oCD.getDay() == 0 or oCD.getDay() == 6
     klass += " notmonth " + scanfortoday if !((i - oD.od >= 0) and (i - oD.od < dim[m - 1]))
+    klass += " jump-appointment"
+    # TODO remove anchor and just use jump-appointment
     t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + linkTo(oCD) + "</td>"
+    #t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + oCD.getDate() + "</td>"
     f = true if ((i) % 7 == 0) and ((i - oD.od + 1) >= dim[m - 1])
 
     if !f

@@ -34,6 +34,7 @@
     float: right;
   }
 
+  // TODO remove anchor and just use jump-appointment
   // TODO fix problems with link hit area. there are some pixels where the day is highlighted but the link is not active
   a {
     text-decoration: none;
@@ -44,10 +45,20 @@
     padding-right: 3px;
   }
 
+  // TODO remove anchor and just use jump-appointment
   a:hover, .day:hover, a:focus, .day:focus {
     background-color: #888;
     color: #ddd;
     font-weight: 500;
+  }
+
+  .jump-appointment {
+    cursor: pointer;
+  }
+
+  .jump-appointment:hover, .jump-appointment:focus {
+    color: #ddd;
+    background-color: #888;
   }
 }
 
