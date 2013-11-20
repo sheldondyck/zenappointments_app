@@ -3,7 +3,7 @@
   .view-header-quick-nav
     .btn-group{data: {toggle: 'buttons-radio'}}
       =remote_link_icon_to 'angle-left', send("appointments_#{@view}_path", date: @date.send('prev_' + @view)), '<'
-      =link_to 'Today', send("appointments_#{@view}_path", date: Date.current),
+      =link_to 'Today', appointments_day_path(date: Date.current),
           { alt: 'Today',
             id: 'link-today',
             class: 'btn btn-default',
