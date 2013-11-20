@@ -2,13 +2,13 @@
 .view-header
   .view-header-quick-nav
     .btn-group{data: {toggle: 'buttons-radio'}}
-      =remote_link_icon_to 'angle-left', appointments_path(date: @date.send('prev_' + @view), view: @view), '<'
-      =link_to 'Today', appointments_path(date: Date.current),
+      =remote_link_icon_to 'angle-left', send("appointments_#{@view}_path", date: @date.send('prev_' + @view)), '<'
+      =link_to 'Today', send("appointments_#{@view}_path", date: Date.current),
           { alt: 'Today',
             id: 'link-today',
             class: 'btn btn-default',
             data: { remote: 'true' } }
-      =remote_link_icon_to 'angle-right', appointments_path(date: @date.send('next_' + @view), view: @view), '>'
+      =remote_link_icon_to 'angle-right', send("appointments_#{@view}_path", date: @date.send('next_' + @view)), '>'
   .view-header-title
     =@nav_title
   .view-header-selector

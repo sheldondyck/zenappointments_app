@@ -1,7 +1,7 @@
 #appointments-panel
   =render('header')
   =week @date do |date, hour, slot, slot_duration|
-    -if @appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d:%02d" % [hour, slot * slot_duration]]
+    -if @appointments_by_week && @appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d:%02d" % [hour, slot * slot_duration]]
       -@appointments_by_week[date.strftime("%Y-%m-%d ") + "%02d:%02d" % [hour, slot * slot_duration]].each do |appointment|
         =render('card', appointment: appointment, hour: hour, slot: slot)
   =render('update_sidebar')

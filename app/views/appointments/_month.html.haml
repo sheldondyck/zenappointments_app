@@ -3,7 +3,7 @@
   =calendar false, @date do |date|
     =date.day
     %ul
-    -if @appointments_by_date[date.strftime("%Y-%m-%d")]
+    -if @appointments_by_date && @appointments_by_date[date.strftime("%Y-%m-%d")]
       -@appointments_by_date[date.strftime("%Y-%m-%d")].each do |appointment|
         -# TODO this unless should not be required but solved a 500 error in prod. Why?
         -unless appointment.client.nil?

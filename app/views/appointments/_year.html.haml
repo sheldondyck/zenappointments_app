@@ -11,20 +11,20 @@
           =Date.new(@date.year, month).strftime("%B %Y")
         =calendar true, Date.new(@date.year, month) do |date|
           =date.day
-          -if @appointments_year[date.strftime("%Y-%m-%d")]
+          -if @appointments_year && @appointments_year[date.strftime("%Y-%m-%d")]
             .foo D
       .col-sm-4
         .year
           =Date.new(@date.year, month + 1).strftime("%B %Y")
         =calendar true, Date.new(@date.year, month + 1) do |date|
           =date.day
-          -if @appointments_year[date.strftime("%Y-%m-%d")]
+          -if @appointments_year && @appointments_year[date.strftime("%Y-%m-%d")]
             .foo D
       .col-sm-4
         .year
           =Date.new(@date.year, month + 2).strftime("%B %Y")
         =calendar true, Date.new(@date.year, month + 2)  do |date|
           =date.day
-          -if @appointments_year[date.strftime("%Y-%m-%d")]
+          -if @appointments_year && @appointments_year[date.strftime("%Y-%m-%d")]
             .foo D
   =render('update_sidebar')
