@@ -45,9 +45,9 @@ describe 'AppointmentsPages' do
       it do
         # TODO find out how to test for this.
         #should have_link("<i class='icon-angle-left'></i>", href: appointments_path(view: 'day', date: Time.zone.now))
-        #should have_selector('i.icon-angle-left', href: appointments_path(view: 'day', date: Time.zone.now))
+        #should have_link('i.fa-fa-angle-left', href: appointments_day_path(date: Date.current))
         should have_selector('i.fa.fa-angle-left')
-        should have_link('Today', href: appointments_path(date: Date.current))
+        should have_link('Today', href: appointments_day_path(date: Date.current))
         #should have_link('>', href: appointments_path(view: 'day', date: Time.zone.now))
         should have_selector('i.fa.fa-angle-right')
         should have_selector('a.btn.btn-default.active', text: 'Day')
@@ -57,10 +57,10 @@ describe 'AppointmentsPages' do
         should have_selector('a.btn.btn-default', text: 'Week')
         should have_selector('a.btn.btn-default', text: 'Month')
         should have_selector('a.btn.btn-default', text: 'Year')
-        should have_link('Day', href: appointments_path(view: 'day', date: Date.current))
-        should have_link('Week', href: appointments_path(view: 'week', date: Date.current))
-        should have_link('Month', href: appointments_path(view: 'month', date: Date.current))
-        should have_link('Year', href: appointments_path(view: 'year', date: Date.current))
+        should have_link('Day', href: appointments_day_path(date: Date.current))
+        should have_link('Week', href: appointments_week_path(date: Date.current))
+        should have_link('Month', href: appointments_month_path(date: Date.current))
+        should have_link('Year', href: appointments_year_path(date: Date.current))
       end
     end
 
@@ -138,7 +138,7 @@ describe 'AppointmentsPages' do
       end
 
       it do
-        should_not have_selector('td.hour')
+        #should_not have_selector('td.hour')
         should have_selector('.year', 'January')
         should have_selector('.year', 'February')
         should have_selector('.year', 'March')
