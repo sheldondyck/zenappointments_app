@@ -79,7 +79,7 @@ describe 'account pages' do
                 end
                 click_button 'Sign In'
               end
-              it { current_path.should == appointments_path }
+              it { current_path.should == dashboard_path }
             end
           end
         end

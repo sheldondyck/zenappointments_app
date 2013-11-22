@@ -2,9 +2,9 @@ require 'spec_helper'
 include ApplicationHelper
 
 describe 'dashboard pages' do
-  describe 'GET /accounts/dashboard' do
+  describe 'GET /dashboard' do
     it 'should deny' do
-      get '/accounts/dashboard'
+      get '/dashboard'
       response.status.should be(302)
     end
   end
@@ -25,7 +25,7 @@ describe 'dashboard pages' do
     end
 
     it 'should have correct path' do
-      current_path.should == accounts_dashboard_path
+      current_path.should == dashboard_path
     end
 
     describe 'correct html' do

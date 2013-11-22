@@ -4,8 +4,8 @@
     =link_to image_tag('zen-logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
     %ul.nav.navbar-nav
       -# TODO need to define dashboard final url
-      %li{:class => active('accounts#dashboard'), id: 'dashboard'}
-        =link_to 'Dashboard', accounts_dashboard_path
+      %li{:class => active('dashboard#index'), id: 'dashboard'}
+        =link_to 'Dashboard', dashboard_path
         -# TODO specs did not catch this error
       %li{:class => active('appointments#index'), id: 'appointments_CONFLICT_WITH_VIEW_ID'}
         -# TODO inconsistent link names, others and index this is not

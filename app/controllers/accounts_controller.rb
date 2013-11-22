@@ -28,11 +28,6 @@ class AccountsController < ApplicationController
   def delete
   end
 
-  def dashboard
-    # TODO: should dashboard screen be in accounts?
-    @title = @current_user.name
-  end
-
   def reports
     # TODO: should reports be in accounts?
     @title = @current_user.name

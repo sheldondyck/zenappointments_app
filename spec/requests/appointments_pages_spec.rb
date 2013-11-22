@@ -25,10 +25,14 @@ describe 'AppointmentsPages' do
     end
 
     it 'should have correct path' do
-      current_path.should == appointments_path
+      current_path.should == dashboard_path
     end
 
     describe 'correct page html' do
+      before do
+        visit appointments_path
+      end
+
       it { should have_title(app_name + ' | ' + @user.name) }
       describe 'appointments menu' do
         it_behaves_like 'a signedin menu'
@@ -66,6 +70,7 @@ describe 'AppointmentsPages' do
 
     describe 'day agenda', js: true do
       before do
+        visit appointments_path
         click_link 'Day'
         #  save_and_open_page
       end
@@ -98,6 +103,7 @@ describe 'AppointmentsPages' do
 
     describe 'week agenda', js: true do
       before do
+        visit appointments_path
         click_link 'Week'
         sleep 0.5
         #save_and_open_page
@@ -114,6 +120,7 @@ describe 'AppointmentsPages' do
 
     describe 'month agenda', js: true do
       before do
+        visit appointments_path
         click_link 'Month'
         # TODO: find a better way then sleeping
         sleep 0.5
@@ -132,6 +139,7 @@ describe 'AppointmentsPages' do
 
     describe 'year agenda', js: true do
       before do
+        visit appointments_path
         click_link 'Year'
         sleep 0.1
         #save_and_open_page

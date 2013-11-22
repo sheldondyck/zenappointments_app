@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     @title = 'Sign In'
-    redirect_to accounts_dashboard_path if signed_in?
+    redirect_to dashboard_path if signed_in?
   end
 
   def create
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: @email.downcase)
     if user && user.authenticate(params_permitted[:password])
       sign_in user
-      redirect_to appointments_path
+      redirect_to dashboard_path
     else
       flash.now[:alert] = 'Invalid email or password'
       render 'new'

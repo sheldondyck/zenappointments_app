@@ -42,7 +42,7 @@ describe 'Signin Page' do
     end
 
     it 'signs in' do
-      current_path.should == appointments_path
+      current_path.should == dashboard_path
     end
 
     describe 'has correct html' do
@@ -60,7 +60,7 @@ describe 'Signin Page' do
 
     it 'visiting signin page should redirect to dashboard when signed in' do
       visit signin_path
-      current_path.should == accounts_dashboard_path
+      current_path.should == dashboard_path
     end
 
     it 'should not be signed in after deleting cookies' do

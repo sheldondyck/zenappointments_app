@@ -1,4 +1,5 @@
 ZenAppointmentsApp::Application.routes.draw do
+  get "dashboard/index"
   get 'employees/index',          :to => 'employees#index'
 
   get 'payments/index',           :to => 'payments#index'
@@ -9,11 +10,12 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'clients/search',         :to => 'clients#search'
   resources :clients
 
+  get   '/dashboard',             :to => 'dashboard#index'
+
   get   'accounts/payments',      :to => 'accounts#payments'
   get   'accounts/welcome',       :to => 'accounts#welcome'
   get   'accounts/tutorial',      :to => 'accounts#tutorial'
   get   'accounts/reports',       :to => 'accounts#reports' #TODO: where should the reports be located?
-  get   'accounts/dashboard',     :to => 'accounts#dashboard' #TODO: where should the dashboard screen be located?
   get   'signup',                 :to => 'accounts#new'
   resources :accounts
 
