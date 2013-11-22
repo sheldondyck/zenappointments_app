@@ -47,6 +47,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'rack-mini-profiler'
   gem 'annotate' #, :git => 'git://github.com/ctran/annotate_models.git'
   # To use debugger
   #gem 'ruby-debug'

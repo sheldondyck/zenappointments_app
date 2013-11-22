@@ -79,7 +79,7 @@ class Account < ActiveRecord::Base
 
   def is_demo?
     # TODO this value will be true if account.zen_product_price_id == null
-    true
+    false
   end
 
   def remaining_demo_days
