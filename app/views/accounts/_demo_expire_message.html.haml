@@ -4,8 +4,11 @@
       Your
       %b
         =app_name
-      demo account will expire in
-      %b
-        =Account.remaining_demo_days
-        days.
+      -if current_user.account.remaining_demo_days < 1
+        demo account has expired.
+      -else
+        demo account will expire in
+        %b
+          =current_user.account.remaining_demo_days
+          days.
       =link_to 'Subscribe now and save!', accounts_payments_path

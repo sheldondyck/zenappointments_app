@@ -32,8 +32,8 @@ describe Account do
   it { should respond_to(:clients) }
   it { should respond_to(:employees) }
   it { should respond_to(:appointments) }
-  it { expect(Account).to respond_to(:is_demo?) }
-  it { expect(Account).to respond_to(:remaining_demo_days) }
+  it { should respond_to(:remaining_demo_days) }
+  it { should respond_to(:is_demo?) }
   it { expect(Account).to respond_to(:current_id) }
   it { expect(Account).to respond_to(:slots_per_hour) }
   it { expect(Account).to respond_to(:minutes_per_slot) }
@@ -144,5 +144,14 @@ describe Account do
     describe 'has admin privs' do
       it { @user.account_administrator.should be_true }
     end
+  end
+
+  describe 'demo account' do
+    before do
+      @account = create(:account)
+    end
+
+    it { @account.is_demo?.should be_true }
+    it { @account.remaining_demo_days.should == 30 }
   end
 end

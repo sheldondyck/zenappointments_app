@@ -77,11 +77,13 @@ class Account < ActiveRecord::Base
     'Tokyo'
   end
 
-  def self.is_demo?
-    false
+  def is_demo?
+    # TODO this value will be true if account.zen_product_price_id == null
+    true
   end
 
-  def self.remaining_demo_days
-    29
+  def remaining_demo_days
+    # TODO the number 30 should come from zen_product_list
+    (30 - ((Time.zone.now - created_at) / 1.day)).to_i + 1
   end
 end
