@@ -1,10 +1,10 @@
 require 'spec_helper'
 include ApplicationHelper
 
-describe 'home pages' do
-  describe 'GET /accounts/home' do
+describe 'dashboard pages' do
+  describe 'GET /accounts/dashboard' do
     it 'should deny' do
-      get '/accounts/home'
+      get '/accounts/dashboard'
       response.status.should be(302)
     end
   end
@@ -20,12 +20,12 @@ describe 'home pages' do
         fill_in 'Password', with: 'abcdef'
       end
       click_button 'Sign In'
-      click_link 'Home'
+      click_link 'Dashboard'
       #save_and_open_page
     end
 
     it 'should have correct path' do
-      current_path.should == accounts_home_path
+      current_path.should == accounts_dashboard_path
     end
 
     describe 'correct html' do
@@ -33,10 +33,10 @@ describe 'home pages' do
       it { should have_selector('h4', text: 'Activity') }
       it { should have_selector('h4', text: 'Profit') }
       it { should have_selector('h4', text: 'Revenue') }
-      describe 'home menu' do
+      describe 'Dashboard menu' do
         it_behaves_like 'a signedin menu'
         it do
-          should have_selector('li.active', text: 'Home')
+          should have_selector('li.active', text: 'Dashboard')
           should_not have_selector('li.active', text: 'Appointments')
           should_not have_selector('li.active', text: 'Clients')
           should_not have_selector('li.active', text: 'Employees')

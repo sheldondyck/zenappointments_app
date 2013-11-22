@@ -33,7 +33,7 @@ describe 'AppointmentsPages' do
       describe 'appointments menu' do
         it_behaves_like 'a signedin menu'
         it do
-          should_not have_selector('li.active', text: 'Home')
+          should_not have_selector('li.active', text: 'Dashboard')
           should have_selector('li.active', text: 'Appointments')
           should_not have_selector('li.active', text: 'Payments')
           should_not have_selector('li.active', text: 'Clients')

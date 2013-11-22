@@ -5,7 +5,7 @@ shared_examples 'a signedin menu' do
   describe 'menu' do
     it do
       should have_link(app_name, href: www_url)
-      should have_link('Home', href: accounts_home_path)
+      should have_link('Dashboard', href: accounts_dashboard_path)
       should have_link('Appointments', href: appointments_path)
       should have_link('Clients', href: clients_path)
       should have_link('Employees', href: employees_index_path)

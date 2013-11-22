@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   # TODO better do deny be default but "execpt: [:new, :create]" was not working
-  before_action :authorize_user, only: [ :show, :update, :delete, :home, :reports, :welcome, :tutorial]
+  before_action :authorize_user, only: [:show, :update, :delete, :dashboard, :reports, :welcome, :tutorial]
 
   def new
     @title = 'Sign Up'
@@ -28,8 +28,8 @@ class AccountsController < ApplicationController
   def delete
   end
 
-  def home
-    # TODO: should home screen be in accounts?
+  def dashboard
+    # TODO: should dashboard screen be in accounts?
     @title = @current_user.name
   end
 

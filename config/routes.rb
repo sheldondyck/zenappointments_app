@@ -13,7 +13,7 @@ ZenAppointmentsApp::Application.routes.draw do
   get   'accounts/welcome',       :to => 'accounts#welcome'
   get   'accounts/tutorial',      :to => 'accounts#tutorial'
   get   'accounts/reports',       :to => 'accounts#reports' #TODO: where should the reports be located?
-  get   'accounts/home',          :to => 'accounts#home' #TODO: where should the home screen be located?
+  get   'accounts/dashboard',     :to => 'accounts#dashboard' #TODO: where should the dashboard screen be located?
   get   'signup',                 :to => 'accounts#new'
   resources :accounts
 

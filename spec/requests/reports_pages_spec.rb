@@ -34,7 +34,7 @@ describe 'reports pages' do
       describe 'reports menu' do
         it_behaves_like 'a signedin menu'
         it do
-          should_not have_selector('li.active', text: 'Home')
+          should_not have_selector('li.active', text: 'Dashboard')
           should_not have_selector('li.active', text: 'Appointments')
           should_not have_selector('li.active', text: 'Clients')
           should_not have_selector('li.active', text: 'Employees')

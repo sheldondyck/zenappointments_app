@@ -58,9 +58,9 @@ describe 'Signin Page' do
       current_path.should == appointments_path
     end
 
-    it 'visiting signin page should redirect to home when signed in' do
+    it 'visiting signin page should redirect to dashboard when signed in' do
       visit signin_path
-      current_path.should == accounts_home_path
+      current_path.should == accounts_dashboard_path
     end
 
     it 'should not be signed in after deleting cookies' do
@@ -75,7 +75,7 @@ describe 'Signin Page' do
         current_path.should == '/'
       end
 
-      it 'visiting signin page should not redirect to home when not signed in' do
+      it 'visiting signin page should not redirect to dashboard when not signed in' do
         visit signin_path
         current_path.should == signin_path
       end

@@ -3,9 +3,9 @@
     -# TODO need to define app_name url
     =link_to image_tag('zen-logo.png', id:'zen-logo') + ' ' + app_name, www_url, {class:'navbar-brand'}
     %ul.nav.navbar-nav
-      -# TODO need to define home final url
-      %li{:class => active('accounts#home'), id: 'home'}
-        =link_to 'Home', accounts_home_path
+      -# TODO need to define dashboard final url
+      %li{:class => active('accounts#dashboard'), id: 'dashboard'}
+        =link_to 'Dashboard', accounts_dashboard_path
         -# TODO specs did not catch this error
       %li{:class => active('appointments#index'), id: 'appointments_CONFLICT_WITH_VIEW_ID'}
         -# TODO inconsistent link names, others and index this is not
