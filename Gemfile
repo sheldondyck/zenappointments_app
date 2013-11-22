@@ -39,6 +39,9 @@ gem 'font-awesome-rails'
 #gem 'angularjs-rails'
 gem 'awesome_print'
 
+# TODO rack-mini-profiler should be limited to dev or only any admin in production
+gem 'rack-mini-profiler'
+
 group :development do
   gem 'therubyracer', platforms: :ruby
   gem 'rspec-rails'
@@ -47,7 +50,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'rack-mini-profiler'
   gem 'annotate' #, :git => 'git://github.com/ctran/annotate_models.git'
   # To use debugger
   #gem 'ruby-debug'

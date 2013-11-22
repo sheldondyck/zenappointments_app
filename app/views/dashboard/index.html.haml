@@ -5,35 +5,40 @@
     .row
       .col-sm-8
         %h4 Activity
-        %canvas#bar_chart{:height => "350", :width => "600"}
+        %canvas#line_chart{:height => "350", :width => "700"}
+
+        -#zen_labels = #{@appointment_activity.keys.map(&:strftime("%e-%Y"))}
+        -# TODO: have to create javascript var for coffee for the rails vars.
+        :javascript
+          zen_labels = #{@appointment_activity.keys.map{|k| k.strftime("%e/%m")}}
+          zen_data = #{@appointment_activity.values}
+          zen_data_max = #{@appointment_activity.values.max}
 
         :coffee
           jQuery ->
             data = {
-              labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
-              datasets : [
+              labels: zen_labels
+              datasets: [
                 {
-                  fillColor : "rgba(220,220,220,0.5)",
-                  strokeColor : "rgba(220,220,220,1)",
-                  pointColor : "rgba(220,220,220,1)",
-                  pointStrokeColor : "#fff",
-                  data : [65,59,90,81,56,55,40,44,55,44,64,44,]
-                },
-                {
-                  fillColor : "rgba(151,187,205,0.5)",
-                  strokeColor : "rgba(151,187,205,1)",
-                  pointColor : "rgba(151,187,205,1)",
-                  pointStrokeColor : "#fff",
-                  data : [28,48,40,19,96,27,100,44,50,66,77,88]
+                  fillColor: "rgba(151,187,205,0.5)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+                  pointStrokeColor: "#fff",
+                  data: zen_data
                 }
               ]
             }
 
             options = {
-              scaleShowLabels: false
+              scaleShowGridLines: false
+              scaleShowLabels: true,
+              scaleOverride: true,
+              scaleStartValue: 0,
+              scaleStepWidth: 1,
+              scaleSteps: zen_data_max
             }
 
-            oBarChart = new Chart($("#bar_chart").get(0).getContext("2d")).Bar(data, options)
+            oLineChart = new Chart($("#line_chart").get(0).getContext("2d")).Line(data, options)
 
       .col-sm-4
         .row
@@ -126,7 +131,7 @@
     %ul
       %li Processing
 
-    %h1 Dashboard 
+    %h1 Dashboard
     %h3 Appointments
     %ul
       %li Show next Appointments
