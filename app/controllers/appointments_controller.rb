@@ -188,9 +188,9 @@ class AppointmentsController < ApplicationController
       @hour = params[:appointment][:hour].to_i
       @slot = params[:appointment][:slot].to_i
       # TODO: removing in_time_zone did generate a F with specs. huh?
-      time = safe_appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
+      time = permit_appointment_params[:time].to_date.in_time_zone.change(hour: @hour)
       puts 'time: ' + time.to_yaml
-      @appointment = Appointment.create!(safe_appointment_params.merge(account_id: @current_user.account_id,
+      @appointment = Appointment.create!(permit_appointment_params.merge(account_id: @current_user.account_id,
                                                               user_id: @current_user.id,
                                                               client_id: @client.id,
                                                               time: time))
@@ -199,7 +199,7 @@ class AppointmentsController < ApplicationController
       puts 'appointments#create exception: ' + e.message
       if @client.nil?
         puts 'appointments#create client was nil'
-        @client = Client.new(safe_client_params.merge(account_id: @current_user.account_id))
+        @client = Client.new(permit_client_params.merge(account_id: @current_user.account_id))
         @client.valid?
       else
         puts 'appointments#create client was not nil'
@@ -250,14 +250,14 @@ class AppointmentsController < ApplicationController
   end
 
   private
-    def safe_client_params
+    def permit_client_params
       params.require(:appointment).permit(:first_name,
                                            :last_name,
                                            :telephone_cellular,
                                            :email)
     end
 
-    def safe_appointment_params
+    def permit_appointment_params
       params.require(:appointment).permit(:time, :duration)
     end
 end
