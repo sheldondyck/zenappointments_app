@@ -152,13 +152,13 @@
 
 (exports ? this).InstallCalenderJump = ->
   $('.jump-appointment').click ->
+    alert("date: " + $(this).data("date"))
     # TODO FIXED paths
-    $.ajax "/appointments",
+    $.ajax "/appointments/day/" + $(this).data("date"),
       type: 'GET',
       dataType: 'script',
-      data: { date: $(this).data("date") }
       error: ->
-        #alert 'error' # TODO: added generic error handler
+        alert 'error' # TODO: added generic error handler
 
   # TODO: Add support for mousewheel to change month when in month view
 #$ ->

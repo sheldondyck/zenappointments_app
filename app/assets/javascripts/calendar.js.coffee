@@ -58,8 +58,8 @@ buildCal = (y, m, startOfWeek = 0) ->
     klass += " notmonth " + scanfortoday if !((i - oD.od >= 0) and (i - oD.od < dim[m - 1]))
     klass += " jump-appointment"
     # TODO remove anchor and just use jump-appointment
-    t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + linkTo(oCD) + "</td>"
-    #t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + oCD.getDate() + "</td>"
+    #t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + linkTo(oCD) + "</td>"
+    t += "<td class='day" + klass + "' data-date='" + sCD + "'>" + oCD.getDate() + "</td>"
     f = true if ((i) % 7 == 0) and ((i - oD.od + 1) >= dim[m - 1])
 
     if !f
@@ -99,13 +99,12 @@ showSidebarCalendar = (date = new Date())->
   if $('.calendar-mini-js').length > 0
     # TODO: need to add support for Account.start_of_week
     $('.calendar-mini-js').html(buildCal(curYear, curMonth, 1))
-
     $('.calendar-mini-previous-month').click ->
       showSidebarCalendar(new Date($(this).data('previous-date')))
-
     $('.calendar-mini-next-month').click ->
       #alert 'next: ' + $(this).data('next-date')
       showSidebarCalendar(new Date($(this).data('next-date')))
+  InstallCalenderJump()
 
 (exports ? this).updateSidebarCalendar = (y, m, d, mode) ->
   oCD = new Date(y, parseInt(m) - 1, d)
